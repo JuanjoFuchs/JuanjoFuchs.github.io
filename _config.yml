@@ -8,21 +8,18 @@ baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://juanjofuchs.github.io" # the base hostname & protocol for your site
 twitter_username: JuanjoFuchs
 github_username:  JuanjoFuchs
-linkedin_username: juanjofuchs
+linkedin_username: JuanjoFuchs
 
 # SEO Settings
 lang: en
-author:
-  name: JuanjoFuchs
-  email: JuanjoFuchs@gmail.com
-  twitter: JuanjoFuchs
+author: JuanjoFuchs
 
 # Social Media & SEO defaults
 social:
   name: JuanjoFuchs
   links:
     - https://github.com/JuanjoFuchs
-    - https://www.linkedin.com/in/juanjofuchs
+    - https://www.linkedin.com/in/JuanjoFuchs
 
 # Default Front Matter for SEO
 defaults:
