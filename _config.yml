@@ -1,19 +1,52 @@
 # Site settings
 title: JuanjoFuchs Blog
-email: your-email@example.com
+email: # Add your email here if you want it displayed
 description: >- # this means to ignore newlines until "baseurl:"
-  A personal blog powered by Jekyll and GitHub Pages.
-  Write an awesome description for your new site here.
+  Personal blog sharing technical tutorials, project insights, and thoughts on software development.
+  Powered by Jekyll and hosted on GitHub Pages.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://juanjofuchs.github.io" # the base hostname & protocol for your site
-twitter_username: jekyllrb
+twitter_username: JuanjoFuchs
 github_username:  JuanjoFuchs
+linkedin_username: juanjofuchs
+
+# SEO Settings
+lang: en
+author:
+  name: JuanjoFuchs
+  email: JuanjoFuchs@gmail.com
+  twitter: JuanjoFuchs
+
+# Social Media & SEO defaults
+social:
+  name: JuanjoFuchs
+  links:
+    - https://github.com/JuanjoFuchs
+    - https://www.linkedin.com/in/juanjofuchs
+
+# Default Front Matter for SEO
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+      author: "JuanjoFuchs"
+  - scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: "page"
 
 # Build settings
 theme: minima
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
+  - jekyll-sitemap
+
+# Publishing settings
+future: false  # Don't publish posts with future dates
 
 # Exclude from processing
 exclude:
@@ -24,3 +57,6 @@ exclude:
   - vendor/cache/
   - vendor/gems/
   - vendor/ruby/
+  - CLAUDE.md
+  - AGENTS.md
+  - README.md

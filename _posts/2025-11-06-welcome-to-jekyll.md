@@ -1,32 +1,47 @@
 ---
 layout: post
-title:  "Welcome to Jekyll!"
-date:   2025-11-06 18:00:00 +0000
-categories: jekyll update
+title: "Why I Chose GitHub Pages and Jekyll for My Blog"
+description: "I wanted Astro but needed zero hosting maintenance. Here's how I ended up with Jekyll and GitHub Pages, plus the three plugins that handle SEO."
+date: 2025-11-06 13:00:00 -0500
+categories: blogging meta
+tags: [jekyll, github-pages, blogging, seo, static-sites]
+author: JuanjoFuchs
 ---
 
-Welcome to my new Jekyll blog! This is my first post.
+Welcome to my blog! This post explains why I went with Jekyll and GitHub Pages.
 
-## Getting Started with Jekyll
+## The Decision
 
-Jekyll is a simple, blog-aware, static site generator perfect for personal, project, or organization sites. Here are some of its key features:
+I originally wanted to use [Astro](https://astro.build). I liked the component model and the performance story. But I had one hard requirement: no hosting maintenance.
 
-- **Simple**: No databases, comment moderation, or pesky updates to install
-- **Static**: Markdown, Liquid, HTML & CSS go in. Static sites come out ready for deployment
-- **Blog-aware**: Permalinks, categories, pages, posts, and custom layouts are all first-class citizens
+That requirement pointed me straight to [GitHub Pages](https://pages.github.com). It's free, maintained by GitHub, and builds automatically from Git.
 
-## What's Next?
+GitHub Pages supports several static site generators, but [Jekyll](https://jekyllrb.com) is what they built it for. The docs assume Jekyll, the integration is native, everything just works.
 
-I'll be using this blog to share:
-- Personal projects and experiments
-- Technical tutorials and guides
-- Thoughts and reflections
+I looked for Node-based alternatives since Jekyll is Ruby and I'm more comfortable with Node tooling. Then I realized something: I'm not maintaining Jekyll nor I'm writing plugins, I don't need to touch Ruby, GitHub handles all of that, the build just works.
 
-Stay tuned for more content!
+I just write Markdown and Jekyll turns it into HTML.
 
-### Useful Resources
+## What You Get with Jekyll
 
-Check out the [Jekyll docs][jekyll-docs] for more info on how to get the most out of Jekyll. File all bugs/feature requests at [Jekyll's GitHub repo][jekyll-gh].
+Static sites are fast because there's no database and no server-side rendering, just HTML files served from GitHub's CDN. Everything's version controlled in Git, so I can see the history of every post and roll back anything. And it's free with zero hosting bills.
 
-[jekyll-docs]: https://jekyllrb.com/docs/home
-[jekyll-gh]:   https://github.com/jekyll/jekyll
+The tradeoff is no dynamic features and no server-side logic, but for a blog I don't need them.
+
+## Three Plugins
+
+[**jekyll-feed**](https://github.com/jekyll/jekyll-feed) generates an RSS/Atom feed so readers can subscribe in their feed reader of choice.
+
+[**jekyll-seo-tag**](https://github.com/jekyll/jekyll-seo-tag) handles all the SEO work: meta tags, Open Graph for social media, Twitter Cards, JSON-LD structured data, and canonical URLs. I don't touch any of it manually.
+
+[**jekyll-sitemap**](https://github.com/jekyll/jekyll-sitemap) creates sitemap.xml so search engines can find all the pages.
+
+I added some basic SEO config (language tag, author metadata, social links, default front matter) and custom descriptions for each post. That's it.
+
+## The Workflow
+
+Write a post in Markdown, add the front matter, commit to Git, and push to GitHub. GitHub Pages builds and deploys automatically.
+
+## Why It Works
+
+I write Markdown and push to Git. GitHub handles everything else. The site loads fast, costs nothing, and I never think about infrastructure.

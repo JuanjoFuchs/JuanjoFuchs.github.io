@@ -1,20 +1,31 @@
 ---
 layout: page
 title: About
+description: "Software engineer exploring AI-aided development and sharing what actually works in practice."
 permalink: /about/
 ---
 
-This is a personal blog built with Jekyll and hosted on GitHub Pages.
+I'm a software engineer with 16+ years building enterprise software, currently leading engineering teams and exploring how AI tools change the development process.
 
-## About Me
+## What I Write About
 
-Welcome! I'm excited to share my journey and thoughts with you through this blog.
+This blog focuses on using AI for software development. I'm testing tools like Claude Code, GitHub Copilot, and other AI assistants to see how they fit into real workflows. Posts cover experiments, code examples, and practical lessons from using AI day-to-day.
 
-## About This Site
+## Background
 
-This site is:
-- Built with [Jekyll](https://jekyllrb.com/)
-- Hosted on [GitHub Pages](https://pages.github.com/)
-- Using the [Minima](https://github.com/jekyll/minima) theme
+I work with C#, TypeScript, React, Angular, and cloud platforms (AWS, Azure). I've led teams through cloud migrations, built design systems, and spent a lot of time on architecture and DevOps. But this blog isn't about that corporate stuff, it's about trying new tools and sharing what I learn.
 
-Feel free to explore and reach out if you have any questions!
+## Why This Blog
+
+AI tools are changing how we write code and I want to document the process as I figure out what works. This blog is the lab notebook.
+
+## Tech I Use
+
+**Languages**: C#, TypeScript, JavaScript, Python
+**Frontend**: React, Angular, RxJS
+**Cloud**: AWS, Azure, Kubernetes, Terraform, Pulumi
+**AI Tools**: Claude Code, GitHub Copilot, Gemini, and whatever else I'm testing
+
+## Contact
+
+Find me on [GitHub](https://github.com/JuanjoFuchs), [LinkedIn](https://www.linkedin.com/in/juanjofuchs), and [Twitter](https://twitter.com/JuanjoFuchs).
