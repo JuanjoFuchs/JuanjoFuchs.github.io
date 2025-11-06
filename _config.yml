@@ -57,3 +57,5 @@ exclude:
   - CLAUDE.md
   - AGENTS.md
   - README.md
+  - specs/
+  - scripts/
