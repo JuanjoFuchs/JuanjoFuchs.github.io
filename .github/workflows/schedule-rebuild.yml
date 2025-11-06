@@ -81,7 +81,7 @@ jobs:
 
             if [ ! -z "$POST_DATE" ]; then
               # Compare dates (only post if date is within last 7 days and not in future)
-              if [[ "$POST_DATE" >= "$WEEK_AGO" && "$POST_DATE" <= "$CURRENT_DATE" ]]; then
+              if [[ "$POST_DATE" > "$WEEK_AGO" || "$POST_DATE" == "$WEEK_AGO" ]] && [[ "$POST_DATE" < "$CURRENT_DATE" || "$POST_DATE" == "$CURRENT_DATE" ]]; then
                 echo ""
                 echo "=================================================="
                 echo "Processing: $(basename "$post")"
