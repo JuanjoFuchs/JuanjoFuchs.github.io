@@ -121,3 +121,69 @@ This shows all future-dated posts so you can check formatting before they go liv
 - [Jekyll Configuration](https://jekyllrb.com/docs/configuration/)
 - [Cron Schedule Syntax](https://crontab.guru/)
 - [Best Times to Publish Blog Posts](https://neilpatel.com/blog/best-time-to-publish-blog-posts/)
+
+{% comment %}
+## LinkedIn Post
+
+If you're reading this, my automated publishing system works! This post was scheduled in advance and went live automatically on Tuesday morning at 9 AM Eastern.
+
+Jekyll doesn't have WordPress-style scheduled publishing built in. Once Jekyll builds your site, it stays frozen until the next build. But I needed scheduled posts without manually triggering builds every week.
+
+Here's the setup that makes it work:
+✅ Jekyll's `future: false` setting hides posts dated after build time
+✅ GitHub Actions cron job rebuilds the site every Tuesday at 9 AM EST
+✅ Empty commit triggers GitHub Pages rebuild, future posts become current
+
+The workflow is dead simple: write post with future date, commit, push. That's it. The post goes live on the next Tuesday at 9 AM EST automatically.
+
+Why Tuesday at 9 AM? Blog engagement data shows Tuesday mornings (9-11 AM) get the most views. Monday is catch-up day, Tuesday is when people actually read. Email and social media traffic peaks then, and content has all week to spread.
+
+Pretty straightforward actually. Set it up once, schedule posts forever.
+
+Ever automate something that saves you time every week? What's your scheduling setup?
+
+#Blogging #Automation #GitHubActions #Jekyll #WorkflowAutomation
+
+---
+INSTRUCTIONS:
+1. Copy the text above (without the Liquid comment tags)
+2. Post to LinkedIn during peak hours (Tue-Thu, 8-10 AM or 12-2 PM EST)
+3. Immediately add FIRST COMMENT with blog link: https://juanjofuchs.github.io/2025/11/11/scheduled-post-publishing.html
+4. Engage actively in the first hour - respond to comments quickly
+
+---
+
+## X/Twitter Thread
+
+Tweet 1 (Hook):
+If you're reading this, my automated publishing system works! This post was scheduled weeks in advance and went live automatically on Tuesday morning. Here's how I set up scheduled publishing for Jekyll. 💡
+
+Tweet 2:
+Jekyll doesn't have WordPress-style scheduled publishing. Once it builds, the site stays frozen until next build. But I needed posts to go live automatically without manually triggering builds every week. ✨
+
+Tweet 3:
+The solution uses two pieces: Jekyll's `future: false` setting hides posts dated after build time, and GitHub Actions cron job rebuilds the site every Tuesday at 9 AM EST.
+
+Tweet 4:
+The GitHub Action creates an empty commit that triggers GitHub Pages to rebuild. Jekyll checks post dates again, and posts that were "in the future" are now published. The commit changes nothing, it just signals a rebuild. ✅
+
+Tweet 5:
+Workflow is dead simple: write post with future date, commit, push. That's it. Post goes live on the next Tuesday at 9 AM EST automatically. No manual triggers, no thinking about it.
+
+Tweet 6:
+Set it up once, schedule posts forever. Full technical breakdown with workflow file and code: https://juanjofuchs.github.io/2025/11/11/scheduled-post-publishing.html
+
+#Automation #Jekyll
+
+---
+INSTRUCTIONS:
+1. Post as a thread on Wednesday at 9 AM EST (or Tue-Thu between 8-11 AM or 12-2 PM EST)
+2. Keep each tweet under 280 characters
+3. Link goes in the LAST tweet only (X algorithm suppresses posts with links)
+4. Use only 1-2 hashtags total (at the end)
+5. Add custom graphic/image to first tweet if possible
+6. Engage with replies in first hour for algorithm boost
+
+ALTERNATIVE (Single Post):
+If you prefer a single post instead of thread, post the hook without link, then immediately reply to your own post with the blog URL.
+{% endcomment %}
