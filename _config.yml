@@ -36,11 +36,16 @@ defaults:
       layout: "page"
 
 # Build settings
-theme: minima
+remote_theme: jekyll/minima
 plugins:
+  - jekyll-remote-theme
   - jekyll-feed
   - jekyll-seo-tag
   - jekyll-sitemap
+
+# Theme settings
+minima:
+  skin: auto
 
 # Publishing settings
 future: false  # Don't publish posts with future dates

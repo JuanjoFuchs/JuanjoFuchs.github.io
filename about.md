@@ -21,4 +21,4 @@ AI tools are changing how we write code and I want to document the process as I 
 
 ## Contact
 
-Find me on [GitHub](https://github.com/JuanjoFuchs), [LinkedIn](https://www.linkedin.com/in/juanjofuchs), and [Twitter](https://twitter.com/JuanjoFuchs).
+Find me on [GitHub](https://github.com/JuanjoFuchs), [LinkedIn](https://www.linkedin.com/in/juanjofuchs), and [X](https://x.com/JuanjoFuchs).
