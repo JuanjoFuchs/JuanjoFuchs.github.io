@@ -2,7 +2,7 @@
 layout: post
 title: "Building an MCP Server in 3 Hours with AI"
 description: "How I built tempo-filler-mcp-server using Claude and GitHub Copilot. From spec to working TypeScript in one session."
-date: 2025-11-11 09:00:00 -0500
+date: 2025-11-25 09:00:00 -0500
 categories: ai-development
 tags: [mcp, ai, claude, github-copilot, typescript, automation, jira, tempo]
 author: JuanjoFuchs
@@ -126,7 +126,7 @@ What's your experience building with AI coding assistants? Found any workflows t
 INSTRUCTIONS:
 1. Copy the text above (without the Liquid comment tags)
 2. Post to LinkedIn during peak hours (Tue-Thu, 8-10 AM or 12-2 PM EST)
-3. Immediately add FIRST COMMENT with blog link: https://juanjofuchs.github.io/2025/11/11/building-mcp-server-three-hours.html
+3. Immediately add FIRST COMMENT with blog link: https://juanjofuchs.github.io/ai-development/2025/11/25/building-mcp-server-three-hours.html
 4. Engage actively in the first hour - respond to comments quickly
 
 ---
@@ -152,7 +152,7 @@ Tweet 6:
 Server now handles natural language like "fill all October weekdays with 8h on PROJ-1234" and processes bulk ops concurrently. Open sourced it. ✨
 
 Tweet 7:
-Complete breakdown of the 3-hour dev process and what I learned about AI-assisted development: https://juanjofuchs.github.io/2025/11/11/building-mcp-server-three-hours.html
+Complete breakdown of the 3-hour dev process and what I learned about AI-assisted development: https://juanjofuchs.github.io/ai-development/2025/11/25/building-mcp-server-three-hours.html
 
 #AI #OpenSource
 

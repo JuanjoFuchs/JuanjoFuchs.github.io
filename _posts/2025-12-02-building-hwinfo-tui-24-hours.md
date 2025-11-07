@@ -2,7 +2,7 @@
 layout: post
 title: "Building HWInfo-TUI in 24 Hours with AI"
 description: "How I built a terminal hardware monitor using spec-driven development with AI. From idea to published package on PyPI and WinGet."
-date: 2025-11-18 09:00:00 -0500
+date: 2025-12-02 09:00:00 -0500
 categories: ai-development
 tags: [python, ai, claude, github-copilot, terminal-ui, hwinfo, open-source]
 author: JuanjoFuchs
@@ -146,7 +146,7 @@ What's your experience with spec-driven AI development? Finding similar time com
 INSTRUCTIONS:
 1. Copy the text above (without the Liquid comment tags)
 2. Post to LinkedIn during peak hours (Tue-Thu, 8-10 AM or 12-2 PM EST)
-3. Immediately add FIRST COMMENT with blog link: https://juanjofuchs.github.io/2025/11/18/building-hwinfo-tui-24-hours.html
+3. Immediately add FIRST COMMENT with blog link: https://juanjofuchs.github.io/ai-development/2025/12/02/building-hwinfo-tui-24-hours.html
 4. Engage actively in the first hour - respond to comments quickly
 
 ---
@@ -175,7 +175,7 @@ Tweet 7:
 The lesson: Complete spec before implementation. AI needs context to generate correct code. "Just start coding" with AI creates architectural problems.
 
 Tweet 8:
-Full breakdown of the 5-phase spec-driven process and development workflow: https://juanjofuchs.github.io/2025/11/18/building-hwinfo-tui-24-hours.html
+Full breakdown of the 5-phase spec-driven process and development workflow: https://juanjofuchs.github.io/ai-development/2025/12/02/building-hwinfo-tui-24-hours.html
 
 Install: pip install hwinfo-tui
 

@@ -2,7 +2,7 @@
 layout: post
 title: "How AI Diagnosed My Laptop's Thermal Problem"
 description: "CPU throttling for months, tried everything. Claude analyzed screenshots from hwinfo-tui and found the issue hiding in the data: thermal paste failure."
-date: 2025-11-25 09:00:00 -0500
+date: 2025-12-09 09:00:00 -0500
 categories: hardware troubleshooting
 tags: [hardware, thermal, ai, claude, hwinfo-tui, troubleshooting, dell]
 author: JuanjoFuchs
@@ -176,7 +176,7 @@ Have you tried using multimodal AI for hardware diagnostics? The approach works 
 INSTRUCTIONS:
 1. Copy the text above (without the Liquid comment tags)
 2. Post to LinkedIn during peak hours (Tue-Thu, 8-10 AM or 12-2 PM EST)
-3. Immediately add FIRST COMMENT with blog link: https://juanjofuchs.github.io/2025/11/25/fixing-laptop-thermals-with-ai.html
+3. Immediately add FIRST COMMENT with blog link: https://juanjofuchs.github.io/hardware/troubleshooting/2025/12/09/fixing-laptop-thermals-with-ai.html
 4. Engage actively in the first hour - respond to comments quickly
 
 ---
@@ -205,7 +205,7 @@ Tweet 7:
 The lesson: CPU throttling responds to package temperature, not core temperature. Most tools emphasize core temps which can look acceptable while package is critical.
 
 Tweet 8:
-Complete story with charts, analysis, and diagnostic approach: https://juanjofuchs.github.io/2025/11/25/fixing-laptop-thermals-with-ai.html
+Complete story with charts, analysis, and diagnostic approach: https://juanjofuchs.github.io/hardware/troubleshooting/2025/12/09/fixing-laptop-thermals-with-ai.html
 
 Full thermal analysis doc: https://github.com/JuanjoFuchs/hwinfo-tui/blob/main/docs/thermal-throttling-analysis.md
 

@@ -66,7 +66,7 @@ What's your blogging setup? Ever find yourself going back to simpler tools?
 INSTRUCTIONS:
 1. Copy the text above (without the Liquid comment tags)
 2. Post to LinkedIn during peak hours (Tue-Thu, 8-10 AM or 12-2 PM EST)
-3. Immediately add FIRST COMMENT with blog link: https://juanjofuchs.github.io/2025/11/06/welcome-to-jekyll.html
+3. Immediately add FIRST COMMENT with blog link: https://juanjofuchs.github.io/blogging/meta/2025/11/06/welcome-to-jekyll.html
 4. Engage actively in the first hour - respond to comments quickly
 
 ---
@@ -89,7 +89,7 @@ Tweet 5:
 Workflow is dead simple: write Markdown, commit, push. Build and deploy happen automatically. Site loads fast from GitHub's CDN, costs nothing, I never think about infrastructure.
 
 Tweet 6:
-Sometimes the default option is the right one. Full breakdown: https://juanjofuchs.github.io/2025/11/06/welcome-to-jekyll.html
+Sometimes the default option is the right one. Full breakdown: https://juanjofuchs.github.io/blogging/meta/2025/11/06/welcome-to-jekyll.html
 
 #Blogging #WebDev
 

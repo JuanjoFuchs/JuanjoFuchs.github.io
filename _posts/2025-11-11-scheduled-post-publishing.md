@@ -148,7 +148,7 @@ Ever automate something that saves you time every week? What's your scheduling s
 INSTRUCTIONS:
 1. Copy the text above (without the Liquid comment tags)
 2. Post to LinkedIn during peak hours (Tue-Thu, 8-10 AM or 12-2 PM EST)
-3. Immediately add FIRST COMMENT with blog link: https://juanjofuchs.github.io/2025/11/11/scheduled-post-publishing.html
+3. Immediately add FIRST COMMENT with blog link: https://juanjofuchs.github.io/blogging/automation/2025/11/11/scheduled-post-publishing.html
 4. Engage actively in the first hour - respond to comments quickly
 
 ---
@@ -171,7 +171,7 @@ Tweet 5:
 Workflow is dead simple: write post with future date, commit, push. That's it. Post goes live on the next Tuesday at 9 AM EST automatically. No manual triggers, no thinking about it.
 
 Tweet 6:
-Set it up once, schedule posts forever. Full technical breakdown with workflow file and code: https://juanjofuchs.github.io/2025/11/11/scheduled-post-publishing.html
+Set it up once, schedule posts forever. Full technical breakdown with workflow file and code: https://juanjofuchs.github.io/blogging/automation/2025/11/11/scheduled-post-publishing.html
 
 #Automation #Jekyll
 

@@ -2,7 +2,7 @@
 layout: post
 title: "Automating Social Media Posting for My Jekyll Blog"
 description: "Built a GitHub Actions workflow that automatically posts new blog content to X and LinkedIn. No paid services, no external hosting, just Node.js scripts and API calls."
-date: 2025-11-11 09:00:00 -0500
+date: 2025-11-18 09:00:00 -0500
 categories: automation
 tags: [github-actions, nodejs, automation, social-media, jekyll]
 author: JuanjoFuchs
@@ -249,7 +249,7 @@ Full code and implementation details in the post (link in first comment).
 INSTRUCTIONS:
 1. Copy the text above (without the Liquid comment tags)
 2. Post to LinkedIn during peak hours (Tue-Thu, 8-10 AM or 12-2 PM EST)
-3. Immediately add FIRST COMMENT with blog link: https://juanjofuchs.github.io/2025/11/11/automating-blog-social-media-posting.html
+3. Immediately add FIRST COMMENT with blog link: https://juanjofuchs.github.io/automation/2025/11/18/automating-blog-social-media-posting.html
 4. Engage actively in the first hour - respond to comments quickly
 
 ---
@@ -278,7 +278,7 @@ Tweet 7:
 Time investment: 2 hours to build. Time saved: 15-20 min per post. Break-even: 7 posts (less than 2 months). But the real value is consistency - every post gets promoted, on schedule, no exceptions.
 
 Tweet 8:
-Full implementation details, code, and GitHub Actions workflow here: https://juanjofuchs.github.io/2025/11/11/automating-blog-social-media-posting.html
+Full implementation details, code, and GitHub Actions workflow here: https://juanjofuchs.github.io/automation/2025/11/18/automating-blog-social-media-posting.html
 
 #DevOps #Automation
 
