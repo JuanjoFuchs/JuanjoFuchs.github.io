@@ -6,9 +6,6 @@ description: >- # this means to ignore newlines until "baseurl:"
   Powered by Jekyll and hosted on GitHub Pages.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://juanjofuchs.github.io" # the base hostname & protocol for your site
-twitter_username: JuanjoFuchs
-github_username:  JuanjoFuchs
-linkedin_username: JuanjoFuchs
 
 # SEO Settings
 lang: en
@@ -46,6 +43,16 @@ plugins:
 # Theme settings
 minima:
   skin: auto
+  social_links:
+    - title: "GitHub"
+      icon: "github"
+      url: "https://github.com/JuanjoFuchs"
+    - title: "X (Twitter)"
+      icon: "x-twitter"
+      url: "https://x.com/JuanjoFuchs"
+    - title: "LinkedIn"
+      icon: "linkedin"
+      url: "https://www.linkedin.com/in/JuanjoFuchs"
 
 # Publishing settings
 future: false  # Don't publish posts with future dates
