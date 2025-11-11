@@ -80,26 +80,27 @@ export function parseTwitterThread(commentContent) {
 }
 
 /**
- * Build blog post URL from front matter
+ * Build blog post URL from front matter and filename
  * Jekyll includes categories in the URL path before the date
- * URL Pattern: https://juanjofuchs.github.io/[categories]/YYYY/MM/DD/title-slug.html
+ * Jekyll uses the filename (after YYYY-MM-DD-) as the slug, not the title
+ * URL Pattern: https://juanjofuchs.github.io/[categories]/YYYY/MM/DD/filename-slug.html
  * @param {object} frontMatter - Parsed front matter from gray-matter
+ * @param {string} filePath - Path to the markdown file (to extract slug from filename)
  * @param {string} baseUrl - Base URL from config (e.g., "https://juanjofuchs.github.io")
  * @returns {string} - Full blog post URL
  */
-export function buildBlogUrl(frontMatter, baseUrl) {
+export function buildBlogUrl(frontMatter, filePath, baseUrl) {
   const date = new Date(frontMatter.date);
   const year = date.getFullYear();
   const month = String(date.getMonth() + 1).padStart(2, '0');
   const day = String(date.getDate()).padStart(2, '0');
 
-  // Extract slug from title (lowercase, replace spaces with hyphens)
-  const slug = frontMatter.title
-    .toLowerCase()
-    .replace(/[^\w\s-]/g, '')
-    .replace(/\s+/g, '-')
-    .replace(/-+/g, '-')
-    .trim();
+  // Extract slug from filename (Jekyll uses filename, not title)
+  // Example: "2025-11-11-scheduled-post-publishing.md" -> "scheduled-post-publishing"
+  const filename = filePath.split(/[\\/]/).pop(); // Get filename from path
+  const slug = filename
+    .replace(/^\d{4}-\d{2}-\d{2}-/, '') // Remove date prefix
+    .replace(/\.md$/, ''); // Remove .md extension
 
   // Build category path
   // Categories can be a string "category1 category2" or array ["category1", "category2"]
@@ -141,7 +142,7 @@ export function extractSocialContent(filePath, baseUrl = 'https://juanjofuchs.gi
         frontMatter,
         linkedin: null,
         twitter: null,
-        blogUrl: buildBlogUrl(frontMatter, baseUrl),
+        blogUrl: buildBlogUrl(frontMatter, filePath, baseUrl),
         publishedStatus
       };
     }
@@ -156,7 +157,7 @@ export function extractSocialContent(filePath, baseUrl = 'https://juanjofuchs.gi
         frontMatter,
         linkedin: null,
         twitter: null,
-        blogUrl: buildBlogUrl(frontMatter, baseUrl),
+        blogUrl: buildBlogUrl(frontMatter, filePath, baseUrl),
         publishedStatus
       };
     }
@@ -165,7 +166,7 @@ export function extractSocialContent(filePath, baseUrl = 'https://juanjofuchs.gi
       frontMatter,
       linkedin,
       twitter,
-      blogUrl: buildBlogUrl(frontMatter, baseUrl),
+      blogUrl: buildBlogUrl(frontMatter, filePath, baseUrl),
       publishedStatus,
       error: null
     };
