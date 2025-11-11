@@ -66,7 +66,7 @@ jobs:
 
     - name: Trigger rebuild for scheduled posts
       run: |
-        git commit --allow-empty -m "chore: trigger rebuild for scheduled posts [skip ci]"
+        git commit --allow-empty -m "chore: trigger rebuild for scheduled posts"
         git push
 ```
 
