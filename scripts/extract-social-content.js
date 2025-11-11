@@ -1,5 +1,6 @@
 import matter from 'gray-matter';
 import fs from 'fs';
+import { checkPublishedStatus } from './mark-post-published.js';
 
 /**
  * Extract content between {% comment %} and {% endcomment %} tags
@@ -80,6 +81,8 @@ export function parseTwitterThread(commentContent) {
 
 /**
  * Build blog post URL from front matter
+ * Jekyll includes categories in the URL path before the date
+ * URL Pattern: https://juanjofuchs.github.io/[categories]/YYYY/MM/DD/title-slug.html
  * @param {object} frontMatter - Parsed front matter from gray-matter
  * @param {string} baseUrl - Base URL from config (e.g., "https://juanjofuchs.github.io")
  * @returns {string} - Full blog post URL
@@ -98,20 +101,36 @@ export function buildBlogUrl(frontMatter, baseUrl) {
     .replace(/-+/g, '-')
     .trim();
 
-  return `${baseUrl}/${year}/${month}/${day}/${slug}.html`;
+  // Build category path
+  // Categories can be a string "category1 category2" or array ["category1", "category2"]
+  let categoryPath = '';
+  if (frontMatter.categories) {
+    const categories = Array.isArray(frontMatter.categories)
+      ? frontMatter.categories
+      : frontMatter.categories.split(' ').filter(c => c.trim());
+
+    if (categories.length > 0) {
+      categoryPath = categories.join('/') + '/';
+    }
+  }
+
+  return `${baseUrl}/${categoryPath}${year}/${month}/${day}/${slug}.html`;
 }
 
 /**
  * Main function to extract all social media content from a markdown file
  * @param {string} filePath - Path to the markdown file
  * @param {string} baseUrl - Base URL for building post URLs
- * @returns {object} - {frontMatter, linkedin, twitter, blogUrl, error}
+ * @returns {object} - {frontMatter, linkedin, twitter, blogUrl, publishedStatus, error}
  */
 export function extractSocialContent(filePath, baseUrl = 'https://juanjofuchs.github.io') {
   try {
     // Read and parse markdown file
     const fileContent = fs.readFileSync(filePath, 'utf-8');
     const { data: frontMatter, content: markdownContent } = matter(fileContent);
+
+    // Check if platforms are already published
+    const publishedStatus = checkPublishedStatus(filePath);
 
     // Extract Liquid comment block
     const commentContent = extractLiquidComments(fileContent);
@@ -122,7 +141,8 @@ export function extractSocialContent(filePath, baseUrl = 'https://juanjofuchs.gi
         frontMatter,
         linkedin: null,
         twitter: null,
-        blogUrl: buildBlogUrl(frontMatter, baseUrl)
+        blogUrl: buildBlogUrl(frontMatter, baseUrl),
+        publishedStatus
       };
     }
 
@@ -136,7 +156,8 @@ export function extractSocialContent(filePath, baseUrl = 'https://juanjofuchs.gi
         frontMatter,
         linkedin: null,
         twitter: null,
-        blogUrl: buildBlogUrl(frontMatter, baseUrl)
+        blogUrl: buildBlogUrl(frontMatter, baseUrl),
+        publishedStatus
       };
     }
 
@@ -145,6 +166,7 @@ export function extractSocialContent(filePath, baseUrl = 'https://juanjofuchs.gi
       linkedin,
       twitter,
       blogUrl: buildBlogUrl(frontMatter, baseUrl),
+      publishedStatus,
       error: null
     };
   } catch (err) {
@@ -153,7 +175,8 @@ export function extractSocialContent(filePath, baseUrl = 'https://juanjofuchs.gi
       frontMatter: null,
       linkedin: null,
       twitter: null,
-      blogUrl: null
+      blogUrl: null,
+      publishedStatus: { linkedin: false, twitter: false }
     };
   }
 }

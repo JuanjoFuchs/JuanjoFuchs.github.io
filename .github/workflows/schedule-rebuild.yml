@@ -99,3 +99,20 @@ jobs:
         if [ "$POSTS_FOUND" = false ]; then
           echo "No newly published posts found in the last 7 days"
         fi
+
+    - name: Commit published flags
+      run: |
+        # Configure Git
+        git config user.name "GitHub Actions Bot"
+        git config user.email "actions@github.com"
+
+        # Check if there are any changes to commit
+        if git diff --quiet _posts/; then
+          echo "No changes to commit - no posts were marked as published"
+        else
+          echo "Changes detected in _posts/ directory"
+          git add _posts/
+          git commit -m "chore: mark social media posts as published [skip ci]"
+          git push
+          echo "✓ Published flags committed and pushed"
+        fi

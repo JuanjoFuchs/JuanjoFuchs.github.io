@@ -3,6 +3,7 @@
 import { extractSocialContent } from './extract-social-content.js';
 import { postTwitterThread } from './post-to-x.js';
 import { postToLinkedIn } from './post-to-linkedin.js';
+import { markAsPublished } from './mark-post-published.js';
 import fs from 'fs';
 import path from 'path';
 
@@ -74,6 +75,12 @@ async function main() {
   console.log(`✓ LinkedIn content: ${extracted.linkedin ? 'Found' : 'Not found'}`);
   console.log(`✓ Twitter content: ${extracted.twitter ? 'Found' : 'Not found'}`);
 
+  // Check published status
+  if (extracted.publishedStatus) {
+    console.log(`✓ LinkedIn published: ${extracted.publishedStatus.linkedin ? 'Yes (skipping)' : 'No'}`);
+    console.log(`✓ Twitter published: ${extracted.publishedStatus.twitter ? 'Yes (skipping)' : 'No'}`);
+  }
+
   // Track results
   const results = {
     twitter: null,
@@ -87,7 +94,10 @@ async function main() {
   const promises = [];
 
   // Twitter posting
-  if (extracted.twitter && extracted.twitter.tweets.length > 0) {
+  if (extracted.publishedStatus && extracted.publishedStatus.twitter) {
+    console.log('\n⊘ Twitter: Already published, skipping');
+    results.twitter = { success: true, skipped: true };
+  } else if (extracted.twitter && extracted.twitter.tweets.length > 0) {
     console.log(`\n🐦 Posting to X (Twitter) - ${extracted.twitter.tweets.length} tweets`);
     promises.push(
       postTwitterThread(extracted.twitter.tweets, credentials.twitter)
@@ -95,6 +105,8 @@ async function main() {
           results.twitter = result;
           if (result.success) {
             console.log(`✓ Twitter: Posted ${result.tweetIds.length} tweets successfully`);
+            // Mark as published
+            markAsPublished(filePath, 'twitter');
           } else {
             console.error(`✗ Twitter: ${result.error}`);
           }
@@ -109,7 +121,10 @@ async function main() {
   }
 
   // LinkedIn posting
-  if (extracted.linkedin && extracted.linkedin.content) {
+  if (extracted.publishedStatus && extracted.publishedStatus.linkedin) {
+    console.log('\n⊘ LinkedIn: Already published, skipping');
+    results.linkedin = { success: true, skipped: true };
+  } else if (extracted.linkedin && extracted.linkedin.content) {
     console.log(`\n💼 Posting to LinkedIn`);
     promises.push(
       postToLinkedIn(extracted.linkedin.content, extracted.blogUrl, credentials.linkedin.accessToken)
@@ -118,6 +133,8 @@ async function main() {
           if (result.success) {
             console.log(`✓ LinkedIn: Posted successfully`);
             console.log(`  Post URL: ${result.postUrl}`);
+            // Mark as published
+            markAsPublished(filePath, 'linkedin');
           } else {
             console.error(`✗ LinkedIn: ${result.error}`);
           }
@@ -144,8 +161,12 @@ async function main() {
 
   if (results.twitter) {
     if (results.twitter.success) {
-      console.log(`✓ Twitter: Success (${results.twitter.tweetIds.length} tweets)`);
-      successCount++;
+      if (results.twitter.skipped) {
+        console.log(`⊘ Twitter: Skipped (already published)`);
+      } else {
+        console.log(`✓ Twitter: Success (${results.twitter.tweetIds.length} tweets)`);
+        successCount++;
+      }
     } else {
       console.log(`✗ Twitter: Failed - ${results.twitter.error}`);
       failureCount++;
@@ -154,8 +175,12 @@ async function main() {
 
   if (results.linkedin) {
     if (results.linkedin.success) {
-      console.log(`✓ LinkedIn: Success`);
-      successCount++;
+      if (results.linkedin.skipped) {
+        console.log(`⊘ LinkedIn: Skipped (already published)`);
+      } else {
+        console.log(`✓ LinkedIn: Success`);
+        successCount++;
+      }
     } else {
       console.log(`✗ LinkedIn: Failed - ${results.linkedin.error}`);
       failureCount++;
