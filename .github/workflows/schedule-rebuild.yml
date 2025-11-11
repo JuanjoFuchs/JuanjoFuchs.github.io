@@ -2,10 +2,10 @@ name: Schedule Jekyll Post Publishing
 
 on:
   schedule:
-    # Runs every Tuesday at 1:00 PM UTC (9:00 AM EDT / 8:00 AM EST)
-    # Note: This is 9 AM Eastern Daylight Time (spring-fall) or 8 AM Eastern Standard Time (winter)
-    # Adjust to '0 14 * * 2' if you prefer 9 AM EST year-round (10 AM during summer)
-    - cron: '0 13 * * 2'
+    # Runs every Tuesday at 2:00 PM UTC (9:00 AM EST / 10:00 AM EDT)
+    # This keeps posts publishing at 9 AM Eastern Standard Time year-round
+    # (or 10 AM during Daylight Time in spring-fall)
+    - cron: '0 14 * * 2'
 
   # Allows you to manually trigger the workflow from the Actions tab
   workflow_dispatch:
@@ -32,7 +32,7 @@ jobs:
       run: |
         # Create an empty commit to trigger GitHub Pages rebuild
         # This allows Jekyll to re-evaluate post dates and publish future-dated posts
-        git commit --allow-empty -m "chore: trigger rebuild for scheduled posts [skip ci]"
+        git commit --allow-empty -m "chore: trigger rebuild for scheduled posts"
         git push
 
   post-to-social-media:
