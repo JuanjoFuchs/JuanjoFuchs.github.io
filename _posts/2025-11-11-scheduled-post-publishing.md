@@ -124,6 +124,7 @@ This shows all future-dated posts so you can check formatting before they go liv
 
 {% comment %}
 ## LinkedIn Post
+PUBLISHED: 2025-11-11T13:25:00Z
 
 If you're reading this, my automated publishing system works! This post was scheduled in advance and went live automatically on Tuesday morning at 9 AM Eastern.
 
@@ -154,6 +155,7 @@ INSTRUCTIONS:
 ---
 
 ## X/Twitter Thread
+PUBLISHED: 2025-11-11T13:25:00Z
 
 Tweet 1 (Hook):
 If you're reading this, my automated publishing system works! This post was scheduled weeks in advance and went live automatically on Tuesday morning. Here's how I set up scheduled publishing for Jekyll. 💡

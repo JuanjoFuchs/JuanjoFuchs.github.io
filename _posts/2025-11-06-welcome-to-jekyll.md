@@ -44,6 +44,7 @@ I write Markdown and push to Git. GitHub handles everything else. The site loads
 
 {% comment %}
 ## LinkedIn Post
+PUBLISHED: 2025-11-11T13:25:00Z
 
 Started my blog with one requirement: zero hosting maintenance. That pointed me straight to GitHub Pages.
 
@@ -72,6 +73,7 @@ INSTRUCTIONS:
 ---
 
 ## X/Twitter Thread
+PUBLISHED: 2025-11-11T13:25:00Z
 
 Tweet 1 (Hook):
 Started my blog with one requirement: zero hosting maintenance. That pointed me straight to GitHub Pages. Looked at several static site generators and went with the default one. Here's why. 💡
