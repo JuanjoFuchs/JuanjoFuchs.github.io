@@ -65,11 +65,12 @@ The automation runs as a GitHub Actions job that triggers after the scheduled po
 
 ### Implementation Stack
 
-**Node.js scripts** (4 modules, ~500 lines total):
+**Node.js scripts** (5 modules, ~650 lines total):
 - `extract-social-content.js` - Parses markdown, extracts Liquid comments, builds blog URLs
 - `post-to-x.js` - X API client using twitter-api-v2 library, chains tweets into threads
 - `post-to-linkedin.js` - LinkedIn API client using axios, posts content then adds comment with blog URL
 - `post-to-social-media.js` - Main orchestrator, runs both platforms in parallel
+- `mark-post-published.js` - Adds PUBLISHED timestamps to prevent duplicate posting
 
 **Dependencies**:
 - `gray-matter` - Parse markdown front matter
@@ -91,6 +92,8 @@ The automation runs as a GitHub Actions job that triggers after the scheduled po
 **Link placement strategy**:
 - **LinkedIn**: Main post has no link, first comment contains blog URL (avoids 25-40% algorithm reach penalty)
 - **X/Twitter**: Link only in last tweet of thread (algorithm suppresses posts with links in main content)
+
+**Duplicate prevention**: After successfully posting to a platform, the workflow adds a `PUBLISHED: [timestamp]` flag to that platform's section in the Liquid comment block and commits it back to the repo. The extraction module checks for these flags and skips already-posted content, so running the workflow multiple times never creates duplicates.
 
 ### The Workflow
 
@@ -130,6 +133,19 @@ post-to-social-media:
           node scripts/post-to-social-media.js "$post"
         fi
       done
+
+  - name: Commit published flags
+    run: |
+      git config user.name "GitHub Actions Bot"
+      git config user.email "actions@github.com"
+
+      if git diff --quiet _posts/; then
+        echo "No changes to commit"
+      else
+        git add _posts/
+        git commit -m "chore: mark social media posts as published [skip ci]"
+        git push
+      fi
 ```
 
 ### Content Extraction Logic
@@ -191,11 +207,11 @@ No manual steps, no remembering to promote, no context switching from writing to
 
 ## The Caveats
 
-**Duplicate posts**: If you manually trigger the workflow multiple times, it'll post duplicates. The 7-day window means any post from the last week gets processed. I only run it on the automatic Tuesday schedule unless I'm testing or retrying a failed post.
-
 **LinkedIn token maintenance**: The OAuth token expires every 2 months. I need to manually refresh it and update the GitHub Secret. This is acceptable overhead for a free solution.
 
 **Content must be pre-written**: This isn't AI-generated social posts, it's automation of pre-written content. I still write the LinkedIn post and X thread myself, but I write them once alongside the blog post instead of copy-pasting later.
+
+**Manual intervention for failures**: If a post fails to publish (API error, rate limit, etc.), the workflow exits successfully but the post won't have the PUBLISHED flag. Next Tuesday it'll retry automatically, which is usually what you want. For immediate retry, you can manually trigger the workflow from the Actions tab.
 
 ## Cost
 
@@ -234,6 +250,7 @@ The setup uses GitHub Actions, Node.js scripts, and free-tier APIs from X and Li
 Here's what made this work:
 ✅ Platform independence - one failure doesn't affect the other
 ✅ Strategic link placement - LinkedIn comment not main post, X last tweet only
+✅ Duplicate prevention - PUBLISHED timestamps prevent re-posting, safe to run multiple times
 ✅ Pre-written content - I write the social posts alongside the blog, automation just extracts and posts
 ✅ Zero cost - all free tiers
 
@@ -272,12 +289,15 @@ Tweet 5:
 Each platform runs independently. LinkedIn failure doesn't affect X, X failure doesn't affect LinkedIn. Workflow always succeeds even if one platform fails. This was critical for reliability.
 
 Tweet 6:
-Cost: $0. GitHub Actions free tier, X API free tier (1,500 posts/month), LinkedIn API free for personal posting. Everything runs on GitHub's infrastructure, no external hosting needed.
+After posting, the workflow adds PUBLISHED timestamps to the markdown file and commits them back. This prevents duplicate posts if you run the workflow multiple times. Safe to retry, safe to trigger manually. ✅
 
 Tweet 7:
-Time investment: 2 hours to build. Time saved: 15-20 min per post. Break-even: 7 posts (less than 2 months). But the real value is consistency - every post gets promoted, on schedule, no exceptions.
+Cost: $0. GitHub Actions free tier, X API free tier (1,500 posts/month), LinkedIn API free for personal posting. Everything runs on GitHub's infrastructure, no external hosting needed.
 
 Tweet 8:
+Time investment: 2 hours to build. Time saved: 15-20 min per post. Break-even: 7 posts (less than 2 months). But the real value is consistency - every post gets promoted, on schedule, no exceptions.
+
+Tweet 9:
 Full implementation details, code, and GitHub Actions workflow here: https://juanjofuchs.github.io/automation/2025/11/18/automating-blog-social-media-posting.html
 
 #DevOps #Automation
