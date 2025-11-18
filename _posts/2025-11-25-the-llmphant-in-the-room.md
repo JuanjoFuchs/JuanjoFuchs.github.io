@@ -8,81 +8,71 @@ tags: [llm, ai, writing, authorship, software-engineering]
 author: JuanjoFuchs
 ---
 
-I read a post on LinkedIn the other day where someone was frustrated about AI-generated writing. The main point was that you can "feel" when a post doesn't sound like the person who supposedly wrote it, and that this generic LLM voice is killing authenticity online.
+I read a post on LinkedIn the other day complaining about how easy it is to spot LLM-generated writing. The syntax, the strategic emojis, the dramatic pauses, the "you're absolutely right!" comments, the single-sentence paragraphs, the template tone. And I get the frustration, the feed is full of that stuff.
 
-I get where that feeling comes from because I started a blog recently and every post on that site went through an LLM. I wouldn't have started the blog otherwise. I've never been someone who enjoys writing prose, but I do enjoy building things and documenting them, and I wanted a place where I could share the ideas coming out of my second brain. The thinking was mine, but the writing wasn't — and that's what kicked off this whole train of thought.
+But it hit differently for me because AI is the reason I even have a blog. If I had to manually write every post, I probably wouldn't have started at all. I can think clearly but I've never been great at turning that thinking into polished prose, writing was always the bottleneck. So I use an LLM to help *serialize* the ideas I already have, same way I use a compiler to turn code into something a machine understands. It felt honest, it still does.
 
-That LinkedIn post and my own workflow started colliding in my head, and I realized we keep anchoring authenticity in the wrong place. We're treating typing as the proof of authorship, when the real authorship sits somewhere else entirely.
-The LLMphant in the room is simple: **authorship lives in the ideas, not the words.**
+So reading all the shaming around AI writing made me pause. Not because I feel guilty but because we're aiming the criticism at the wrong place.
+
+AI typing the words isn't the issue, the real mess starts when there's no thinking behind them. You can feel when someone is using AI to serialize a real idea versus when the model had to invent the whole thing.
 
 There are folks whose craft *is* writing. They put effort into phrasing, rhythm, the voice that carries the signal. If that's the craft, then outsourcing the prose to an LLM is outsourcing the actual work. I get why that feels like a loss of authenticity.
 
-I don't live in that world, and a lot of engineers don't either. Our heavy lift sits upstream. The work happens in the models we build in our head, the tradeoffs, the debugging scars, the failures that taught us something real. By the time we sit down to write, the idea already exists. The writing step is just serialization. Sometimes it even feels like compilation — take an internal representation and turn it into a text artifact someone else can load.
+But I don't live in that world, and a lot of engineers don't either. Our heavy lift sits upstream. The work happens in the models we build in our head, the tradeoffs, the debugging scars, the failures that taught us something real. By the time we sit down to write, the idea already exists. Writing is just the transport layer, the protocol for moving the theory from my head to yours.
 
-And this isn't a new thought. Peter Naur said the same thing decades ago in *Programming as Theory Building*:
-**the real product of programming is the theory inside the programmer's head, not the code.**
-The code is just the artifact produced from that theory.
+And this isn't a new thought. Peter Naur said the same thing decades ago in [*Programming as Theory Building*](https://pages.cs.wisc.edu/~remzi/Naur.pdf): **the real product of programming is the theory inside the programmer's head, not the code.** The code is just the artifact produced from that theory.
 
-You can read Naur's original essay here:
-**[https://pages.cs.wisc.edu/~remzi/Naur.pdf](https://pages.cs.wisc.edu/~remzi/Naur.pdf)**
+Writing works the same way for a lot of us. The value is in the theory, the text is the artifact.
 
-Writing works the same way for a lot of us.
-The value is in the theory.
-The text is the artifact.
+When you look at it that way, the conversation changes: If an LLM helps you serialize an idea into something readable, you haven't outsourced the thinking, you've just outsourced the typing.
 
-Once you accept that, the whole debate shifts. If an LLM helps you serialize an idea into something readable, you haven't outsourced the thinking. You've just outsourced the typing.
+And this lines up with another argument floating around: we'll code in plain English soon and the LLM will act like a compiler. In that world, code is just ephemeral state and the real job is telling the machine what you want.
 
-And this lines up with another argument floating around: the idea that we'll code in plain English soon and the LLM will act like a compiler. In that world, code is just state — an ephemeral output — and the real job is telling the machine what you want.
+If that's where we're heading, the Python purists complaining about code that doesn't "feel like them" sound a lot like the writing purists complaining about prose that doesn't "sound authentic." Both groups are anchoring identity in the wrong place.
 
-If that's where we're heading, then the craft of coding becomes more about the theory and less about the syntax. And the Python purists yelling "this code doesn't feel like me" start sounding just like the writing purists yelling "this prose doesn't feel like you." Both groups are anchoring identity in the wrong place.
+Identity lives in the thinking, the theory you built in your head, the syntax is just how you happened to express it.
 
-Identity lives upstream.
-In the thinking.
-Not in the syntax.
+This is where effort matters. Effort is a virtue but only when it's applied where it actually changes the outcome. Manually typing every sentence doesn't make the idea better, doing the upstream thinking does. Putting the effort in the right place matters a lot more than forcing yourself through a friction step that doesn't add value.
 
-This is where effort matters. Effort is a virtue, but only when it's applied where it actually changes the outcome. Manually typing every sentence doesn't make the idea better. Doing the upstream thinking does. Putting the effort in the right place matters a lot more than forcing yourself through a friction step that doesn't add value.
+And there's a gatekeeping angle here that's hard to ignore: Before LLMs, the people who got to share ideas publicly were mostly the ones who knew how to write well, not the ones with the most interesting ideas. Writing used to be the filter. If prose wasn't your craft, your thinking stayed stuck in your head, even if it came from real experience.
 
-There's also a gatekeeping angle that's easy to miss. Before LLMs, the people who got to share ideas publicly were mostly the ones who knew how to write well, not the ones with the most interesting ideas. Writing acted like a filter. If prose wasn't your craft, your thinking stayed stuck inside your head, even if it came from real experience.
+LLMs blow that gate open. They don't invent ideas, they remove the bottleneck between the idea and the expression. Writing goes back to being the transport layer instead of the barrier to entry.
 
-LLMs blow that gate open.
-They don't invent ideas.
-They remove the bottleneck between the idea and the expression.
+There's a worry that keeps coming up: if everyone can publish, the noise is going to explode. And sure, noise is going up. Anyone can ask a model to "write me an interesting post" and hit publish. That dumps a lot of hollow content into the feed.
 
-Writing becomes the transmission layer again — not the measuring stick for who's "allowed" to participate. And if authenticity only applies to people with polished prose, we lose a lot of useful ideas from people who think deeply but don't enjoy the act of writing.
+But signal is going up too. People who couldn't write before can finally express ideas that were stuck in their head for years. Lowering the barrier doesn't just create more noise, it creates more signal.
 
-So maybe the question isn't "did an LLM write this?"
-Maybe the real question is "did the person do the thinking?"
+And filtering gets better at the same time. Humans get better at scrolling past slop, models get better at ranking actual substance, the algorithms get better at detecting hollowness. The ratio doesn't collapse because both sides move.
 
-If the model generates both the content and the voice, that's empty. There's no theory behind it. You can feel the hollowness right away. But if the idea is yours and the model helped you turn it into text, the authorship is intact. You did the part that counts. The model just handled the serialization step.
+Noise is cheap, signal is expensive. If a tool makes signal cheaper for more people, that's a win.
 
-That's the whole LLMphant in the room:
-**We're still treating typing as the proof of authorship, but the work lives somewhere else.**
+What actually matters is whether you did the thinking. If the model generates both the content and the voice, that's empty, there's no theory behind it and you can feel the hollowness right away. But if the idea is yours and the model helped you turn it into text, the authorship is intact. You did the part that counts, the model just handled the serialization step.
 
-And if more people can share ideas because the prose barrier is gone, I'll take that. More signal, less gatekeeping, and a better way to get thoughts out of your head and into the world.
+We're still treating typing as the proof of authorship but the work lives somewhere else. And if more people can share ideas because the prose barrier is gone, I'll take that. More signal, less gatekeeping.
 
 Pretty cool actually.
 
 {% comment %}
 ## LinkedIn Post
 
-Someone on LinkedIn was frustrated about AI-generated writing killing authenticity online. I get it, you can feel when prose doesn't match the person. But we're anchoring authenticity in the wrong place. 💡
+Someone on LinkedIn was complaining about how easy it is to spot LLM-generated writing. The strategic emojis, the dramatic pauses, the "you're absolutely right!" comments, the single-sentence paragraphs, the template tone. I get the frustration, the feed is full of that stuff.
 
-Started a blog recently and every post went through an LLM. I wouldn't have started it otherwise, I've never enjoyed writing prose but I do enjoy building things and documenting them. The thinking was mine, the writing wasn't — and that kicked off this whole train of thought.
+But here's what we're missing: AI typing the words isn't the issue, the real mess starts when there's no thinking behind them. You can feel when someone is using AI to serialize a real idea versus when the model had to invent the whole thing. 💡
 
-Authorship lives in the ideas, not the words. For engineers, the heavy lift sits upstream in the models we build in our heads, the tradeoffs, the debugging scars, the failures that taught us something real. By the time we write, the idea already exists. Writing is just serialization.
+AI is the reason I even have a blog. If I had to manually write every post, I probably wouldn't have started at all. Writing was always the bottleneck. So I use an LLM to serialize the ideas I already have, same way I use a compiler to turn code into something a machine understands.
 
-Peter Naur said this decades ago in *Programming as Theory Building*: the real product of programming is the theory inside the programmer's head, not the code. The code is just the artifact.
+For engineers, the heavy lift sits upstream in the models we build in our heads, the tradeoffs, the debugging scars, the failures that taught us something real. By the time we write, the idea already exists. Writing is just the transport layer, the protocol for moving the theory from my head to yours.
 
-Writing works the same way for a lot of us.
+Peter Naur said this decades ago: the real product of programming is the theory inside the programmer's head, not the code. The code is just the artifact.
+
+Writing works the same way.
 ✅ Value is in the theory, text is the artifact
 ✅ LLMs remove the bottleneck between idea and expression
-✅ More people can share ideas because the prose barrier is gone
+✅ Identity lives in the thinking, not the syntax
 
-Before LLMs, the people who got to share ideas publicly were mostly those who knew how to write well, not those with the most interesting ideas. Writing acted like a filter, if prose wasn't your craft, your thinking stayed stuck inside your head.
+Before LLMs, only people who knew how to write well got to share ideas publicly. Writing acted like a filter. LLMs blow that gate open, they don't invent ideas but they remove the prose barrier.
 
-LLMs blow that gate open. They don't invent ideas, they remove the bottleneck between the idea and the expression.
-
-The question isn't "did an LLM write this?" The real question is "did the person do the thinking?" If the idea is yours and the model helped serialize it into text, the authorship is intact.
+What actually matters is whether you did the thinking. If the model generates both content and voice, that's empty. But if the idea is yours and the model helped serialize it, the authorship is intact.
 
 More signal, less gatekeeping. Pretty cool actually.
 
@@ -100,28 +90,28 @@ INSTRUCTIONS:
 ## X/Twitter Thread
 
 Tweet 1 (Hook):
-We're treating typing as proof of authorship but the real work lives somewhere else entirely. The LLMphant in the room: authorship lives in the ideas, not the words. 💡
+AI typing the words isn't the issue, the real mess starts when there's no thinking behind them. You can feel the difference. 💡
 
 Tweet 2:
-Started a blog recently, every post went through an LLM. Wouldn't have started it otherwise. The thinking was mine, the writing wasn't. And that's completely fine.
+Everyone complains about spotting LLM writing. The strategic emojis, dramatic pauses, "you're absolutely right!" comments, single-sentence paragraphs. I get it, the feed is full of that stuff.
 
 Tweet 3:
-For engineers, the heavy lift sits upstream. Models we build in our heads, tradeoffs, debugging scars, failures that taught us something real. By the time we write, the idea already exists. Writing is just serialization. ✨
+But AI is the reason I even have a blog. Writing was always the bottleneck. I use an LLM to serialize the ideas I already have, same way I use a compiler to turn code into something a machine understands.
 
 Tweet 4:
-Peter Naur said this decades ago: the real product of programming is the theory inside the programmer's head, not the code. The code is just the artifact. Same thing with writing.
+For engineers, the heavy lift sits upstream. Models we build in our heads, tradeoffs, debugging scars, failures that taught us something real. By the time we write, the idea already exists. Writing is just the transport layer. ✨
 
 Tweet 5:
-Before LLMs, only people who knew how to write well got to share ideas publicly. Writing acted like a filter. If prose wasn't your craft, your thinking stayed stuck in your head. ✅
+Peter Naur said this decades ago: the real product of programming is the theory inside the programmer's head, not the code. The code is just the artifact. Same thing with writing.
 
 Tweet 6:
-LLMs blow that gate open. They don't invent ideas, they remove the bottleneck between the idea and the expression. Writing becomes the transmission layer again, not the measuring stick.
+Before LLMs, only people who knew how to write well got to share ideas publicly. Writing acted like a filter. LLMs blow that gate open, they don't invent ideas but they remove the prose barrier. ✅
 
 Tweet 7:
-The question isn't "did an LLM write this?" The real question is "did the person do the thinking?" If the idea is yours and the model helped serialize it, the authorship is intact.
+What actually matters is whether you did the thinking. If the model generates both content and voice, that's empty. But if the idea is yours and the model helped serialize it, the authorship is intact.
 
 Tweet 8:
-More people can share ideas because the prose barrier is gone. More signal, less gatekeeping. Pretty cool actually.
+Identity lives in the thinking, not the syntax. More signal, less gatekeeping. Pretty cool actually.
 
 Full post: https://juanjofuchs.github.io/ai/2025/11/25/the-llmphant-in-the-room.html
 
