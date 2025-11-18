@@ -283,31 +283,31 @@ INSTRUCTIONS:
 ## X/Twitter Thread
 
 Tweet 1 (Hook):
-Spent 2 hours building automation so I'd never manually post blog links to social media again. Now everything just happens automatically. Here's how it works. 🔥
+Spent 2 hours building automation so I'd never manually post blog links to social media again. Now everything just happens automatically. 🔥
 
 Tweet 2:
-The setup runs on GitHub Actions (free tier). When a blog post publishes on Tuesday mornings, a Node.js script extracts pre-written social content from the markdown file and posts to X and LinkedIn. 💡
+Setup runs on GitHub Actions (free tier). When a blog post publishes on Tuesday mornings, a Node.js script extracts pre-written social content from the markdown file and posts to X and LinkedIn. 💡
 
 Tweet 3:
-The social media content lives in Liquid comment blocks at the end of each blog post. Jekyll completely removes these during build, so they never appear in the published HTML. Version controlled, easy to edit.
+Social media content lives in Liquid comment blocks at the end of each blog post. Jekyll removes these during build, so they never appear in the published HTML. Version controlled, easy to edit.
 
 Tweet 4:
 Key trick: LinkedIn link goes in first comment (not main post) to avoid 25-40% reach penalty. X link goes in last tweet only. Platform algorithms suppress posts with links in main content. ✅
 
 Tweet 5:
-Each platform runs independently. LinkedIn failure doesn't affect X, X failure doesn't affect LinkedIn. Workflow always succeeds even if one platform fails. This was critical for reliability.
+Each platform runs independently. LinkedIn failure doesn't affect X, X failure doesn't affect LinkedIn. Workflow always succeeds even if one platform fails.
 
 Tweet 6:
-After posting, the workflow adds PUBLISHED timestamps to the markdown file and commits them back. This prevents duplicate posts if you run the workflow multiple times. Safe to retry, safe to trigger manually. ✅
+After posting, the workflow adds PUBLISHED timestamps to the markdown file and commits them back. This prevents duplicate posts if you run the workflow multiple times. ✅
 
 Tweet 7:
-Cost: $0. GitHub Actions free tier, X API free tier (1,500 posts/month), LinkedIn API free for personal posting. Everything runs on GitHub's infrastructure, no external hosting needed.
+Cost: $0. GitHub Actions free tier, X API free tier (1,500 posts/month), LinkedIn API free for personal posting. Everything runs on GitHub's infrastructure.
 
 Tweet 8:
-Time investment: 2 hours to build. Time saved: 15-20 min per post. Break-even: 7 posts (less than 2 months). But the real value is consistency - every post gets promoted, on schedule, no exceptions.
+Time investment: 2 hours to build. Time saved: 15-20 min per post. Break-even: 7 posts (less than 2 months). But the real value is in consistency, every post gets promoted on schedule.
 
 Tweet 9:
-Full implementation details, code, and GitHub Actions workflow here: https://juanjofuchs.github.io/automation/2025/11/18/automating-blog-social-media-posting.html
+Implementation details, code, and workflow here: https://juanjofuchs.github.io/automation/2025/11/18/automating-blog-social-media-posting.html
 
 #DevOps #Automation
 
