@@ -153,11 +153,13 @@ post-to-social-media:
 
 The extraction module uses regex with `matchAll()` to find all Liquid comment blocks, then takes the **last** match (the actual social content at the end of the post, not any template examples in the post content):
 
+{% raw %}
 ```javascript
 const commentRegex = /{%\s*comment\s*%}([\s\S]*?){%\s*endcomment\s*%}/gi;
 const matches = Array.from(markdownContent.matchAll(commentRegex));
 const lastMatch = matches[matches.length - 1]; // Get last block
 ```
+{% endraw %}
 
 Then it parses the LinkedIn and X/Twitter sections from that block:
 
