@@ -90,6 +90,37 @@ function main() {
   const published = posts.filter(p => p.date <= now);
   const upcoming = posts.filter(p => p.date > now);
 
+  // Display summary first
+  console.log('📊 SUMMARY');
+  console.log('-'.repeat(70));
+  console.log(`Total Posts: ${posts.length}`);
+  console.log(`Published: ${published.length}`);
+  console.log(`Upcoming: ${upcoming.length}`);
+
+  if (upcoming.length > 0) {
+    const nextPost = upcoming[0];
+    const lastPost = upcoming[upcoming.length - 1];
+    const daysUntilNext = getDaysFrom(nextPost.date);
+    const daysUntilLast = getDaysFrom(lastPost.date);
+    const weeksOfContent = Math.ceil(upcoming.length);
+
+    console.log();
+    console.log(`⏰ Next Publication: ${formatDate(nextPost.date)}`);
+    console.log(`   "${nextPost.title}"`);
+    console.log(`   Publishing in ${daysUntilNext} day${daysUntilNext !== 1 ? 's' : ''}`);
+
+    console.log();
+    console.log(`📆 Backlog Duration: ${weeksOfContent} week${weeksOfContent !== 1 ? 's' : ''} of content`);
+    console.log(`   Last scheduled post: ${formatDate(lastPost.date)}`);
+    console.log(`   "${lastPost.title}"`);
+    console.log(`   ${daysUntilLast} days until backlog is depleted`);
+  }
+
+  console.log();
+  console.log('📅 Publishing Schedule: Every Tuesday at 9:00 AM EST');
+  console.log('='.repeat(70));
+  console.log();
+
   // Display published posts
   if (published.length > 0) {
     console.log('✅ PUBLISHED POSTS');
@@ -140,25 +171,6 @@ function main() {
     });
   }
 
-  // Summary
-  console.log('='.repeat(70));
-  console.log('📊 SUMMARY');
-  console.log('-'.repeat(70));
-  console.log(`Total Posts: ${posts.length}`);
-  console.log(`Published: ${published.length}`);
-  console.log(`Upcoming: ${upcoming.length}`);
-
-  if (upcoming.length > 0) {
-    const nextPost = upcoming[0];
-    const daysUntil = getDaysFrom(nextPost.date);
-    console.log();
-    console.log(`⏰ Next Publication: ${formatDate(nextPost.date)}`);
-    console.log(`   "${nextPost.title}"`);
-    console.log(`   Publishing in ${daysUntil} day${daysUntil !== 1 ? 's' : ''}`);
-  }
-
-  console.log();
-  console.log('📅 Publishing Schedule: Every Tuesday at 9:00 AM EST');
   console.log('='.repeat(70));
 }
 
