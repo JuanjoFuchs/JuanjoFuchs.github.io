@@ -142,6 +142,7 @@ post-to-social-media:
       if git diff --quiet _posts/; then
         echo "No changes to commit"
       else
+        git pull --rebase origin main
         git add _posts/
         git commit -m "chore: mark social media posts as published [skip ci]"
         git push
@@ -150,7 +151,15 @@ post-to-social-media:
 
 ### Content Extraction Logic
 
-The extraction module uses regex to find Liquid comment blocks, then parses the LinkedIn and X/Twitter sections:
+The extraction module uses regex with `matchAll()` to find all Liquid comment blocks, then takes the **last** match (the actual social content at the end of the post, not any template examples in the post content):
+
+```javascript
+const commentRegex = /{%\s*comment\s*%}([\s\S]*?){%\s*endcomment\s*%}/gi;
+const matches = Array.from(markdownContent.matchAll(commentRegex));
+const lastMatch = matches[matches.length - 1]; // Get last block
+```
+
+Then it parses the LinkedIn and X/Twitter sections from that block:
 
 **For X/Twitter**:
 - Extracts individual tweets labeled "Tweet 1", "Tweet 2", etc.
@@ -223,13 +232,13 @@ Zero. Everything runs on free tiers:
 
 ## Time Investment vs Savings
 
-**Implementation**: About 2 hours total (research, coding, testing, debugging)
+**Implementation**: About 2 hours total (research, coding, testing)
 
 **Time saved per post**: 15-20 minutes
 
 **Break-even**: After ~7 posts, or less than 2 months at weekly cadence
 
-But the real value isn't just time saved, it's consistency. I won't forget to promote a post or delay it because I'm busy. Every post gets promoted, on schedule, every time.
+But the real value isn't just time saved, it's consistency. Every post gets promoted, on schedule, every time. No forgetting, no delaying because I'm busy.
 
 ## Code
 
