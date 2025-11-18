@@ -176,14 +176,14 @@ Both platforms ignore the INSTRUCTIONS sections I include in the Liquid comments
 
 ### X (Twitter) Developer Account
 
-1. Applied at developer.twitter.com/en/portal/dashboard
+1. Applied at [https://developer.x.com/en/portal/dashboard](https://developer.x.com/en/portal/dashboard)
 2. Created app in Developer Portal
 3. Generated API Key, API Secret, Access Token, Access Token Secret
 4. Free tier limits: 1,500 posts/month, 17 posts/24 hours (way more than needed for weekly posts)
 
 ### LinkedIn Developer App
 
-1. Created app at linkedin.com/developers/apps
+1. Created app at [https://www.linkedin.com/developers/apps](https://www.linkedin.com/developers/apps)
 2. Requested "Sign In with LinkedIn" and "Share on LinkedIn" permissions
 3. Generated OAuth 2.0 Access Token
 4. Token expires every 2 months (manual refresh required)
@@ -246,8 +246,6 @@ The full implementation is in the blog repository:
 - Feature spec: `specs/001-automating-sharing-post-to-social-media.md`
 - Scripts: `scripts/` directory
 - Workflow: `.github/workflows/schedule-rebuild.yml`
-
-All MIT licensed, use it however you want.
 
 {% comment %}
 ## LinkedIn Post
