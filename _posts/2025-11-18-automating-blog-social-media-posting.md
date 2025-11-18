@@ -252,6 +252,8 @@ The full implementation is in the blog repository:
 {% comment %}
 ## LinkedIn Post
 
+PUBLISHED: 2025-11-18T15:27:45Z
+
 Spent 2 hours building automation so I'd never have to manually post blog links to social media again. Now every new post automatically appears on X and LinkedIn within minutes of going live. 💡
 
 The setup uses GitHub Actions, Node.js scripts, and free-tier APIs from X and LinkedIn. No paid services, no external hosting, everything runs on GitHub's infrastructure. Social media content lives in Liquid comment blocks at the end of each blog post, completely hidden from the published HTML.
@@ -281,6 +283,8 @@ INSTRUCTIONS:
 ---
 
 ## X/Twitter Thread
+
+PUBLISHED: 2025-11-18T15:27:46Z
 
 Tweet 1 (Hook):
 Spent 2 hours building automation so I'd never manually post blog links to social media again. Now everything just happens automatically. 🔥

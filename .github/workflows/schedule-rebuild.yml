@@ -112,10 +112,12 @@ jobs:
         else
           echo "Changes detected in _posts/ directory"
 
+          # Add changes before pulling to avoid 'unstaged changes' error
+          git add _posts/
+
           # Pull latest changes from rebuild job to avoid race condition
           git pull --rebase origin main
 
-          git add _posts/
           git commit -m "chore: mark social media posts as published [skip ci]"
           git push
           echo "✓ Published flags committed and pushed"
