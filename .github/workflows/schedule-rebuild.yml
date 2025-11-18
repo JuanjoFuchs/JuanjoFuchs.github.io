@@ -111,6 +111,10 @@ jobs:
           echo "No changes to commit - no posts were marked as published"
         else
           echo "Changes detected in _posts/ directory"
+
+          # Pull latest changes from rebuild job to avoid race condition
+          git pull --rebase origin main
+
           git add _posts/
           git commit -m "chore: mark social media posts as published [skip ci]"
           git push

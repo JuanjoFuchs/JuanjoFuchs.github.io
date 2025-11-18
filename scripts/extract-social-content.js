@@ -4,13 +4,22 @@ import { checkPublishedStatus } from './mark-post-published.js';
 
 /**
  * Extract content between {% comment %} and {% endcomment %} tags
+ * Gets the LAST comment block (to avoid matching example/template blocks in post content)
  * @param {string} markdownContent - Full markdown file content
  * @returns {string|null} - Content within Liquid comment block, or null if not found
  */
 export function extractLiquidComments(markdownContent) {
-  const commentRegex = /{%\s*comment\s*%}([\s\S]*?){%\s*endcomment\s*%}/i;
-  const match = markdownContent.match(commentRegex);
-  return match ? match[1].trim() : null;
+  const commentRegex = /{%\s*comment\s*%}([\s\S]*?){%\s*endcomment\s*%}/gi;
+  const matches = Array.from(markdownContent.matchAll(commentRegex));
+
+  // Return the LAST match (actual social content at end of post)
+  // Earlier matches might be code examples within the post content
+  if (matches.length === 0) {
+    return null;
+  }
+
+  const lastMatch = matches[matches.length - 1];
+  return lastMatch[1].trim();
 }
 
 /**
