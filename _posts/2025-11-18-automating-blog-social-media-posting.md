@@ -252,20 +252,20 @@ The full implementation is in the blog repository:
 
 Spent 2 hours building automation so I'd never have to manually post blog links to social media again. Now every new post automatically appears on X and LinkedIn within minutes of going live. 💡
 
-The setup uses GitHub Actions, Node.js scripts, and free-tier APIs from X and LinkedIn. No paid services, no external hosting, everything runs on GitHub's infrastructure. The social media content lives in Liquid comment blocks at the end of each blog post, completely hidden from the published HTML.
+The setup uses GitHub Actions, Node.js scripts, and free-tier APIs from X and LinkedIn. No paid services, no external hosting, everything runs on GitHub's infrastructure. Social media content lives in Liquid comment blocks at the end of each blog post, completely hidden from the published HTML.
 
-Here's what made this work:
+What made it work:
 ✅ Platform independence - one failure doesn't affect the other
 ✅ Strategic link placement - LinkedIn comment not main post, X last tweet only
-✅ Duplicate prevention - PUBLISHED timestamps prevent re-posting, safe to run multiple times
+✅ Duplicate prevention - PUBLISHED timestamps prevent re-posting
 ✅ Pre-written content - I write the social posts alongside the blog, automation just extracts and posts
 ✅ Zero cost - all free tiers
 
-The workflow runs every Tuesday at 9 AM, finds posts published in the last 7 days, extracts their social content, and posts to both platforms in parallel. Took 2 hours to build, saves 15-20 minutes per post, breaks even at 7 posts.
+Workflow runs every Tuesday at 9 AM, finds posts from the last 7 days, posts to both platforms. Took 2 hours to build, saves 15-20 minutes per post, breaks even at 7 posts.
 
-Time saved is nice, but the real win is consistency. Every post gets promoted, on schedule, no exceptions.
+Saving the time is nice but the real win is in consistency, every post gets promoted on schedule.
 
-Full code and implementation details in the post (link in first comment).
+Code and implementation details in the post (link in comments).
 
 #DevOps #Automation #GitHub #SocialMedia #Jekyll
 
