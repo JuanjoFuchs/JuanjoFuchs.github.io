@@ -1,17 +1,19 @@
-# Feature Specification: Image Optimization and Media Handling for Jekyll Blog
+# Feature Specification: Image and Video Optimization for Jekyll Blog
 
 ## Overview
 
-Establish a consistent workflow for optimizing, converting, and managing images for the Jekyll blog to ensure fast load times, good SEO, and efficient repository usage while staying within GitHub Pages constraints.
+Establish a consistent workflow for optimizing, converting, and managing images and videos for the Jekyll blog to ensure fast load times, good SEO, and efficient repository usage while staying within GitHub Pages constraints.
 
 ## Goals
 
 - Reduce image file sizes by 50-70% through WebP conversion and compression
+- Replace GIF files with MP4 video format (90%+ size reduction)
 - Improve page load performance by implementing lazy loading and responsive images
 - Stay within GitHub Pages repository size limits (1 GB recommended)
-- Create a repeatable, simple workflow for adding images to blog posts
-- Maintain image quality while optimizing for web delivery
+- Create a repeatable, simple workflow for adding images and videos to blog posts
+- Maintain image and video quality while optimizing for web delivery
 - Automate image optimization to eliminate manual conversion steps
+- Provide accessible video content with proper controls and captions
 
 ## Requirements
 
@@ -21,13 +23,21 @@ The blog must use a consistent, organized directory structure for all media file
 
 **Required structure**:
 - Separate directories for blog post images, page images, and miscellaneous images
-- Images must be organized under an `assets/` directory
+- Separate directory for video files
+- All media must be organized under an `assets/` directory
 - Structure must support easy reference from markdown posts
+
+**Suggested organization**:
+- `assets/images/posts/` - Blog post images
+- `assets/images/pages/` - Static page images
+- `assets/images/misc/` - Logos, icons, etc.
+- `assets/videos/` - Self-hosted video files
 
 **Rationale**:
 - Jekyll automatically processes assets directory
-- Consistent structure makes images easy to find and reference
+- Consistent structure makes media easy to find and reference
 - Separation by content type enables better organization as blog grows
+- Videos in separate directory makes size monitoring easier
 
 ### R2: Image Format and Compression Standards
 
@@ -222,6 +232,150 @@ The solution requires specific system dependencies in the GitHub Actions build e
 - Ubuntu GitHub Actions runners support ImageMagick via apt-get
 - System dependencies must be installed before Jekyll build step
 
+### R12: Video Format Standards
+
+Videos and animated content must use modern video formats instead of GIF.
+
+**Requirements**:
+- Primary video format: MP4 with H.264 codec
+- No GIF files for animations or screen recordings
+- Existing GIFs must be converted to MP4
+- MP4 files must use progressive/streaming playback (faststart flag)
+- Audio optional but supported if needed
+
+**Format specifications**:
+- Codec: H.264 (best compatibility)
+- Container: MP4
+- Pixel format: yuv420p (universal compatibility)
+- Bitrate: Appropriate for content (screen recordings can use lower bitrate)
+
+**Rationale**:
+- GIF files are 10-20x larger than MP4 for same content
+- MP4 provides better quality at smaller file sizes
+- H.264 MP4 has 94%+ browser support
+- Screen recordings remain readable with MP4 compression
+- Enables longer animations without massive file sizes
+
+### R13: Video File Size Management
+
+Videos must adhere to file size limits appropriate for GitHub Pages hosting.
+
+**Requirements**:
+- Videos under 10 MB: Must be self-hosted in repository
+- Videos 10-25 MB: May be self-hosted or externally hosted (case-by-case)
+- Videos over 25 MB: Must be externally hosted (YouTube, Vimeo, etc.)
+- Screen recordings should target 2-5 MB for 10-30 second clips
+- Total video content must not push repository over 500 MB
+
+**Rationale**:
+- GitHub Pages has 1 GB repository limit
+- Individual files limited to 100 MB
+- Bandwidth is 100 GB/month soft limit
+- Large videos impact build times and user experience
+- External hosting provides better streaming and CDN benefits
+
+### R14: Video Embedding Standards
+
+Videos must be embedded consistently with accessibility and performance in mind.
+
+**Requirements**:
+- Use HTML5 video element for self-hosted videos
+- Include controls attribute for user playback control
+- Support loop attribute for GIF-replacement videos
+- Include poster image (thumbnail) for all videos
+- Must be responsive (scale to container width)
+- Must work on mobile devices (playsinline attribute)
+
+**Required attributes**:
+- `controls`: User can play/pause/seek
+- `loop`: For GIF-like behavior (optional)
+- `muted`: Required if autoplay is used
+- `playsinline`: Prevents forced fullscreen on mobile
+- `poster`: Path to thumbnail image
+
+**Prohibited**:
+- Autoplay without mute (poor user experience)
+- Videos without controls (accessibility issue)
+- Videos without poster images (poor performance)
+
+**Rationale**:
+- HTML5 video provides native browser support
+- Controls required for accessibility
+- Poster images improve perceived performance
+- Muted autoplay is only acceptable autoplay pattern
+- Responsive videos work across all device sizes
+
+### R15: Video Accessibility Requirements
+
+All videos must meet accessibility standards for inclusive content.
+
+**Requirements**:
+- Videos with audio must include captions or transcripts
+- Provide text description or transcript below video
+- Support prefers-reduced-motion media query for motion sensitivity
+- Poster images must have descriptive alt text
+- No autoplay with audio (respect user preferences)
+
+**Accessibility levels**:
+- Minimum (WCAG Level A): Captions for audio content
+- Recommended (WCAG Level AA): Captions + audio descriptions
+- Optional (WCAG Level AAA): Full transcripts
+
+**Rationale**:
+- Legal and ethical requirement for accessibility
+- Captions help users in sound-sensitive environments
+- Motion sensitivity affects ~35% of population to some degree
+- Transcripts improve SEO and searchability
+- Better user experience for all users
+
+### R16: External Video Hosting
+
+Videos too large for repository hosting must use external services.
+
+**Requirements**:
+- Primary external host: YouTube (unlimited, free, CDN, SEO benefits)
+- Alternative: Vimeo (privacy controls, no ads)
+- Embed using responsive iframe or platform-provided embed codes
+- Must maintain aspect ratio on all screen sizes
+- Should lazy load external video embeds
+
+**When to use external hosting**:
+- Videos over 25 MB
+- Videos requiring privacy controls
+- Videos needing analytics
+- Content that may be updated frequently
+
+**Rationale**:
+- YouTube provides unlimited hosting with global CDN
+- External hosting preserves repository space
+- Platform analytics provide engagement insights
+- Professional video players handle adaptive streaming
+- Removes bandwidth concerns from GitHub Pages
+
+### R17: Video Optimization Tools
+
+Solution must document tools for video creation and optimization.
+
+**Required capabilities**:
+- Convert GIF to MP4
+- Compress MP4 files
+- Create poster/thumbnail images
+- Record screen content directly as MP4
+- Batch process multiple videos
+
+**Recommended tool: FFmpeg**:
+- Industry standard for video processing
+- Handles all required conversions
+- Available on all platforms
+- Scriptable for automation
+
+**Rationale**:
+- FFmpeg is free, open-source, and powerful
+- Single tool handles all video needs
+- Cross-platform (Windows, Mac, Linux)
+- Well-documented with large community
+- Can be used in automated workflows if needed
+
 ## Non-Functional Requirements
 
 ### NFR1: Performance
@@ -234,8 +388,10 @@ The solution requires specific system dependencies in the GitHub Actions build e
 ### NFR2: Repository Efficiency
 
 - Image files must not exceed 200 KB each (target: 50-150 KB)
+- Video files must not exceed 10 MB each (target: 2-5 MB for short clips)
 - Total repository size must stay under 500 MB (50% of recommended limit)
 - No unoptimized source images in repository after build
+- No GIF files in repository (convert to MP4)
 
 ### NFR3: Browser Compatibility
 
@@ -262,28 +418,35 @@ The solution requires specific system dependencies in the GitHub Actions build e
 
 - Site is built only via GitHub Actions (no local builds on developer machine)
 - Must use free, open-source tools and plugins
-- Must work on Windows environment for image preparation (if manual workflow needed)
+- Must work on Windows environment for media preparation
 - Image processing plugins require system dependencies in GitHub Actions build environment
 - Cannot test image output locally - must push and verify in GitHub Actions build
 - Build environment is Ubuntu-latest GitHub Actions runner
 - All dependencies must be installable via apt-get or bundler
+- GitHub Pages repository size limited to 1 GB
+- Individual file size limited to 100 MB
+- Monthly bandwidth soft limit of 100 GB
+- Video files must be manually optimized (no automated video pipeline)
 
 ## Success Criteria
 
 1. All new blog posts use optimized images under 150 KB each
-2. Page load time improves by 30-50% compared to unoptimized images
-3. Core Web Vitals scores are all "Good" (green)
-4. Repository size remains under 500 MB after 50+ blog posts
-5. Image optimization happens automatically without manual conversion
-6. GitHub Actions builds succeed consistently with image processing
-7. Responsive images are generated and served correctly across devices
-8. All images have proper alt text and lazy loading
-9. Social media previews display correctly with featured images
+2. All animations and screen recordings use MP4 format, not GIF
+3. Videos are under 10 MB for self-hosted content
+4. Page load time improves by 30-50% compared to unoptimized media
+5. Core Web Vitals scores are all "Good" (green)
+6. Repository size remains under 500 MB after 50+ blog posts
+7. Image optimization happens automatically without manual conversion
+8. GitHub Actions builds succeed consistently with image processing
+9. Responsive images are generated and served correctly across devices
+10. All images have proper alt text and lazy loading
+11. All videos have controls, poster images, and proper accessibility
+12. Social media previews display correctly with featured images
+13. No GIF files in repository (all converted to MP4)
 
 ## Out of Scope
 
 - Image CDN integration (Cloudinary, imgix, etc.) - local hosting preferred for simplicity
-- Animated WebP or video content
 - Image gallery or lightbox functionality
 - Automatic alt text generation (manual alt text only)
 - AVIF format (newer format with lower browser support - 75%+)
@@ -291,6 +454,11 @@ The solution requires specific system dependencies in the GitHub Actions build e
 - Advanced art direction beyond responsive breakpoints
 - Real-time image optimization on upload
 - Image editing or manipulation beyond resize and format conversion
+- Automatic video transcoding pipeline (manual FFmpeg usage acceptable)
+- Live streaming or real-time video
+- Video analytics beyond platform-provided (YouTube/Vimeo)
+- Custom video players or JavaScript libraries
+- WebM or other video formats (MP4 sufficient for all use cases)
 
 ## Related Specifications
 
