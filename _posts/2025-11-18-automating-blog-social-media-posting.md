@@ -66,11 +66,11 @@ The automation runs as a GitHub Actions job that triggers after the scheduled po
 ### Implementation Stack
 
 **Node.js scripts** (5 modules, ~650 lines total):
-- `extract-social-content.js` - Parses markdown, extracts Liquid comments, builds blog URLs
-- `post-to-x.js` - X API client using twitter-api-v2 library, chains tweets into threads
-- `post-to-linkedin.js` - LinkedIn API client using axios, posts content then adds comment with blog URL
-- `post-to-social-media.js` - Main orchestrator, runs both platforms in parallel
-- `mark-post-published.js` - Adds PUBLISHED timestamps to prevent duplicate posting
+- [`extract-social-content.js`](https://github.com/JuanjoFuchs/JuanjoFuchs.github.io/blob/main/scripts/extract-social-content.js) - Parses markdown, extracts Liquid comments, builds blog URLs
+- [`post-to-x.js`](https://github.com/JuanjoFuchs/JuanjoFuchs.github.io/blob/main/scripts/post-to-x.js) - X API client using twitter-api-v2 library, chains tweets into threads
+- [`post-to-linkedin.js`](https://github.com/JuanjoFuchs/JuanjoFuchs.github.io/blob/main/scripts/post-to-linkedin.js) - LinkedIn API client using axios, posts content then adds comment with blog URL
+- [`post-to-social-media.js`](https://github.com/JuanjoFuchs/JuanjoFuchs.github.io/blob/main/scripts/post-to-social-media.js) - Main orchestrator, runs both platforms in parallel
+- [`mark-post-published.js`](https://github.com/JuanjoFuchs/JuanjoFuchs.github.io/blob/main/scripts/mark-post-published.js) - Adds PUBLISHED timestamps to prevent duplicate posting
 
 **Dependencies**:
 - `gray-matter` - Parse markdown front matter
@@ -244,10 +244,11 @@ But the real value isn't just time saved, it's consistency. Every post gets prom
 
 ## Code
 
-The full implementation is in the blog repository:
-- Feature spec: `specs/001-automating-sharing-post-to-social-media.md`
-- Scripts: `scripts/` directory
-- Workflow: `.github/workflows/schedule-rebuild.yml`
+The full implementation is in the [blog repository](https://github.com/JuanjoFuchs/JuanjoFuchs.github.io):
+- Feature spec: [`specs/001-automating-sharing-post-to-social-media.md`](https://github.com/JuanjoFuchs/JuanjoFuchs.github.io/blob/main/specs/001-automating-sharing-post-to-social-media.md)
+- Scripts: [`scripts/` directory](https://github.com/JuanjoFuchs/JuanjoFuchs.github.io/tree/main/scripts)
+- Workflow: [`.github/workflows/schedule-rebuild.yml`](https://github.com/JuanjoFuchs/JuanjoFuchs.github.io/blob/main/.github/workflows/schedule-rebuild.yml)
+- This post's markdown source (with social media content): [`_posts/2025-11-18-automating-blog-social-media-posting.md`](https://github.com/JuanjoFuchs/JuanjoFuchs.github.io/blob/main/_posts/2025-11-18-automating-blog-social-media-posting.md)
 
 {% comment %}
 ## LinkedIn Post
