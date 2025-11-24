@@ -59,28 +59,30 @@ Pretty cool actually.
 {% comment %}
 ## LinkedIn Post
 
-Someone on LinkedIn was complaining about how easy it is to spot LLM-generated writing. The strategic emojis, the dramatic pauses, the "you're absolutely right!" comments, the single-sentence paragraphs, the template tone. I get the frustration, the feed is full of that type of content.
+Hot take: If you're shaming people for using LLMs to write, you're focusing on the wrong thing 🔥. The question isn't "did an LLM write this?" The question is "did you do the thinking?"
 
-But here's what we're missing: It's easy to blame the AI, but the real mess starts when there's no thinking behind them, and you can tell the difference. 💡
+Writing used to be the barrier. If you couldn't write well, your ideas stayed stuck in your head, no matter how valuable they were. LLMs removed that barrier.
 
-AI is the reason I even have a blog. If I had to manually write every post, I probably wouldn't have started at all. Writing was always the bottleneck. So I use an LLM to serialize the ideas I already have, same way I use a compiler to turn code into something a machine understands.
+I use LLMs to serialize my ideas the same way I use a compiler to turn code into machine instructions. The thinking is mine, the model just handles the typing. That's not cheating, that's using the right tool for the job.
 
-For engineers, the heavy lift sits upstream in the models we build in our heads, the tradeoffs, the debugging scars, the failures that taught us something real. By the time we write, the idea already exists. Writing is just the transport layer, the protocol for moving the theory from my head to yours.
+Peter Naur said decades ago: the real product of programming is the theory in your head, not the code. Code is just the artifact. Writing works the same way.
 
-Peter Naur said this decades ago: the real product of programming is the theory inside the programmer's head, not the code. The code is just the artifact.
+Here's what actually matters:
+✅ Did you build the mental model?
+✅ Do you understand the tradeoffs?
+✅ Are you taking full responsibility for what's being said?
 
-Writing works the same way.
-✅ Value is in the theory, text is the artifact
-✅ LLMs remove the bottleneck between idea and expression
-✅ Identity lives in the thinking, not the syntax
+If yes, then you own it. The tool you used to serialize it is irrelevant.
 
-Before LLMs, only people who knew how to write well got to share ideas publicly. Writing acted like a filter. LLMs blow that gate open, they don't invent ideas but they remove the prose barrier.
+The debate about "authentic" writing mirrors what'll happen when we're coding in plain English. The question in both cases is whether identity lives in the syntax or in the thinking.
 
-What actually matters is whether you did the thinking and whether you own what you're publishing. If the model generates both content and voice, that's empty. But if the idea is yours, if you're taking full responsibility for what's being said, then ownership is intact.
+Effort is a virtue but only when applied where it changes the outcome. Manually typing every sentence doesn't make the idea better, doing the upstream thinking does.
 
-More signal, less gatekeeping. Pretty cool actually.
+Writing used to filter who got heard. Now both signal and noise go up, but filtering gets better too. The ratio doesn't collapse because both sides move.
 
-#AI #LLM #Writing #SoftwareEngineering #Authorship
+You want authentic? Own what you publish. Do the thinking. Take the responsibility. The rest is just typing.
+
+#AI #LLM #Writing #SoftwareEngineering #Gatekeeping
 
 ---
 INSTRUCTIONS:
@@ -94,28 +96,31 @@ INSTRUCTIONS:
 ## X/Twitter Thread
 
 Tweet 1 (Hook):
-It's easy to blame the AI, but the real mess starts when there's no thinking behind them, and you can tell the difference. 💡
+Hot take: If you're shaming people for using LLMs to write, you're focusing on the wrong thing. The question isn't "did an LLM write this?" It's "did you do the thinking?" 🔥
 
 Tweet 2:
-Everyone complains about spotting LLM writing. The strategic emojis, dramatic pauses, "you're absolutely right!" comments, single-sentence paragraphs. I get it, the feed is full of that type of content.
+Writing used to be the barrier. If you couldn't write well, your ideas stayed stuck. LLMs removed that barrier, and now we're debating whether that's authentic.
 
 Tweet 3:
-But AI is the reason I even have a blog. Writing was always the bottleneck. I use an LLM to serialize the ideas I already have, same way I use a compiler to turn code into something a machine understands.
+The question isn't "did an LLM write this?" The question is "did you do the thinking?" Those are fundamentally different questions with fundamentally different answers.
 
 Tweet 4:
-For engineers, the heavy lift sits upstream. Models we build in our heads, tradeoffs, debugging scars, failures that taught us something real. By the time we write, the idea already exists. Writing is just the transport layer. ✨
+I use LLMs to serialize my ideas the same way I use a compiler to turn code into machine instructions. The thinking is mine, the model handles the typing. That's not cheating, that's tooling. 💡
 
 Tweet 5:
-Peter Naur said this decades ago: the real product of programming is the theory inside the programmer's head, not the code. The code is just the artifact. Same thing with writing.
+Peter Naur said it decades ago: the real product of programming is the theory in your head, not the code. Code is the artifact. Writing works exactly the same way.
 
 Tweet 6:
-Before LLMs, only people who knew how to write well got to share ideas publicly. Writing acted like a filter. LLMs blow that gate open, they don't invent ideas but they remove the prose barrier. ✅
+What matters: Did you build the mental model? Do you understand the tradeoffs? Are you taking responsibility for what's being said? If yes, you own it. The serialization tool is irrelevant. ✅
 
 Tweet 7:
-What actually matters is whether you did the thinking and whether you own what you're publishing. If the model generates both content and voice, that's empty. But if the idea is yours, you own the output. ✅
+The debate about "authentic" writing mirrors what'll happen when we're coding in plain English. Identity lives in the thinking, not the syntax.
 
 Tweet 8:
-Identity lives in the thinking, not the syntax. More signal, less gatekeeping. Pretty cool actually.
+Effort is a virtue but only when applied where it changes the outcome. Manually typing every sentence doesn't make the idea better. Doing the upstream thinking does.
+
+Tweet 9:
+You want authentic? Own what you publish. Do the thinking. Take the responsibility. The rest is just typing.
 
 Full post: https://juanjofuchs.github.io/ai/2025/11/25/the-llmphant-in-the-room.html
 
