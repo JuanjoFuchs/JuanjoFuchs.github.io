@@ -59,6 +59,8 @@ Pretty cool actually.
 {% comment %}
 ## LinkedIn Post
 
+PUBLISHED: 2025-11-25T14:25:56.214Z
+
 Hot take: If you're shaming people for using LLMs to write, you're focusing on the wrong thing 🔥. The question isn't "did an LLM write this?" The question is "did you do the thinking?"
 
 Writing used to be the barrier. If you couldn't write well, your ideas stayed stuck in your head, no matter how valuable they were. LLMs removed that barrier.
@@ -94,6 +96,8 @@ INSTRUCTIONS:
 ---
 
 ## X/Twitter Thread
+
+PUBLISHED: 2025-11-25T14:25:56.967Z
 
 Tweet 1 (Hook):
 Hot take: If you're shaming people for using LLMs to write, you're focusing on the wrong thing. The question isn't "did an LLM write this?" It's "did you do the thinking?" 🔥

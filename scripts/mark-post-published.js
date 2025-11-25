@@ -15,13 +15,14 @@ import path from 'path';
  * @returns {boolean} - True if already published
  */
 function isAlreadyPublished(content, platform) {
-  // Extract the Liquid comment block
-  const commentMatch = content.match(/{%\s*comment\s*%}([\s\S]*?){%\s*endcomment\s*%}/i);
-  if (!commentMatch) {
+  // Extract the LAST Liquid comment block (to avoid matching example/template blocks in post content)
+  const commentRegex = /{%\s*comment\s*%}([\s\S]*?){%\s*endcomment\s*%}/gi;
+  const matches = Array.from(content.matchAll(commentRegex));
+  if (matches.length === 0) {
     return false;
   }
 
-  const commentContent = commentMatch[1];
+  const commentContent = matches[matches.length - 1][1];
 
   // Find the platform section
   let sectionRegex;
@@ -41,7 +42,7 @@ function isAlreadyPublished(content, platform) {
   const sectionContent = sectionMatch[1];
 
   // Check if PUBLISHED flag exists in this section
-  return /PUBLISHED:\s*\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z/i.test(sectionContent);
+  return /PUBLISHED:\s*\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}/i.test(sectionContent);
 }
 
 /**
@@ -129,7 +130,7 @@ export {
 };
 
 // CLI usage (ES6 module detection)
-if (import.meta.url === `file://${process.argv[1].replace(/\\/g, '/')}`) {
+if (import.meta.url === `file://${process.argv[1]?.replace(/\\/g, '/')}`) {
   const args = process.argv.slice(2);
 
   if (args.length < 2) {
