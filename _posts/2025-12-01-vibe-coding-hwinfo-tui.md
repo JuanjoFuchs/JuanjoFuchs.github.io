@@ -9,6 +9,8 @@ author: JuanjoFuchs
 image: /assets/videos/hwinfo-tui-demo-poster.png
 ---
 
+![hwinfo-tui demo](/assets/videos/hwinfo-tui-demo-poster.png)
+
 I vibe coded [hwinfo-tui](https://github.com/JuanjoFuchs/hwinfo-tui) and had it published on PyPI and WinGet in under a day. The implementation itself, giving Claude the spec and getting a working app, took maybe 20 minutes. What enabled shipping that fast wasn't the AI, it was the hours I spent on research and specification beforehand.
 
 Everyone knows vibe coding is fast. The interesting part is what makes the output production-ready instead of a demo that falls apart.
