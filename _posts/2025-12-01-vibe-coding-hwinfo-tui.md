@@ -6,6 +6,7 @@ date: 2025-12-01 09:00:00 -0500
 categories: ai-development
 tags: [python, vibe-coding, claude, github-copilot, terminal-ui, hwinfo, open-source]
 author: JuanjoFuchs
+image: /assets/videos/hwinfo-tui-demo-poster.png
 ---
 
 I vibe coded [hwinfo-tui](https://github.com/JuanjoFuchs/hwinfo-tui) and had it published on PyPI and WinGet in under a day. The implementation itself, giving Claude the spec and getting a working app, took maybe 20 minutes. What enabled shipping that fast wasn't the AI, it was the hours I spent on research and specification beforehand.
@@ -73,7 +74,7 @@ Publishing to WinGet was interesting because the portable app upgrade path has q
 
 <div style="position: relative; padding-bottom: 62.5%; height: 0; overflow: hidden;">
   <video style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
-         controls playsinline poster="/assets/videos/hwinfo-tui-demo-poster.png">
+         autoplay loop muted playsinline>
     <source src="/assets/videos/hwinfo-tui-demo.mp4" type="video/mp4">
   </video>
 </div>
