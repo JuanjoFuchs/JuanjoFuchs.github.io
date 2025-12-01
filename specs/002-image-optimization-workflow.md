@@ -376,6 +376,44 @@ Solution must document tools for video creation and optimization.
 - Well-documented with large community
 - Can be used in automated workflows if needed
 
+### R18: Jekyll Video Embedding Implementation
+
+Self-hosted videos must be embedded using standard HTML5 techniques compatible with GitHub Pages.
+
+**Requirements**:
+- Use direct HTML5 `<video>` tag in markdown files (no Jekyll plugin needed)
+- Wrap video in responsive container using CSS padding-bottom technique
+- Calculate aspect ratio for padding: `(height / width) * 100%`
+- Store videos in `/assets/videos/` directory
+- Reference videos with absolute paths from site root
+
+**Jekyll plugin compatibility**:
+- **jekyll-loading-lazy**: Works on `<img>` and `<iframe>` tags only, NOT `<video>` tags
+- **jekyll-picture-tag**: Images only, does not process video
+- No dedicated Jekyll video plugin is required or recommended for self-hosted MP4
+
+**Responsive video template**:
+```html
+<div style="position: relative; padding-bottom: [ASPECT_RATIO]%; height: 0; overflow: hidden;">
+  <video style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
+         controls playsinline poster="/assets/videos/[POSTER_IMAGE]">
+    <source src="/assets/videos/[VIDEO_FILE].mp4" type="video/mp4">
+  </video>
+</div>
+```
+
+**Common aspect ratios**:
+- 16:9 (1920x1080, 1280x720): `padding-bottom: 56.25%`
+- 8:5 (1920x1200, 800x500): `padding-bottom: 62.5%`
+- 4:3 (1024x768): `padding-bottom: 75%`
+
+**Rationale**:
+- HTML5 video tag works directly in Jekyll markdown without plugins
+- GitHub Pages restricts custom plugins; HTML approach is universally compatible
+- CSS padding-bottom technique maintains aspect ratio across all screen sizes
+- No JavaScript required for responsive behavior
+- Native browser video controls provide consistent UX
+
 ## Non-Functional Requirements
 
 ### NFR1: Performance
