@@ -2,7 +2,7 @@
 layout: post
 title: "How I Vibe Coded hwinfo-tui in Under a Day"
 description: "Vibe coding the implementation took minutes. Publishing to PyPI and WinGet in under a day required hours of research and a detailed spec first."
-date: 2025-12-01 09:00:00 -0500
+date: 2025-12-02 09:00:00 -0500
 categories: ai-development
 tags: [python, vibe-coding, claude, github-copilot, terminal-ui, hwinfo, open-source]
 author: JuanjoFuchs
