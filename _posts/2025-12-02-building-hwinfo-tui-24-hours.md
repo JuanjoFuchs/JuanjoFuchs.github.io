@@ -2,7 +2,7 @@
 layout: post
 title: "Building HWInfo-TUI in 24 Hours with AI"
 description: "How I built a terminal hardware monitor using spec-driven development with AI. From idea to published package on PyPI and WinGet."
-date: 2025-12-09 09:00:00 -0500
+date: 2025-12-02 09:00:00 -0500
 categories: ai-development
 tags: [python, ai, claude, github-copilot, terminal-ui, hwinfo, open-source]
 author: JuanjoFuchs

@@ -2,7 +2,7 @@
 layout: post
 title: "How AI Diagnosed My Laptop's Thermal Problem"
 description: "CPU throttling for months, tried everything. Claude analyzed screenshots from hwinfo-tui and found the issue hiding in the data: thermal paste failure."
-date: 2025-12-16 09:00:00 -0500
+date: 2025-12-09 09:00:00 -0500
 categories: hardware troubleshooting
 tags: [hardware, thermal, ai, claude, hwinfo-tui, troubleshooting, dell]
 author: JuanjoFuchs
