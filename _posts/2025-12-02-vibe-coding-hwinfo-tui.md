@@ -17,14 +17,16 @@ Everyone knows vibe coding is fast. The interesting part is what makes the outpu
 
 ## TL;DR
 
-- **Prep work enables production quality.** The vibe coding was fast because the research and spec were thorough. Skip the research and you get code that works for the demo but breaks in production.
+- **Prep work enables production quality.** The vibe coding was fast because the research and spec were thorough. Skip the specification and you get code that works for the demo but breaks in production.
 - **Research is underrated.** I spent more time researching than implementing. Reading docs, studying successful implementations, understanding how tools work.
-- **Specs should include architecture, not just features.** "Build a terminal hardware monitor" gets mediocre code. A detailed spec with library choices and edge cases gets production code on the first try.
+- **Specs should include architecture, not just features.** This is where your judgment comes in. You're making the important decisions based on your experience and knowledge, then telling the AI what you've decided. "Build a terminal hardware monitor" gets mediocre code. A detailed spec with library choices and edge cases gets production code on the first try.
 - **The "one shot" only works with context.** Vibe coding without a spec is just iterating on bad architecture.
 
 ## The Problem
 
-I wanted to monitor my laptop's CPU temps, fan speeds, and other hardware sensors in real time without opening HWInfo64's GUI. HWInfo64 can export sensor data to CSV but there wasn't a good terminal-based visualization tool that could watch that CSV and plot the data live.
+HWInfo64 shows the current value of each sensor, that's it. You can see your CPU is at 75°C right now but you can't see if it's been climbing for the last 10 minutes or if it just spiked. When I'm troubleshooting thermal issues or testing a new fan curve, I need to see trends over time, not just snapshots.
+
+HWInfo64 can export sensor data to a CSV file that updates in real time. So I wanted something that could watch that CSV and plot the values live, let me see the actual behavior over time instead of staring at numbers hoping to catch patterns.
 
 I'd seen [gping](https://github.com/orf/gping)'s elegant terminal UI for network latency and wanted something similar for hardware monitoring, dual Y-axes for different sensor units, fuzzy matching to find sensors quickly, the whole experience.
 
@@ -32,7 +34,7 @@ I'd seen [gping](https://github.com/orf/gping)'s elegant terminal UI for network
 
 ### 1. Research
 
-This is where most vibe coding projects skip ahead and pay for it later. I spent hours reading documentation, discovering tools, understanding how they work, looking at successful implementations. Asked GitHub Copilot about architectural patterns for terminal UIs in Python, plotting libraries, CSV monitoring patterns, real-time update strategies, all discovery with no code yet.
+This is where most vibe coding projects skip ahead and pay for it later. I spent hours reading documentation, discovering tools, understanding how they work, looking at successful implementations. Asked GitHub Copilot about architectural patterns for terminal UIs in Python, plotting libraries, CSV monitoring patterns, real-time update strategies, all discovery, no code yet.
 
 I read through gping's source to understand how it handled multi-line charts. Explored Plotext's documentation to see what it could actually do with braille characters. Checked Rich's live display capabilities for smooth terminal updates. Looked at Typer for CLI patterns.
 
@@ -62,7 +64,7 @@ This is the part that feels like magic but only works because the spec was detai
 
 ### 5. Polish
 
-The implementation worked and had tests, so this wasn't debugging. Polish was about running it and deciding if I liked what I saw. Spacing between columns in the stats table, colors for the chart lines, how the legends looked, visual details that only matter once you're staring at the actual output.
+The implementation worked and had tests, so this wasn't debugging. Polish was about running it and deciding if I liked what I saw. Spacing between columns in the stats table, colors for the chart lines, how the legends looked, details that only matter once you're staring at the actual output.
 
 I'd run the app, see something that felt off, describe what I wanted different, Claude would tweak it until it felt right. This is the part that actually matters for a product, whether you use it and like it.
 
@@ -80,6 +82,7 @@ Publishing to WinGet was interesting because the portable app upgrade path has q
     <source src="/assets/videos/hwinfo-tui-demo.mp4" type="video/mp4">
   </video>
 </div>
+
 
 The final tool has:
 
@@ -103,6 +106,8 @@ Install with `pip install hwinfo-tui` or `winget install hwinfo-tui`.
 
 ## Using It
 
+Install with `pip install hwinfo-tui` or `winget install hwinfo-tui`.
+
 Point it at HWInfo64's CSV export and specify sensors to watch:
 
 ```bash
@@ -113,44 +118,35 @@ The tool watches the CSV, plots the values in real time, handles different units
 
 ## Open Source
 
-The code is on [GitHub](https://github.com/JuanjoFuchs/hwinfo-tui) under an open source license. If you use HWInfo64 and want terminal-based monitoring, grab it and see if it's useful.
-
-The WORKFLOW.md in the repo documents the complete development process if you want to try this approach for your own projects.
+The code is on [GitHub](https://github.com/JuanjoFuchs/hwinfo-tui). If you use HWInfo64 and want terminal-based monitoring, grab it and see if it's useful.
 
 ## Resources
 
 - [GitHub Repository](https://github.com/JuanjoFuchs/hwinfo-tui)
 - [PyPI Package](https://pypi.org/project/hwinfo-tui/)
-- [Install via WinGet](https://github.com/microsoft/winget-pkgs/tree/master/manifests/j/JuanjoFuchs/hwinfo-tui)
-- [Development Workflow](https://github.com/JuanjoFuchs/hwinfo-tui/blob/main/WORKFLOW.md)
+- [Install via WinGet](https://winstall.app/apps/JuanjoFuchs.hwinfo-tui)
 - [gping (inspiration)](https://github.com/orf/gping)
 
 {% comment %}
 ## LinkedIn Post
 
-Vibe coded hwinfo-tui and shipped it to PyPI and WinGet in under a day. The actual implementation, giving Claude a spec and getting working code, took maybe 20 minutes. What enabled shipping that fast wasn't the AI.
+HWInfo64 shows your CPU is at 75°C right now. But is it climbing? Did it just spike? You can't tell because there's no graph, just the current value. I needed to see trends over time when troubleshooting thermals, so I built hwinfo-tui.
 
-Everyone knows vibe coding is fast. The interesting part is what makes the output production-ready instead of a demo that falls apart.
+Vibe coded the whole thing and shipped to PyPI and WinGet in under a day. The implementation itself took maybe 20 minutes. What made that possible wasn't the AI.
+
+The key insight: the spec is where your judgment comes in. You're making the important architectural decisions based on your experience and knowledge, then telling the AI what you've decided. "Build a terminal hardware monitor" gets mediocre code. A detailed spec with library choices and edge cases gets production code on the first try.
 
 My process:
-
-1. Research - Hours reading documentation, studying gping's source, understanding how Plotext and Rich actually work. No code, just learning what's possible.
-
-2. Specification - Wrote a detailed spec covering features, architecture decisions, library choices, UI layout, performance targets, edge cases. Several hours with GitHub Copilot.
-
-3. Planning - Claude decided on file structure and module boundaries based on the spec. 5 minutes.
-
-4. Implementation - One shot. Claude generated the full app from the spec. Working code, first try.
-
-5. Polish - Testing found issues, fast iteration cycles to fix them. A few hours.
-
-6. Ship - CI/CD, PyPI, WinGet. Automated.
-
-The lesson: I spent more time researching than implementing. "Build a terminal hardware monitor" gets mediocre code. A detailed spec with architecture decisions gets production code on the first try.
+✅ Research - Hours reading docs, studying gping's source, understanding how libraries work
+✅ Specification - Architecture decisions, library choices, UI layout, edge cases
+✅ Implementation - One shot from the spec, working code first try
+✅ Polish - Running it and deciding if I liked what I saw
 
 Vibe coding without a spec is just iterating on bad architecture.
 
-What's your experience with prep work before vibe coding? Finding it matters?
+Install: pip install hwinfo-tui or winget install hwinfo-tui
+
+Link in comments.
 
 #VibeCoding #Python #OpenSource #AI
 
@@ -166,28 +162,25 @@ INSTRUCTIONS:
 ## X/Twitter Thread
 
 Tweet 1 (Hook):
-Vibe coded hwinfo-tui and shipped to PyPI + WinGet in under a day. The implementation took 20 minutes. What enabled that wasn't the AI. 🔥
+HWInfo64 shows your CPU temp right now. But is it climbing? Did it just spike? No graph, just the current value. So I built hwinfo-tui to plot sensors over time. 🔥
 
 Tweet 2:
-Everyone knows vibe coding is fast. The interesting part is what makes the output production-ready instead of a demo that falls apart. 💡
+Vibe coded the whole thing and shipped to PyPI + WinGet in under a day. Implementation took 20 minutes. What made that possible wasn't the AI. 💡
 
 Tweet 3:
-Step 1: Research. Hours reading docs, studying gping's source, understanding how libraries actually work. No code, just learning.
+The spec is where your judgment comes in. You make the architectural decisions based on your experience, then tell the AI what you've decided.
 
 Tweet 4:
-Step 2: Detailed spec. Features, architecture, library choices, UI layout, performance targets, edge cases. This took the most time.
+"Build a terminal hardware monitor" gets mediocre code. A detailed spec with library choices, UI layout, and edge cases gets production code first try. ✅
 
 Tweet 5:
-Step 3-4: Planning (5 min) then implementation. One shot. Claude generated the full app from the spec. Working code, first try. ✅
+I spent more time researching than implementing. Reading docs, studying gping's source, understanding how Plotext and Rich actually work.
 
 Tweet 6:
-Step 5-6: Polish issues from testing, then ship. CI/CD, PyPI, WinGet. All automated.
+Vibe coding without a spec is just iterating on bad architecture.
 
 Tweet 7:
-The lesson: I spent more time researching than implementing. Vibe coding without a spec is just iterating on bad architecture. ✨
-
-Tweet 8:
-Full breakdown of the process: https://juanjofuchs.github.io/ai-development/2025/12/02/vibe-coding-hwinfo-tui.html
+Full breakdown: https://juanjofuchs.github.io/ai-development/2025/12/02/vibe-coding-hwinfo-tui.html
 
 Install: pip install hwinfo-tui
 
