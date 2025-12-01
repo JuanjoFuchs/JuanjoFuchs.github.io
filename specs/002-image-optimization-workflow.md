@@ -414,6 +414,46 @@ Self-hosted videos must be embedded using standard HTML5 techniques compatible w
 - No JavaScript required for responsive behavior
 - Native browser video controls provide consistent UX
 
+### R19: GIF-like Video Behavior
+
+Videos can behave like animated GIFs for demo content.
+
+**Requirements**:
+- Use `autoplay`, `loop`, and `muted` attributes together
+- `muted` is required for autoplay to work in browsers
+- Remove `controls` attribute for seamless looping experience
+- Remove `poster` attribute since video starts immediately
+- Keep `playsinline` to prevent fullscreen on mobile
+
+**When to use**:
+- Short demo clips (under 30 seconds)
+- Screen recordings showing tool functionality
+- Content that benefits from continuous looping
+
+**When NOT to use**:
+- Videos with audio
+- Long-form content
+- Tutorial videos where user needs to pause/seek
+
+### R20: Hero/Featured Images in Jekyll Posts
+
+Posts can include a featured image for both visual display and social media previews.
+
+**Requirements**:
+- Add `image:` field in front matter for SEO (Open Graph/Twitter cards)
+- Add markdown image at top of post content for visual display
+- Both should reference the same image file
+
+**Why both are needed**:
+- `image:` front matter is only used by jekyll-seo-tag for meta tags
+- Minima theme does NOT render the `image:` field visually on the page
+- Markdown image is needed to actually display the hero on the page
+
+**Rationale**:
+- Social media platforms read Open Graph tags for link previews
+- Visual hero image improves post appearance and engagement
+- Single image file serves both purposes without duplication
+
 ## Non-Functional Requirements
 
 ### NFR1: Performance
