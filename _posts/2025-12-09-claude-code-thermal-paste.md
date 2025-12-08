@@ -6,6 +6,7 @@ date: 2025-12-09 09:00:00 -0500
 categories: hardware troubleshooting
 tags: [hardware, thermal, ai, claude, hwinfo-tui, troubleshooting, dell]
 author: JuanjoFuchs
+image: /assets/hwinfo-tui-thermal-throttling.png
 ---
 
 More like convinced me, actually.
@@ -70,6 +71,8 @@ Package temp dropped from 97°C to 68°C. Throttling events went from constant t
 
 {% comment %}
 ## LinkedIn Post
+MEDIA: /assets/hwinfo-tui-thermal-throttling.png
+ALT: hwinfo-tui terminal chart showing CPU thermal throttling - package temp at 100°C while cores at 86°C, constant throttling
 
 Claude Code made me change my laptop's thermal paste. 🔥
 
@@ -99,6 +102,8 @@ INSTRUCTIONS:
 ---
 
 ## X/Twitter Thread
+MEDIA: /assets/hwinfo-tui-thermal-throttling.png
+ALT: hwinfo-tui terminal chart showing CPU thermal throttling - package temp at 100°C while cores at 86°C, constant throttling
 
 Tweet 1 (Hook):
 Claude Code made me change my laptop's thermal paste. 🔥
