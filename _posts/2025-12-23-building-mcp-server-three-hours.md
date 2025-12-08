@@ -2,7 +2,7 @@
 layout: post
 title: "Building an MCP Server in 3 Hours with AI"
 description: "How I built tempo-filler-mcp-server using Claude and GitHub Copilot. From spec to working TypeScript in one session."
-date: 2025-12-16 09:00:00 -0500
+date: 2025-12-23 09:00:00 -0500
 categories: ai-development
 tags: [mcp, ai, claude, github-copilot, typescript, automation, jira, tempo]
 author: JuanjoFuchs

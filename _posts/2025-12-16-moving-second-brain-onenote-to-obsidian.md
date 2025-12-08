@@ -2,7 +2,7 @@
 layout: post
 title: "How I Moved My Second Brain from OneNote to Obsidian"
 description: "OneNote's closed format made it impossible for AI agents to access my notes. Obsidian's plain markdown files, YAML front matter, and Dataview queries make it perfect for AI workflows."
-date: 2025-12-23 09:00:00 -0500
+date: 2025-12-16 09:00:00 -0500
 categories: productivity
 tags: [obsidian, onenote, second-brain, gtd, mcp, ai, productivity, dataview]
 author: JuanjoFuchs
