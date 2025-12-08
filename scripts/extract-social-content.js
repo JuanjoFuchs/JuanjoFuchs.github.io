@@ -23,9 +23,36 @@ export function extractLiquidComments(markdownContent) {
 }
 
 /**
+ * Extract MEDIA and ALT fields from a section
+ * @param {string} sectionContent - Content of a platform section
+ * @returns {object} - {media, alt, contentWithoutMedia}
+ */
+function extractMediaFields(sectionContent) {
+  let media = null;
+  let alt = null;
+  let contentWithoutMedia = sectionContent;
+
+  // Extract MEDIA: field
+  const mediaMatch = sectionContent.match(/^MEDIA:\s*(.+)$/m);
+  if (mediaMatch) {
+    media = mediaMatch[1].trim();
+    contentWithoutMedia = contentWithoutMedia.replace(mediaMatch[0], '').trim();
+  }
+
+  // Extract ALT: field
+  const altMatch = sectionContent.match(/^ALT:\s*(.+)$/m);
+  if (altMatch) {
+    alt = altMatch[1].trim();
+    contentWithoutMedia = contentWithoutMedia.replace(altMatch[0], '').trim();
+  }
+
+  return { media, alt, contentWithoutMedia };
+}
+
+/**
  * Parse LinkedIn post content from comment block
  * @param {string} commentContent - Content from Liquid comment block
- * @returns {object|null} - {content, hashtags} or null if section not found
+ * @returns {object|null} - {content, hashtags, media, alt} or null if section not found
  */
 export function parseLinkedInPost(commentContent) {
   const linkedInRegex = /##\s*LinkedIn Post\s*([\s\S]*?)(?=---\s*\n\s*##|$)/i;
@@ -41,20 +68,25 @@ export function parseLinkedInPost(commentContent) {
   const instructionsRegex = /---\s*\n\s*INSTRUCTIONS:[\s\S]*/i;
   const contentWithoutInstructions = fullSection.replace(instructionsRegex, '').trim();
 
+  // Extract MEDIA and ALT fields
+  const { media, alt, contentWithoutMedia } = extractMediaFields(contentWithoutInstructions);
+
   // Extract hashtags (lines starting with #)
   const hashtagRegex = /#\w+/g;
-  const hashtags = contentWithoutInstructions.match(hashtagRegex) || [];
+  const hashtags = contentWithoutMedia.match(hashtagRegex) || [];
 
   return {
-    content: contentWithoutInstructions,
-    hashtags: hashtags
+    content: contentWithoutMedia,
+    hashtags: hashtags,
+    media: media,
+    alt: alt
   };
 }
 
 /**
  * Parse X/Twitter thread from comment block
  * @param {string} commentContent - Content from Liquid comment block
- * @returns {object|null} - {tweets, hashtags} or null if section not found
+ * @returns {object|null} - {tweets, hashtags, media, alt} or null if section not found
  */
 export function parseTwitterThread(commentContent) {
   const twitterRegex = /##\s*X\/Twitter Thread\s*([\s\S]*?)(?=---\s*\n\s*INSTRUCTIONS:|$)/i;
@@ -66,12 +98,15 @@ export function parseTwitterThread(commentContent) {
 
   const fullSection = match[1].trim();
 
+  // Extract MEDIA and ALT fields first (before tweets parsing)
+  const { media, alt, contentWithoutMedia } = extractMediaFields(fullSection);
+
   // Extract individual tweets (Tweet 1, Tweet 2, etc.)
   const tweetRegex = /Tweet\s+\d+[^\n]*:\s*\n([^\n]+(?:\n(?!Tweet\s+\d+)[^\n]+)*)/gi;
   const tweets = [];
   let tweetMatch;
 
-  while ((tweetMatch = tweetRegex.exec(fullSection)) !== null) {
+  while ((tweetMatch = tweetRegex.exec(contentWithoutMedia)) !== null) {
     const tweetContent = tweetMatch[1].trim();
     if (tweetContent) {
       tweets.push(tweetContent);
@@ -80,11 +115,13 @@ export function parseTwitterThread(commentContent) {
 
   // Extract hashtags from the entire section
   const hashtagRegex = /#\w+/g;
-  const hashtags = fullSection.match(hashtagRegex) || [];
+  const hashtags = contentWithoutMedia.match(hashtagRegex) || [];
 
   return {
     tweets: tweets,
-    hashtags: hashtags
+    hashtags: hashtags,
+    media: media,
+    alt: alt
   };
 }
 
@@ -157,8 +194,8 @@ export function extractSocialContent(filePath, baseUrl = 'https://juanjofuchs.gi
     }
 
     // Parse LinkedIn and Twitter content
-    const linkedin = parseLinkedInPost(commentContent);
-    const twitter = parseTwitterThread(commentContent);
+    let linkedin = parseLinkedInPost(commentContent);
+    let twitter = parseTwitterThread(commentContent);
 
     if (!linkedin && !twitter) {
       return {
@@ -169,6 +206,28 @@ export function extractSocialContent(filePath, baseUrl = 'https://juanjofuchs.gi
         blogUrl: buildBlogUrl(frontMatter, filePath, baseUrl),
         publishedStatus
       };
+    }
+
+    // Apply featured image fallback (R6)
+    const featuredImage = frontMatter.image || null;
+    const defaultAlt = frontMatter.title ? `Image for: ${frontMatter.title}` : null;
+
+    if (linkedin) {
+      if (!linkedin.media && featuredImage) {
+        linkedin.media = featuredImage;
+      }
+      if (linkedin.media && !linkedin.alt) {
+        linkedin.alt = defaultAlt;
+      }
+    }
+
+    if (twitter) {
+      if (!twitter.media && featuredImage) {
+        twitter.media = featuredImage;
+      }
+      if (twitter.media && !twitter.alt) {
+        twitter.alt = defaultAlt;
+      }
     }
 
     return {

@@ -8,6 +8,37 @@ import fs from 'fs';
 import path from 'path';
 
 /**
+ * Resolve media path from relative (e.g., /assets/image.png) to absolute
+ * @param {string} mediaPath - Media path from post content
+ * @param {string} postFilePath - Path to the post file
+ * @returns {string|null} - Absolute path to media file, or null if not found
+ */
+function resolveMediaPath(mediaPath, postFilePath) {
+  if (!mediaPath) return null;
+
+  // Determine repo root (parent of _posts directory)
+  const postsDir = path.dirname(postFilePath);
+  const repoRoot = path.dirname(postsDir);
+
+  // Handle paths starting with /assets/ or assets/
+  let relativePath = mediaPath;
+  if (relativePath.startsWith('/')) {
+    relativePath = relativePath.substring(1);
+  }
+
+  const absolutePath = path.join(repoRoot, relativePath);
+
+  // Check if file exists
+  if (fs.existsSync(absolutePath)) {
+    console.log(`✓ Media file found: ${absolutePath}`);
+    return absolutePath;
+  }
+
+  console.warn(`⚠ Media file not found: ${absolutePath}`);
+  return null;
+}
+
+/**
  * Main function to orchestrate social media posting
  */
 async function main() {
@@ -72,8 +103,8 @@ async function main() {
 
   console.log(`✓ Post title: ${extracted.frontMatter.title}`);
   console.log(`✓ Blog URL: ${extracted.blogUrl}`);
-  console.log(`✓ LinkedIn content: ${extracted.linkedin ? 'Found' : 'Not found'}`);
-  console.log(`✓ Twitter content: ${extracted.twitter ? 'Found' : 'Not found'}`);
+  console.log(`✓ LinkedIn content: ${extracted.linkedin ? 'Found' : 'Not found'}${extracted.linkedin?.media ? ` (media: ${extracted.linkedin.media})` : ''}`);
+  console.log(`✓ Twitter content: ${extracted.twitter ? 'Found' : 'Not found'}${extracted.twitter?.media ? ` (media: ${extracted.twitter.media})` : ''}`);
 
   // Check published status
   if (extracted.publishedStatus) {
@@ -99,12 +130,23 @@ async function main() {
     results.twitter = { success: true, skipped: true };
   } else if (extracted.twitter && extracted.twitter.tweets.length > 0) {
     console.log(`\n🐦 Posting to X (Twitter) - ${extracted.twitter.tweets.length} tweets`);
+
+    // Resolve media path for Twitter
+    const twitterMediaPath = resolveMediaPath(extracted.twitter.media, filePath);
+    if (extracted.twitter.media) {
+      console.log(`  Media: ${extracted.twitter.media}${twitterMediaPath ? ' (found)' : ' (not found)'}`);
+    }
+
     promises.push(
-      postTwitterThread(extracted.twitter.tweets, credentials.twitter)
+      postTwitterThread(extracted.twitter.tweets, credentials.twitter, {
+        mediaPath: twitterMediaPath,
+        altText: extracted.twitter.alt
+      })
         .then(result => {
           results.twitter = result;
           if (result.success) {
-            console.log(`✓ Twitter: Posted ${result.tweetIds.length} tweets successfully`);
+            const mediaStatus = result.mediaUploaded ? ' (with image)' : '';
+            console.log(`✓ Twitter: Posted ${result.tweetIds.length} tweets successfully${mediaStatus}`);
             // Mark as published
             markAsPublished(filePath, 'twitter');
           } else {
@@ -126,12 +168,23 @@ async function main() {
     results.linkedin = { success: true, skipped: true };
   } else if (extracted.linkedin && extracted.linkedin.content) {
     console.log(`\n💼 Posting to LinkedIn`);
+
+    // Resolve media path for LinkedIn
+    const linkedinMediaPath = resolveMediaPath(extracted.linkedin.media, filePath);
+    if (extracted.linkedin.media) {
+      console.log(`  Media: ${extracted.linkedin.media}${linkedinMediaPath ? ' (found)' : ' (not found)'}`);
+    }
+
     promises.push(
-      postToLinkedIn(extracted.linkedin.content, extracted.blogUrl, credentials.linkedin.accessToken)
+      postToLinkedIn(extracted.linkedin.content, extracted.blogUrl, credentials.linkedin.accessToken, {
+        mediaPath: linkedinMediaPath,
+        altText: extracted.linkedin.alt
+      })
         .then(result => {
           results.linkedin = result;
           if (result.success) {
-            console.log(`✓ LinkedIn: Posted successfully`);
+            const mediaStatus = result.mediaUploaded ? ' (with image)' : '';
+            console.log(`✓ LinkedIn: Posted successfully${mediaStatus}`);
             console.log(`  Post URL: ${result.postUrl}`);
             // Mark as published
             markAsPublished(filePath, 'linkedin');

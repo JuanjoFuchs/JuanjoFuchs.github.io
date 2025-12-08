@@ -1,4 +1,170 @@
 import axios from 'axios';
+import fs from 'fs';
+import path from 'path';
+
+// LinkedIn API version header (required for media uploads)
+const LINKEDIN_VERSION = '202501';
+
+/**
+ * Determine media type from file path
+ * @param {string} filePath - Path to media file
+ * @returns {string} - 'image' or 'video'
+ */
+function getMediaType(filePath) {
+  const ext = path.extname(filePath).toLowerCase();
+  const videoExts = ['.mp4', '.mov', '.avi', '.webm'];
+  return videoExts.includes(ext) ? 'video' : 'image';
+}
+
+/**
+ * Initialize image upload to LinkedIn
+ * @param {string} personId - LinkedIn person ID
+ * @param {string} accessToken - LinkedIn OAuth 2.0 access token
+ * @returns {Promise<object>} - {success, uploadUrl, imageUrn, error}
+ */
+async function initializeImageUpload(personId, accessToken) {
+  try {
+    const response = await axios.post(
+      'https://api.linkedin.com/rest/images?action=initializeUpload',
+      {
+        initializeUploadRequest: {
+          owner: `urn:li:person:${personId}`
+        }
+      },
+      {
+        headers: {
+          'Authorization': `Bearer ${accessToken}`,
+          'Content-Type': 'application/json',
+          'LinkedIn-Version': LINKEDIN_VERSION,
+          'X-Restli-Protocol-Version': '2.0.0'
+        }
+      }
+    );
+
+    const uploadUrl = response.data.value.uploadUrl;
+    const imageUrn = response.data.value.image;
+
+    return {
+      success: true,
+      uploadUrl,
+      imageUrn,
+      error: null
+    };
+  } catch (err) {
+    console.error('Failed to initialize image upload:', err.response?.data || err.message);
+    return {
+      success: false,
+      uploadUrl: null,
+      imageUrn: null,
+      error: err.response?.data?.message || err.message
+    };
+  }
+}
+
+/**
+ * Upload image file to LinkedIn pre-signed URL
+ * @param {string} uploadUrl - Pre-signed upload URL
+ * @param {string} filePath - Path to image file
+ * @param {string} accessToken - LinkedIn OAuth 2.0 access token
+ * @returns {Promise<object>} - {success, error}
+ */
+async function uploadImageFile(uploadUrl, filePath, accessToken) {
+  try {
+    const fileBuffer = fs.readFileSync(filePath);
+    const mimeType = getMimeType(filePath);
+
+    await axios.put(uploadUrl, fileBuffer, {
+      headers: {
+        'Authorization': `Bearer ${accessToken}`,
+        'Content-Type': mimeType,
+        'LinkedIn-Version': LINKEDIN_VERSION
+      },
+      maxContentLength: Infinity,
+      maxBodyLength: Infinity
+    });
+
+    return { success: true, error: null };
+  } catch (err) {
+    console.error('Failed to upload image:', err.response?.data || err.message);
+    return {
+      success: false,
+      error: err.response?.data?.message || err.message
+    };
+  }
+}
+
+/**
+ * Get MIME type from file extension
+ * @param {string} filePath - Path to file
+ * @returns {string} - MIME type
+ */
+function getMimeType(filePath) {
+  const ext = path.extname(filePath).toLowerCase();
+  const mimeTypes = {
+    '.jpg': 'image/jpeg',
+    '.jpeg': 'image/jpeg',
+    '.png': 'image/png',
+    '.gif': 'image/gif',
+    '.webp': 'image/webp',
+    '.mp4': 'video/mp4',
+    '.mov': 'video/quicktime',
+    '.avi': 'video/x-msvideo',
+    '.webm': 'video/webm'
+  };
+  return mimeTypes[ext] || 'application/octet-stream';
+}
+
+/**
+ * Upload media to LinkedIn and get the URN
+ * @param {string} filePath - Path to media file
+ * @param {string} personId - LinkedIn person ID
+ * @param {string} accessToken - LinkedIn OAuth 2.0 access token
+ * @returns {Promise<object>} - {success, mediaUrn, mediaType, error}
+ */
+async function uploadMediaToLinkedIn(filePath, personId, accessToken) {
+  try {
+    const mediaType = getMediaType(filePath);
+
+    if (mediaType === 'video') {
+      // Video upload is more complex - skip for now, return null
+      console.log('⚠ Video upload not yet implemented for LinkedIn');
+      return { success: false, mediaUrn: null, mediaType: 'video', error: 'Video upload not implemented' };
+    }
+
+    console.log(`Uploading image to LinkedIn: ${filePath}`);
+
+    // Step 1: Initialize upload
+    const initResult = await initializeImageUpload(personId, accessToken);
+    if (!initResult.success) {
+      return { success: false, mediaUrn: null, mediaType: 'image', error: initResult.error };
+    }
+
+    console.log(`✓ Upload initialized, URN: ${initResult.imageUrn}`);
+
+    // Step 2: Upload file to pre-signed URL
+    const uploadResult = await uploadImageFile(initResult.uploadUrl, filePath, accessToken);
+    if (!uploadResult.success) {
+      return { success: false, mediaUrn: null, mediaType: 'image', error: uploadResult.error };
+    }
+
+    console.log('✓ Image uploaded successfully');
+
+    return {
+      success: true,
+      mediaUrn: initResult.imageUrn,
+      mediaType: 'image',
+      error: null
+    };
+  } catch (err) {
+    console.error('Media upload error:', err.message);
+    return {
+      success: false,
+      mediaUrn: null,
+      mediaType: getMediaType(filePath),
+      error: err.message
+    };
+  }
+}
 
 /**
  * Get LinkedIn user profile ID
@@ -34,20 +200,49 @@ async function getLinkedInUserId(accessToken) {
  * @param {string} content - Post content
  * @param {string} personId - LinkedIn person ID (from getLinkedInUserId)
  * @param {string} accessToken - LinkedIn OAuth 2.0 access token
+ * @param {object} options - Optional parameters
+ * @param {string} options.imageUrn - LinkedIn image URN (from upload)
+ * @param {string} options.altText - Alt text for image
  * @returns {Promise<object>} - {success, postId, postUrl, error}
  */
-async function createLinkedInPost(content, personId, accessToken) {
+async function createLinkedInPost(content, personId, accessToken, options = {}) {
   try {
+    // Build share content based on whether media is included
+    let shareContent;
+
+    if (options.imageUrn) {
+      // Post with image
+      shareContent = {
+        shareCommentary: {
+          text: content
+        },
+        shareMediaCategory: 'IMAGE',
+        media: [{
+          status: 'READY',
+          media: options.imageUrn,
+          ...(options.altText && {
+            description: {
+              text: options.altText
+            },
+            altText: options.altText
+          })
+        }]
+      };
+    } else {
+      // Text-only post
+      shareContent = {
+        shareCommentary: {
+          text: content
+        },
+        shareMediaCategory: 'NONE'
+      };
+    }
+
     const postData = {
       author: `urn:li:person:${personId}`,
       lifecycleState: 'PUBLISHED',
       specificContent: {
-        'com.linkedin.ugc.ShareContent': {
-          shareCommentary: {
-            text: content
-          },
-          shareMediaCategory: 'NONE'
-        }
+        'com.linkedin.ugc.ShareContent': shareContent
       },
       visibility: {
         'com.linkedin.ugc.MemberNetworkVisibility': 'PUBLIC'
@@ -133,9 +328,12 @@ async function addLinkedInComment(postId, commentText, personId, accessToken) {
  * @param {string} content - Main post content
  * @param {string} blogUrl - Blog post URL (will be posted as first comment)
  * @param {string} accessToken - LinkedIn OAuth 2.0 access token
- * @returns {Promise<object>} - {success, postId, postUrl, commentId, error}
+ * @param {object} options - Optional parameters
+ * @param {string} options.mediaPath - Path to media file to attach
+ * @param {string} options.altText - Alt text for media
+ * @returns {Promise<object>} - {success, postId, postUrl, commentId, mediaUploaded, error}
  */
-export async function postToLinkedIn(content, blogUrl, accessToken) {
+export async function postToLinkedIn(content, blogUrl, accessToken, options = {}) {
   try {
     if (!content) {
       return {
@@ -143,6 +341,7 @@ export async function postToLinkedIn(content, blogUrl, accessToken) {
         postId: null,
         postUrl: null,
         commentId: null,
+        mediaUploaded: false,
         error: 'No content provided'
       };
     }
@@ -153,6 +352,7 @@ export async function postToLinkedIn(content, blogUrl, accessToken) {
         postId: null,
         postUrl: null,
         commentId: null,
+        mediaUploaded: false,
         error: 'Missing LinkedIn access token'
       };
     }
@@ -166,6 +366,7 @@ export async function postToLinkedIn(content, blogUrl, accessToken) {
         postId: null,
         postUrl: null,
         commentId: null,
+        mediaUploaded: false,
         error: `Failed to get user ID: ${userResult.error}`
       };
     }
@@ -173,22 +374,43 @@ export async function postToLinkedIn(content, blogUrl, accessToken) {
     const personId = userResult.personId;
     console.log(`✓ Got user ID: ${personId}`);
 
-    // Step 2: Create post
+    // Step 2: Upload media if provided
+    let imageUrn = null;
+    if (options.mediaPath) {
+      if (!fs.existsSync(options.mediaPath)) {
+        console.warn(`⚠ Media file not found: ${options.mediaPath}`);
+      } else {
+        const uploadResult = await uploadMediaToLinkedIn(options.mediaPath, personId, accessToken);
+        if (uploadResult.success) {
+          imageUrn = uploadResult.mediaUrn;
+          console.log(`✓ Media uploaded: ${imageUrn}`);
+        } else {
+          console.warn(`⚠ Media upload failed: ${uploadResult.error}`);
+          console.log('⚠ Continuing with text-only post');
+        }
+      }
+    }
+
+    // Step 3: Create post (with or without media)
     console.log('Creating LinkedIn post...');
-    const postResult = await createLinkedInPost(content, personId, accessToken);
+    const postResult = await createLinkedInPost(content, personId, accessToken, {
+      imageUrn,
+      altText: options.altText
+    });
     if (!postResult.success) {
       return {
         success: false,
         postId: null,
         postUrl: null,
         commentId: null,
+        mediaUploaded: false,
         error: `Failed to create post: ${postResult.error}`
       };
     }
 
     console.log(`✓ Post created: ${postResult.postUrl}`);
 
-    // Step 3: Add comment with blog URL
+    // Step 4: Add comment with blog URL
     console.log('Adding first comment with blog URL...');
     const commentResult = await addLinkedInComment(
       postResult.postId,
@@ -205,6 +427,7 @@ export async function postToLinkedIn(content, blogUrl, accessToken) {
         postId: postResult.postId,
         postUrl: postResult.postUrl,
         commentId: null,
+        mediaUploaded: !!imageUrn,
         error: `Post succeeded but comment failed: ${commentResult.error}`
       };
     }
@@ -216,6 +439,7 @@ export async function postToLinkedIn(content, blogUrl, accessToken) {
       postId: postResult.postId,
       postUrl: postResult.postUrl,
       commentId: commentResult.commentId,
+      mediaUploaded: !!imageUrn,
       error: null
     };
   } catch (err) {
@@ -225,6 +449,7 @@ export async function postToLinkedIn(content, blogUrl, accessToken) {
       postId: null,
       postUrl: null,
       commentId: null,
+      mediaUploaded: false,
       error: err.message
     };
   }
