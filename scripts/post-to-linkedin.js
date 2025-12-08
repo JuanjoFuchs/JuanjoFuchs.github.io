@@ -196,7 +196,7 @@ async function getLinkedInUserId(accessToken) {
 }
 
 /**
- * Create a LinkedIn post
+ * Create a LinkedIn post using the versioned Posts API
  * @param {string} content - Post content
  * @param {string} personId - LinkedIn person ID (from getLinkedInUserId)
  * @param {string} accessToken - LinkedIn OAuth 2.0 access token
@@ -207,64 +207,46 @@ async function getLinkedInUserId(accessToken) {
  */
 async function createLinkedInPost(content, personId, accessToken, options = {}) {
   try {
-    // Build share content based on whether media is included
-    let shareContent;
+    // Build post data using the versioned Posts API format
+    const postData = {
+      author: `urn:li:person:${personId}`,
+      commentary: content,
+      visibility: 'PUBLIC',
+      distribution: {
+        feedDistribution: 'MAIN_FEED',
+        targetEntities: [],
+        thirdPartyDistributionChannels: []
+      },
+      lifecycleState: 'PUBLISHED',
+      isReshareDisabledByAuthor: false
+    };
 
+    // Add media content if image URN is provided
     if (options.imageUrn) {
-      // Post with image
-      shareContent = {
-        shareCommentary: {
-          text: content
-        },
-        shareMediaCategory: 'IMAGE',
-        media: [{
-          status: 'READY',
-          media: options.imageUrn,
-          ...(options.altText && {
-            description: {
-              text: options.altText
-            },
-            altText: options.altText
-          })
-        }]
-      };
-    } else {
-      // Text-only post
-      shareContent = {
-        shareCommentary: {
-          text: content
-        },
-        shareMediaCategory: 'NONE'
+      postData.content = {
+        media: {
+          id: options.imageUrn,
+          ...(options.altText && { altText: options.altText })
+        }
       };
     }
 
-    const postData = {
-      author: `urn:li:person:${personId}`,
-      lifecycleState: 'PUBLISHED',
-      specificContent: {
-        'com.linkedin.ugc.ShareContent': shareContent
-      },
-      visibility: {
-        'com.linkedin.ugc.MemberNetworkVisibility': 'PUBLIC'
-      }
-    };
-
-    const response = await axios.post('https://api.linkedin.com/v2/ugcPosts', postData, {
+    const response = await axios.post('https://api.linkedin.com/rest/posts', postData, {
       headers: {
         'Authorization': `Bearer ${accessToken}`,
         'Content-Type': 'application/json',
+        'LinkedIn-Version': LINKEDIN_VERSION,
         'X-Restli-Protocol-Version': '2.0.0'
       }
     });
 
-    const postId = response.data.id;
-    // Extract the numeric ID from the URN for the URL
-    const numericId = postId.split(':').pop();
+    // The response header contains the post URN
+    const postUrn = response.headers['x-restli-id'] || response.data.id;
 
     return {
       success: true,
-      postId: postId,
-      postUrl: `https://www.linkedin.com/feed/update/${postId}/`,
+      postId: postUrn,
+      postUrl: `https://www.linkedin.com/feed/update/${postUrn}/`,
       error: null
     };
   } catch (err) {
