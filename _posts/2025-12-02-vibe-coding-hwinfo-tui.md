@@ -130,6 +130,8 @@ The code is on [GitHub](https://github.com/JuanjoFuchs/hwinfo-tui). If you use H
 {% comment %}
 ## LinkedIn Post
 
+PUBLISHED: 2025-12-08T17:16:47.159Z
+
 HWInfo64 shows your CPU is at 75°C right now. But is it climbing? Did it just spike? You can't tell because there's no graph, just the current value. I needed to see trends over time when troubleshooting thermals, so I built hwinfo-tui.
 
 Vibe coded the whole thing and shipped to PyPI and WinGet in under a day. The implementation itself took maybe 20 minutes. What made that possible wasn't the AI.
@@ -160,6 +162,8 @@ INSTRUCTIONS:
 ---
 
 ## X/Twitter Thread
+
+PUBLISHED: 2025-12-08T17:16:47.201Z
 
 Tweet 1 (Hook):
 HWInfo64 shows your CPU temp right now. But is it climbing? Did it just spike? No graph, just the current value. So I built hwinfo-tui to plot sensors over time. 🔥

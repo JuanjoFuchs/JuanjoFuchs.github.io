@@ -261,30 +261,34 @@ async function createLinkedInPost(content, personId, accessToken, options = {}) 
 }
 
 /**
- * Add a comment to a LinkedIn post
- * @param {string} postId - LinkedIn post URN (e.g., "urn:li:ugcPost:123456")
+ * Add a comment to a LinkedIn post using the versioned Comments API
+ * @param {string} postUrn - LinkedIn post URN (e.g., "urn:li:share:123456")
  * @param {string} commentText - Comment text (blog URL)
  * @param {string} personId - LinkedIn person ID
  * @param {string} accessToken - LinkedIn OAuth 2.0 access token
  * @returns {Promise<object>} - {success, commentId, error}
  */
-async function addLinkedInComment(postId, commentText, personId, accessToken) {
+async function addLinkedInComment(postUrn, commentText, personId, accessToken) {
   try {
+    // Wait a moment for the post to be fully available
+    await new Promise(resolve => setTimeout(resolve, 2000));
+
     const commentData = {
       actor: `urn:li:person:${personId}`,
-      object: postId,
+      object: postUrn,
       message: {
         text: commentText
       }
     };
 
     const response = await axios.post(
-      `https://api.linkedin.com/v2/socialActions/${encodeURIComponent(postId)}/comments`,
+      `https://api.linkedin.com/rest/socialActions/${encodeURIComponent(postUrn)}/comments`,
       commentData,
       {
         headers: {
           'Authorization': `Bearer ${accessToken}`,
           'Content-Type': 'application/json',
+          'LinkedIn-Version': LINKEDIN_VERSION,
           'X-Restli-Protocol-Version': '2.0.0'
         }
       }
@@ -292,7 +296,7 @@ async function addLinkedInComment(postId, commentText, personId, accessToken) {
 
     return {
       success: true,
-      commentId: response.data.id,
+      commentId: response.data.id || response.headers['x-restli-id'],
       error: null
     };
   } catch (err) {
