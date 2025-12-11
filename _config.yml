@@ -11,6 +11,9 @@ url: "https://juanjofuchs.github.io" # the base hostname & protocol for your sit
 lang: en
 author: JuanjoFuchs
 
+# Google Analytics
+google_analytics: G-MEV9EEZPBB
+
 # Social Media & SEO defaults
 social:
   name: JuanjoFuchs
