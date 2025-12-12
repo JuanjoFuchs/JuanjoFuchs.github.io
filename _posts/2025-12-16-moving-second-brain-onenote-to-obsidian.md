@@ -177,18 +177,29 @@ If your notes are in a closed format, you're limiting what AI can help with. The
 {% comment %}
 ## LinkedIn Post
 
-I'm great at capturing ideas, terrible at processing them. Five years of GTD with OneNote left me with an inbox of hundreds of items I never got around to organizing.
+I'm great at capturing ideas, terrible at processing them. 🧠
 
-Search worked well enough, I could find things when I needed them. But I wasn't seeing connections between ideas, couldn't traverse my own thinking, wasn't leveraging the full power of everything I'd captured. Just dump and maybe retrieve.
+Five years of "Getting Things Done" with OneNote left me with an inbox of hundreds of items I never got around to organizing. Search worked well enough, I could find things when I needed them. But I wasn't seeing connections between ideas, couldn't traverse my own thinking. Just dump and maybe retrieve.
 
-Then I realized AI assistants could help with exactly the part I'm bad at: systematically processing items, finding patterns, suggesting connections. One problem: OneNote's proprietary format is a black box to AI.
+Then I realized AI assistants could help with exactly the part I'm bad at: systematically processing items, finding patterns, suggesting connections. 🤖
 
-Moved to Obsidian. Plain markdown files that AI reads natively. Now I can say "process my inbox" and my AI assistant:
-✅ Reads through my daily notes
-✅ Identifies actionable items vs reference material
-✅ Creates tasks in the right projects with proper context tags
+One problem: OneNote's proprietary format is a black box to AI.
 
-What used to be a manual weekly review I'd procrastinate on now takes a single prompt.
+Moved to Obsidian. Here's why it changes everything:
+
+📁 **Plain markdown files** - LLMs handle markdown natively, it's in their training data. No translation layer needed.
+
+🏷️ **YAML front matter** - Structured metadata AI understands instantly. Tags, status, priority, all queryable.
+
+🔗 **Wiki-style links** - Create a graph of relationships between ideas that AI can traverse.
+
+📊 **Dataview queries** - SQL for your notes. My GTD Dashboard pulls active projects, tasks by context, and someday/maybe ideas from across the entire vault with simple queries.
+
+The real magic is the GTD Dashboard. AI reads one file and instantly understands my entire system: projects organized by area, tasks grouped by context (@computer, @calls, @errands), ideas scattered across files aggregated in one view.
+
+Now I say "process my inbox" and my AI assistant reads my daily notes, proposes where each item should go, waits for approval, moves content without changing my words.
+
+Weekly review that I'd procrastinate on? Single prompt. ✅
 
 The format of your second brain determines whether AI can be a thinking partner or just a chat window.
 
@@ -206,22 +217,34 @@ INSTRUCTIONS:
 ## X/Twitter Thread
 
 Tweet 1 (Hook):
-I'm great at capturing ideas, terrible at processing them. Five years of OneNote left me with hundreds of inbox items I never organized. Sound familiar? 🔥
+I'm great at capturing ideas, terrible at processing them. 🧠
+
+Five years of OneNote left me with hundreds of inbox items I never organized. Sound familiar?
 
 Tweet 2:
-AI assistants are good at exactly what I'm bad at: systematically processing information, finding patterns, suggesting connections. But AI couldn't read my OneNote files. 💡
+AI assistants are good at exactly what I'm bad at: systematically processing information, finding patterns, suggesting connections. 🤖
+
+But AI couldn't read my OneNote files. Proprietary format = black box.
 
 Tweet 3:
-Moved to Obsidian. Plain markdown files that AI reads natively. Front matter gives structured metadata AI understands instantly.
+Moved to Obsidian. Plain markdown files that LLMs handle natively, it's in their training data. No translation layer needed. 📁
 
 Tweet 4:
-Now I say "process my inbox" and Claude reads my daily notes, identifies actionable items, creates tasks in the right projects. Weekly review in one prompt. ✅
+YAML front matter gives structured metadata AI understands instantly. Tags, status, priority, dates, all queryable without teaching the model anything. 🏷️
 
 Tweet 5:
-MCP lets AI navigate links between notes and query by metadata. Not just file access, intelligent traversal of your knowledge graph.
+The secret weapon: a GTD Dashboard with Dataview queries. One markdown file that aggregates projects, tasks by context, and ideas from across the vault. 📊
 
 Tweet 6:
-Full breakdown of making your second brain AI-compatible: https://juanjofuchs.github.io/productivity/2025/12/16/moving-second-brain-onenote-to-obsidian.html
+AI reads that one file and instantly understands my entire system. No crawling through every note, just one semantic entry point to my knowledge graph. 🔗
+
+Tweet 7:
+Now I say "process my inbox" and AI reads my daily notes, proposes where items go, waits for approval, moves content without changing my words. Weekly review in one prompt. ✅
+
+Tweet 8:
+The format of your second brain determines whether AI can be a thinking partner or just a chat window.
+
+Full breakdown: https://juanjofuchs.github.io/productivity/2025/12/16/moving-second-brain-onenote-to-obsidian.html
 
 #Obsidian #Productivity
 
