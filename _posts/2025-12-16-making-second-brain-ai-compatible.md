@@ -209,7 +209,7 @@ The format of your second brain determines whether AI can be a thinking partner 
 INSTRUCTIONS:
 1. Copy the text above (without the Liquid comment tags)
 2. Post to LinkedIn during peak hours (Tue-Thu, 8-10 AM or 12-2 PM EST)
-3. Immediately add FIRST COMMENT with blog link: https://juanjofuchs.github.io/productivity/2025/12/16/moving-second-brain-onenote-to-obsidian.html
+3. Immediately add FIRST COMMENT with blog link: https://juanjofuchs.github.io/productivity/2025/12/16/making-second-brain-ai-compatible.html
 4. Engage actively in the first hour - respond to comments quickly
 
 ---
@@ -244,7 +244,7 @@ Now I say "process my inbox" and AI reads my daily notes, proposes where items g
 Tweet 8:
 The format of your second brain determines whether AI can be a thinking partner or just a chat window.
 
-Full breakdown: https://juanjofuchs.github.io/productivity/2025/12/16/moving-second-brain-onenote-to-obsidian.html
+Full breakdown: https://juanjofuchs.github.io/productivity/2025/12/16/making-second-brain-ai-compatible.html
 
 #Obsidian #Productivity
 
