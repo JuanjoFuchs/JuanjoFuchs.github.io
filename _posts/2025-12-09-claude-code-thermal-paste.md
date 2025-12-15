@@ -104,6 +104,8 @@ INSTRUCTIONS:
 ---
 
 ## X/Twitter Thread
+PUBLISHED: 2025-12-09T14:28:03.749Z
+
 MEDIA: /assets/hwinfo-tui-thermal-throttling.png
 ALT: hwinfo-tui terminal chart showing CPU thermal throttling - package temp at 100°C while cores at 86°C, constant throttling
 
