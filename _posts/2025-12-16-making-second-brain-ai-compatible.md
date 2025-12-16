@@ -162,6 +162,8 @@ If your notes are stuck in a proprietary format like mine were, AI can't help wi
 
 {% comment %}
 ## LinkedIn Post
+PUBLISHED: 2025-12-16T14:29:54.777Z
+
 MEDIA: /assets/obsidian-knowledge-graph-second-brain.png
 ALT: Obsidian graph view showing interconnected notes as nodes with clusters of related ideas
 
@@ -209,6 +211,8 @@ INSTRUCTIONS:
 ---
 
 ## X/Twitter Thread
+PUBLISHED: 2025-12-16T14:29:52.402Z
+
 MEDIA: /assets/obsidian-knowledge-graph-second-brain.png
 ALT: Obsidian graph view showing interconnected notes as nodes with clusters of related ideas
 
