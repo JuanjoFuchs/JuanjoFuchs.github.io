@@ -15,7 +15,7 @@ I've used a mix of [GTD (Getting Things Done)](https://gettingthingsdone.com/) a
 
 I'm great at the capture part of both. Terrible at processing. My inbox kept growing and I never caught up.
 
-For five years OneNote was where all of it lived. I'd dump ideas, tasks, meeting notes, random thoughts, everything landed in the inbox. Needed something, I'd search for it. That worked well enough that I didn't fix it, but search only finds what you're looking for. It doesn't show connections you didn't know existed, doesn't surface that idea from six months ago that's relevant to what you're working on now. My notes were isolated islands, not a connected graph.
+For five years OneNote was where all of it lived. I'd dump ideas, tasks, meeting notes, random thoughts, everything landed in the inbox. If I needed something, I'd search for it. That worked well enough that I didn't fix it, but search only finds what you're looking for. It doesn't show connections you didn't know existed, doesn't surface that idea from six months ago that's relevant to what you're working on now. My notes were isolated islands, not a connected graph.
 
 The real cost was hundreds of uncategorized items piling up. Each one needed a decision, figuring out if it's actionable, what project it belongs to, whether it's reference material or something to act on. Multiply that by hundreds of items and it's obvious why I kept putting it off.
 
@@ -57,12 +57,10 @@ The file system becomes a queryable knowledge base. That's the foundation, but A
 The bridge is an [MCP server for Obsidian](https://github.com/aaronsb/obsidian-mcp-plugin). This gives Claude direct access to my vault, not just file reading but actual navigation:
 
 - **Traverse links without reading every file** - Claude follows the relationship graph I've built without loading all content
-- **Query by front matter** - Find all active projects, list tasks with specific context tags, filter by priority
+- **Query using DataView** - Find all active projects, list tasks with specific context tags, filter by priority
 - **Understand structure** - AI sees my vault the way I organize it, not as a pile of text files
 
 Claude doesn't just read files, it navigates my knowledge graph the same way I would but faster and more systematically.
-
-The problem is that even with MCP access, Claude would need to crawl through notes to understand my system. That's where the dashboard comes in.
 
 ## The GTD Dashboard
 
@@ -105,7 +103,7 @@ WHERE contains(L.text, "#someday-maybe")
 Returns ideas tagged #someday-maybe from across all project files, aggregated in one view
 ~~~
 
-AI reads this one file and instantly sees my whole system: active projects across work, personal, and open-source areas, next actions organized by context, someday/maybe ideas from across files aggregated in one view. No crawling through every note, just one entry point that shows the structure.
+AI reads this one file and instantly sees my whole system: active projects across work, personal, and other areas, next actions organized by context, someday/maybe ideas from across files aggregated in one view.
 
 When I ask "what should I work on?" Claude reads that file, sees my `@computer` tasks grouped by project, gives context-aware suggestions. When I say "add this idea to my blog backlog," it knows where blog post ideas live. It's a table of contents Claude reads first then dives deeper as needed.
 
@@ -131,21 +129,30 @@ AI agents should focus on structure and organization, NOT content creation.
 - ✅ DO: Add/update tags, create links, fix formatting, organize files, run queries
 - ❌ DON'T: Write tasks, notes, or content unless explicitly requested
 
-## Processing The Inbox (Daily Notes)
+### Processing The Inbox (Daily Notes)
 
-Important Rules:
-- Never act without approval - Always propose first, execute after confirmation
-- Never change core content - The user's words are sacred; only move, never edit
-- Preserve original wording - Move content exactly as written
+Daily notes serve as the inbox. Files are named `YYYY-MM-DD.md` and contain brain dumps - ideas, notes, meeting summaries, random thoughts. Processing requires analysis and user approval.
+
+**Processing Workflow:**
+
+1. DISCOVER  → Find all daily notes (YYYY-MM-DD.md files)
+2. READ      → Read each note's contents
+3. ANALYZE   → Understand each item and determine its nature
+4. PROPOSE   → Suggest destination for each item
+5. CLARIFY   → Ask user if purpose is unclear
+6. APPROVE   → Get user approval before making changes
+7. EXECUTE   → Move content to approved destinations
+8. CLEANUP   → Delete processed daily notes
+
 ```
 
-The key sections: how AI should approach every interaction (search the vault first), what it should and shouldn't do (structure not content), specific workflows like inbox processing. With this context, "process my inbox" means Claude reads my daily notes, proposes where each item should go, waits for approval, moves content without changing my words.
+The key sections: how AI should approach every interaction (search the vault first), what it should and shouldn't do (structure not content), specific workflows like inbox processing.
 
 ## The Transformation
 
 My daily notes still pile up with random captures, same as they did in OneNote. The difference is what happens next.
 
-"Process my inbox" and Claude reads through the daily notes, identifies what's actionable versus reference material, proposes where each item should go. I approve or redirect, Claude executes. The weekly review I'd procrastinate on now takes a conversation.
+"Process my inbox" and Claude reads through the daily notes, identifies what's actionable versus reference material, proposes where each item should go. I approve or redirect, Claude executes. It won't change my words, just moves content to the right place. The weekly review I'd procrastinate on now takes a conversation.
 
 Claude handles the systematic processing I'm bad at. I make the judgment calls on anything ambiguous. The capture-heavy, process-light pattern that plagued my GTD system for years finally has a counterweight.
 
@@ -180,9 +187,11 @@ Wiki-style links create a graph of relationships between ideas 🔗
 
 Dataview queries turn the file system into a database 📊
 
-I built a GTD Dashboard, one markdown file with queries that aggregate my entire system. Active projects by area, tasks grouped by context, someday/maybe ideas from across files. AI reads that one file and instantly sees everything.
+I built a GTD Dashboard, one markdown file with Dataview queries that aggregate my entire system. Active projects by area, tasks grouped by context, someday/maybe ideas from across files. AI reads that one file and instantly sees everything.
 
-Now I say "process my inbox" and Claude reads my daily notes, proposes where each item should go, waits for my approval, moves content without changing my words ✅
+An AGENTS.md file teaches Claude the conventions: search the vault first, focus on structure not content creation, specific workflows for processing the inbox. It knows to propose changes, wait for approval, move content without editing my words.
+
+Now I say "process my inbox" and Claude reads my daily notes, figures out what's actionable versus reference material, proposes where each item should go. I approve or redirect, it executes ✅
 
 The weekly review I'd procrastinate on takes a single conversation now.
 
@@ -220,13 +229,13 @@ Tweet 4:
 YAML front matter gives structured metadata AI understands instantly. Tags, status, priority, dates, all queryable without teaching the model anything 🏷️
 
 Tweet 5:
-I built a GTD Dashboard with Dataview queries. One markdown file that aggregates projects, tasks by context, ideas from across the vault 📊
+I built a GTD Dashboard with Dataview queries. One markdown file that aggregates projects, tasks by context, ideas from across the vault. AI reads it and instantly sees my whole system 📊
 
 Tweet 6:
-AI reads that one file and instantly sees my whole system. No crawling through every note, just one entry point that shows the structure 🔗
+An AGENTS.md file teaches Claude the conventions: search the vault first, focus on structure not content, propose changes and wait for approval before executing 🔗
 
 Tweet 7:
-Now I say "process my inbox" and AI reads my daily notes, proposes where items go, waits for approval, moves content without changing my words. Weekly review in one conversation ✅
+Now I say "process my inbox" and Claude reads my daily notes, figures out what's actionable, proposes where items go. I approve or redirect, it executes. Weekly review in one conversation ✅
 
 Tweet 8:
 If your notes are stuck in a proprietary format, AI can't help with the hard parts. Moving to markdown took effort but now I actually process my inbox.
