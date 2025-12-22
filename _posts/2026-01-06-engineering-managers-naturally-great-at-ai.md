@@ -134,8 +134,6 @@ The old role: coordinate humans who code. The new role: direct AI that codes, wi
 
 {% comment %}
 ## LinkedIn Post
-MEDIA:
-ALT:
 
 Spent 13 years managing engineers, eventually 60 across multiple teams. Explaining what to build, reviewing PRs, pushing back on bad architecture.
 
