@@ -2,7 +2,7 @@
 layout: post
 title: "LLMs Are Compaction Tools (And That's a Good Thing)"
 description: "AI can read, understand, and compress information. But your judgement decides what matters. You're persisting the results of your thinking, not outsourcing it."
-date: 2026-01-20 09:00:00 -0500
+date: 2026-01-27 09:00:00 -0500
 categories: ai
 tags: [ai, writing, productivity, philosophy]
 author: JuanjoFuchs
@@ -123,7 +123,7 @@ Full breakdown on compaction vs generation, link in comments.
 INSTRUCTIONS:
 1. Copy the text above (without the Liquid comment tags)
 2. Post to LinkedIn during peak hours (Tue-Thu, 8-10 AM or 12-2 PM EST)
-3. Immediately add FIRST COMMENT with blog link: https://juanjofuchs.github.io/ai/2026/01/13/llms-as-compaction-tools.html
+3. Immediately add FIRST COMMENT with blog link: https://juanjofuchs.github.io/ai/2026/01/27/llms-as-compaction-tools.html
 4. Engage actively in the first hour - respond to comments quickly
 
 ---
@@ -147,7 +147,7 @@ Tweet 5:
 In a world of infinite AI content, the scarce resource is judgement. When you use AI for compaction, you're persisting the results of YOUR thinking.
 
 Tweet 6:
-Full breakdown on compaction vs generation: https://juanjofuchs.github.io/ai/2026/01/13/llms-as-compaction-tools.html
+Full breakdown on compaction vs generation: https://juanjofuchs.github.io/ai/2026/01/27/llms-as-compaction-tools.html
 
 #AIWriting #Productivity
 

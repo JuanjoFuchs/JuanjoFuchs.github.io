@@ -2,7 +2,7 @@
 layout: post
 title: "LLMs Love Hills to Climb"
 description: "LLMs are trained via reinforcement learning to optimize metrics. Give them clear hills to climb and they'll iterate toward the goal without you explaining each step."
-date: 2026-01-06 09:00:00 -0500
+date: 2026-01-13 09:00:00 -0500
 categories: ai-development
 tags: [ai, prompting, llm, productivity]
 author: JuanjoFuchs
@@ -124,7 +124,7 @@ Full breakdown with examples, link in comments.
 INSTRUCTIONS:
 1. Copy the text above (without the Liquid comment tags)
 2. Post to LinkedIn during peak hours (Tue-Thu, 8-10 AM or 12-2 PM EST)
-3. Immediately add FIRST COMMENT with blog link: https://juanjofuchs.github.io/ai-development/2026/01/06/llms-love-hills-to-climb.html
+3. Immediately add FIRST COMMENT with blog link: https://juanjofuchs.github.io/ai-development/2026/01/13/llms-love-hills-to-climb.html
 4. Engage actively in the first hour - respond to comments quickly
 
 ---
@@ -150,7 +150,7 @@ Tweet 5:
 Pattern: give the AI something it can evaluate without you. Tests, type checks, reference examples. Move your involvement from constant feedback to upfront specification.
 
 Tweet 6:
-Full breakdown on giving LLMs hills to climb: https://juanjofuchs.github.io/ai-development/2026/01/06/llms-love-hills-to-climb.html
+Full breakdown on giving LLMs hills to climb: https://juanjofuchs.github.io/ai-development/2026/01/13/llms-love-hills-to-climb.html
 
 #AIPrompting #LLM
 

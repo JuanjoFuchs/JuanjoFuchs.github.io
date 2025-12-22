@@ -2,7 +2,7 @@
 layout: post
 title: "Your Codebase Should Be a Constitution, Not a Bible"
 description: "Harari's Nexus argues constitutions work because they're amendable. Codebases need the same principle: built-in self-correction mechanisms for AI agents."
-date: 2026-01-13 09:00:00 -0500
+date: 2026-01-20 09:00:00 -0500
 categories: ai-development
 tags: [ai, coding, architecture, philosophy]
 author: JuanjoFuchs
@@ -117,7 +117,7 @@ What self-correcting mechanisms have you built into your codebases?
 INSTRUCTIONS:
 1. Copy the text above (without the Liquid comment tags)
 2. Post to LinkedIn during peak hours (Tue-Thu, 8-10 AM or 12-2 PM EST)
-3. Immediately add FIRST COMMENT with blog link: https://juanjofuchs.github.io/ai-development/2025/12/30/self-correcting-codebases.html
+3. Immediately add FIRST COMMENT with blog link: https://juanjofuchs.github.io/ai-development/2026/01/20/self-correcting-codebases.html
 4. Engage actively in the first hour - respond to comments quickly
 
 ---
@@ -140,7 +140,7 @@ Tweet 5:
 The human role shifts from "correction mechanism" to "architect of correction mechanisms." You're not checking every line, you're designing the system that checks every line.
 
 Tweet 6:
-Full breakdown on building self-correcting codebases: https://juanjofuchs.github.io/ai-development/2025/12/30/self-correcting-codebases.html
+Full breakdown on building self-correcting codebases: https://juanjofuchs.github.io/ai-development/2026/01/20/self-correcting-codebases.html
 
 #AIEngineering #SoftwareArchitecture
 

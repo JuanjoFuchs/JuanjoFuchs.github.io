@@ -2,7 +2,7 @@
 layout: post
 title: "Why Engineering Managers Are Secretly Great at AI"
 description: "The skills that made you a good engineering manager—clear communication, critical review, strategic delegation—are exactly what AI collaboration requires."
-date: 2026-02-10 09:00:00 -0500
+date: 2026-01-06 09:00:00 -0500
 categories: ai
 tags: [ai, engineering-management, vibe-coding, leadership]
 author: JuanjoFuchs
@@ -133,53 +133,28 @@ The threat that "AI will replace middle managers" misses the point. It'll replac
 
 What's your experience? Have management skills helped or hindered your AI adoption?
 
-#EngineeringManagement #AI #VibeCoding #Leadership #TechLeadership
+Full post: https://juanjofuchs.github.io/ai/2026/01/06/engineering-managers-secretly-great-at-ai.html
 
----
-INSTRUCTIONS:
-1. Copy the text above (without the Liquid comment tags)
-2. Post to LinkedIn during peak hours (Tue-Thu, 8-10 AM or 12-2 PM EST)
-3. Immediately add FIRST COMMENT with blog link: https://juanjofuchs.github.io/ai/2026/02/10/engineering-managers-secretly-great-at-ai.html
-4. Engage actively in the first hour - respond to comments quickly
+#EngineeringManagement #AI #VibeCoding #Leadership #TechLeadership
 
 ---
 
 ## X/Twitter Thread
-MEDIA:
-ALT:
 
-Tweet 1 (Hook):
-Spent 13 years managing engineers. Explaining goals, reviewing PRs, pushing back on bad decisions. Turns out those exact skills are what make AI collaboration work. 🧵
+Tweet 1:
+EMs who stopped coding years ago might be BETTER at AI than devs who never managed anyone. Communication and review skills? Devs learn from scratch. EMs have years of practice. 🔥
 
 Tweet 2:
-The core EM skills map directly to AI:
-- Explaining what to build → prompting
-- Reviewing PRs critically → reviewing AI output
-- Effective delegation → knowing what to hand off
-- Critiquing wrong decisions → course-correcting AI
+Devs want 4-hour flow states. AI breaks that—5-30 min cycles of prompt, review, refine. That's manager schedule. EMs have been training for this without knowing it. 💡
 
 Tweet 3:
-Here's the weird part: EMs who stopped coding years ago might be BETTER at AI than devs who never managed anyone. Those communication and review skills? Devs are learning them from scratch. EMs have years of practice. 💡
+Explaining what to build = prompting. Reviewing PRs critically = reviewing AI output. Effective delegation = knowing what to hand off. Same skills, different collaborator.
 
 Tweet 4:
-The maker vs manager schedule angle is underrated. Devs want 4-hour flow states. AI breaks that rhythm—5-30 min cycles of prompt, review, refine. That's manager schedule. We've been training for this. ✅
+"AI will replace middle managers" misses the point. It'll replace coordination tasks. EMs who pivot to directing AI with human judgment? More valuable than ever. ✅
 
 Tweet 5:
-"AI will replace middle managers" misses the point. It'll replace coordination tasks. The EMs who pivot to directing AI with human judgment? More valuable than ever.
-
-Tweet 6:
-Full breakdown of why EM skills transfer to AI collaboration: https://juanjofuchs.github.io/ai/2026/02/10/engineering-managers-secretly-great-at-ai.html
+Full post: https://juanjofuchs.github.io/ai/2026/01/06/engineering-managers-secretly-great-at-ai.html
 
 #EngineeringManagement #AI
-
----
-INSTRUCTIONS:
-1. Post as a thread on Wednesday at 9 AM EST (or Tue-Thu between 8-11 AM or 12-2 PM EST)
-2. Keep each tweet under 280 characters
-3. Link goes in the LAST tweet only (X algorithm suppresses posts with links)
-4. Use only 1-2 hashtags total (at the end)
-5. Engage with replies in first hour for algorithm boost
-
-ALTERNATIVE (Single Post):
-If you prefer a single post instead of thread, post the hook without link, then immediately reply to your own post with the blog URL.
 {% endcomment %}

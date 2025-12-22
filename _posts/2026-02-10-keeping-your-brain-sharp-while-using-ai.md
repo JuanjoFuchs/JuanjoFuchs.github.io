@@ -2,7 +2,7 @@
 layout: post
 title: "Keeping Your Brain Sharp While Using AI"
 description: "AI tools make knowledge work faster but might make us cognitively lazier. Here's how I'm trying to balance productivity gains with actually learning things."
-date: 2026-02-03 09:00:00 -0500
+date: 2026-02-10 09:00:00 -0500
 categories: ai
 tags: [ai, productivity, learning, neuroscience]
 author: JuanjoFuchs
@@ -111,7 +111,7 @@ Full breakdown, link in comments.
 INSTRUCTIONS:
 1. Copy the text above (without the Liquid comment tags)
 2. Post to LinkedIn during peak hours (Tue-Thu, 8-10 AM or 12-2 PM EST)
-3. Immediately add FIRST COMMENT with blog link: https://juanjofuchs.github.io/ai/2026/01/27/keeping-your-brain-sharp-while-using-ai.html
+3. Immediately add FIRST COMMENT with blog link: https://juanjofuchs.github.io/ai/2026/02/10/keeping-your-brain-sharp-while-using-ai.html
 4. Engage actively in the first hour - respond to comments quickly
 
 ---
@@ -134,7 +134,7 @@ Tweet 5:
 The gym analogy: our environment no longer demands physical labor, so we exercise. Maybe we need artificial cognitive challenges for a tool-rich world.
 
 Tweet 6:
-Full breakdown on keeping your brain sharp while using AI: https://juanjofuchs.github.io/ai/2026/01/27/keeping-your-brain-sharp-while-using-ai.html
+Full breakdown on keeping your brain sharp while using AI: https://juanjofuchs.github.io/ai/2026/02/10/keeping-your-brain-sharp-while-using-ai.html
 
 #AI #Learning
 

@@ -2,7 +2,7 @@
 layout: post
 title: "AI Can't Have Shower Thoughts"
 description: "Creativity requires a body that exists in physical space, biological needs that create motivation, and unconscious processing during habitual tasks. AI has none of these."
-date: 2026-01-27 09:00:00 -0500
+date: 2026-02-03 09:00:00 -0500
 categories: ai
 tags: [ai, creativity, philosophy, neuroscience]
 author: JuanjoFuchs
@@ -111,7 +111,7 @@ Full breakdown, link in comments.
 INSTRUCTIONS:
 1. Copy the text above (without the Liquid comment tags)
 2. Post to LinkedIn during peak hours (Tue-Thu, 8-10 AM or 12-2 PM EST)
-3. Immediately add FIRST COMMENT with blog link: https://juanjofuchs.github.io/ai/2026/01/20/ai-cant-have-shower-thoughts.html
+3. Immediately add FIRST COMMENT with blog link: https://juanjofuchs.github.io/ai/2026/02/03/ai-cant-have-shower-thoughts.html
 4. Engage actively in the first hour - respond to comments quickly
 
 ---
@@ -134,7 +134,7 @@ Tweet 5:
 AI is great at execution and pattern completion. But the initial spark? That requires a body that rests, moves, has needs, and does background processing when you're not paying attention.
 
 Tweet 6:
-Full breakdown on what human creativity requires that AI can't replicate: https://juanjofuchs.github.io/ai/2026/01/20/ai-cant-have-shower-thoughts.html
+Full breakdown on what human creativity requires that AI can't replicate: https://juanjofuchs.github.io/ai/2026/02/03/ai-cant-have-shower-thoughts.html
 
 #Creativity #AI
 
