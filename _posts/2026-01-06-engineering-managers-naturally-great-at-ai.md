@@ -157,7 +157,7 @@ The threat that "AI will replace middle managers" misses the point. It'll replac
 
 What's your experience? Have management skills helped or hindered your AI adoption?
 
-Full post: https://juanjofuchs.github.io/ai/2026/01/06/engineering-managers-secretly-great-at-ai.html
+Full post: https://juanjofuchs.github.io/ai/2026/01/06/engineering-managers-naturally-great-at-ai.html
 
 #EngineeringManagement #AI #VibeCoding #Leadership #TechLeadership
 
@@ -178,7 +178,7 @@ Tweet 4:
 "AI will replace middle managers" misses the point. It'll replace coordination tasks. engineering managers who pivot to directing AI with human judgment? More valuable than ever. ✅
 
 Tweet 5:
-Full post: https://juanjofuchs.github.io/ai/2026/01/06/engineering-managers-secretly-great-at-ai.html
+Full post: https://juanjofuchs.github.io/ai/2026/01/06/engineering-managers-naturally-great-at-ai.html
 
 #EngineeringManagement #AI
 {% endcomment %}
