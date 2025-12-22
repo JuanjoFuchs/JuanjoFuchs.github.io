@@ -2,7 +2,7 @@
 layout: post
 title: "Keeping Your Brain Sharp While Using AI"
 description: "AI tools make knowledge work faster but might make us cognitively lazier. Here's how I'm trying to balance productivity gains with actually learning things."
-date: 2026-01-27 09:00:00 -0500
+date: 2026-02-03 09:00:00 -0500
 categories: ai
 tags: [ai, productivity, learning, neuroscience]
 author: JuanjoFuchs
