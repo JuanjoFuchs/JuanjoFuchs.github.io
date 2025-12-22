@@ -11,18 +11,23 @@ image:
 
 I spent 13 years managing engineers, eventually 60 across multiple teams: explaining what to build, reviewing their output, pushing back on bad architectural decisions. Turns out those exact skills are what make AI collaboration work. The irony is that engineering managers who stopped coding full time years ago might be better positioned for AI than developers who never managed anyone.
 
+## TL;DR
+
+The skills that made you a good engineering manager: clear communication, critical review, strategic delegation, architectural judgment, are exactly what AI collaboration requires. Developers who never managed anyone are learning these skills from scratch. You've been practicing them for years.
+
+Engineering managers can use AI effectively right now. You don't need to "learn to code again" first. You need to apply the skills you already have to a new kind of collaborator.
+
 ## The Skills That Transfer
 
 What engineering managers do every day:
 
-| Engineering Manager Skill | AI Equivalent |
-|----------|---------------|
-| Explaining what to build | Prompt engineering, articulating intent |
-| Discussing architectural trade-offs | Guiding AI approach, constraining solutions |
-| Reviewing PRs with a critical eye | Reviewing AI output, catching errors |
-| Reading PRs fast and finding issues | Scanning AI code quickly, spotting problems |
-| Critiquing wrong decisions | Rejecting bad suggestions, course-correcting |
-| Deciding what NOT to build | Knowing when AI's suggestion is unnecessary |
+- Explaining what to build
+- Discussing architectural trade-offs
+- Reviewing PRs with a critical eye
+- Reading PRs fast and finding issues
+- Critiquing wrong decisions
+- Deciding what NOT to build
+- Context switching between projects in 30-minute windows
 
 These aren't adjacent skills, they're the *same* skills applied to a different collaborator. When I prompt Claude or Copilot, I'm doing what I did in every 1:1 with a developer: explaining the goal, providing context, setting constraints, reviewing output, giving feedback.
 
@@ -53,7 +58,7 @@ Gene Kim and Steve Yegge's [Vibe Coding](https://itrevolution.com/product/vibe-c
 
 **Fast**: Engineering managers know how to unblock work and remove friction. When AI gets stuck, you recognize the pattern: unclear requirements, missing context, wrong approach. You've debugged these problems with humans for years.
 
-**Ambitious**: Engineering managers have vision for what "could be built" that exceeds current team capacity. AI removes the constraint. That feature you shelved because it would take two sprints is now a weekend project.
+**Ambitious**: Engineering managers have vision for what "could be built" that exceeds current team capacity. AI removes the constraint. That feature you shelved because it would take two sprints is now a [weekend project](https://juanjofuchs.github.io/ai-development/2025/12/02/vibe-coding-hwinfo-tui.html).
 
 **Autonomous**: Engineering managers spent years coordinating between teams, waiting on dependencies, aligning schedules. AI eliminates the coordination tax. You can iterate directly without waiting for someone else's calendar.
 
@@ -91,7 +96,7 @@ AI is eager to help. Too eager. Ask it to build something and it will, even if b
 
 Engineering managers develop a strategic filter through years of saying no. No to features that add complexity without value. No to solutions looking for problems. No to technically interesting work that doesn't move business metrics. The hardest engineering manager skill is recognizing what not to build.
 
-This filter applies directly to AI collaboration. AI will happily generate 500 lines of code for a problem that doesn't need solving, or overcomplicate a solution that should be three lines. The judgment about what's worth building, what's overkill, what's solving the wrong problem, that's human work. Engineering managers have been practicing this judgment in every roadmap discussion, every backlog grooming, every "why are we doing this again?" conversation.
+This filter applies directly to AI collaboration. AI will happily generate 500 lines of code for a problem that doesn't need solving, or overcomplicate a solution that should be three lines. The judgment about what's worth building, what's overkill, what's solving the wrong problem, [that's human work](https://juanjofuchs.github.io/ai/2025/11/25/the-llmphant-in-the-room.html). Engineering managers have been practicing this judgment in every roadmap discussion, every backlog grooming, every "why are we doing this again?" conversation.
 
 Same applies to problem-solving. Knowing which problems are worth solving, which are symptoms of deeper issues, which will resolve themselves if you wait, that's pattern recognition built over years of managing technical teams. AI doesn't have that context. You do.
 
@@ -127,35 +132,27 @@ The old role: coordinate humans who code. The new role: direct AI that codes, wi
 
 **Embrace the navigator seat.** You've been guiding, reviewing, and course-correcting for years. The feedback loops are just faster now.
 
-## The Bottom Line
-
-The skills that made you a good engineering manager: clear communication, critical review, strategic delegation, architectural judgment, are exactly what AI collaboration requires. Developers who never managed anyone are learning these skills from scratch. You've been practicing them for years.
-
-Engineering managers can use AI effectively right now. You don't need to "learn to code again" first. You need to apply the skills you already have to a new kind of collaborator.
-
 {% comment %}
 ## LinkedIn Post
 MEDIA:
 ALT:
 
-Spent 13 years managing engineers. Explaining what to build, reviewing PRs, pushing back on bad architecture. Turns out those exact skills are what make AI collaboration work.
+Spent 13 years managing engineers, eventually 60 across multiple teams. Explaining what to build, reviewing PRs, pushing back on bad architecture.
 
-The irony is that engineering managers who stopped coding full time years ago might be better positioned for AI than developers who never managed anyone.
+Turns out those exact skills are what make AI collaboration work. Engineering managers who stopped coding full time years ago might be naturally better positioned for AI than developers who never managed anyone.
 
-Why:
+You've been practicing AI collaboration without knowing it:
 
-✅ Explaining intent to developers = prompt engineering
-✅ Reviewing PRs with a critical eye = reviewing AI output
-✅ Delegating effectively = knowing what to hand off to AI
-✅ 30-minute context switching (manager schedule) = perfect for AI iteration cycles
+✅ Every time you explained requirements to a dev
+✅ Every PR you reviewed critically
+✅ Every feature you said no to
+✅ Every 30-minute context switch between projects
 
-Developers often struggle with AI because it breaks their flow state. They're optimized for 4-hour deep work blocks. AI iteration is 5-30 minute loops—review, refine, re-prompt.
+That last one is underrated. Devs want 4-hour flow states. AI breaks that, 5-30 min loops of prompt, review, refine. That's manager schedule.
 
-That's manager schedule. We've been training for this without knowing it.
+AI is eager to help. Too eager. It won't say "have you considered not doing this?" That strategic filter, years of saying no to features that add complexity without value, that's human work.
 
-The threat that "AI will replace middle managers" misses the point. It'll replace the coordination role. The engineering managers who pivot to AI-human collaboration—directing AI with human judgment on architecture and quality—those skills are more valuable than ever.
-
-What's your experience? Have management skills helped or hindered your AI adoption?
+What's your experience? Have management skills helped your AI adoption?
 
 Full post: https://juanjofuchs.github.io/ai/2026/01/06/engineering-managers-naturally-great-at-ai.html
 
@@ -166,19 +163,22 @@ Full post: https://juanjofuchs.github.io/ai/2026/01/06/engineering-managers-natu
 ## X/Twitter Thread
 
 Tweet 1:
-Engineering managers who stopped coding full time years ago might be BETTER at AI than devs who never managed anyone. Devs learn communication and review skills from scratch, engineering managers already have them. 🔥
+Engineering managers who stopped coding full time might be BETTER at AI than devs who never managed anyone. Devs learn communication and review skills from scratch, engineering managers already have them. 🔥
 
 Tweet 2:
-Devs want 4-hour flow states. AI breaks that—5-30 min cycles of prompt, review, refine. That's manager schedule. engineering managers have been training for this without knowing it. 💡
+Devs want 4-hour flow states. AI breaks that, 5-30 min cycles of prompt, review, refine. That's manager schedule. Engineering managers have been training for this. 💡
 
 Tweet 3:
-Explaining what to build = prompting. Reviewing PRs critically = reviewing AI output. Effective delegation = knowing what to hand off. Same skills, different collaborator.
+Every requirement you explained, every PR you reviewed critically, every task you delegated effectively. Same skills, different collaborator.
 
 Tweet 4:
-"AI will replace middle managers" misses the point. It'll replace coordination tasks. engineering managers who pivot to directing AI with human judgment? More valuable than ever. ✅
+AI is eager to help. Too eager. It won't push back and say "have you considered not doing this at all?" That strategic filter engineering managers built through years of saying no is human work. ✅
 
 Tweet 5:
-Full post: https://juanjofuchs.github.io/ai/2026/01/06/engineering-managers-naturally-great-at-ai.html
+"AI will replace middle managers" misses the point. It'll replace coordination tasks. Engineering managers who pivot to directing AI with human judgment are more valuable than ever.
+
+Tweet 6:
+You don't need to "learn to code again" first. Full post: https://juanjofuchs.github.io/ai/2026/01/06/engineering-managers-naturally-great-at-ai.html
 
 #EngineeringManagement #AI
 {% endcomment %}
