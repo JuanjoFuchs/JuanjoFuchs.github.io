@@ -120,6 +120,8 @@ If you're using JIRA Tempo and any MCP-compatible AI assistant, grab it and see 
 {% comment %}
 ## LinkedIn Post
 
+PUBLISHED: 2025-12-23T14:27:09.782Z
+
 I don't like logging hours. It feels like overhead rather than work. But sometimes it's necessary for client billing or project tracking.
 
 Here's the thing: my AI assistants already know what I'm working on. They see my commits, my Jira activity, the problems I'm solving. They can log my time with more detail and accuracy than I ever could from memory.
@@ -144,6 +146,8 @@ Full post: https://juanjofuchs.github.io/ai-development/2025/12/23/building-mcp-
 ---
 
 ## X/Twitter Thread
+
+PUBLISHED: 2025-12-23T14:27:07.863Z
 
 Tweet 1:
 I don't like logging hours. My AI assistants already know what I'm working on, they see my commits and Jira activity. Now they log my time better than I ever could. 🔥
