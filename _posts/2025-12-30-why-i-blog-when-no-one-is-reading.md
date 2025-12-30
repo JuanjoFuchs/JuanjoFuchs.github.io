@@ -56,6 +56,8 @@ Every post clarifies an idea, every conversation generates new ones, and the arc
 
 {% comment %}
 ## LinkedIn Post
+PUBLISHED: 2025-12-30T14:27:03.128Z
+
 MEDIA: /assets/lightbulb-signal-dead-internet.png
 ALT: Glowing lightbulb cutting through a wall of generic content blocks
 
@@ -82,6 +84,8 @@ Full post: https://juanjofuchs.github.io/blogging/meta/2025/12/30/why-i-blog-whe
 ---
 
 ## X/Twitter Thread
+PUBLISHED: 2025-12-30T14:27:01.540Z
+
 MEDIA: /assets/lightbulb-signal-dead-internet.png
 ALT: Glowing lightbulb cutting through a wall of generic content blocks
 
