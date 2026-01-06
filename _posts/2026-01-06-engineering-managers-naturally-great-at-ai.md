@@ -176,6 +176,8 @@ Full post: https://juanjofuchs.github.io/ai/2026/01/06/engineering-managers-natu
 
 ## X/Twitter Thread
 
+PUBLISHED: 2026-01-06T14:28:14.336Z
+
 Tweet 1:
 Spent 13 years managing engineers. Explaining what to build, reviewing PRs, pushing back on bad architecture. Turns out those exact skills are what make AI collaboration work. 🔥
 
