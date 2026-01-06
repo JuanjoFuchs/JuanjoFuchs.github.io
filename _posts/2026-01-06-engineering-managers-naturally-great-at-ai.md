@@ -151,6 +151,8 @@ These skills compound whether you use them with humans, AI, or both.
 {% comment %}
 ## LinkedIn Post
 
+PUBLISHED: 2026-01-06T16:16:05.132Z
+
 Spent 13 years managing engineers, eventually 60 across multiple teams. Explaining what to build, reviewing PRs, pushing back on bad architecture.
 
 Turns out those exact skills are what make AI collaboration work. Engineering managers who stopped coding full time years ago might be better positioned for AI than you thought.
