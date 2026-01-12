@@ -33,18 +33,25 @@ function extractMediaFields(sectionContent) {
   let contentWithoutMedia = sectionContent;
 
   // Extract MEDIA: field
-  const mediaMatch = sectionContent.match(/^MEDIA:\s*(.+)$/m);
+  // Use [^\S\r\n]* instead of \s* to avoid matching across lines with CRLF endings
+  const mediaMatch = sectionContent.match(/^MEDIA:[^\S\r\n]*(.+)$/m);
   if (mediaMatch) {
     media = mediaMatch[1].trim();
     contentWithoutMedia = contentWithoutMedia.replace(mediaMatch[0], '').trim();
   }
 
+  // Remove empty MEDIA: lines (no value after colon)
+  contentWithoutMedia = contentWithoutMedia.replace(/^MEDIA:[^\S\r\n]*$/gm, '').trim();
+
   // Extract ALT: field
-  const altMatch = sectionContent.match(/^ALT:\s*(.+)$/m);
+  const altMatch = sectionContent.match(/^ALT:[^\S\r\n]*(.+)$/m);
   if (altMatch) {
     alt = altMatch[1].trim();
     contentWithoutMedia = contentWithoutMedia.replace(altMatch[0], '').trim();
   }
+
+  // Remove empty ALT: lines (no value after colon)
+  contentWithoutMedia = contentWithoutMedia.replace(/^ALT:[^\S\r\n]*$/gm, '').trim();
 
   return { media, alt, contentWithoutMedia };
 }
@@ -248,4 +255,70 @@ export function extractSocialContent(filePath, baseUrl = 'https://juanjofuchs.gi
       publishedStatus: { linkedin: false, twitter: false }
     };
   }
+}
+
+// CLI handler
+if (process.argv[1] && process.argv[1].endsWith('extract-social-content.js')) {
+  const args = process.argv.slice(2);
+
+  if (args.length === 0) {
+    console.log('Usage: node extract-social-content.js <path-to-post.md>');
+    console.log('');
+    console.log('Extracts and validates social media content from a blog post.');
+    console.log('');
+    console.log('This validates:');
+    console.log('  - Liquid comment block parsing');
+    console.log('  - LinkedIn and Twitter section detection');
+    console.log('  - URL generation (includes categories)');
+    console.log('  - PUBLISHED flag status');
+    process.exit(1);
+  }
+
+  const filePath = args[0];
+  const result = extractSocialContent(filePath);
+
+  console.log('='.repeat(60));
+  console.log('Social Media Content Extraction');
+  console.log('='.repeat(60));
+
+  if (result.error) {
+    console.log(`\n❌ Error: ${result.error}`);
+  }
+
+  if (result.frontMatter) {
+    console.log(`\n📄 Post: ${result.frontMatter.title}`);
+    console.log(`   Date: ${result.frontMatter.date}`);
+    console.log(`   Categories: ${result.frontMatter.categories || '(none)'}`);
+  }
+
+  console.log(`\n🔗 Blog URL: ${result.blogUrl}`);
+
+  console.log('\n📊 Published Status:');
+  console.log(`   LinkedIn: ${result.publishedStatus.linkedin ? '✓ Published' : '○ Not published'}`);
+  console.log(`   Twitter:  ${result.publishedStatus.twitter ? '✓ Published' : '○ Not published'}`);
+
+  if (result.linkedin) {
+    console.log('\n💼 LinkedIn Content:');
+    console.log(`   Characters: ${result.linkedin.content.length}`);
+    console.log(`   Hashtags: ${result.linkedin.hashtags.join(' ')}`);
+    console.log(`   Media: ${result.linkedin.media || '(none)'}`);
+    console.log(`   Alt: ${result.linkedin.alt || '(none)'}`);
+  } else {
+    console.log('\n💼 LinkedIn: Not found');
+  }
+
+  if (result.twitter) {
+    console.log('\n🐦 Twitter Thread:');
+    console.log(`   Tweets: ${result.twitter.tweets.length}`);
+    result.twitter.tweets.forEach((tweet, i) => {
+      console.log(`   [${i + 1}] ${tweet.length} chars: ${tweet.substring(0, 50)}...`);
+    });
+    console.log(`   Hashtags: ${result.twitter.hashtags.join(' ')}`);
+    console.log(`   Media: ${result.twitter.media || '(none)'}`);
+    console.log(`   Alt: ${result.twitter.alt || '(none)'}`);
+  } else {
+    console.log('\n🐦 Twitter: Not found');
+  }
+
+  console.log('\n' + '='.repeat(60));
 }
