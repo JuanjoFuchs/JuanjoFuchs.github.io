@@ -2,7 +2,7 @@
 layout: post
 title: "Introducing ccburn: A Visual Way to Track Your Claude Code Token Burn"
 description: "Built a TUI tool that shows Claude Code usage as burn-up charts. Years of reading sprint burn-ups made me want the same clarity for token limits."
-date: 2026-02-17 09:00:00 -0500
+date: 2026-01-13 09:00:00 -0500
 categories: ai-development
 tags: [claude-code, python, tui, productivity, open-source]
 author: JuanjoFuchs
@@ -104,7 +104,7 @@ Years of sprint burn-up charts trained my brain to understand velocity at a glan
 
 Have you felt that mid-session momentum kill?
 
-Full post: https://juanjofuchs.github.io/ai-development/2026/02/17/introducing-ccburn-visual-token-tracking.html
+Full post: https://juanjofuchs.github.io/ai-development/2026/01/13/introducing-ccburn-visual-token-tracking.html
 
 #ClaudeCode #AITools #DeveloperTools #Python #OpenSource
 

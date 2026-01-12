@@ -2,7 +2,7 @@
 layout: post
 title: "LLMs Are Compaction Tools (And That's a Good Thing)"
 description: "AI can read, understand, and compress information. But your judgement decides what matters. You're persisting the results of your thinking, not outsourcing it."
-date: 2026-01-27 09:00:00 -0500
+date: 2026-02-03 09:00:00 -0500
 categories: ai
 tags: [ai, writing, productivity, philosophy]
 author: JuanjoFuchs
