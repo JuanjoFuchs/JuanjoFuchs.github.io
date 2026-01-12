@@ -104,6 +104,7 @@ Years of sprint burn-up charts trained my brain to understand velocity at a glan
 
 Have you felt that mid-session momentum kill?
 
+GitHub: https://github.com/JuanjoFuchs/ccburn
 Full post: https://juanjofuchs.github.io/ai-development/2026/01/13/introducing-ccburn-visual-token-tracking.html
 
 #ClaudeCode #AITools #DeveloperTools #Python #OpenSource
@@ -115,24 +116,25 @@ MEDIA: /assets/ccburn-ralph-wiggum-hero.png
 ALT: ccburn TUI showing Ralph Wiggum burning money on a burn-up chart at 87% usage
 
 Tweet 1:
-Ran out of Claude Code tokens mid-session with 2 hours left in my window. Creative momentum gone. When I came back after cooldown it wasn't the same. 🔥
+Built ccburn to stop running out of Claude Code tokens mid-session. Real-time burn-up charts show your pace at a glance instead of mental math on "47% with 2.3 hours left." 🔥
 
 Tweet 2:
-Ralph Wiggum loops burn $50-100 per run. Gas Town users spend $60k/year. The productivity is real but so is the spend. 💡
+Tools like Ralph Wiggum and Gas Town run 20-30 parallel Claude agents. Some power users spend $60k/year. The productivity is real but so is the spend. 💡
 
 Tweet 3:
-Years of sprint burn-up charts trained my brain to read velocity at a glance. Built ccburn over the weekend to get the same clarity for token limits.
+Years of sprint burn-up charts trained my brain to read pace instantly. Line going up, budget pace line showing where you should be, know immediately if you're ahead or behind.
 
 Tweet 4:
-Pace indicators show if you're 🧊 behind (headroom), 🔥 on pace (tracking budget), or 🚨 burning too hot (slow down).
+ccburn pace indicators: 🧊 behind (headroom), 🔥 on pace (tracking budget), 🚨 burning too hot (slow down). Session, weekly, and weekly-sonnet limits each get their own chart.
 
 Tweet 5:
-Compact mode for tmux: `ccburn --compact` outputs "Session: 🔥 45% (2h14m) | Weekly: 🧊 12%"
+Compact mode for tmux status bars: `ccburn --compact` outputs "Session: 🔥 45% (2h14m) | Weekly: 🧊 12%" ✅
 
-Tweet 6:
 pip install ccburn
 
+Tweet 6:
 GitHub: https://github.com/JuanjoFuchs/ccburn
+Full post: https://juanjofuchs.github.io/ai-development/2026/01/13/introducing-ccburn-visual-token-tracking.html
 
 #ClaudeCode #Python
 {% endcomment %}
