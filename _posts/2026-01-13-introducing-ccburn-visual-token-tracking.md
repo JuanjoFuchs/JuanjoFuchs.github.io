@@ -87,6 +87,8 @@ Check it out on [GitHub](https://github.com/JuanjoFuchs/ccburn) and [PyPI](https
 
 {% comment %}
 ## LinkedIn Post
+PUBLISHED: 2026-01-13T14:31:08.512Z
+
 MEDIA: /assets/ccburn-ralph-wiggum-hero.png
 ALT: ccburn TUI showing Ralph Wiggum burning money on a burn-up chart at 87% usage
 
@@ -112,6 +114,8 @@ Full post: https://juanjofuchs.github.io/ai-development/2026/01/13/introducing-c
 ---
 
 ## X/Twitter Thread
+PUBLISHED: 2026-01-13T14:31:07.532Z
+
 MEDIA: /assets/ccburn-ralph-wiggum-hero.png
 ALT: ccburn TUI showing Ralph Wiggum burning money on a burn-up chart at 87% usage
 
