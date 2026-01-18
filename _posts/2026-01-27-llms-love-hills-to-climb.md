@@ -2,7 +2,7 @@
 layout: post
 title: "LLMs Love Hills to Climb"
 description: "LLMs are trained via reinforcement learning to optimize metrics. Give them clear hills to climb and they'll iterate toward the goal without you explaining each step."
-date: 2026-01-20 09:00:00 -0500
+date: 2026-01-27 09:00:00 -0500
 categories: ai-development
 tags: [ai, prompting, llm, productivity]
 author: JuanjoFuchs

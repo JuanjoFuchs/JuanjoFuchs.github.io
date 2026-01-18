@@ -2,7 +2,7 @@
 layout: post
 title: "Your Codebase Should Be a Constitution, Not a Bible"
 description: "Harari's Nexus argues constitutions work because they're amendable. Codebases need the same principle: built-in self-correction mechanisms for AI agents."
-date: 2026-01-27 09:00:00 -0500
+date: 2026-02-03 09:00:00 -0500
 categories: ai-development
 tags: [ai, coding, architecture, philosophy]
 author: JuanjoFuchs
