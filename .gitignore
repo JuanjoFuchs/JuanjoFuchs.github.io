@@ -12,3 +12,5 @@ Gemfile.lock
 
 AGENTS.md
 CLAUDE.md
+
+.env
