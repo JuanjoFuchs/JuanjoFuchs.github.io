@@ -77,7 +77,7 @@ Most people start conservative. They use Claude Code for specific tasks, wait fo
 
 ### What to Do With Your Unused Capacity
 
-If your weekly chart shows headroom, use it.
+If your weekly chart shows headroom, use it. Kim and Yegge's [Vibe Coding](https://www.amazon.com/Vibe-Coding-Building-Production-Grade-Software/dp/1966280025) book calls this mindset shift [FAAFO](https://www.youtube.com/watch?v=7Dtu2bilcFs): Fast, Ambitious, Autonomous, Fun, and Optionality.
 
 Run parallel explorations. Have Claude try two different approaches to the same problem and compare them. You're not paying extra for the second attempt, you're using allocation you already have.
 
