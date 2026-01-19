@@ -11,9 +11,9 @@ image: /assets/ccburn-session-depleted.png
 
 ![ccburn showing session with depleted line, weekly, and weekly-sonnet charts](/assets/ccburn-session-depleted.png)
 
-You got a Claude Code subscription. You've heard people ship entire projects overnight with it. Maybe you've seen the screenshots of [Gas Town](https://github.com/steveyegge/gastown) running 20 parallel agents or [Ralph Wiggum](https://github.com/anthropics/claude-code/tree/main/plugins/ralph-wiggum) loops burning $100 in an hour. That's not most of us.
+You got a Claude Code subscription. You've heard people ship entire projects overnight with it. Maybe you've seen the screenshots of [Gas Town](https://github.com/steveyegge/gastown) running 20 parallel agents or [Ralph Wiggum](https://github.com/anthropics/claude-code/tree/main/plugins/ralph-wiggum) loops burning through tasks at incredible speed.
 
-This guide is for the 99% who pay $20-200/month and want to get their money's worth without running a token bonfire. I'll cover three stages: understanding what you have, using more of it, and not running out mid-session.
+This guide is about getting your money's worth from your subscription. I'll cover three stages: understanding what you have, using more of it, and not running out mid-session.
 
 ## Understanding What You Have
 
@@ -22,8 +22,6 @@ This guide is for the 99% who pay $20-200/month and want to get their money's wo
 January 2026 was confusing for Claude Code users. Anthropic ran a holiday bonus that doubled limits, then returned to normal. [Forums filled with complaints](https://www.theregister.com/2026/01/05/claude_devs_usage_limits/) about "reduced limits" when really the baseline just felt smaller after the bonus ended.
 
 The token economy has two layers: [5-hour rolling windows and weekly limits](https://support.claude.com/en/articles/11145838-using-claude-code-with-your-pro-or-max-plan). Your session window starts when you send your first message and resets 5 hours later. Weekly limits cap your total usage across all sessions, with separate buckets for different models.
-
-If you're running Gas Town or doing heavy Ralph Wiggum loops, you need a different guide. Those tools [burn $50-100+ per session](https://www.dolthub.com/blog/2026-01-15-a-day-in-gas-town/) and are optimized for throughput at any cost. This guide assumes you want to maximize value from a fixed subscription, not minimize time at any price.
 
 ### Know Your Models
 
