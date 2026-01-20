@@ -28,7 +28,7 @@ I think about this as two categories of feedback you can give AI.
 
 **Hard artifacts** are RLVR-style feedback. Deterministic checks with objective pass/fail criteria: compilation, test results, cyclomatic complexity, coverage thresholds. These encode "what correct looks like" in ways machines can verify without interpretation.
 
-**Soft judgments** are RLHF-style feedback. Things that need human reasoning: architecture decisions, whether the code matches user intent, security considerations we haven't thought to test for. There's no objective metric to optimize against, so these still need human review.
+**Soft judgments** are RLHF-style feedback. Things that need human reasoning: architecture decisions, whether the code matches user intent, security considerations we haven't thought to test for. Also things like code review summaries, implementation plans, and architectural diagrams. There's no objective metric to optimize against, so these still need human review. But soft artifacts aren't useless. They scale human awareness. A summary helps you review faster. A diagram helps you spot design issues. They aid your judgment without replacing it.
 
 When you give AI a vague goal like "make this code better," you're forcing it into RLHF mode. It has to guess what you mean by "better" and wait for your judgment. You become the reward model.
 
@@ -61,6 +61,10 @@ The same principle applies to how you structure your codebase for AI collaborati
 **Complexity budgets as guardrails.** Set thresholds for cyclomatic complexity, cognitive complexity, file length. Tools like [SonarQube](https://www.sonarsource.com/) or [CodeClimate](https://codeclimate.com/) can enforce these on every commit. AI learns the boundaries by hitting them.
 
 **Coverage thresholds as gates.** Require minimum test coverage for new code. AI can't merge changes that reduce coverage below the threshold. The measurement enforces the behavior.
+
+**Performance baselines as regression tests.** Set benchmarks for response times, memory usage, bundle sizes. CI can fail builds that regress beyond acceptable thresholds. AI learns to optimize, not just ship.
+
+**Security scans as gates.** Static analysis tools catch vulnerabilities before merge. AI can't introduce known security issues if the pipeline blocks them. The scan encodes security knowledge you'd otherwise review manually.
 
 Every soft judgment you can convert into a hard artifact is one less thing requiring human review. The more you encode quality into automated checks, the more AI can iterate autonomously toward it.
 
