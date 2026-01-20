@@ -53,6 +53,9 @@ function extractMediaFields(sectionContent) {
   // Remove empty ALT: lines (no value after colon)
   contentWithoutMedia = contentWithoutMedia.replace(/^ALT:[^\S\r\n]*$/gm, '').trim();
 
+  // Remove PUBLISHED: lines (metadata added by automation, not content to post)
+  contentWithoutMedia = contentWithoutMedia.replace(/^PUBLISHED:[^\S\r\n]*.*$/gm, '').trim();
+
   return { media, alt, contentWithoutMedia };
 }
 
