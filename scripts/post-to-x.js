@@ -93,15 +93,11 @@ export async function postTwitterThread(tweets, credentials, options = {}) {
     let previousTweetId = null;
 
     // Post tweets sequentially, chaining them as replies
+    // Note: Truncation is handled by extract-social-content.js (accounts for t.co URL shortening)
     for (let i = 0; i < tweets.length; i++) {
       const tweetText = tweets[i];
 
       console.log(`Posting tweet ${i + 1}/${tweets.length}...`);
-
-      // Truncate if over 280 characters (shouldn't happen with proper content)
-      const truncatedText = tweetText.length > 280
-        ? tweetText.substring(0, 277) + '...'
-        : tweetText;
 
       try {
         let response;
@@ -109,16 +105,16 @@ export async function postTwitterThread(tweets, credentials, options = {}) {
 
         if (previousTweetId) {
           // Reply to previous tweet
-          response = await client.v2.reply(truncatedText, previousTweetId);
+          response = await client.v2.reply(tweetText, previousTweetId);
         } else if (isFirstTweet && mediaId) {
           // First tweet with media
           response = await client.v2.tweet({
-            text: truncatedText,
+            text: tweetText,
             media: { media_ids: [mediaId] }
           });
         } else {
           // First tweet without media
-          response = await client.v2.tweet(truncatedText);
+          response = await client.v2.tweet(tweetText);
         }
 
         const tweetId = response.data.id;

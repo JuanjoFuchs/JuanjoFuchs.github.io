@@ -30,6 +30,85 @@ export function escapeLinkedInText(text) {
     .replace(/~/g, '\\~');
 }
 
+// Twitter character counting constants
+const TWITTER_URL_LENGTH = 23;  // All URLs count as 23 chars (t.co shortening)
+const TWITTER_MAX_LENGTH = 280;
+
+// Regex to match URLs (simplified but covers most cases)
+const URL_REGEX = /https?:\/\/[^\s]+/g;
+
+/**
+ * Calculate Twitter's weighted character count for a tweet
+ * - URLs count as 23 characters regardless of actual length
+ * - Most emojis count as 2 characters
+ * See: https://developer.twitter.com/en/docs/counting-characters
+ * @param {string} text - Tweet text
+ * @returns {number} - Twitter-weighted character count
+ */
+export function getTwitterLength(text) {
+  if (!text) return 0;
+
+  // Find all URLs and calculate their contribution
+  const urls = text.match(URL_REGEX) || [];
+  const urlActualLength = urls.reduce((sum, url) => sum + url.length, 0);
+  const urlTwitterLength = urls.length * TWITTER_URL_LENGTH;
+
+  // Base length minus actual URL lengths plus Twitter URL lengths
+  // This is a simplified count - Twitter's actual counting is more complex for emojis
+  return text.length - urlActualLength + urlTwitterLength;
+}
+
+/**
+ * Truncate tweet text to fit Twitter's 280 character limit
+ * Accounts for URL shortening (URLs count as 23 chars)
+ * @param {string} text - Tweet text
+ * @param {number} maxLength - Maximum Twitter-weighted length (default 280)
+ * @returns {object} - {text, truncated, twitterLength}
+ */
+export function truncateTweet(text, maxLength = TWITTER_MAX_LENGTH) {
+  if (!text) return { text: '', truncated: false, twitterLength: 0 };
+
+  const twitterLength = getTwitterLength(text);
+
+  if (twitterLength <= maxLength) {
+    return { text, truncated: false, twitterLength };
+  }
+
+  // Need to truncate - find URLs first to preserve them if possible
+  const urls = text.match(URL_REGEX) || [];
+
+  // Calculate how many chars we need to remove
+  const excessChars = twitterLength - maxLength + 3; // +3 for "..."
+
+  // Simple approach: truncate from end, but try to keep URLs intact
+  // Find the last URL and its position
+  let truncatedText = text;
+
+  if (urls.length > 0) {
+    const lastUrl = urls[urls.length - 1];
+    const lastUrlIndex = text.lastIndexOf(lastUrl);
+
+    // If truncating would cut into the URL, truncate before it
+    if (text.length - excessChars < lastUrlIndex + lastUrl.length &&
+        text.length - excessChars > lastUrlIndex) {
+      // Cut before the URL
+      truncatedText = text.substring(0, lastUrlIndex).trim() + '...';
+    } else {
+      // Safe to truncate at the end
+      truncatedText = text.substring(0, text.length - excessChars).trim() + '...';
+    }
+  } else {
+    // No URLs, simple truncation
+    truncatedText = text.substring(0, text.length - excessChars).trim() + '...';
+  }
+
+  return {
+    text: truncatedText,
+    truncated: true,
+    twitterLength: getTwitterLength(truncatedText)
+  };
+}
+
 /**
  * Extract content between {% comment %} and {% endcomment %} tags
  * Gets the LAST comment block (to avoid matching example/template blocks in post content)
@@ -113,9 +192,12 @@ export function parseLinkedInPost(commentContent) {
   const hashtagRegex = /#\w+/g;
   const hashtags = contentWithoutMedia.match(hashtagRegex) || [];
 
+  // Normalize line endings (CRLF -> LF)
+  const normalizedContent = contentWithoutMedia.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
+
   // Strip Markdown formatting (LinkedIn doesn't support it)
   // Must strip bold (**text**) before italic (*text*) to handle nested cases
-  const plainContent = contentWithoutMedia
+  const plainContent = normalizedContent
     .replace(/\*\*(.+?)\*\*/g, '$1')  // Bold: **text** → text
     .replace(/\*(.+?)\*/g, '$1')       // Italic: *text* → text
     .replace(/__(.+?)__/g, '$1')       // Bold: __text__ → text
@@ -154,12 +236,23 @@ export function parseTwitterThread(commentContent) {
   // Extract individual tweets (Tweet 1, Tweet 2, etc.)
   const tweetRegex = /Tweet\s+\d+[^\n]*:\s*\n([^\n]+(?:\n(?!Tweet\s+\d+)[^\n]+)*)/gi;
   const tweets = [];
+  const tweetMeta = [];  // Store metadata for each tweet
   let tweetMatch;
 
   while ((tweetMatch = tweetRegex.exec(contentWithoutMedia)) !== null) {
-    const tweetContent = tweetMatch[1].trim();
+    let tweetContent = tweetMatch[1].trim();
     if (tweetContent) {
-      tweets.push(tweetContent);
+      // Normalize line endings (CRLF -> LF) - Twitter API may truncate at \r
+      tweetContent = tweetContent.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
+
+      // Calculate Twitter length and truncate if needed
+      const result = truncateTweet(tweetContent);
+      tweets.push(result.text);
+      tweetMeta.push({
+        twitterLength: result.twitterLength,
+        truncated: result.truncated,
+        rawLength: tweetContent.length
+      });
     }
   }
 
@@ -169,6 +262,7 @@ export function parseTwitterThread(commentContent) {
 
   return {
     tweets: tweets,
+    tweetMeta: tweetMeta,  // Include metadata for testing/debugging
     hashtags: hashtags,
     media: media,
     alt: alt
@@ -354,7 +448,9 @@ if (process.argv[1] && process.argv[1].endsWith('extract-social-content.js')) {
     console.log('\n🐦 Twitter Thread:');
     console.log(`   Tweets: ${result.twitter.tweets.length}`);
     result.twitter.tweets.forEach((tweet, i) => {
-      console.log(`   [${i + 1}] ${tweet.length} chars: ${tweet.substring(0, 50)}...`);
+      const meta = result.twitter.tweetMeta[i];
+      const status = meta.truncated ? ' ⚠️ TRUNCATED' : (meta.twitterLength > 260 ? ' ⚠️ CLOSE' : ' ✓');
+      console.log(`   [${i + 1}] ${meta.twitterLength}/280 Twitter chars${status}: ${tweet.substring(0, 50)}...`);
     });
     console.log(`   Hashtags: ${result.twitter.hashtags.join(' ')}`);
     console.log(`   Media: ${result.twitter.media || '(none)'}`);
