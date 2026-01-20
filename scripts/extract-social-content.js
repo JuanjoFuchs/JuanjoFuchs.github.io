@@ -3,6 +3,34 @@ import fs from 'fs';
 import { checkPublishedStatus } from './mark-post-published.js';
 
 /**
+ * Escape reserved characters for LinkedIn's "little" text format
+ * Reserved characters: | { } @ [ ] ( ) < > # \ * _ ~
+ * See: https://learn.microsoft.com/en-us/linkedin/marketing/community-management/shares/little-text-format
+ * @param {string} text - Raw text content
+ * @returns {string} - Text with reserved characters escaped
+ */
+export function escapeLinkedInText(text) {
+  if (!text) return text;
+  // Escape backslash first (to avoid double-escaping), then other reserved chars
+  return text
+    .replace(/\\/g, '\\\\')
+    .replace(/\|/g, '\\|')
+    .replace(/\{/g, '\\{')
+    .replace(/\}/g, '\\}')
+    .replace(/@/g, '\\@')
+    .replace(/\[/g, '\\[')
+    .replace(/\]/g, '\\]')
+    .replace(/\(/g, '\\(')
+    .replace(/\)/g, '\\)')
+    .replace(/</g, '\\<')
+    .replace(/>/g, '\\>')
+    .replace(/#/g, '\\#')
+    .replace(/\*/g, '\\*')
+    .replace(/_/g, '\\_')
+    .replace(/~/g, '\\~');
+}
+
+/**
  * Extract content between {% comment %} and {% endcomment %} tags
  * Gets the LAST comment block (to avoid matching example/template blocks in post content)
  * @param {string} markdownContent - Full markdown file content
@@ -81,12 +109,16 @@ export function parseLinkedInPost(commentContent) {
   // Extract MEDIA and ALT fields
   const { media, alt, contentWithoutMedia } = extractMediaFields(contentWithoutInstructions);
 
-  // Extract hashtags (lines starting with #)
+  // Extract hashtags (lines starting with #) BEFORE escaping
   const hashtagRegex = /#\w+/g;
   const hashtags = contentWithoutMedia.match(hashtagRegex) || [];
 
+  // Escape reserved characters for LinkedIn's "little" text format
+  const escapedContent = escapeLinkedInText(contentWithoutMedia);
+
   return {
-    content: contentWithoutMedia,
+    content: escapedContent,
+    rawContent: contentWithoutMedia,  // Keep raw for debugging
     hashtags: hashtags,
     media: media,
     alt: alt

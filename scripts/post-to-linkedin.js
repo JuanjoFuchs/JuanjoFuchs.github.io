@@ -209,6 +209,9 @@ async function getLinkedInUserId(accessToken) {
  */
 async function createLinkedInPost(content, personId, accessToken, options = {}) {
   try {
+    // Debug: log content length (content should already be escaped by extraction)
+    console.log(`Content length: ${content.length} chars`);
+
     // Build post data using the versioned Posts API format
     const postData = {
       author: `urn:li:person:${personId}`,
