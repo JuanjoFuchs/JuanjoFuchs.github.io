@@ -109,12 +109,20 @@ export function parseLinkedInPost(commentContent) {
   // Extract MEDIA and ALT fields
   const { media, alt, contentWithoutMedia } = extractMediaFields(contentWithoutInstructions);
 
-  // Extract hashtags (lines starting with #) BEFORE escaping
+  // Extract hashtags (lines starting with #) BEFORE stripping markdown
   const hashtagRegex = /#\w+/g;
   const hashtags = contentWithoutMedia.match(hashtagRegex) || [];
 
+  // Strip Markdown formatting (LinkedIn doesn't support it)
+  // Must strip bold (**text**) before italic (*text*) to handle nested cases
+  const plainContent = contentWithoutMedia
+    .replace(/\*\*(.+?)\*\*/g, '$1')  // Bold: **text** → text
+    .replace(/\*(.+?)\*/g, '$1')       // Italic: *text* → text
+    .replace(/__(.+?)__/g, '$1')       // Bold: __text__ → text
+    .replace(/_(.+?)_/g, '$1');        // Italic: _text_ → text
+
   // Escape reserved characters for LinkedIn's "little" text format
-  const escapedContent = escapeLinkedInText(contentWithoutMedia);
+  const escapedContent = escapeLinkedInText(plainContent);
 
   return {
     content: escapedContent,
