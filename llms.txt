@@ -1,0 +1,16 @@
+---
+layout: null
+---
+# {{ site.title }}
+
+> {{ site.description | strip_newlines }}
+
+- Site: [{{ site.url }}]({{ site.url }})
+- Author: {{ site.author }}
+
+## Blog Posts
+
+The links below point to raw Markdown source files.
+
+{% for post in site.posts %}- [{{ post.title }}](https://raw.githubusercontent.com/JuanjoFuchs/JuanjoFuchs.github.io/refs/heads/main/{{ post.path }}){% if post.description %}: {{ post.description | truncate: 100 }}{% endif %}
+{% endfor %}
