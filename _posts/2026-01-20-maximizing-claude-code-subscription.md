@@ -159,6 +159,8 @@ Try it with `npx ccburn` or install with `winget install ccburn`. Check out the 
 
 {% comment %}
 ## LinkedIn Post
+PUBLISHED: 2026-01-20T15:02:00.672Z
+
 MEDIA: /assets/ccburn-session-depleted.png
 ALT: ccburn showing session with depleted line, weekly, and weekly-sonnet charts
 
