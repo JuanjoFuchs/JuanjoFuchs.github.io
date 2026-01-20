@@ -3,7 +3,9 @@ import fs from 'fs';
 import path from 'path';
 
 // LinkedIn API version header (required for media uploads)
-const LINKEDIN_VERSION = '202501';
+// Versions are supported for ~12 months. Update annually. See:
+// https://learn.microsoft.com/en-us/linkedin/marketing/versioning
+const LINKEDIN_VERSION = '202511';
 
 /**
  * Determine media type from file path
