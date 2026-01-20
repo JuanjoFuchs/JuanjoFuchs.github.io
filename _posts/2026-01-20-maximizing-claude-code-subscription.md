@@ -197,6 +197,8 @@ Full post with all the details: https://juanjofuchs.github.io/ai-development/202
 ---
 
 ## X/Twitter Thread
+PUBLISHED: 2026-01-20T14:37:04.430Z
+
 MEDIA: /assets/ccburn-session-depleted.png
 ALT: ccburn showing session with depleted line, weekly, and weekly-sonnet charts
 
