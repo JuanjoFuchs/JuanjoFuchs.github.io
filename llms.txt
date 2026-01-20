@@ -12,5 +12,5 @@ layout: null
 
 The links below point to raw Markdown source files.
 
-{% for post in site.posts %}- [{{ post.title }}](https://raw.githubusercontent.com/JuanjoFuchs/JuanjoFuchs.github.io/refs/heads/main/{{ post.path }}){% if post.description %}: {{ post.description | truncate: 100 }}{% endif %}
+{% for post in site.posts %}- [{{ post.title }}](https://raw.githubusercontent.com/JuanjoFuchs/JuanjoFuchs.github.io/refs/heads/main/{{ post.path }}){% if post.description %}: {{ post.description }}{% endif %}
 {% endfor %}
