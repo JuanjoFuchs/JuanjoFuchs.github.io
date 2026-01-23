@@ -31,11 +31,11 @@ But iteration alone isn't progress. The [documentation](https://github.com/anthr
    → Deterministic convergence toward passing tests
 ```
 
-Without something to measure against, AI just wanders. With a clear metric, it iterates toward the goal automatically. The difference is measurement.
+Without something to measure against, AI just wanders. With a clear metric, it iterates toward the goal automatically.
 
 ## The Measurement Gap
 
-Here's the problem: most codebases don't have the measurement infrastructure that would let AI self-correct. Sparse test coverage. No complexity budgets. No performance baselines. When AI iterates against these codebases, it accelerates whatever's already there.
+Most codebases don't have the measurement infrastructure that would let AI self-correct. Sparse test coverage. No complexity budgets. No performance baselines. When AI iterates against these codebases, it accelerates whatever's already there.
 
 The research confirms this is happening at scale.
 
@@ -43,13 +43,15 @@ The research confirms this is happening at scale.
 
 [Stanford's study of 100,000+ developers](https://softwareengineeringproductivity.stanford.edu/ai-impact) across 600 companies found productivity gains ranging from 0% to 40% depending on context. The determining factor wasn't the AI tool, it was existing code quality practices. One case study showed 14% more pull requests but 9% lower code quality and 2.5x more rework, resulting in zero net productivity gain.
 
-[Google's 2025 DORA report](https://cloud.google.com/blog/products/devops-sre/announcing-the-2025-dora-report) puts it directly: "AI doesn't fix a team; it amplifies what's already there." Their 2024 data showed a 7.2% decrease in delivery stability for every 25% increase in AI adoption.
+IT Revolution's ["Revenge of QA"](https://itrevolution.com/articles/the-revenge-of-qa-how-ai-code-generation-is-exposing-decades-of-process-debt/) paper frames this through Goldratt's Theory of Constraints: code generation was never the bottleneck. Verification and validation were. Generating more code faster just creates inventory waiting for review—and in Lean terms, inventory is liability, not asset.
+
+[Google's 2025 DORA report](https://cloud.google.com/blog/products/devops-sre/announcing-the-2025-dora-report)puts it directly: "AI doesn't fix a team; it amplifies what's already there." Their 2024 data showed a 7.2% decrease in delivery stability for every 25% increase in AI adoption.
 
 The pattern is consistent across all the research. AI accelerates entropy when there's nothing to optimize against. It accelerates quality when there are clear metrics to measure against.
 
 ## Why Entropy Is the Default
 
-This isn't surprising if you think about it. Entropy is physics: energy spreads out over time, systems tend toward disorder, and maintaining order requires continuous effort. [Boltzmann showed](https://www.youtube.com/watch?v=DxL2HoqLbyA) that it's overwhelmingly improbable for entropy to decrease on its own.
+This isn't surprising. Entropy is physics: energy spreads out over time, systems tend toward disorder, and maintaining order requires continuous effort. [Boltzmann showed](https://www.youtube.com/watch?v=DxL2HoqLbyA) that it's overwhelmingly improbable for entropy to decrease on its own.
 
 Codebases follow the same pattern. There are many more ways to write bad code than good code. Without active resistance, code quality degrades: dependencies accumulate, abstractions leak, naming conventions drift, dead code piles up. This happens even with disciplined teams because every quick fix, every "we'll refactor later," every shortcut under deadline pressure adds a small amount of disorder.
 
@@ -57,7 +59,7 @@ The second law of thermodynamics says maintaining order requires energy input. F
 
 AI doesn't change this equation, it accelerates it. More code per hour means more opportunity for disorder per hour. If your codebase was already drifting toward chaos at human speed, it'll drift faster at AI speed. If you had strong practices keeping entropy in check, AI amplifies those too.
 
-Your codebase will experience entropy. That's guaranteed. What matters is whether you have the measurement infrastructure to detect it and the practices to reverse it, before AI makes the problem 10x worse.
+Your codebase will experience entropy. What matters is whether you have the measurement infrastructure to detect it and the practices to reverse it, before AI makes the problem 10x worse.
 
 ## Systems That Can't Self-Correct Get Stuck
 
@@ -84,21 +86,24 @@ Build them now. The gap is widening.
 {% comment %}
 ## LinkedIn Post
 
-I used to think AI coding tools would make me faster. Instead, I became a full-time reviewer. Write code, review, explain the mistake, fix, review again. Every session, same loop. AI makes mistakes, that's expected. The issue is that I'm the only one catching them.
+The iteration problem is solved. AI can run continuously for hours, trying until it gets things right. But iteration alone isn't progress.
 
-Three major studies confirmed what I was feeling:
+Anthropic's Ralph Wiggum plugin makes this explicit: "Build a todo API and make it good" creates an infinite loop. "Build a todo API, run tests after each iteration, complete when tests pass" converges automatically.
 
-GitClear analyzed 211M lines of code across Google, Microsoft, and Meta. Since AI tools went mainstream: 8x more code duplication, 60% less refactoring. Copy-paste now exceeds code reorganization for the first time in history.
+The difference is measurement infrastructure, and most codebases don't have it.
 
-Stanford studied 100k developers across 600 companies. Productivity gains ranged from 0% to 40%. Same tools, wildly different results. The determining factor was existing code quality practices.
+GitClear analyzed 211M lines at Google, Microsoft, and Meta. Since AI went mainstream: 8x more duplication, 60% less refactoring. Copy-paste now exceeds code reorganization for the first time ever.
 
-Google's DORA report put it directly: "AI doesn't fix a team; it amplifies what's already there."
+Stanford studied 100k developers across 600 companies. Same tools, 0-40% productivity gains. The determining factor was existing code quality practices.
 
-AI accelerates whatever you already have. If your codebase has strong tests and clear constraints, AI amplifies quality. If it doesn't, AI amplifies entropy.
+Google's DORA report: "AI doesn't fix a team; it amplifies what's already there."
 
-The gap between prepared and unprepared organizations grew 4x in two years. Stanford projects 10x by 2030.
+✅ Strong tests and constraints → AI amplifies quality
+✅ Sparse coverage and no guardrails → AI amplifies entropy
 
-Full breakdown on what to build and why it matters now:
+The gap between prepared and unprepared orgs grew 4x in two years. Stanford projects 10x by 2030.
+
+Full breakdown on what to build:
 https://juanjofuchs.github.io/ai-development/2026/01/27/ai-accelerates-whatever-you-have.html
 
 #AIEngineering #CodeQuality #SoftwareArchitecture #TechnicalDebt
@@ -107,23 +112,23 @@ https://juanjofuchs.github.io/ai-development/2026/01/27/ai-accelerates-whatever-
 
 ## X/Twitter Thread
 
-Tweet 1 (Hook):
-I used to think AI coding tools would make me faster. Instead, I became a full-time code reviewer. Same loop every session: write, review, explain mistake, fix, review again. 🔥
+Tweet 1:
+AI can iterate continuously for hours now. The tools exist. But iteration alone isn't progress. Without something to measure against, AI just wanders indefinitely. 🔥
 
 Tweet 2:
-GitClear analyzed 211M lines of code at Google, Microsoft, and Meta. Since AI tools went mainstream: 8x more duplication, 60% less refactoring. Copy-paste now exceeds code reorganization for the first time ever. 💡
+GitClear analyzed 211M lines at Google, Microsoft, and Meta. Since AI coding tools went mainstream: 8x more code duplication, 60% less refactoring. Copy-paste now exceeds reorganization for the first time ever. 💡
 
 Tweet 3:
-Stanford studied 100k developers. AI productivity gains ranged from 0% to 40%. Same tools, wildly different results. The determining factor was existing code quality practices. ✅
+Stanford studied 100k developers across 600 companies. Same AI tools, productivity gains ranged 0-40%. The determining factor wasn't the tool, it was existing code quality practices. ✅
 
 Tweet 4:
-Google's 2025 DORA report: "AI doesn't fix a team; it amplifies what's already there." The gap between prepared and unprepared orgs grew 4x in two years.
+Google's 2025 DORA report found 7.2% decrease in delivery stability for every 25% increase in AI adoption. Their conclusion: "AI doesn't fix a team; it amplifies what's already there."
 
 Tweet 5:
-AI accelerates whatever you already have. Strong tests and constraints? AI amplifies quality. Sparse coverage and no guardrails? AI amplifies entropy. The choice is yours.
+MIT professor on AI coding: it's "a brand new credit card that lets us accumulate technical debt in ways we never could before." The gap between prepared and unprepared orgs grew 4x in two years.
 
 Tweet 6:
-Full breakdown on what to build before AI makes the problem 10x worse: https://juanjofuchs.github.io/ai-development/2026/01/27/ai-accelerates-whatever-you-have.html
+Full post on what measurement infrastructure to build before AI makes the problem 10x worse: https://juanjofuchs.github.io/ai-development/2026/01/27/ai-accelerates-whatever-you-have.html
 
 #AIEngineering #CodeQuality
 {% endcomment %}

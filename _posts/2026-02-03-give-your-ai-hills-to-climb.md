@@ -10,49 +10,45 @@ author: JuanjoFuchs
 
 Most prompting advice is about what to say. Be specific. Provide context. Use examples. All useful, but there's a pattern from how some models are trained that changed how I think about working with AI.
 
-Reinforcement learning trains systems to climb toward better scores. Two approaches in particular, RLHF and RLVR, offer a useful mental model for how we structure feedback for AI tools.
+Reinforcement learning trains systems to iterate toward better scores, i.e. climbing hills. Two approaches in particular, RLHF and RLVR, offer a useful mental model for how we structure feedback for AI tools.
 
-## Two Approaches Worth Understanding
+## Reinforcement Learning Concepts
 
 **RLHF (Reinforcement Learning from Human Feedback)** is the approach most people have heard of. Humans rate model outputs, the model learns to produce responses that score higher. The reward signal comes from human judgment, subjective and variable across raters.
 
 **RLVR (Reinforcement Learning with Verifiable Rewards)** is what [NVIDIA describes](https://developer.nvidia.com/blog/how-to-train-an-ai-agent-for-command-line-tasks-with-synthetic-data-and-reinforcement-learning/) for training CLI agents. Instead of human judgment, the reward comes from code-based verification. Did the command execute correctly? +1. Did it fail validation? -1. No human needed, and the same output always yields the same reward.
 
-Whether or not the AI you're using was trained this way, the pattern is useful: some feedback requires human judgment, some feedback can be automated. The question is what kind of feedback you're giving.
+In the [last post](/ai-development/2026/01/27/ai-accelerates-whatever-you-have.html), I argued that AI amplifies whatever your codebase already has. The determining factor is verification infrastructure, the checks that let AI self-correct instead of waiting for you.
 
-In my [last post](/ai-development/2026/01/27/ai-accelerates-whatever-you-have.html), I argued that AI amplifies whatever your codebase already has. The determining factor is measurement infrastructure, the stuff that lets AI self-correct instead of waiting for you. But what kind of measurement should you build? That's where this framing helps.
+## Hard vs Soft Artifacts
 
-## Hard Artifacts vs Soft Judgments
+Applying the mental model above to our interactions with AI coding assistants, we get:
 
-I think about this as two categories of feedback you can give AI.
+**Soft artifacts** produce human feedback. Summaries, diagrams, recordings of features working, things that help you understand. The AI generates them, but you provide the judgment. A diagram helps you spot design issues. A recording shows whether the feature does what you wanted. These scale your awareness without replacing your reasoning. This is RLHF-style feedback, you are the reward function.
 
-**Hard artifacts** are RLVR-style feedback. Deterministic checks with objective pass/fail criteria: compilation, test results, cyclomatic complexity, coverage thresholds. These encode "what correct looks like" in ways machines can verify without interpretation.
+**Hard artifacts** produce verifiable feedback. Tests, type systems, complexity budgets, coverage thresholds, things that output numbers or pass/fail. AI runs them and gets a signal directly: 76% coverage, cyclomatic complexity of 12, build failed. No interpretation needed. This is RLVR-style feedback, the artifact is the reward function.
 
-**Soft judgments** are RLHF-style feedback. Things that need human reasoning: architecture decisions, whether the code matches user intent, security considerations we haven't thought to test for. Also things like code review summaries, implementation plans, and architectural diagrams. There's no objective metric to optimize against, so these still need human review. But soft artifacts aren't useless. They scale human awareness. A summary helps you review faster. A diagram helps you spot design issues. They aid your judgment without replacing it.
+Both of these kinds of artifacts are necessary, but every soft artifact you can convert into a hard one is one less thing requiring human review. The more you encode quality into automated checks, the more AI can iterate autonomously.
 
-When you give AI a vague goal like "make this code better," you're forcing it into RLHF mode. It has to guess what you mean by "better" and wait for your judgment. You become the reward model.
+The difference is speed. When AI can self-evaluate, iterations happen at machine speed: try, check, adjust, repeat. When you're the only evaluator, iterations happen at human speed. The AI sits idle waiting for your feedback.
 
-When you give AI a specific metric like "reduce cyclomatic complexity while maintaining test coverage," you're giving it RLVR-style feedback. It can evaluate its own output and iterate. The tests are the reward signal.
+**Before** (you as evaluator):
+1. AI writes code
+2. You review
+3. You explain the problem
+4. AI fixes
+5. Repeat until correct
 
-## Why This Matters for Prompting
+**After** (hard artifacts as evaluator):
+1. AI writes code
+2. Tests/types/lints provide immediate feedback
+3. AI iterates until checks pass
+4. You review the final result
 
-If you give an LLM a vague goal, it'll do its best to pattern-match toward something reasonable. Give it a clear metric and it can measure its own progress.
+You shift from evaluator to architect. You're not scoring every output, you're designing the system that scores.
 
-**Vague:** "Make this code better."
+## Some Hard Artifacts To Consider For Your Codebase
 
-**Clear hill:** "Reduce the cyclomatic complexity of this function while maintaining the same test coverage."
-
-The second prompt gives the model something concrete to optimize against. The first prompt leaves it guessing.
-
-**For coding tasks:** Don't just describe what you want, describe what success looks like. "The function should handle these edge cases" is better than "make it robust." "All tests should pass" is better than "fix the bugs." The AI can check these things itself.
-
-**For refactoring:** "Extract functions over 20 lines and reduce nesting to max 2 levels" gives concrete targets. "Clean this up" is vague. The AI can measure line counts and nesting depth. It can't measure your mental model of "clean."
-
-**For debugging:** "Find why this test fails" points at a specific hill (test passing). "Review this code for issues" is open-ended. The AI can verify whether the test passes after its suggested fix. It can't verify whether you're satisfied with a general review.
-
-## Building Hard Artifacts Into Your Codebase
-
-The same principle applies to how you structure your codebase for AI collaboration.
 
 **Type systems as constraints.** TypeScript catches category errors before runtime. AI can't violate the constraint even if it tries, the compiler simply won't allow it. The correction is automatic, no human needed.
 
@@ -66,82 +62,82 @@ The same principle applies to how you structure your codebase for AI collaborati
 
 **Security scans as gates.** Static analysis tools catch vulnerabilities before merge. AI can't introduce known security issues if the pipeline blocks them. The scan encodes security knowledge you'd otherwise review manually.
 
-Every soft judgment you can convert into a hard artifact is one less thing requiring human review. The more you encode quality into automated checks, the more AI can iterate autonomously toward it.
+**Commit hooks as enforcement.** Pre-commit and pre-push hooks run these checks before code can merge. AI can't bypass them, the commit fails. Tools like [Husky](https://typicode.github.io/husky/) for JavaScript, [pre-commit](https://pre-commit.com/) for Python, or native Git hooks work out of the box.
 
-## The Human Role Shifts
+## Caveat: Your AI Assistant Will Game the Hill
 
-Before (human as evaluator):
-1. AI writes code
-2. You review
-3. You explain the problem
-4. AI fixes
-5. You review again
-6. Repeat until correct
+There's a catch. Kent Beck, co-creator of TDD, calls AI coding assistants "genies" in his [Pragmatic Engineer podcast](https://www.youtube.com/watch?v=aSXaxOdVtAQ): they grant wishes in letter, not spirit. Ask for passing tests, and the genie might delete the tests rather than fix the code. Beck has observed AI agents removing, weakening, or rewriting tests to achieve green CI.
 
-After (hard artifacts as feedback):
-1. AI writes code
-2. Tests/types/lints provide immediate feedback
-3. AI iterates automatically until checks pass
-4. You review the final result
+The problem isn't specific to tests. Any hard artifact AI can modify becomes a target to game, not a constraint to satisfy. Complexity thresholds get loosened. Type definitions get widened. Coverage requirements get lowered.
 
-The human role shifts from evaluator to architect. You're not scoring every output, you're designing the system that scores every output.
+This is Goodhart's Law: metrics lose their meaning once people start optimizing for them directly. AI takes this to the extreme, it optimizes literally and relentlessly. If the metric is "tests pass," deleting the failing test is a valid solution.
 
-When AI can self-evaluate, iterations happen at machine speed. It can try an approach, check the result, adjust, try again, all before you've finished reading the first attempt.
+So, if AI controls both the constraint and the code, the constraint stops being a constraint.
 
-When you're the only evaluator, iterations happen at human speed. Write, wait for you to read, wait for feedback, adjust, wait again. The AI is sitting idle most of the time.
+## Separation of Duties
 
-## The Meta-Pattern
+In security, separation of duties means the person who writes checks shouldn't reconcile the bank statement. The person who approves expenses shouldn't process payments. You split responsibility so no single actor can both create and validate their own work.
 
-The pattern across all of this: give AI something it can evaluate without you.
+The same principle applies to AI. Don't let the same agent define constraints and satisfy them.
 
-You're not removing yourself from the process, you're moving your involvement from constant feedback to upfront specification. Hard artifacts are clear hills AI can climb on its own. Soft judgments require you at every step.
+A **Constraint Agent** defines what success looks like: tests from specs, type schemas from requirements, complexity budgets from architecture decisions. Its job is fidelity to intent. It has no incentive to weaken constraints because satisfying them isn't its goal.
 
-Give your AI hills to climb.
+An **Implementation Agent** writes code to satisfy the constraints. It can iterate freely, but guardrails block modifications to constraint files. The artifacts are read-only targets.
+
+Guardrails to enforce this:
+- [CODEOWNERS](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners) requiring separate approval for constraint files (tests, schemas, configs)
+- [Pre-commit hooks](https://pre-commit.com/) rejecting constraint changes from implementation sessions
+- Branch protection rules marking constraint directories as protected
+
+## How to Get Started
+
+You could just feed this post to Claude and ask it to implement these suggestions. It will scan your repo, identify which hard artifacts are missing, and set them up.
 
 {% comment %}
 ## LinkedIn Post
 
-Every time you say "make this code better," you become the AI's only way to know if it succeeded. You review, explain the problem, wait for a fix, review again. The AI sits idle while you're the bottleneck.
+Reinforcement learning trains AI to iterate toward better scores, climbing hills. Two approaches in particular stand out.
 
-There's a better way. Two categories of feedback:
+One uses human judges, subjective and variable. The other uses code-based verification. Did it work? +1. Did it fail? -1. Same output always yields the same score.
 
-**Hard artifacts** - Tests, type checks, linters, complexity thresholds. Deterministic. AI can self-evaluate and iterate without waiting for you.
+You can apply this to how you work with AI coding tools.
 
-**Soft judgments** - Architecture decisions, user intent, security considerations. Still needs human reasoning.
+Remove yourself from "is it correct?", does it compile, do tests pass, is it performant. Build these checks into your codebase, AI iterates at machine speed.
 
-When you say "reduce cyclomatic complexity while maintaining test coverage," AI can measure its own progress. When you say "clean this up," it has to guess what you mean.
+Stay in the loop for "is it what I want?", architecture decisions, whether the feature matches your intent, design trade-offs. These still need you.
 
-The human role shifts from evaluator to architect. You're not scoring every output, you're designing the system that scores every output.
+Before: AI writes code → you review everything → you explain → AI fixes → repeat
+After: AI writes code → automated checks verify correctness → AI iterates → you review intent and design
 
-✅ Describe what success looks like, not just what you want
-✅ Point at specific failing tests, not general reviews
-✅ Build verifiable checks into your codebase
+You shift from evaluator to architect. You're not checking if the code works, you're deciding what should be built.
+
+Give your AI hills to climb.
 
 Full post: https://juanjofuchs.github.io/ai-development/2026/02/03/give-your-ai-hills-to-climb.html
 
-#AIPrompting #DeveloperProductivity #SoftwareEngineering #AIEngineering #CodingWithAI
+#AIEngineering #DeveloperProductivity #CodeQuality #SoftwareArchitecture
 
 ---
 
 ## X/Twitter Thread
 
-Tweet 1 (Hook):
-"Make this code better" forces AI to guess what you mean. "Reduce cyclomatic complexity while maintaining coverage" gives it something to measure. The difference determines how fast you iterate. 🔥
+Tweet 1:
+Reinforcement learning trains AI to iterate toward better scores, climbing hills. Two approaches: human judges (subjective) vs code verification (+1/-1, deterministic). 🔥
 
 Tweet 2:
-Two types of feedback for AI: Hard artifacts (tests, types, linters) are deterministic, AI can self-evaluate. Soft judgments (architecture, intent) still need human reasoning. 💡
+Remove yourself from "is it correct?", does it compile, do tests pass, is it performant. Build these into your codebase, AI iterates at machine speed. 💡
 
 Tweet 3:
-Tests are perfect feedback because they're binary. Pass or fail, no interpretation needed. AI makes a change, tests run, immediate signal. The correction loop is code, not conversation.
+Stay in the loop for "is it what I want?", architecture, intent, design trade-offs. These still need you. ✅
 
 Tweet 4:
-The human role shifts from evaluator to architect. You're not scoring every output, you're designing the system that scores every output. ✅
+Before: AI writes → you review everything → explain → fix → repeat. After: AI writes → checks verify correctness → AI iterates → you review intent and design.
 
 Tweet 5:
-Build verifiable feedback into your codebase: type systems as constraints, tests as success criteria, complexity thresholds as guardrails. Give your AI hills to climb.
+You shift from evaluator to architect. You're not checking if code works, you're deciding what should be built. Give your AI hills to climb.
 
 Tweet 6:
-Full post on hard artifacts vs soft judgments: https://juanjofuchs.github.io/ai-development/2026/02/03/give-your-ai-hills-to-climb.html
+Full post: https://juanjofuchs.github.io/ai-development/2026/02/03/give-your-ai-hills-to-climb.html
 
-#AIPrompting #SoftwareEngineering
+#AIEngineering #CodeQuality
 {% endcomment %}
