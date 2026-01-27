@@ -86,6 +86,8 @@ Build them now. The gap is widening.
 {% comment %}
 ## LinkedIn Post
 
+PUBLISHED: 2026-01-27T14:35:59.693Z
+
 The iteration problem is solved. AI can run continuously for hours, trying until it gets things right. But iteration alone isn't progress.
 
 Anthropic's Ralph Wiggum plugin makes this explicit: "Build a todo API and make it good" creates an infinite loop. "Build a todo API, run tests after each iteration, complete when tests pass" converges automatically.
@@ -111,6 +113,8 @@ https://juanjofuchs.github.io/ai-development/2026/01/27/ai-accelerates-whatever-
 ---
 
 ## X/Twitter Thread
+
+PUBLISHED: 2026-01-27T14:35:58.231Z
 
 Tweet 1:
 AI can iterate continuously for hours now. The tools exist. But iteration alone isn't progress. Without something to measure against, AI just wanders indefinitely. 🔥
