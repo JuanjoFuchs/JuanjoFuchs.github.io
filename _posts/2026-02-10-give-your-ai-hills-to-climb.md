@@ -2,7 +2,7 @@
 layout: post
 title: "Give Your AI Hills to Climb"
 description: "Hard artifacts let AI self-evaluate and iterate. Soft judgments still need you. Build verifiable feedback into your codebase and AI can self-correct without you."
-date: 2026-02-03 09:00:00 -0500
+date: 2026-02-10 09:00:00 -0500
 categories: ai-development
 tags: [ai, prompting, llm, productivity]
 author: JuanjoFuchs
