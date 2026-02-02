@@ -162,7 +162,7 @@ Tweet 4:
 What made it fast: the MCP team publishes a skill file for Claude. I gave Claude Code the raw GitHub URL and it had full context for building MCP Apps. No doc hunting, just "add MCP Apps support" and it knew what to do. ✅
 
 Tweet 5:
-Anthropic and OpenAI co-authored the MCP Apps spec. That collaboration is rare. Signals MCP is becoming real infrastructure, not just a Claude thing.
+Anthropic and OpenAI co-authored the MCP Apps spec together. Competitors collaborating on shared infrastructure instead of building proprietary alternatives. That's how standards win.
 
 Tweet 6:
 Try it: npx @tranzact/tempo-filler-mcp-server
