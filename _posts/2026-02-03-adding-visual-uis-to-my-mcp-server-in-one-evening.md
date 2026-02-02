@@ -15,6 +15,8 @@ I had stopped using MCP servers entirely. Every server I connected would dump it
 
 Then Anthropic shipped [Tool Search](https://x.com/trq212/status/2011523109871108570) in January 2026. Instead of loading all tool definitions upfront, Claude Code now keeps a lightweight index and fetches tool details on-demand when you actually need them. The context savings are massive, up to 85% reduction in some cases. I reconnected my MCP servers and they worked without the bloat.
 
+I also added [server instructions](https://modelcontextprotocol.info/blog/server-instructions) to help Claude know when to load my tools and how to sequence them. A simple workflow hint like "always check schedule before creating worklogs" makes a measurable difference, one [case study](https://www.anthropic.com/engineering/advanced-tool-use) showed 25% improvement in model performance with clear instructions.
+
 A week later, on Monday 1/26 MCP Apps was [announced](https://blog.modelcontextprotocol.io/posts/2026-01-26-mcp-apps/). Servers could now return interactive HTML UIs that render directly in the chat. I had a Tempo time tracking server that returned JSON, Claude would format it as text, and I thought: this could be a visual timesheet instead.
 
 By Tuesday early morning I had it working. The whole implementation took one evening, and most of that speed came from Claude Code.
@@ -120,6 +122,8 @@ I'd stopped using MCP servers entirely. Every server I connected would dump tool
 
 Then Anthropic shipped Tool Search. Instead of loading all tools upfront, Claude Code now fetches them on-demand. Up to 85% reduction in context usage. I reconnected my servers and they worked without the bloat.
 
+I also added server instructions to help Claude know when to load my tools and how to sequence them. One case study showed 25% improvement with clear workflow hints.
+
 A week later, MCP Apps was announced. Servers could return interactive HTML UIs directly in the chat. I had a Tempo time tracking server returning JSON, and I thought: this could be a visual timesheet.
 
 By Tuesday early morning I had it working. One evening of focused work.
@@ -149,15 +153,18 @@ Tweet 1:
 I'd stopped using MCP servers. Every connected server dumped tool definitions into context, tens of thousands of tokens gone before typing anything. Tool Search fixed that, now Claude Code fetches tools on-demand. 🔥
 
 Tweet 2:
-A week after reconnecting my MCPs, MCP Apps was announced. Servers can return interactive HTML UIs in the chat. Built timesheet grids and calendars for my Tempo server in one evening. 💡
+Server instructions help Claude know WHEN to load your tools and HOW to sequence them. "Always check schedule before creating worklogs" - simple hints like this showed 25% improvement in one case study. 💡
 
 Tweet 3:
-What made it fast: the MCP team publishes a skill file for Claude. I gave Claude Code the raw GitHub URL and it had full context for building MCP Apps. No doc hunting, just "add MCP Apps support" and it knew what to do.
+A week after reconnecting my MCPs, MCP Apps was announced. Servers can return interactive HTML UIs in the chat. Built timesheet grids and calendars for my Tempo server in one evening.
 
 Tweet 4:
-Anthropic and OpenAI co-authored the MCP Apps spec. That collaboration is rare. Signals MCP is becoming real infrastructure, not just a Claude thing. ✅
+What made it fast: the MCP team publishes a skill file for Claude. I gave Claude Code the raw GitHub URL and it had full context for building MCP Apps. No doc hunting, just "add MCP Apps support" and it knew what to do. ✅
 
 Tweet 5:
+Anthropic and OpenAI co-authored the MCP Apps spec. That collaboration is rare. Signals MCP is becoming real infrastructure, not just a Claude thing.
+
+Tweet 6:
 Try it: npx @tranzact/tempo-filler-mcp-server
 
 Skill file for Claude Code: https://raw.githubusercontent.com/anthropics/anthropic-cookbook/refs/heads/main/skills/mcp-app-development/mcp-app-development.md
