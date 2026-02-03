@@ -115,6 +115,8 @@ The [development guide](https://github.com/TRANZACT/tempo-filler-mcp-server/blob
 
 {% comment %}
 ## LinkedIn Post
+PUBLISHED: 2026-02-03T14:50:29.888Z
+
 MEDIA: /assets/tempo-mcp-apps-timesheet.png
 ALT: Tempo MCP Server timesheet grid showing worklogs by issue and day with color-coded coverage
 
@@ -146,6 +148,8 @@ Full post with code and the skill file link: https://juanjofuchs.github.io/ai-de
 ---
 
 ## X/Twitter Thread
+PUBLISHED: 2026-02-03T14:50:28.144Z
+
 MEDIA: /assets/tempo-mcp-apps-timesheet.png
 ALT: Tempo MCP Server timesheet grid showing worklogs by issue and day with color-coded coverage
 
