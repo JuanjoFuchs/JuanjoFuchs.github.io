@@ -195,9 +195,17 @@ export function parseLinkedInPost(commentContent) {
   // Normalize line endings (CRLF -> LF)
   const normalizedContent = contentWithoutMedia.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
 
+  // Strip URLs from body (automation adds blog URL as a LinkedIn comment instead)
+  // Also remove CTA label lines that precede a URL (e.g., "Full post:\nhttps://...")
+  const urlStrippedContent = normalizedContent
+    .replace(/^[^\n]*:\s*\nhttps?:\/\/[^\n]+$/gm, '')  // "Label:\nURL" pair
+    .replace(/^https?:\/\/[^\n]+$/gm, '')               // Standalone URL lines
+    .replace(/\n{3,}/g, '\n\n')                          // Collapse blank lines
+    .trim();
+
   // Strip Markdown formatting (LinkedIn doesn't support it)
   // Must strip bold (**text**) before italic (*text*) to handle nested cases
-  const plainContent = normalizedContent
+  const plainContent = urlStrippedContent
     .replace(/\*\*(.+?)\*\*/g, '$1')  // Bold: **text** → text
     .replace(/\*(.+?)\*/g, '$1')       // Italic: *text* → text
     .replace(/__(.+?)__/g, '$1')       // Bold: __text__ → text
@@ -233,19 +241,23 @@ export function parseTwitterThread(commentContent) {
   // Extract MEDIA and ALT fields first (before tweets parsing)
   const { media, alt, contentWithoutMedia } = extractMediaFields(fullSection);
 
-  // Extract individual tweets (Tweet 1, Tweet 2, etc.)
-  const tweetRegex = /Tweet\s+\d+[^\n]*:\s*\n([^\n]+(?:\n(?!Tweet\s+\d+)[^\n]+)*)/gi;
+  // Split by "Tweet N:" markers and extract each tweet's content
+  const tweetSplitRegex = /Tweet\s+\d+[^\n]*:\s*\n/gi;
+  const tweetHeaders = [...contentWithoutMedia.matchAll(tweetSplitRegex)];
+
   const tweets = [];
-  const tweetMeta = [];  // Store metadata for each tweet
-  let tweetMatch;
+  const tweetMeta = [];
 
-  while ((tweetMatch = tweetRegex.exec(contentWithoutMedia)) !== null) {
-    let tweetContent = tweetMatch[1].trim();
+  for (let i = 0; i < tweetHeaders.length; i++) {
+    const startIndex = tweetHeaders[i].index + tweetHeaders[i][0].length;
+    const endIndex = i + 1 < tweetHeaders.length
+      ? tweetHeaders[i + 1].index
+      : contentWithoutMedia.length;
+
+    let tweetContent = contentWithoutMedia.substring(startIndex, endIndex).trim();
+
     if (tweetContent) {
-      // Normalize line endings (CRLF -> LF) - Twitter API may truncate at \r
       tweetContent = tweetContent.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
-
-      // Calculate Twitter length and truncate if needed
       const result = truncateTweet(tweetContent);
       tweets.push(result.text);
       tweetMeta.push({
@@ -280,26 +292,27 @@ export function parseTwitterThread(commentContent) {
  * @returns {string} - Full blog post URL
  */
 export function buildBlogUrl(frontMatter, filePath, baseUrl) {
-  const date = new Date(frontMatter.date);
-  const year = date.getFullYear();
-  const month = String(date.getMonth() + 1).padStart(2, '0');
-  const day = String(date.getDate()).padStart(2, '0');
+  const filename = filePath.split(/[\\/]/).pop();
 
-  // Extract slug from filename (Jekyll uses filename, not title)
-  // Example: "2025-11-11-scheduled-post-publishing.md" -> "scheduled-post-publishing"
-  const filename = filePath.split(/[\\/]/).pop(); // Get filename from path
-  const slug = filename
-    .replace(/^\d{4}-\d{2}-\d{2}-/, '') // Remove date prefix
-    .replace(/\.md$/, ''); // Remove .md extension
+  // Date from filename — always matches Jekyll's URL, no timezone issues
+  const dateMatch = filename.match(/^(\d{4})-(\d{2})-(\d{2})-/);
+  let year, month, day;
+  if (dateMatch) {
+    [, year, month, day] = dateMatch;
+  } else {
+    const date = new Date(frontMatter.date);
+    year = date.getFullYear();
+    month = String(date.getMonth() + 1).padStart(2, '0');
+    day = String(date.getDate()).padStart(2, '0');
+  }
 
-  // Build category path
-  // Categories can be a string "category1 category2" or array ["category1", "category2"]
+  const slug = filename.replace(/^\d{4}-\d{2}-\d{2}-/, '').replace(/\.md$/, '');
+
   let categoryPath = '';
   if (frontMatter.categories) {
     const categories = Array.isArray(frontMatter.categories)
       ? frontMatter.categories
       : frontMatter.categories.split(' ').filter(c => c.trim());
-
     if (categories.length > 0) {
       categoryPath = categories.join('/') + '/';
     }

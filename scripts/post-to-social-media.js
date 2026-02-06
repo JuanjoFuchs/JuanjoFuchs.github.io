@@ -131,6 +131,15 @@ async function main() {
   } else if (extracted.twitter && extracted.twitter.tweets.length > 0) {
     console.log(`\n🐦 Posting to X (Twitter) - ${extracted.twitter.tweets.length} tweets`);
 
+    // Replace any hardcoded blog URLs with the correctly generated blogUrl
+    const BASE_DOMAIN = 'juanjofuchs.github.io';
+    const blogUrlPattern = new RegExp(
+      `https?://${BASE_DOMAIN.replace(/\./g, '\\.')}[^\\s]*`, 'g'
+    );
+    const correctedTweets = extracted.twitter.tweets.map(
+      tweet => tweet.replace(blogUrlPattern, extracted.blogUrl)
+    );
+
     // Resolve media path for Twitter
     const twitterMediaPath = resolveMediaPath(extracted.twitter.media, filePath);
     if (extracted.twitter.media) {
@@ -138,7 +147,7 @@ async function main() {
     }
 
     promises.push(
-      postTwitterThread(extracted.twitter.tweets, credentials.twitter, {
+      postTwitterThread(correctedTweets, credentials.twitter, {
         mediaPath: twitterMediaPath,
         altText: extracted.twitter.alt
       })
