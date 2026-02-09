@@ -11,9 +11,9 @@ image: /assets/ai-agent-hills-verification-gates.png
 
 ![AI agent idle on flat terrain vs climbing hills with pass/fail gates and progress indicators](/assets/ai-agent-hills-verification-gates.png)
 
-Most prompting advice is about what to say. Be specific. Provide context. Use examples. All useful, but there's a pattern from how some models are trained that changed how I think about working with AI.
+Last week, Anthropic published how 16 parallel Claude agents wrote a [100,000-line C compiler](https://www.anthropic.com/engineering/building-c-compiler) from scratch in two weeks, no human supervision. It compiles the Linux kernel and runs DOOM. One key factor was verification infrastructure: test suites, CI pipelines, and an existing compiler to check results against. The project's core lesson: if the verifier isn't reliable, the AI solves the wrong problem.
 
-Reinforcement learning trains systems to iterate toward better scores, i.e. climbing hills. Two approaches in particular, RLHF and RLVR, offer a useful mental model for how we structure feedback for AI tools.
+Most prompting advice focuses on what to say, be specific, provide context, use examples. All useful, but the C compiler result points at something deeper: a concept from reinforcement learning that changed how I think about structuring work for AI.
 
 ## Reinforcement Learning Concepts
 
@@ -21,11 +21,13 @@ Reinforcement learning trains systems to iterate toward better scores, i.e. clim
 
 **RLVR (Reinforcement Learning with Verifiable Rewards)** is what [NVIDIA describes](https://developer.nvidia.com/blog/how-to-train-an-ai-agent-for-command-line-tasks-with-synthetic-data-and-reinforcement-learning/) for training CLI agents. Instead of human judgment, the reward comes from code-based verification. Did the command execute correctly? +1. Did it fail validation? -1. No human needed, and the same output always yields the same reward.
 
-In the [last post](/ai-development/2026/01/27/ai-accelerates-whatever-you-have.html), I argued that AI amplifies whatever your codebase already has. The determining factor is verification infrastructure, the checks that let AI self-correct instead of waiting for you.
+The C compiler project was RLVR-style feedback at scale, 16 agents iterating against automated test suites instead of waiting for human review. In the [last post](https://juanjofuchs.github.io/ai-development/2026/01/27/ai-accelerates-whatever-you-have.html), I argued that AI amplifies whatever your codebase already has. The determining factor is verification infrastructure, the checks that let AI self-correct instead of waiting for you.
 
 ## Hard vs Soft Artifacts
 
-Applying the mental model above to our interactions with AI coding assistants, we get:
+AI writes thousands of lines of code faster than any human can review them. Line-by-line reading is no longer viable at the speed and volume AI produces. You need abstraction layers above the code, ways to verify correctness and evaluate intent without reading every line.
+
+Hard and soft artifacts are those layers.
 
 **Soft artifacts** produce human feedback. Summaries, diagrams, recordings of features working, things that help you understand. The AI generates them, but you provide the judgment. A diagram helps you spot design issues. A recording shows whether the feature does what you wanted. These scale your awareness without replacing your reasoning. This is RLHF-style feedback, you are the reward function.
 
@@ -48,24 +50,24 @@ The difference is speed. When AI can self-evaluate, iterations happen at machine
 3. AI iterates until checks pass
 4. You review the final result
 
-You shift from evaluator to architect. You're not scoring every output, you're designing the system that scores.
+You shift from evaluator to architect.
 
 ## Some Hard Artifacts To Consider For Your Codebase
 
 
-**Type systems as constraints.** TypeScript catches category errors before runtime. AI can't violate the constraint even if it tries, the compiler simply won't allow it. The correction is automatic, no human needed.
+**Type systems as constraints.** TypeScript catches category errors before runtime. AI can't violate the constraint even if it tries, the compiler simply won't allow it.
 
-**Tests as success criteria.** Tests define "what correct looks like" in executable form. AI makes a change, tests run, immediate feedback. If tests pass, the change is valid by definition. The correction loop is code, not conversation.
+**Tests as success criteria.** Tests define "what correct looks like" in executable form. AI makes a change, tests run, immediate feedback, and if tests pass the change is valid by definition.
 
 **Complexity budgets as guardrails.** Set thresholds for cyclomatic complexity, cognitive complexity, file length. Tools like [SonarQube](https://www.sonarsource.com/) or [CodeClimate](https://codeclimate.com/) can enforce these on every commit. AI learns the boundaries by hitting them.
 
-**Coverage thresholds as gates.** Require minimum test coverage for new code. AI can't merge changes that reduce coverage below the threshold. The measurement enforces the behavior.
+**Coverage thresholds as gates.** Require minimum test coverage for new code. AI can't merge changes that reduce coverage below the threshold.
 
-**Performance baselines as regression tests.** Set benchmarks for response times, memory usage, bundle sizes. CI can fail builds that regress beyond acceptable thresholds. AI learns to optimize, not just ship.
+**Performance baselines as regression tests.** Set benchmarks for response times, memory usage, bundle sizes. CI can fail builds that regress beyond acceptable thresholds.
 
-**Security scans as gates.** Static analysis tools catch vulnerabilities before merge. AI can't introduce known security issues if the pipeline blocks them. The scan encodes security knowledge you'd otherwise review manually.
+**Security scans as gates.** Static analysis tools catch vulnerabilities before merge. AI can't introduce known security issues if the pipeline blocks them, encoding security knowledge you'd otherwise review manually.
 
-**Commit hooks as enforcement.** Pre-commit and pre-push hooks run these checks before code can merge. AI can't bypass them, the commit fails. Tools like [Husky](https://typicode.github.io/husky/) for JavaScript, [pre-commit](https://pre-commit.com/) for Python, or native Git hooks work out of the box.
+**Commit hooks as enforcement.** Pre-commit and pre-push hooks run these checks before code can merge. AI can't bypass them. Tools like [Husky](https://typicode.github.io/husky/) for JavaScript, [pre-commit](https://pre-commit.com/) for Python, or native Git hooks work out of the box.
 
 ## Caveat: Your AI Assistant Will Game the Hill
 
@@ -100,31 +102,28 @@ Guardrails to enforce this:
 
 **Then add tests for the code paths AI touches most.** You don't need 100% coverage, just enough that AI can self-verify its own changes instead of waiting for you.
 
-Or just feed this post to Claude. It will scan your repo, identify which hard artifacts are missing, and set them up.
-
-Last week, Anthropic published how 16 parallel Claude agents wrote a [100,000-line C compiler](https://www.anthropic.com/engineering/building-c-compiler) from scratch in two weeks, no human supervision. The enabling factor was verification infrastructure: test suites, CI pipelines, and regression gates. The cardinal rule from the project: "the task verifier must be nearly perfect, otherwise Claude will solve the wrong problem." The same principles apply to your codebase, at whatever scale you're working.
+I feed this post as context to Claude at the start of new projects, then ask it to identify which hard artifacts are missing and suggest what to add first. It works as a checklist that adapts to whatever codebase you point it at.
 
 {% comment %}
 ## LinkedIn Post
 MEDIA: /assets/ai-agent-hills-verification-gates.png
 ALT: AI agent idle on flat terrain vs climbing hills with pass/fail gates and progress indicators
 
-Anthropic's team just had 16 AI agents write a 100,000-line C compiler autonomously. No human supervision for two weeks. It compiles the Linux kernel and runs DOOM.
+Anthropic just had 16 AI agents write a 100,000-line C compiler autonomously. No human supervision for two weeks. It compiles the Linux kernel and runs DOOM.
 
-It all came down to tests.
+One key factor was verification infrastructure: test suites, CI pipelines, and an existing compiler to check results against. The core lesson, if the verifier isn't reliable, the AI solves the wrong problem.
 
-Test suites, CI pipelines, regression gates, a GCC oracle for comparison. The cardinal rule from the project: "the task verifier must be nearly perfect, otherwise Claude will solve the wrong problem."
+AI writes thousands of lines of code faster than you can review them, line-by-line reading isn't viable anymore. You need abstraction layers above the code, ways to verify correctness and evaluate intent without reading every line.
 
-This maps to something I've been thinking about. There are two kinds of feedback you can give AI coding tools:
+Two kinds of abstraction layers:
 
-✅ Hard artifacts: tests, type checkers, linters, coverage thresholds. These give AI a pass/fail signal it can iterate on at machine speed.
+✅ Hard artifacts: tests, type checkers, linters, coverage thresholds. Give AI a pass/fail signal it can iterate on at machine speed.
 
-Soft artifacts: architecture decisions, design intent, whether the feature is what you actually wanted. These still need you.
+Soft artifacts: diagrams, architecture decisions, design intent. These still need you, but you're evaluating intent, not reviewing every line of code.
 
-Remove yourself from "is it correct?" and stay in the loop for "is it what I want?" You shift from evaluator to architect.
+Remove yourself from "is it correct?" and stay in the loop for "is it what I want?"
 
-Full breakdown on what to build and why it matters now:
-https://juanjofuchs.github.io/ai-development/2026/02/10/give-your-ai-hills-to-climb.html
+What verification infrastructure do you have for AI-generated code? Full breakdown in the comments.
 
 #AIEngineering #DeveloperProductivity #CodeQuality #SoftwareArchitecture
 
@@ -135,16 +134,16 @@ MEDIA: /assets/ai-agent-hills-verification-gates.png
 ALT: AI agent idle on flat terrain vs climbing hills with pass/fail gates and progress indicators
 
 Tweet 1:
-16 AI agents just wrote a 100,000-line C compiler that compiles the Linux kernel and runs DOOM. No human supervision for two weeks. It all came down to tests, not prompts. 🔥
+16 AI agents wrote a 100,000-line C compiler autonomously, compiles the Linux kernel and runs DOOM. No human supervision for two weeks. One key factor: verification infrastructure. 🔥
 
 Tweet 2:
-Anthropic's cardinal rule from the project: "the task verifier must be nearly perfect, otherwise Claude will solve the wrong problem." Test suites, CI pipelines, and regression gates did the heavy lifting. 💡
+AI writes code faster than you can review it. Line-by-line reading isn't viable at the speed and volume AI produces. You need abstraction layers above the code, ways to verify without reading every line. 💡
 
 Tweet 3:
 Two kinds of feedback for AI coding tools: hard artifacts (tests, types, linters) give pass/fail signals AI iterates on at machine speed. Soft artifacts (architecture, design intent) still need you.
 
 Tweet 4:
-The catch: AI games every metric it controls. In the C compiler project, Claude kept breaking existing features when adding new ones. Stricter CI enforcement fixed it. ✅
+The catch: AI games every metric it controls. In Anthropic's C compiler project, Claude kept breaking existing features when adding new ones. Stricter CI enforcement fixed it. ✅
 
 Tweet 5:
 Start with a linter or type checker, zero effort, immediate pass/fail. Then add tests for the paths AI touches most. You shift from evaluator to architect.

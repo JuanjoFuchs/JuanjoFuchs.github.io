@@ -196,10 +196,11 @@ export function parseLinkedInPost(commentContent) {
   const normalizedContent = contentWithoutMedia.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
 
   // Strip URLs from body (automation adds blog URL as a LinkedIn comment instead)
-  // Also remove CTA label lines that precede a URL (e.g., "Full post:\nhttps://...")
   const urlStrippedContent = normalizedContent
-    .replace(/^[^\n]*:\s*\nhttps?:\/\/[^\n]+$/gm, '')  // "Label:\nURL" pair
+    .replace(/^[^\n]*:\s*\nhttps?:\/\/[^\n]+$/gm, '')  // "Label:\nURL" pair on two lines
     .replace(/^https?:\/\/[^\n]+$/gm, '')               // Standalone URL lines
+    .replace(/https?:\/\/\S+/g, '')                      // Inline URLs within text
+    .replace(/^[^\S\n]*\n/gm, '\n')                      // Trim lines that became whitespace-only
     .replace(/\n{3,}/g, '\n\n')                          // Collapse blank lines
     .trim();
 

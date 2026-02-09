@@ -141,7 +141,7 @@ Anthropic and OpenAI co-authored this spec. That kind of collaboration is rare.
 
 Try it: npx @tranzact/tempo-filler-mcp-server
 
-Full post with code and the skill file link: https://juanjofuchs.github.io/ai-development/2026/02/03/adding-visual-uis-to-mcp-server.html
+Full post with code and the skill file link: https://juanjofuchs.github.io/ai-development/2026/02/03/adding-visual-uis-to-my-mcp-server-in-one-evening.html
 
 #MCP #ClaudeCode #AITools #OpenSource #TypeScript
 
@@ -173,7 +173,7 @@ Try it: npx @tranzact/tempo-filler-mcp-server
 
 Skill file for Claude Code: https://raw.githubusercontent.com/anthropics/anthropic-cookbook/refs/heads/main/skills/mcp-app-development/mcp-app-development.md
 
-Full post: https://juanjofuchs.github.io/ai-development/2026/02/03/adding-visual-uis-to-mcp-server.html
+Full post: https://juanjofuchs.github.io/ai-development/2026/02/03/adding-visual-uis-to-my-mcp-server-in-one-evening.html
 
 #MCP #ClaudeCode
 {% endcomment %}
