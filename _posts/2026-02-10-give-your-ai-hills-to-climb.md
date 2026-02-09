@@ -91,6 +91,8 @@ A **Constraint Agent** defines what success looks like: tests from specs, type s
 
 An **Implementation Agent** writes code to satisfy the constraints. It can iterate freely, but guardrails block modifications to constraint files. The artifacts are read-only targets.
 
+Cursor's research on [self-driving codebases](https://cursor.com/blog/self-driving-codebases) arrived at the same structure independently. After trying self-coordinating agents (chaos), rigid hierarchies (bottlenecks), and single agents with too many responsibilities (pathological behavior), they landed on planners who own strategy and never write code, workers who execute but can't modify the plan.
+
 Guardrails to enforce this:
 - [CODEOWNERS](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners) requiring separate approval for constraint files (tests, schemas, configs)
 - [Pre-commit hooks](https://pre-commit.com/) rejecting constraint changes from implementation sessions
