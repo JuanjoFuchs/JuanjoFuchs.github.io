@@ -111,7 +111,7 @@ I feed this post as context to Claude at the start of new projects, then ask it 
 MEDIA: /assets/ai-agent-hills-verification-gates.png
 ALT: AI agent idle on flat terrain vs climbing hills with pass/fail gates and progress indicators
 
-Anthropic just had 16 AI agents write a 100,000-line C compiler autonomously. No human supervision for two weeks. It compiles the Linux kernel and runs DOOM.
+Give Your AI Hills to Climb: 16 AI agents just wrote a 100,000-line C compiler autonomously, compiles the Linux kernel and runs DOOM, no human supervision for two weeks. The key was not only a better model, it was verification infrastructure that let the agents self-correct.
 
 One key factor was verification infrastructure: test suites, CI pipelines, and an existing compiler to check results against. The core lesson, if the verifier isn't reliable, the AI solves the wrong problem.
 
