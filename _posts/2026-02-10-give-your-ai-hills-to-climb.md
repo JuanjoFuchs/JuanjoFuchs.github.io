@@ -108,6 +108,8 @@ I feed this post as context to Claude at the start of new projects, then ask it 
 
 {% comment %}
 ## LinkedIn Post
+PUBLISHED: 2026-02-10T14:58:23.240Z
+
 MEDIA: /assets/ai-agent-hills-verification-gates.png
 ALT: AI agent idle on flat terrain vs climbing hills with pass/fail gates and progress indicators
 
@@ -132,6 +134,8 @@ What verification infrastructure do you have for AI-generated code? Full breakdo
 ---
 
 ## X/Twitter Thread
+PUBLISHED: 2026-02-10T14:58:22.717Z
+
 MEDIA: /assets/ai-agent-hills-verification-gates.png
 ALT: AI agent idle on flat terrain vs climbing hills with pass/fail gates and progress indicators
 
