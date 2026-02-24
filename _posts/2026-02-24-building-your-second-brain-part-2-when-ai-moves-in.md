@@ -174,6 +174,8 @@ If you haven't set up the foundation yet, [Part 1](https://juanjofuchs.github.io
 
 {% comment %}
 ## LinkedIn Post
+PUBLISHED: 2026-02-24T14:56:10.161Z
+
 MEDIA: /assets/second-brain-graph.png
 ALT: Obsidian graph view showing hundreds of interconnected notes clustered by topic
 
@@ -204,6 +206,8 @@ https://juanjofuchs.github.io/productivity/2026/02/24/building-your-second-brain
 ---
 
 ## X/Twitter Thread
+PUBLISHED: 2026-02-24T14:56:08.057Z
+
 MEDIA: /assets/second-brain-graph.png
 ALT: Obsidian graph view showing hundreds of interconnected notes clustered by topic
 
