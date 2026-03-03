@@ -127,6 +127,8 @@ If your AI-assisted drafts keep coming out vaguely right but not quite what you 
 
 {% comment %}
 ## LinkedIn Post
+PUBLISHED: 2026-03-03T14:50:41.061Z
+
 MEDIA: /assets/spec-blueprint-to-post.png
 ALT: A spec document with visible structure transforming into a finished blog post
 
@@ -153,6 +155,8 @@ https://juanjofuchs.github.io/productivity/2026/03/03/building-your-second-brain
 ---
 
 ## X/Twitter Thread
+PUBLISHED: 2026-03-03T14:50:40.246Z
+
 MEDIA: /assets/spec-blueprint-to-post.png
 ALT: A spec document with visible structure transforming into a finished blog post
 
