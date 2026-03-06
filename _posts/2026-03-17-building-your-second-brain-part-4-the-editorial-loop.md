@@ -2,7 +2,7 @@
 layout: post
 title: "Building Your Second Brain, Part 4: The Editorial Loop"
 description: "AI drafts read polished and confident, which is exactly why the patterns are hard to spot. An autonomous editorial loop with a published checklist and orchestration prompt catches what you can't see after writing with AI."
-date: 2026-03-10 09:00:00 -0500
+date: 2026-03-17 09:00:00 -0500
 categories: productivity
 tags: [second-brain, ai, productivity, writing, content-creation]
 author: JuanjoFuchs
@@ -161,7 +161,7 @@ This post went through its own loop:
 ~15 edits, converged in 3 passes. Same ideas, same structure, different texture.
 
 The checklist, the orchestration prompt, and before/after examples are all published in the post 👇
-https://juanjofuchs.github.io/productivity/2026/03/10/building-your-second-brain-part-4-the-editorial-loop.html
+https://juanjofuchs.github.io/productivity/2026/03/17/building-your-second-brain-part-4-the-editorial-loop.html
 
 #AI #Writing #ContentCreation #SecondBrain #Productivity
 
@@ -185,7 +185,7 @@ This post went through its own loop. Pass 1: 14 violations. Pass 2: 5. Pass 3: 5
 
 Tweet 5:
 Full checklist, orchestration prompt, and before/after examples:
-https://juanjofuchs.github.io/productivity/2026/03/10/building-your-second-brain-part-4-the-editorial-loop.html
+https://juanjofuchs.github.io/productivity/2026/03/17/building-your-second-brain-part-4-the-editorial-loop.html
 
 #AI #Writing
 
