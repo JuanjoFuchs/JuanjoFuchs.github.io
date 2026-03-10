@@ -2,7 +2,7 @@
 layout: post
 title: "claudefana: Beyond the Burn Rate"
 description: "I built ccburn to track Claude Code spend. Then I wanted the full picture — cache efficiency, cost per commit, lines per dollar. Claude Code already exports it all via OpenTelemetry. I built a dashboard for it."
-date: 2026-03-10 09:00:00 -0500
+date: 2026-03-10 08:00:00 -0500
 categories: ai-development
 tags: [claude-code, observability, grafana, opentelemetry, open-source]
 author: JuanjoFuchs
