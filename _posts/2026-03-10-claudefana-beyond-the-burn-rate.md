@@ -109,6 +109,8 @@ If you're just looking for token pacing without the full dashboard, [ccburn](htt
 {% comment %}
 ## LinkedIn Post
 
+PUBLISHED: 2026-03-10T13:16:03.145Z
+
 MEDIA: /assets/claudefana-dashboard.png
 ALT: claudefana Grafana dashboard showing 26 panels of Claude Code usage metrics
 
@@ -136,6 +138,8 @@ What metrics would you want to see from your Claude Code sessions?
 ---
 
 ## X/Twitter Thread
+
+PUBLISHED: 2026-03-10T13:16:04.721Z
 
 MEDIA: /assets/claudefana-dashboard.png
 ALT: claudefana Grafana dashboard showing 26 panels of Claude Code usage metrics
