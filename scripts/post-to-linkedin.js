@@ -266,63 +266,14 @@ async function createLinkedInPost(content, personId, accessToken, options = {}) 
 }
 
 /**
- * Add a comment to a LinkedIn post using the versioned Comments API
- * @param {string} postUrn - LinkedIn post URN (e.g., "urn:li:share:123456")
- * @param {string} commentText - Comment text (blog URL)
- * @param {string} personId - LinkedIn person ID
- * @param {string} accessToken - LinkedIn OAuth 2.0 access token
- * @returns {Promise<object>} - {success, commentId, error}
- */
-async function addLinkedInComment(postUrn, commentText, personId, accessToken) {
-  try {
-    // Wait a moment for the post to be fully available
-    await new Promise(resolve => setTimeout(resolve, 2000));
-
-    const commentData = {
-      actor: `urn:li:person:${personId}`,
-      object: postUrn,
-      message: {
-        text: commentText
-      }
-    };
-
-    const response = await axios.post(
-      `https://api.linkedin.com/rest/socialActions/${encodeURIComponent(postUrn)}/comments`,
-      commentData,
-      {
-        headers: {
-          'Authorization': `Bearer ${accessToken}`,
-          'Content-Type': 'application/json',
-          'LinkedIn-Version': LINKEDIN_VERSION,
-          'X-Restli-Protocol-Version': '2.0.0'
-        }
-      }
-    );
-
-    return {
-      success: true,
-      commentId: response.data.id || response.headers['x-restli-id'],
-      error: null
-    };
-  } catch (err) {
-    console.error('Failed to add LinkedIn comment:', err.response?.data || err.message);
-    return {
-      success: false,
-      commentId: null,
-      error: err.response?.data?.message || err.message
-    };
-  }
-}
-
-/**
- * Post to LinkedIn with main content and first comment containing blog URL
- * @param {string} content - Main post content
- * @param {string} blogUrl - Blog post URL (will be posted as first comment)
+ * Post to LinkedIn with content including blog URL in body
+ * @param {string} content - Main post content (should include blog URL)
+ * @param {string} blogUrl - Blog post URL (kept for API compatibility, URL should be in content)
  * @param {string} accessToken - LinkedIn OAuth 2.0 access token
  * @param {object} options - Optional parameters
  * @param {string} options.mediaPath - Path to media file to attach
  * @param {string} options.altText - Alt text for media
- * @returns {Promise<object>} - {success, postId, postUrl, commentId, mediaUploaded, error}
+ * @returns {Promise<object>} - {success, postId, postUrl, mediaUploaded, error}
  */
 export async function postToLinkedIn(content, blogUrl, accessToken, options = {}) {
   try {
@@ -331,7 +282,6 @@ export async function postToLinkedIn(content, blogUrl, accessToken, options = {}
         success: false,
         postId: null,
         postUrl: null,
-        commentId: null,
         mediaUploaded: false,
         error: 'No content provided'
       };
@@ -342,7 +292,6 @@ export async function postToLinkedIn(content, blogUrl, accessToken, options = {}
         success: false,
         postId: null,
         postUrl: null,
-        commentId: null,
         mediaUploaded: false,
         error: 'Missing LinkedIn access token'
       };
@@ -356,7 +305,6 @@ export async function postToLinkedIn(content, blogUrl, accessToken, options = {}
         success: false,
         postId: null,
         postUrl: null,
-        commentId: null,
         mediaUploaded: false,
         error: `Failed to get user ID: ${userResult.error}`
       };
@@ -393,7 +341,6 @@ export async function postToLinkedIn(content, blogUrl, accessToken, options = {}
         success: false,
         postId: null,
         postUrl: null,
-        commentId: null,
         mediaUploaded: false,
         error: `Failed to create post: ${postResult.error}`
       };
@@ -401,35 +348,10 @@ export async function postToLinkedIn(content, blogUrl, accessToken, options = {}
 
     console.log(`✓ Post created: ${postResult.postUrl}`);
 
-    // Step 4: Add comment with blog URL
-    console.log('Adding first comment with blog URL...');
-    const commentResult = await addLinkedInComment(
-      postResult.postId,
-      `Read the full post: ${blogUrl}`,
-      personId,
-      accessToken
-    );
-
-    if (!commentResult.success) {
-      // Post succeeded but comment failed - still return success
-      console.warn(`⚠ Post succeeded but failed to add comment: ${commentResult.error}`);
-      return {
-        success: true,
-        postId: postResult.postId,
-        postUrl: postResult.postUrl,
-        commentId: null,
-        mediaUploaded: !!imageUrn,
-        error: `Post succeeded but comment failed: ${commentResult.error}`
-      };
-    }
-
-    console.log(`✓ Comment added with blog URL`);
-
     return {
       success: true,
       postId: postResult.postId,
       postUrl: postResult.postUrl,
-      commentId: commentResult.commentId,
       mediaUploaded: !!imageUrn,
       error: null
     };
@@ -439,7 +361,6 @@ export async function postToLinkedIn(content, blogUrl, accessToken, options = {}
       success: false,
       postId: null,
       postUrl: null,
-      commentId: null,
       mediaUploaded: false,
       error: err.message
     };

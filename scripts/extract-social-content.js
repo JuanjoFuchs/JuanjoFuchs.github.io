@@ -195,18 +195,9 @@ export function parseLinkedInPost(commentContent) {
   // Normalize line endings (CRLF -> LF)
   const normalizedContent = contentWithoutMedia.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
 
-  // Strip URLs from body (automation adds blog URL as a LinkedIn comment instead)
-  const urlStrippedContent = normalizedContent
-    .replace(/^[^\n]*:\s*\nhttps?:\/\/[^\n]+$/gm, '')  // "Label:\nURL" pair on two lines
-    .replace(/^https?:\/\/[^\n]+$/gm, '')               // Standalone URL lines
-    .replace(/https?:\/\/\S+/g, '')                      // Inline URLs within text
-    .replace(/^[^\S\n]*\n/gm, '\n')                      // Trim lines that became whitespace-only
-    .replace(/\n{3,}/g, '\n\n')                          // Collapse blank lines
-    .trim();
-
   // Strip Markdown formatting (LinkedIn doesn't support it)
   // Must strip bold (**text**) before italic (*text*) to handle nested cases
-  const plainContent = urlStrippedContent
+  const plainContent = normalizedContent
     .replace(/\*\*(.+?)\*\*/g, '$1')  // Bold: **text** → text
     .replace(/\*(.+?)\*/g, '$1')       // Italic: *text* → text
     .replace(/__(.+?)__/g, '$1')       // Bold: __text__ → text
