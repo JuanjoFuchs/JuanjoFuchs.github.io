@@ -2,7 +2,7 @@
 layout: post
 title: "Building Your Second Brain, Part 4: The Editorial Loop"
 description: "AI drafts read polished and confident, which is exactly why the patterns are hard to spot. An autonomous editorial loop with a published checklist and orchestration prompt catches what you can't see after writing with AI."
-date: 2026-03-17 09:00:00 -0500
+date: 2026-03-17 09:00:00 -0400
 categories: productivity
 tags: [second-brain, ai, productivity, writing, content-creation]
 author: JuanjoFuchs
