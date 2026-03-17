@@ -144,6 +144,8 @@ The style guide lives in my vault as a markdown file, [AI-readable by design](ht
 
 {% comment %}
 ## LinkedIn Post
+PUBLISHED: 2026-03-17T13:08:52.918Z
+
 MEDIA: /assets/editorial-loop-redpen.png
 ALT: A blog post draft with red-pen editorial annotations marking AI writing patterns
 
@@ -168,6 +170,8 @@ https://juanjofuchs.github.io/productivity/2026/03/17/building-your-second-brain
 ---
 
 ## X/Twitter Thread
+PUBLISHED: 2026-03-17T13:08:54.457Z
+
 MEDIA: /assets/editorial-loop-redpen.png
 ALT: A blog post draft with red-pen editorial annotations marking AI writing patterns
 
