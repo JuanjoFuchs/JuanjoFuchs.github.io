@@ -132,6 +132,8 @@ If you're looking for the personal version (single user, no org context), that's
 {% comment %}
 ## LinkedIn Post
 
+PUBLISHED: 2026-03-24T13:04:40.848Z
+
 MEDIA: /assets/claudefana-enterprise-full-anonymized.png
 ALT: claudefana-enterprise Grafana dashboard showing Claude Code ROI metrics per developer with team breakdown
 
@@ -169,6 +171,8 @@ Open source, deploys to Kubernetes via Kustomize or Docker Compose. Links in the
 ---
 
 ## X/Twitter Thread
+
+PUBLISHED: 2026-03-24T13:04:41.866Z
 
 MEDIA: /assets/claudefana-enterprise-full-anonymized.png
 ALT: claudefana-enterprise Grafana dashboard showing Claude Code ROI metrics per developer with team breakdown
