@@ -43,7 +43,7 @@ I wrote previously that [LLMs are compaction tools, and you are the algorithm](h
 
 ## What to actually onboard
 
-I've written before about how [AI accelerates whatever you have](https://juanjofuchs.github.io/ai/2026/02/24/ai-accelerates-whatever-you-have.html) and about [giving your AI hills to climb](https://juanjofuchs.github.io/ai-development/2026/02/10/give-your-ai-hills-to-climb.html), and in practice it breaks down into three layers.
+I've written before about how [AI accelerates whatever you have](https://juanjofuchs.github.io/ai-development/2026/01/27/ai-accelerates-whatever-you-have.html) and about [giving your AI hills to climb](https://juanjofuchs.github.io/ai-development/2026/02/10/give-your-ai-hills-to-climb.html), and in practice it breaks down into three layers.
 
 **What the agent needs to see:**
 
@@ -125,7 +125,7 @@ The self-driving industry mapped this with SAE levels. Start at Level 0 (you're 
 
 Full progressive onboarding framework in the post.
 
-{url}
+https://juanjofuchs.github.io/ai-development/2026/03/31/stop-building-another-claude-learn-how-to-onboard-one-into-your-organization-instead.html
 
 #AI #EnterpriseAI #MCP #ClaudeCode #AgenticAI
 
@@ -142,7 +142,7 @@ The differentiator is how you onboard them:
 
 Amazon skipped autonomy levels. 6.3M lost orders. The self-driving industry figured this out years ago with SAE levels.
 
-{url}
+https://juanjofuchs.github.io/ai-development/2026/03/31/stop-building-another-claude-learn-how-to-onboard-one-into-your-organization-instead.html
 
 ---END SOCIAL MEDIA CONTENT---
 {% endcomment %}
