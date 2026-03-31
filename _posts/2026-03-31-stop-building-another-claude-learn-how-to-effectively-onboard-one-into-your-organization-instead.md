@@ -106,9 +106,8 @@ It's less glamorous than building an eight-agent orchestration system but it wor
 **The agent race belongs to Anthropic, OpenAI, Google, and Microsoft. I stopped trying to compete with them and started onboarding the agent I already have, progressively, with the same care I'd give my best new hire.**
 
 {% comment %}
----SOCIAL MEDIA CONTENT---
+## LinkedIn Post
 
----LINKEDIN---
 Last year I spent months building a custom multi-agent system. Eight specialized agents, an orchestrator, to-do lists, memory management, context compaction, browser automation. It was the most complex thing I'd shipped and I was genuinely proud of it.
 
 Then Claude Code shipped task dependencies natively. Then agent teams. Then auto memory. Then the Chrome extension. Then a 1M context window. Feature by feature, Anthropic was building everything I'd built and doing it better. They own the model and have hundreds of engineers.
@@ -149,13 +148,18 @@ https://juanjofuchs.github.io/ai-development/2026/03/31/stop-building-another-cl
 
 #AI #EnterpriseAI #MCP #ClaudeCode #AgenticAI
 
----TWITTER---
+---
+
+## X/Twitter Thread
+
+Tweet 1:
 Most enterprise teams in 2025 were building custom multi-agent systems. I was one of them.
 
 Then Claude Code shipped those features natively. Then Codex. Then Gemini. The agents are commodity now.
 
 The differentiator is how you onboard them:
 
+Tweet 2:
 → What they see (KPIs, work, knowledge)
 → What they do (systems, processes, org)
 → What they must NOT do (boundaries at each autonomy level)
@@ -164,5 +168,4 @@ Amazon skipped autonomy levels. 6.3M lost orders. The self-driving industry figu
 
 https://juanjofuchs.github.io/ai-development/2026/03/31/stop-building-another-claude-learn-how-to-effectively-onboard-one-into-your-organization-instead.html
 
----END SOCIAL MEDIA CONTENT---
 {% endcomment %}
