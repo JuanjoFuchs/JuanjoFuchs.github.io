@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Stop Building Another Claude. Learn How to Onboard One Into Your Organization Instead."
+title: "Stop Building Another Claude. Learn How to Effectively Onboard One Into Your Organization Instead."
 description: "The agent race belongs to Anthropic, OpenAI, and Google. Our job isn't to build another Claude, it's to onboard one into our domain. The progressive framework and concrete onboarding components are what separate a rockstar AI coworker from a production outage."
 date: 2026-03-31 09:00:00 -0400
 categories: ai-development
@@ -11,47 +11,47 @@ image: /assets/stop-building-another-claude-hero.png
 
 ![Stop building another Claude, onboard one instead](/assets/stop-building-another-claude-hero.png)
 
-Last year I built a custom multi-agent system. Eight specialized agents, an orchestrator, task dependencies, memory management, context window compaction. I was proud of it. It worked.
+Last year I built a custom multi-agent system. Eight specialized agents, an orchestrator, to-do lists, memory management, context window compaction, browser tools. I was proud of it. It worked.
 
-Then Claude Code shipped task dependencies natively. Then agent teams. Then auto memory. Then a 1M context window with Claude Opus 4.6. Feature by feature, teams at Anthropic were building what I'd built and in a much better way. They own the model, have hundreds of engineers, and can ship features daily.
+Then Claude Code shipped task dependencies natively. Then agent teams. Then auto memory. Then the Chrome browser extension. Then a 1M context window with Claude Opus 4.6.
 
-I was entering a race I couldn't win.
+Every enterprise team I talked to in 2024-2025 was building custom multi-agent architectures. The pitch was compelling: create specialized agents for your specific workflows, build them tailored to your domain.
 
-## We're not going to out-build Anthropic (... most likely)
+Most of us aren't in the business of building AI agent platforms. We're in insurance, or finance, or logistics, or marketing. We have a different job to do.
 
-Every enterprise team I talked to in 2024-2025 was building custom multi-agent architectures. The pitch was compelling: wire up specialized agents for your specific workflows, build something tailored to your domain.
-
-Claude Code, Cowork, Codex, Gemini CLI, Copilot: these are generic agent platforms built by companies that own the underlying models and throw billions into R&D. They're all racing each other, shipping features daily, absorbing capabilities that took custom teams months to build.
-
-Most of us aren't in the business of building AI agent platforms. We're in insurance, or finance, or logistics, or marketing. Let them race, we have a different job to do.
+Let them race. Claude Code, Cowork, Codex, Gemini CLI, Copilot: these are generic agent platforms built by companies that own the underlying models and throw billions into R&D. They're all racing each other, shipping features daily, absorbing capabilities that took custom teams months to build.
 
 ## The agent layer commoditized
 
-[MCP](https://modelcontextprotocol.io/) achieved near-universal adoption in 13 months, faster than HTTP or OAuth 2.0 ever did. The [Agentic AI Foundation](https://www.linuxfoundation.org/press/linux-foundation-launches-the-agentic-ai-foundation) launched under the Linux Foundation in December 2025, with AWS, Anthropic, Google, Microsoft, and OpenAI as founding members. When fierce competitors agree on a shared standard, the layer above it commoditizes.
+There's been a lot of back and forth recently: "MCP is dead," "long live MCP," "MCP is where enterprises are actually thriving." Here's what the numbers say: [MCP](https://modelcontextprotocol.io/) achieved near-universal adoption in 13 months, faster than HTTP or OAuth 2.0 ever did. The [Agentic AI Foundation](https://www.linuxfoundation.org/press/linux-foundation-launches-the-agentic-ai-foundation) launched under the Linux Foundation in December 2025, with AWS, Anthropic, Google, Microsoft, and OpenAI as founding members. When fierce competitors agree on a shared standard, the layer above it commoditizes.
 
 60,000+ open-source repositories adopted [AGENTS.md](https://agents-md.org/) in four months. The file's entire purpose is telling any agent how to work in your repo, which only makes sense if agents are becoming generic and interchangeable. It's orientation for the generic agent showing up cold.
 
-Custom multi-agent frameworks gave way to standardized protocols and generic platforms. The agents themselves are commodity now. The work is equipping them with your domain knowledge.
+Custom multi-agent frameworks gave way to standardized protocols and generic platforms. The generic agents themselves are commodity now, the same way cloud compute became commodity a decade ago. The work is no longer building custom agents, it's leveraging the generic ones and equipping them with your domain knowledge.
 
 ## Anthropic calls it a coworker. So treat it like one.
 
-Anthropic named their latest product [Claude Cowork](https://claude.com/product/cowork). They chose "coworker" over "assistant" or "tool," and the press coverage describes it as a "digital coworker" that sits at your desktop, opens apps, navigates browsers, fills spreadsheets.
+Anthropic named their latest product [Claude Cowork](https://claude.com/product/cowork). They chose "coworker," so take a hint: it's a digital coworker that sits at your desktop, opens apps, navigates browsers, fills spreadsheets, you name it.
 
-We don't build custom employees from scratch. We hire capable people and onboard them, and the quality of that onboarding determines whether we get a rockstar or someone who deletes the production database on their first week.
+We hire capable people, we don't build custom employees from scratch. The key part is how we onboard them. The quality of that onboarding determines whether we get a rockstar or someone who deletes the production database on their first week.
 
 I wrote previously that [LLMs are compaction tools, and you are the algorithm](https://juanjofuchs.github.io/ai/2026/02/17/llms-are-compaction-tools-and-you-are-the-algorithm.html). That was about individuals. Your judgment shapes what the model produces. Scale that up to an enterprise and the same model becomes a completely different specialist depending on who onboards it.
 
 ## What to actually onboard
 
-I've written before about how [AI accelerates whatever you have](https://juanjofuchs.github.io/ai-development/2026/01/27/ai-accelerates-whatever-you-have.html) and about [giving your AI hills to climb](https://juanjofuchs.github.io/ai-development/2026/02/10/give-your-ai-hills-to-climb.html), and in practice it breaks down into three layers.
+I've written before about how [AI accelerates whatever you have](https://juanjofuchs.github.io/ai-development/2026/01/27/ai-accelerates-whatever-you-have.html) and about [giving your AI hills to climb](https://juanjofuchs.github.io/ai-development/2026/02/10/give-your-ai-hills-to-climb.html). In practice, those two ideas break down into three layers for organizations:
+
+1. What the agent needs to see
+2. What the agent needs to do
+3. What the agent must NOT do
 
 **What the agent needs to see:**
 
-**KPIs.** The agent must understand where things stand. Revenue targets, SLA metrics, conversion rates, whatever drives the business. Without them the agent can't tell if it's helping.
+**KPIs.** These are the agent's grounding mechanisms. Revenue targets, SLA metrics, conversion rates, whatever drives the business. Without them the agent can't tell if it's helping.
 
 **The work.** Tickets in Jira, issues in GitHub, cards in whatever tracks progress. The agent needs to see what's being worked on, what's blocked, what's done.
 
-**Knowledge.** Notion, Google Workspace, internal wikis, documentation platforms, Slack history. This is the institutional memory, the context behind what the agent sees. Without it, an agent "fixing" a setting that exists because of a 2023 regulatory requirement just created a compliance violation.
+**Knowledge.** Notion, Confluence, SharePoint, internal wikis, documentation platforms, Slack history, etc. This is the institutional memory, the context behind what the agent sees. Without it, an agent "fixing" a setting that exists because of a 2023 regulatory requirement just created a compliance violation.
 
 **What the agent needs to do:**
 
@@ -65,24 +65,6 @@ I've written before about how [AI accelerates whatever you have](https://juanjof
 
 The agent needs explicit rules: what requires human approval, what it can act on autonomously, and when to escalate. That's the onboarding: read access, process knowledge, boundary definitions.
 
-## What happens when we skip levels
-
-Amazon's coding agents gave us one of the [clearest examples](https://fortune.com/2026/03/18/ai-coding-risks-amazon-agents-enterprise/). Kiro autonomously deleted a production environment causing a 13-hour AWS outage. Subsequent incidents involving their AI tools contributed to extended outages and, by some reports, [6.3 million lost orders](https://www.aboutamazon.com/news/aws/aws-service-outage-ai-bot-kiro). Amazon has some of the best engineers in the world and practically unlimited resources. If they can't safely skip autonomy levels, we can't either.
-
-[OpenClaw](https://github.com/AgeofIA/OpenClaw) made this visible at a different scale. It proved full autonomy is technically possible, [one developer shipping at a pace](https://towardsdatascience.com/using-openclaw-as-a-force-multiplier-what-one-person-can-ship-with-autonomous-agents/) that would normally take an entire team, with autonomous agents running continuously. It also proved that autonomy without the safety infrastructure underneath produces security incidents at scale. Researchers found [135,000+ exposed instances across 82 countries](https://www.reco.ai/blog/openclaw-the-ai-agent-security-crisis-unfolding-right-now), nine CVEs disclosed in four days, and 335 malicious skills distributed through its marketplace.
-
-## The progressive onboarding framework
-
-The self-driving industry mapped this out years ago with the [SAE autonomy levels](https://www.sae.org/blog/sae-j3016-update). Defined stages, each one adding autonomy with corresponding safety infrastructure underneath.
-
-**Level 0-2: You are driving.** Give the new hire the employee handbook and read-only system access. The agent has knowledge and can look things up but can't take action. This is our golden path, safe by design. Start here and stay here until we trust the foundation. Tesla FSD, despite the name, is classified at this level.
-
-**Level 3: Human-in-the-loop execution.** The new hire can navigate our systems and take actions, with a human approving each step. Bounded autonomy with full oversight. The agent does the work, we review before anything goes live.
-
-**Level 4: Risk-managed autonomy.** The agent operates within guardrails. Approval gates for high-risk actions, audit trails for everything, escalation paths to humans for edge cases. This is where [Waymo](https://waymo.com/) operates, fully driverless but within geofenced boundaries and specific conditions. The [CNCF's four pillars of platform control](https://www.cncf.io/blog/2026/01/23/the-autonomous-enterprise-and-the-four-pillars-of-platform-control-2026-forecast/) (golden paths, guardrails, safety nets, manual review) give us the blueprint.
-
-**Level 5: Full autonomous operation.** The agent acts proactively with a kill switch as the only control. OpenClaw showed us the shape of this. Nobody is operating here safely yet.
-
 ## Getting the knowledge out of people's heads
 
 Building MCP servers is straightforward: they're code, testable, shippable in hours. Extracting the KPIs, the work context, the institutional knowledge, and the process documentation is the harder problem because most of it lives in people's heads.
@@ -92,6 +74,28 @@ The [Fortune 500 pattern](https://www.deloitte.com/us/en/insights/topics/technol
 Dell's CTO [put it well](https://www.deloitte.com/global/en/our-thinking/insights/topics/digital-technology/technology-media-telecom-predictions.html): "You apply AI to processes, not to people, organizations, or companies." The process knowledge is ours, everything else is becoming commodity.
 
 As [Pento's year-in-review](https://www.pento.io/blog) put it, "It's not magic. It's plumbing. But great plumbing lets you build great buildings."
+
+## What happens when we skip levels
+
+Amazon's coding agents gave us one of the [clearest examples](https://fortune.com/2026/03/18/ai-coding-risks-amazon-agents-enterprise/). Kiro autonomously deleted a production environment causing a 13-hour AWS outage. Subsequent incidents involving their AI tools contributed to extended outages and, by some reports, [6.3 million lost orders](https://www.aboutamazon.com/news/aws/aws-service-outage-ai-bot-kiro). Amazon has some of the best engineers in the world and practically unlimited resources. If they can't safely skip autonomy levels, we can't either.
+
+[OpenClaw](https://github.com/AgeofIA/OpenClaw) made this visible at a different scale. It proved full autonomy is technically possible, [one developer shipping at a pace](https://towardsdatascience.com/using-openclaw-as-a-force-multiplier-what-one-person-can-ship-with-autonomous-agents/) that would normally take an entire team, with autonomous agents running continuously. It also proved that autonomy without the safety infrastructure underneath produces security incidents at scale. Researchers found [135,000+ exposed instances across 82 countries](https://www.reco.ai/blog/openclaw-the-ai-agent-security-crisis-unfolding-right-now), nine CVEs disclosed in four days, and 335 malicious skills distributed through its marketplace.
+
+The [LiteLLM supply chain attack](https://www.bleepingcomputer.com/news/security/popular-litellm-pypi-package-compromised-in-teampcp-supply-chain-attack/) showed the same pattern in the AI tooling pipeline itself. Attackers compromised the popular LiteLLM PyPI package (3.4 million daily downloads), injecting credential-stealing code that exfiltrated API keys, cloud credentials, and SSH keys every time Python started, even if LiteLLM was never imported. The malicious versions were live for about three hours, but LiteLLM sits in 36% of cloud environments.
+
+## The progressive onboarding framework
+
+The self-driving industry mapped this out years ago with the [SAE autonomy levels](https://www.sae.org/blog/sae-j3016-update). Defined stages, each one adding autonomy with corresponding safety infrastructure underneath.
+
+![Progressive AI Onboarding Framework, SAE levels mapped to enterprise AI](/assets/stop-building-another-claude-framework.png)
+
+**Level 0-2: You are driving.** Give the new hire the employee handbook and read-only system access. The agent has knowledge and can look things up but can't take action. This is our golden path, safe by design. Start here and stay here until we trust the foundation. Tesla FSD, despite the name, is classified at this level.
+
+**Level 3: Human-in-the-loop execution.** The new hire can navigate our systems and take actions, with a human approving each step. Bounded autonomy with full oversight. The agent does the work, we review before anything goes live.
+
+**Level 4: Risk-managed autonomy.** The agent operates within guardrails. Approval gates for high-risk actions, audit trails for everything, escalation paths to humans for edge cases. This is where [Waymo](https://waymo.com/) operates, fully driverless but within geofenced boundaries and specific conditions. The [CNCF's four pillars of platform control](https://www.cncf.io/blog/2026/01/23/the-autonomous-enterprise-and-the-four-pillars-of-platform-control-2026-forecast/) (golden paths, guardrails, safety nets, manual review) give us the blueprint.
+
+**Level 5: Full autonomous operation.** The agent acts proactively with a kill switch as the only control. OpenClaw showed us the shape of this. Nobody is operating here safely yet.
 
 ## The shift
 
