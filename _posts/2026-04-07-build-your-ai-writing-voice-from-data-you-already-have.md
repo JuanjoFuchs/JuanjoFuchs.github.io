@@ -121,6 +121,8 @@ My guide went from one line to several pages. It's still a work in progress, but
 
 {% comment %}
 ## LinkedIn Post
+PUBLISHED: 2026-04-07T15:13:55.103Z
+
 MEDIA: /assets/build-ai-writing-voice-hero.png
 ALT: Build your AI writing voice from data you already have
 
