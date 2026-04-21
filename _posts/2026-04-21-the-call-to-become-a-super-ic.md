@@ -9,7 +9,9 @@ author: JuanjoFuchs
 image: /assets/the-call-to-become-a-super-ic-hero.png
 ---
 
-I wrote in January about [why engineering managers are naturally great at AI](https://juanjofuchs.github.io/ai-development/2026/01/06/why-engineering-managers-are-naturally-great-at-ai.html). I wrote in March about why companies should [stop building another Claude](https://juanjofuchs.github.io/ai-development/2026/03/31/stop-building-another-claude-learn-how-to-effectively-onboard-one-into-your-organization-instead.html) and onboard the ones that already exist. Those posts left out a big group: the engineers themselves. The ones who take a spec and turn it into code. This one is for you.
+![Engineer stepping up to a higher platform, representing the move from spec taker to higher-scope individual contributor work](/assets/the-call-to-become-a-super-ic-hero.png)
+
+I wrote in January about [why engineering managers are naturally great at AI](https://juanjofuchs.github.io/ai/2026/01/06/engineering-managers-naturally-great-at-ai.html). I wrote in March about why companies should [stop building another Claude](https://juanjofuchs.github.io/ai-development/2026/03/31/stop-building-another-claude-learn-how-to-effectively-onboard-one-into-your-organization-instead.html) and onboard the ones that already exist. Those posts left out a big group: the engineers themselves. The ones who take a spec and turn it into code. This one is for you.
 
 The short version: AI just made one kind of engineer dramatically more valuable, and you've been training to be that kind your whole career. You just haven't named it yet, which is why you don't know what to claim.
 
