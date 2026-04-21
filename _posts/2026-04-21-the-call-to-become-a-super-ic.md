@@ -61,6 +61,8 @@ The engineer's edge has always been knowing what to trust, what to scale, what t
 
 {% comment %}
 ## LinkedIn Post
+PUBLISHED: 2026-04-21T14:09:41.575Z
+
 MEDIA: /assets/the-call-to-become-a-super-ic-hero.png
 ALT: Engineer stepping up to a higher platform, representing the move from spec taker to higher-scope individual contributor work
 
