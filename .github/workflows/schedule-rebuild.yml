@@ -2,10 +2,10 @@ name: Schedule Jekyll Post Publishing
 
 on:
   schedule:
-    # Runs every Tuesday at 2:00 PM UTC (9:00 AM EST / 10:00 AM EDT)
-    # This keeps posts publishing at 9 AM Eastern Standard Time year-round
-    # (or 10 AM during Daylight Time in spring-fall)
-    - cron: '0 14 * * 2'
+    # Runs every Tuesday at 1:00 PM UTC (8:00 AM EST / 9:00 AM EDT)
+    # This targets 9 AM during Daylight Time.
+    # Standard Time will shift to 8 AM unless the cron is adjusted seasonally.
+    - cron: '0 13 * * 2'
 
   # Allows you to manually trigger the workflow from the Actions tab
   workflow_dispatch:
