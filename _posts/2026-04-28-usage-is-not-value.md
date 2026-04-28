@@ -83,6 +83,8 @@ Keep usage in the observability layer and tie value to outcomes, because once us
 
 {% comment %}
 ## LinkedIn Post
+PUBLISHED: 2026-04-28T10:18:16.562Z
+
 MEDIA: /assets/usage-is-not-value-hero.png
 ALT: Three-stage flow from token burn to shipped work and KPI movement
 
