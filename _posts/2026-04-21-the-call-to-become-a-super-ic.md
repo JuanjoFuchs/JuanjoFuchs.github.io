@@ -91,6 +91,8 @@ Are you seeing this in your org too, local AI wins showing up outside engineerin
 ---
 
 ## X/Twitter Thread
+PUBLISHED: 2026-04-28T14:57:19.703Z
+
 MEDIA: /assets/the-call-to-become-a-super-ic-hero.png
 ALT: Engineer stepping up to a higher platform, representing the move from spec taker to higher-scope individual contributor work
 

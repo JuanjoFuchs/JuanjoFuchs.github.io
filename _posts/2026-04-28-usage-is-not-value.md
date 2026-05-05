@@ -113,6 +113,8 @@ What does your AI dashboard reward today, and what would it take to push it one 
 ---
 
 ## X/Twitter Thread
+PUBLISHED: 2026-04-28T14:57:23.250Z
+
 MEDIA: /assets/usage-is-not-value-hero.png
 ALT: Three-stage flow from token burn to shipped work and KPI movement
 
