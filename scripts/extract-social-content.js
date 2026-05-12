@@ -163,6 +163,9 @@ function extractMediaFields(sectionContent) {
   // Remove PUBLISHED: lines (metadata added by automation, not content to post)
   contentWithoutMedia = contentWithoutMedia.replace(/^PUBLISHED:[^\S\r\n]*.*$/gm, '').trim();
 
+  // Remove NOTE: lines used as private publishing instructions.
+  contentWithoutMedia = contentWithoutMedia.replace(/^NOTE:[^\S\r\n]*.*$/gm, '').trim();
+
   return { media, alt, contentWithoutMedia };
 }
 
@@ -172,14 +175,27 @@ function extractMediaFields(sectionContent) {
  * @returns {object|null} - {content, hashtags, media, alt} or null if section not found
  */
 export function parseLinkedInPost(commentContent) {
-  const linkedInRegex = /##\s*LinkedIn Post\s*([\s\S]*?)(?=---\s*\n\s*##|$)/i;
+  const linkedInRegex = /^##[^\S\r\n]*LinkedIn Post[^\S\r\n]*\r?\n([\s\S]*?)(?=---\s*\n\s*##|^##\s+|$)/im;
   const match = commentContent.match(linkedInRegex);
 
   if (!match) {
     return null;
   }
 
-  let fullSection = match[1].trim();
+  return parseLinkedInSectionContent(match[1]);
+}
+
+/**
+ * Parse LinkedIn post content from a section body.
+ * @param {string} sectionContent - Content after the LinkedIn heading
+ * @returns {object|null} - {content, hashtags, media, alt} or null if empty
+ */
+export function parseLinkedInSectionContent(sectionContent) {
+  let fullSection = sectionContent.trim();
+
+  if (!fullSection) {
+    return null;
+  }
 
   // Remove INSTRUCTIONS section (everything from "---\nINSTRUCTIONS:" onwards)
   const instructionsRegex = /---\s*\n\s*INSTRUCTIONS:[\s\S]*/i;
@@ -187,6 +203,10 @@ export function parseLinkedInPost(commentContent) {
 
   // Extract MEDIA and ALT fields
   const { media, alt, contentWithoutMedia } = extractMediaFields(contentWithoutInstructions);
+
+  if (!contentWithoutMedia.trim()) {
+    return null;
+  }
 
   // Extract hashtags (lines starting with #) BEFORE stripping markdown
   const hashtagRegex = /#\w+/g;
@@ -221,14 +241,27 @@ export function parseLinkedInPost(commentContent) {
  * @returns {object|null} - {tweets, hashtags, media, alt} or null if section not found
  */
 export function parseTwitterThread(commentContent) {
-  const twitterRegex = /##\s*X\/Twitter Thread\s*([\s\S]*?)(?=---\s*\n\s*INSTRUCTIONS:|$)/i;
+  const twitterRegex = /^##[^\S\r\n]*X\/Twitter Thread[^\S\r\n]*\r?\n([\s\S]*?)(?=---\s*\n\s*INSTRUCTIONS:|^##\s+|$)/im;
   const match = commentContent.match(twitterRegex);
 
   if (!match) {
     return null;
   }
 
-  const fullSection = match[1].trim();
+  return parseTwitterSectionContent(match[1]);
+}
+
+/**
+ * Parse X/Twitter thread content from a section body.
+ * @param {string} sectionContent - Content after the X/Twitter heading
+ * @returns {object|null} - {tweets, hashtags, media, alt} or null if empty
+ */
+export function parseTwitterSectionContent(sectionContent) {
+  const fullSection = sectionContent.trim();
+
+  if (!fullSection) {
+    return null;
+  }
 
   // Extract MEDIA and ALT fields first (before tweets parsing)
   const { media, alt, contentWithoutMedia } = extractMediaFields(fullSection);
@@ -271,6 +304,121 @@ export function parseTwitterThread(commentContent) {
     media: media,
     alt: alt
   };
+}
+
+function extractField(content, fieldName) {
+  const escapedName = fieldName.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const match = content.match(new RegExp(`^${escapedName}:[^\\S\\r\\n]*(.+)$`, 'mi'));
+  return match ? match[1].trim() : null;
+}
+
+function stripEntryFields(content) {
+  return content
+    .replace(/^(CAMPAIGN|DATE|TIME|TIMEZONE|MEDIA|ALT):[^\S\r\n]*.*$/gmi, '')
+    .trim();
+}
+
+function slugify(value) {
+  return value
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+}
+
+function isSectionPublished(sectionContent) {
+  return /^PUBLISHED:[^\S\r\n]*\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}/mi.test(sectionContent);
+}
+
+function extractCampaignPlatformSection(entryContent, platform) {
+  const heading = platform === 'linkedin' ? 'LinkedIn Post' : 'X\\/Twitter Thread';
+  const regex = new RegExp(`(?:^|\\r?\\n)####[^\\S\\r\\n]*${heading}[^\\S\\r\\n]*\\r?\\n([\\s\\S]*?)(?=\\r?\\n\\s*####\\s+|$)`, 'i');
+  const match = entryContent.match(regex);
+  return match ? match[1].trim() : null;
+}
+
+function applyCampaignMediaFallback(entry, featuredImage, defaultAlt) {
+  for (const platform of ['linkedin', 'twitter']) {
+    if (!entry[platform]) {
+      continue;
+    }
+
+    if (!entry[platform].media) {
+      entry[platform].media = entry.media || featuredImage || null;
+    }
+
+    if (entry[platform].media && !entry[platform].alt) {
+      entry[platform].alt = entry.alt || defaultAlt || null;
+    }
+  }
+}
+
+/**
+ * Parse a daily social campaign from a Liquid comment block.
+ * Campaign entries use ### day headings and nested #### platform sections.
+ * @param {string} commentContent - Content from Liquid comment block
+ * @returns {object|null} - {campaign, entries} or null if no campaign exists
+ */
+export function parseSocialCampaign(commentContent) {
+  const campaignRegex = /^##\s*Social Campaign\s*\n([\s\S]*)$/im;
+  const campaignMatch = commentContent.match(campaignRegex);
+
+  if (!campaignMatch) {
+    return null;
+  }
+
+  const campaignContent = campaignMatch[1].trim();
+  const firstEntryMatch = campaignContent.match(/^###\s+.+$/m);
+  const campaignHeader = firstEntryMatch
+    ? campaignContent.slice(0, firstEntryMatch.index).trim()
+    : campaignContent;
+
+  const campaign = {
+    id: extractField(campaignHeader, 'CAMPAIGN') || null,
+    timezone: extractField(campaignHeader, 'TIMEZONE') || null
+  };
+
+  const entryMatches = Array.from(campaignContent.matchAll(/^###\s+(.+)$/gm));
+  const entries = [];
+
+  for (let i = 0; i < entryMatches.length; i++) {
+    const heading = entryMatches[i][1].trim();
+    const start = entryMatches[i].index + entryMatches[i][0].length;
+    const end = i + 1 < entryMatches.length ? entryMatches[i + 1].index : campaignContent.length;
+    const entryContent = campaignContent.slice(start, end).trim();
+
+    const date = extractField(entryContent, 'DATE');
+    const time = extractField(entryContent, 'TIME') || null;
+    const media = extractField(entryContent, 'MEDIA') || null;
+    const alt = extractField(entryContent, 'ALT') || null;
+
+    if (!date) {
+      continue;
+    }
+
+    const linkedInSection = extractCampaignPlatformSection(entryContent, 'linkedin');
+    const twitterSection = extractCampaignPlatformSection(entryContent, 'twitter');
+    const linkedin = linkedInSection ? parseLinkedInSectionContent(linkedInSection) : null;
+    const twitter = twitterSection ? parseTwitterSectionContent(twitterSection) : null;
+
+    entries.push({
+      id: `${date}-${slugify(heading)}`,
+      heading,
+      date,
+      time,
+      timezone: campaign.timezone,
+      media,
+      alt,
+      linkedin,
+      twitter,
+      publishedStatus: {
+        linkedin: linkedInSection ? isSectionPublished(linkedInSection) : false,
+        twitter: twitterSection ? isSectionPublished(twitterSection) : false
+      },
+      raw: stripEntryFields(entryContent)
+    });
+  }
+
+  return { campaign, entries };
 }
 
 /**
@@ -337,21 +485,24 @@ export function extractSocialContent(filePath, baseUrl = 'https://juanjofuchs.gi
         frontMatter,
         linkedin: null,
         twitter: null,
+        campaign: null,
         blogUrl: buildBlogUrl(frontMatter, filePath, baseUrl),
         publishedStatus
       };
     }
 
-    // Parse LinkedIn and Twitter content
+    // Parse legacy single-post content and the newer daily campaign format
     let linkedin = parseLinkedInPost(commentContent);
     let twitter = parseTwitterThread(commentContent);
+    let campaign = parseSocialCampaign(commentContent);
 
-    if (!linkedin && !twitter) {
+    if (!linkedin && !twitter && !campaign) {
       return {
         error: 'No LinkedIn or Twitter content found in comment block',
         frontMatter,
         linkedin: null,
         twitter: null,
+        campaign: null,
         blogUrl: buildBlogUrl(frontMatter, filePath, baseUrl),
         publishedStatus
       };
@@ -379,10 +530,17 @@ export function extractSocialContent(filePath, baseUrl = 'https://juanjofuchs.gi
       }
     }
 
+    if (campaign) {
+      for (const entry of campaign.entries) {
+        applyCampaignMediaFallback(entry, featuredImage, defaultAlt);
+      }
+    }
+
     return {
       frontMatter,
       linkedin,
       twitter,
+      campaign,
       blogUrl: buildBlogUrl(frontMatter, filePath, baseUrl),
       publishedStatus,
       error: null
@@ -393,10 +551,29 @@ export function extractSocialContent(filePath, baseUrl = 'https://juanjofuchs.gi
       frontMatter: null,
       linkedin: null,
       twitter: null,
+      campaign: null,
       blogUrl: null,
       publishedStatus: { linkedin: false, twitter: false }
     };
   }
+}
+
+/**
+ * Extract only the daily social campaign data for a post.
+ * @param {string} filePath - Path to the markdown file
+ * @param {string} baseUrl - Base URL for building post URLs
+ * @returns {object} - {frontMatter, campaign, blogUrl, error}
+ */
+export function extractSocialCampaignContent(filePath, baseUrl = 'https://juanjofuchs.github.io') {
+  const result = extractSocialContent(filePath, baseUrl);
+  return {
+    frontMatter: result.frontMatter,
+    campaign: result.campaign,
+    blogUrl: result.blogUrl,
+    error: result.error && result.error !== 'No LinkedIn or Twitter content found in comment block'
+      ? result.error
+      : null
+  };
 }
 
 // CLI handler
@@ -462,6 +639,22 @@ if (process.argv[1] && process.argv[1].endsWith('extract-social-content.js')) {
     console.log(`   Alt: ${result.twitter.alt || '(none)'}`);
   } else {
     console.log('\n🐦 Twitter: Not found');
+  }
+
+  if (result.campaign) {
+    console.log('\n📣 Social Campaign:');
+    console.log(`   Campaign: ${result.campaign.campaign.id || '(none)'}`);
+    console.log(`   Timezone: ${result.campaign.campaign.timezone || '(none)'}`);
+    console.log(`   Entries: ${result.campaign.entries.length}`);
+    result.campaign.entries.forEach(entry => {
+      const linkedinStatus = entry.publishedStatus.linkedin ? 'published' : 'pending';
+      const twitterStatus = entry.publishedStatus.twitter ? 'published' : 'pending';
+      const linkedinContent = entry.linkedin?.content ? 'content' : 'empty';
+      const twitterContent = entry.twitter?.tweets?.length ? `${entry.twitter.tweets.length} tweets` : 'empty';
+      console.log(`   - ${entry.date} ${entry.time || ''} ${entry.heading}`);
+      console.log(`     LinkedIn: ${linkedinContent}, ${linkedinStatus}`);
+      console.log(`     Twitter: ${twitterContent}, ${twitterStatus}`);
+    });
   }
 
   console.log('\n' + '='.repeat(60));

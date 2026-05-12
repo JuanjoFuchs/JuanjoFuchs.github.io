@@ -6,6 +6,8 @@ import path from 'path';
 // Versions are supported for ~12 months. Update annually. See:
 // https://learn.microsoft.com/en-us/linkedin/marketing/versioning
 const LINKEDIN_VERSION = '202511';
+const VIDEO_STATUS_TIMEOUT_MS = 120000;
+const VIDEO_STATUS_POLL_MS = 5000;
 
 /**
  * Determine media type from file path
@@ -96,6 +98,196 @@ async function uploadImageFile(uploadUrl, filePath, accessToken) {
 }
 
 /**
+ * Initialize video upload to LinkedIn.
+ * @param {string} personId - LinkedIn person ID
+ * @param {string} accessToken - LinkedIn OAuth 2.0 access token
+ * @param {number} fileSizeBytes - Video file size in bytes
+ * @returns {Promise<object>} - {success, videoUrn, uploadToken, uploadInstructions, error}
+ */
+async function initializeVideoUpload(personId, accessToken, fileSizeBytes) {
+  try {
+    const response = await axios.post(
+      'https://api.linkedin.com/rest/videos?action=initializeUpload',
+      {
+        initializeUploadRequest: {
+          owner: `urn:li:person:${personId}`,
+          fileSizeBytes,
+          uploadCaptions: false,
+          uploadThumbnail: false
+        }
+      },
+      {
+        headers: {
+          'Authorization': `Bearer ${accessToken}`,
+          'Content-Type': 'application/json',
+          'LinkedIn-Version': LINKEDIN_VERSION,
+          'X-Restli-Protocol-Version': '2.0.0'
+        }
+      }
+    );
+
+    const value = response.data.value;
+    return {
+      success: true,
+      videoUrn: value.video,
+      uploadToken: value.uploadToken,
+      uploadInstructions: value.uploadInstructions || [],
+      error: null
+    };
+  } catch (err) {
+    console.error('Failed to initialize video upload:', err.response?.data || err.message);
+    return {
+      success: false,
+      videoUrn: null,
+      uploadToken: null,
+      uploadInstructions: [],
+      error: err.response?.data?.message || err.message
+    };
+  }
+}
+
+/**
+ * Upload video chunks to LinkedIn pre-signed URLs.
+ * @param {Array<object>} uploadInstructions - LinkedIn upload instructions
+ * @param {string} filePath - Path to video file
+ * @returns {Promise<object>} - {success, uploadedPartIds, error}
+ */
+async function uploadVideoParts(uploadInstructions, filePath) {
+  try {
+    const fileBuffer = fs.readFileSync(filePath);
+    const uploadedPartIds = [];
+
+    for (let i = 0; i < uploadInstructions.length; i++) {
+      const instruction = uploadInstructions[i];
+      const start = Number(instruction.firstByte);
+      const end = Number(instruction.lastByte);
+      const chunk = fileBuffer.subarray(start, end + 1);
+
+      console.log(`Uploading video part ${i + 1}/${uploadInstructions.length} (${start}-${end})`);
+
+      const response = await axios.put(instruction.uploadUrl, chunk, {
+        headers: {
+          'Content-Type': 'application/octet-stream'
+        },
+        maxContentLength: Infinity,
+        maxBodyLength: Infinity
+      });
+
+      const etag = response.headers.etag;
+      if (!etag) {
+        return {
+          success: false,
+          uploadedPartIds,
+          error: `Missing ETag for uploaded video part ${i + 1}`
+        };
+      }
+
+      uploadedPartIds.push(etag.replace(/^"|"$/g, ''));
+    }
+
+    return { success: true, uploadedPartIds, error: null };
+  } catch (err) {
+    console.error('Failed to upload video part:', err.response?.data || err.message);
+    return {
+      success: false,
+      uploadedPartIds: [],
+      error: err.response?.data?.message || err.message
+    };
+  }
+}
+
+/**
+ * Finalize LinkedIn video upload.
+ * @param {string} videoUrn - LinkedIn video URN
+ * @param {string} uploadToken - Upload token from initialize step
+ * @param {Array<string>} uploadedPartIds - ETags from uploaded parts
+ * @param {string} accessToken - LinkedIn OAuth 2.0 access token
+ * @returns {Promise<object>} - {success, error}
+ */
+async function finalizeVideoUpload(videoUrn, uploadToken, uploadedPartIds, accessToken) {
+  try {
+    await axios.post(
+      'https://api.linkedin.com/rest/videos?action=finalizeUpload',
+      {
+        finalizeUploadRequest: {
+          video: videoUrn,
+          uploadToken,
+          uploadedPartIds
+        }
+      },
+      {
+        headers: {
+          'Authorization': `Bearer ${accessToken}`,
+          'Content-Type': 'application/json',
+          'LinkedIn-Version': LINKEDIN_VERSION,
+          'X-Restli-Protocol-Version': '2.0.0'
+        }
+      }
+    );
+
+    return { success: true, error: null };
+  } catch (err) {
+    console.error('Failed to finalize video upload:', err.response?.data || err.message);
+    return {
+      success: false,
+      error: err.response?.data?.message || err.message
+    };
+  }
+}
+
+/**
+ * Wait for LinkedIn video processing to complete.
+ * @param {string} videoUrn - LinkedIn video URN
+ * @param {string} accessToken - LinkedIn OAuth 2.0 access token
+ * @returns {Promise<object>} - {success, status, error}
+ */
+async function waitForVideoAvailable(videoUrn, accessToken) {
+  const encodedUrn = encodeURIComponent(videoUrn);
+  const deadline = Date.now() + VIDEO_STATUS_TIMEOUT_MS;
+
+  while (Date.now() < deadline) {
+    try {
+      const response = await axios.get(
+        `https://api.linkedin.com/rest/videos/${encodedUrn}`,
+        {
+          headers: {
+            'Authorization': `Bearer ${accessToken}`,
+            'Content-Type': 'application/json',
+            'LinkedIn-Version': LINKEDIN_VERSION,
+            'X-Restli-Protocol-Version': '2.0.0'
+          }
+        }
+      );
+
+      const status = response.data.status;
+      console.log(`Video status: ${status}`);
+
+      if (status === 'AVAILABLE') {
+        return { success: true, status, error: null };
+      }
+
+      if (status === 'PROCESSING_FAILED') {
+        return {
+          success: false,
+          status,
+          error: response.data.processingFailureReason || 'Video processing failed'
+        };
+      }
+    } catch (err) {
+      console.warn('Failed to check video status:', err.response?.data || err.message);
+    }
+
+    await new Promise(resolve => setTimeout(resolve, VIDEO_STATUS_POLL_MS));
+  }
+
+  return {
+    success: false,
+    status: 'TIMEOUT',
+    error: 'Timed out waiting for LinkedIn video processing'
+  };
+}
+
+/**
  * Get MIME type from file extension
  * @param {string} filePath - Path to file
  * @returns {string} - MIME type
@@ -128,9 +320,46 @@ async function uploadMediaToLinkedIn(filePath, personId, accessToken) {
     const mediaType = getMediaType(filePath);
 
     if (mediaType === 'video') {
-      // Video upload is more complex - skip for now, return null
-      console.log('⚠ Video upload not yet implemented for LinkedIn');
-      return { success: false, mediaUrn: null, mediaType: 'video', error: 'Video upload not implemented' };
+      const fileSizeBytes = fs.statSync(filePath).size;
+      console.log(`Uploading video to LinkedIn: ${filePath} (${fileSizeBytes} bytes)`);
+
+      const initResult = await initializeVideoUpload(personId, accessToken, fileSizeBytes);
+      if (!initResult.success) {
+        return { success: false, mediaUrn: null, mediaType: 'video', error: initResult.error };
+      }
+
+      console.log(`✓ Video upload initialized, URN: ${initResult.videoUrn}`);
+
+      const uploadResult = await uploadVideoParts(initResult.uploadInstructions, filePath);
+      if (!uploadResult.success) {
+        return { success: false, mediaUrn: null, mediaType: 'video', error: uploadResult.error };
+      }
+
+      console.log('✓ Video parts uploaded successfully');
+
+      const finalizeResult = await finalizeVideoUpload(
+        initResult.videoUrn,
+        initResult.uploadToken,
+        uploadResult.uploadedPartIds,
+        accessToken
+      );
+      if (!finalizeResult.success) {
+        return { success: false, mediaUrn: null, mediaType: 'video', error: finalizeResult.error };
+      }
+
+      console.log('✓ Video upload finalized');
+
+      const statusResult = await waitForVideoAvailable(initResult.videoUrn, accessToken);
+      if (!statusResult.success) {
+        return { success: false, mediaUrn: null, mediaType: 'video', error: statusResult.error };
+      }
+
+      return {
+        success: true,
+        mediaUrn: initResult.videoUrn,
+        mediaType: 'video',
+        error: null
+      };
     }
 
     console.log(`Uploading image to LinkedIn: ${filePath}`);
@@ -203,7 +432,8 @@ async function getLinkedInUserId(accessToken) {
  * @param {string} personId - LinkedIn person ID (from getLinkedInUserId)
  * @param {string} accessToken - LinkedIn OAuth 2.0 access token
  * @param {object} options - Optional parameters
- * @param {string} options.imageUrn - LinkedIn image URN (from upload)
+ * @param {string} options.mediaUrn - LinkedIn media URN (from upload)
+ * @param {string} options.mediaType - LinkedIn media type ('image' or 'video')
  * @param {string} options.altText - Alt text for image
  * @returns {Promise<object>} - {success, postId, postUrl, error}
  */
@@ -226,11 +456,11 @@ async function createLinkedInPost(content, personId, accessToken, options = {}) 
       isReshareDisabledByAuthor: false
     };
 
-    // Add media content if image URN is provided
-    if (options.imageUrn) {
+    // Add media content if media URN is provided
+    if (options.mediaUrn) {
       postData.content = {
         media: {
-          id: options.imageUrn,
+          id: options.mediaUrn,
           ...(options.altText && { altText: options.altText })
         }
       };
@@ -314,15 +544,17 @@ export async function postToLinkedIn(content, blogUrl, accessToken, options = {}
     console.log(`✓ Got user ID: ${personId}`);
 
     // Step 2: Upload media if provided
-    let imageUrn = null;
+    let mediaUrn = null;
+    let mediaType = null;
     if (options.mediaPath) {
       if (!fs.existsSync(options.mediaPath)) {
         console.warn(`⚠ Media file not found: ${options.mediaPath}`);
       } else {
         const uploadResult = await uploadMediaToLinkedIn(options.mediaPath, personId, accessToken);
         if (uploadResult.success) {
-          imageUrn = uploadResult.mediaUrn;
-          console.log(`✓ Media uploaded: ${imageUrn}`);
+          mediaUrn = uploadResult.mediaUrn;
+          mediaType = uploadResult.mediaType;
+          console.log(`✓ Media uploaded: ${mediaUrn}`);
         } else {
           console.warn(`⚠ Media upload failed: ${uploadResult.error}`);
           console.log('⚠ Continuing with text-only post');
@@ -333,7 +565,8 @@ export async function postToLinkedIn(content, blogUrl, accessToken, options = {}
     // Step 3: Create post (with or without media)
     console.log('Creating LinkedIn post...');
     const postResult = await createLinkedInPost(content, personId, accessToken, {
-      imageUrn,
+      mediaUrn,
+      mediaType,
       altText: options.altText
     });
     if (!postResult.success) {
@@ -352,7 +585,7 @@ export async function postToLinkedIn(content, blogUrl, accessToken, options = {}
       success: true,
       postId: postResult.postId,
       postUrl: postResult.postUrl,
-      mediaUploaded: !!imageUrn,
+      mediaUploaded: !!mediaUrn,
       error: null
     };
   } catch (err) {

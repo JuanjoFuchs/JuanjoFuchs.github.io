@@ -1,0 +1,92 @@
+name: Daily Social Promotion
+
+on:
+  # Enable this after campaign content is ready:
+  # schedule:
+  #   # Tuesday-Friday at 1:00 PM UTC, matching the current 9:00 AM EDT blog cadence.
+  #   - cron: '0 13 * * 2-5'
+
+  workflow_dispatch:
+    inputs:
+      date:
+        description: 'Campaign date to post (YYYY-MM-DD). Defaults to today.'
+        required: false
+        type: string
+      platform:
+        description: 'Platform to post'
+        required: false
+        default: all
+        type: choice
+        options:
+          - all
+          - linkedin
+          - twitter
+      dry_run:
+        description: 'Validate without posting'
+        required: false
+        default: true
+        type: boolean
+
+permissions:
+  contents: write
+
+jobs:
+  post-daily-social:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+
+    - name: Install dependencies
+      working-directory: scripts
+      run: npm install
+
+    - name: Post daily social campaign entries
+      env:
+        X_API_KEY: ${{ secrets.X_API_KEY }}
+        X_API_SECRET: ${{ secrets.X_API_SECRET }}
+        X_ACCESS_TOKEN: ${{ secrets.X_ACCESS_TOKEN }}
+        X_ACCESS_TOKEN_SECRET: ${{ secrets.X_ACCESS_TOKEN_SECRET }}
+        LINKEDIN_ACCESS_TOKEN: ${{ secrets.LINKEDIN_ACCESS_TOKEN }}
+        SOCIAL_LINKEDIN_ENABLED: ${{ vars.SOCIAL_LINKEDIN_ENABLED }}
+        SOCIAL_X_ENABLED: ${{ vars.SOCIAL_X_ENABLED }}
+      run: |
+        ARGS=()
+
+        if [ -n "${{ inputs.date }}" ]; then
+          ARGS+=(--date "${{ inputs.date }}")
+        fi
+
+        if [ -n "${{ inputs.platform }}" ]; then
+          ARGS+=(--platform "${{ inputs.platform }}")
+        fi
+
+        if [ "${{ inputs.dry_run }}" = "true" ]; then
+          ARGS+=(--dry-run)
+        fi
+
+        node scripts/post-daily-social.js "${ARGS[@]}"
+
+    - name: Commit published flags
+      if: ${{ github.event.inputs.dry_run != 'true' }}
+      run: |
+        git config user.name "GitHub Actions Bot"
+        git config user.email "actions@github.com"
+
+        if git diff --quiet _posts/; then
+          echo "No campaign entries were marked as published"
+        else
+          git add _posts/
+          git commit -m "chore: mark daily social campaign entries as published [skip ci]"
+          git pull --rebase origin main
+          git push
+          echo "Published flags committed and pushed"
+        fi

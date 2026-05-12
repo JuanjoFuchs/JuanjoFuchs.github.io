@@ -4,7 +4,8 @@
   "description": "Automated social media posting for Jekyll blog posts",
   "type": "module",
   "scripts": {
-    "post": "node post-to-social-media.js"
+    "post": "node post-to-social-media.js",
+    "post:daily": "node post-daily-social.js"
   },
   "keywords": [
     "social-media",

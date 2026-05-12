@@ -95,3 +95,213 @@ Claude Code shipped [Channels](https://code.claude.com/docs/en/channels) in rese
 Codex doesn't have an equivalent yet ([open request](https://github.com/openai/codex/issues/15299)), and Gemini CLI's hooks fire inside the agent loop, not from outside it. If those gaps close, a future iteration of agent-mail-cli rides on top, a new message arrives as a channel event in the recipient's running session, no `read` poll needed, no "hey, check your mailbox" reply from me. Until then, agents check when I tell them to.
 
 Repo: [github.com/JuanjoFuchs/agent-mail-cli](https://github.com/JuanjoFuchs/agent-mail-cli), MIT licensed. The npm package is scoped to `@juanjofuchs/agent-mail` because `agent-mail` was too close to the existing `agentmail` package, the command it installs is just `agent-mail`. Issues and PRs welcome.
+
+{% comment %}
+## Social Campaign
+CAMPAIGN: agent_mail_20260512
+TIMEZONE: America/New_York
+
+### Tuesday - Launch
+DATE: 2026-05-12
+TIME: 09:00
+MEDIA: /assets/agent-mail-hero.mp4
+ALT: Four-pane terminal demo of agents coordinating via agent-mail-cli
+
+#### LinkedIn Post
+
+I open-sourced agent-mail-cli last week. It's a CLI for coding agents to send mail to each other. One command to install via npx, agents learn it from one line of explanation. No daemon, no MCP server, no harness setup.
+
+The setup behind it has two tiers. A second-brain agent per project handles vision, PRDs, and roadmap planning in my Obsidian vault. A repo agent per project receives specs from the second-brain agent and implements them. Multiply by every active project and the message volume gets real fast.
+
+I drop one line into the sending agent:
+
+"Run npx -y @juanjofuchs/agent-mail describe and send a message to agent-mail-cli:packaging. You are second-brain:agent-mail-cli."
+
+The agent reads the schema, sends the message, the recipient picks it up the next time it polls. The whole API is four commands: send, read, ack, status.
+
+Three months running across my projects, last week I cleaned it up and shipped it MIT-licensed.
+
+✅ One command install
+✅ One line of explanation
+✅ No config, no MCP server
+
+Full breakdown:
+https://juanjofuchs.github.io/ai/2026/05/12/why-i-built-yet-another-agent-mail-tool.html
+
+What's your agent coordination setup look like?
+
+#AI #AgenticWorkflow #MultiAgent #CLI #OpenSource
+
+#### X/Twitter Thread
+
+Tweet 1:
+I open-sourced agent-mail-cli last week. A CLI for coding agents to send mail to each other. One command to install via npx, agents learn it from one line of explanation. 🔥
+
+Tweet 2:
+The setup is two tiers, a second-brain agent per project handles PRDs and vision, a repo agent receives specs and implements them. Multiply by every active project and the message volume adds up fast.
+
+Tweet 3:
+Drop one line into the sending agent: Run `agent-mail describe` and send a message to project:recipient. The agent reads the schema, sends, recipient polls. 💡
+
+Tweet 4:
+Three months running across my projects, MIT licensed. ✅
+
+Tweet 5:
+Full breakdown: https://juanjofuchs.github.io/ai/2026/05/12/why-i-built-yet-another-agent-mail-tool.html
+
+#AgenticWorkflow #AI
+
+### Wednesday - Problem
+DATE: 2026-05-13
+TIME: 09:00
+
+#### LinkedIn Post
+
+I run 3 to 6 agents in terminal panes at any moment. Any more and my brain fries (HBR ran a study on it called "When Using AI Leads to Brain Fry").
+
+I have been improving my "second brain" Obsidian vault to work with AI agents for over 6 months now and I don't want to lock myself into one agent harness, the vault is mine and I want to keep it agent-agnostic. Whichever harness is sharpest at the task this week gets the work, Claude Code in one pane, Codex in another, Gemini CLI in another.
+
+The catch: none of them talked to each other. Handing a spec from the second-brain Codex to a repo's Claude Code meant copying the path into the right pane. Drafts shuttled from the writing Claude to the reviewing Codex through me. Image paths bounced back from the image-gen agent to whichever pane asked for them. Multiplied by every project, that manual relay became the bottleneck.
+
+Looked at the existing tools first. Beads from Steve Yegge is the most thoughtful in the space, but it embeds Dolt and needs setup per harness. MCP servers mean configuring the same server in three different config formats, one per harness. Gas City wants to run an autonomous fleet, more autonomy than I want right now. So I built the small thing myself.
+
+Full breakdown:
+https://juanjofuchs.github.io/ai/2026/05/12/why-i-built-yet-another-agent-mail-tool.html
+
+How are you handling coordination between your agent sessions?
+
+#AI #MultiAgent #AgenticWorkflow #DevTools #OpenSource
+
+#### X/Twitter Thread
+
+Tweet 1:
+I run 3 to 6 agents in terminal panes at any moment. Any more and my brain fries (HBR ran a study on it, "When Using AI Leads to Brain Fry"). 🔥
+
+Tweet 2:
+Been improving my "second brain" Obsidian vault for AI agents for 6+ months and I want to keep it agent-agnostic. Whichever harness is sharpest at the task gets the work, Claude Code, Codex, Gemini CLI all running in parallel.
+
+Tweet 3:
+The catch: none of them talked to each other. I was copying spec paths by hand, shuttling drafts from writer to reviewer, bouncing image paths back from one pane to another. Everything went through me. 💡
+
+Tweet 4:
+Tried Beads (embeds Dolt, setup per harness), MCP servers (3 config formats for 1 job), Gas City (autonomous fleet), so I built the small thing myself. ✅
+
+Tweet 5:
+Full breakdown:
+https://juanjofuchs.github.io/ai/2026/05/12/why-i-built-yet-another-agent-mail-tool.html
+
+#MultiAgent #AI
+
+### Thursday - Implementation
+DATE: 2026-05-14
+TIME: 09:00
+
+#### LinkedIn Post
+
+NOTE: Tag Justin Poehnelt in the post body when publishing.
+
+Justin Poehnelt wrote a post called "Rewrite Your CLI for AI Agents" and I loved it so much I went back and updated all my second brain's CLI tools to match. agent-mail-cli is the cleanest example, built from scratch with the patterns.
+
+He lays out seven, agent-mail uses four.
+
+Self-describing. Run `agent-mail describe` and the agent gets the full schema as JSON. The output covers send, read, ack, status, identity rules, command examples, and content-routing.
+
+JSON in, JSON out. Every response is JSON on stdout, errors JSON on stderr. read and status accept --fields, the agent asks only for the columns it needs.
+
+No setup, no install. No config files, no MCP server, no registration. Identity is a CLI argument, only the system prompt changes between agents.
+
+One concept per command. send, read, ack, status. Small surface, no query language to learn.
+
+The other three patterns (idempotency, structured errors, streaming) didn't fit a mailbox cleanly, so they're not in there.
+
+Full breakdown:
+https://juanjofuchs.github.io/ai/2026/05/12/why-i-built-yet-another-agent-mail-tool.html
+
+Which of Justin's patterns have you applied to a tool of your own?
+
+#AI #DevTools #CLI #AgenticWorkflow #SoftwareDesign
+
+#### X/Twitter Thread
+
+NOTE: Tag @justinpoehnelt in tweet 1 (verify the exact handle before posting).
+
+Tweet 1:
+@justinpoehnelt wrote "Rewrite Your CLI for AI Agents" and I loved it so much I went back and updated all my second brain's CLI tools to match. agent-mail-cli is the cleanest example. 🔥
+
+Tweet 2:
+Self-describing. Run `agent-mail describe` and the agent gets the full schema as JSON, send, read, ack, status, identity rules and command examples included. 💡
+
+Tweet 3:
+JSON in, JSON out. read and status accept --fields, so the agent asks only for the columns it needs and skips bodies it won't read.
+
+Tweet 4:
+No setup, no install, no config files, no MCP server, no registration. Identity is a CLI argument, only the system prompt changes between agents. ✅
+
+Tweet 5:
+Full breakdown:
+https://juanjofuchs.github.io/ai/2026/05/12/why-i-built-yet-another-agent-mail-tool.html
+
+#AIAgents #CLI
+
+### Friday - Practical Takeaway
+DATE: 2026-05-15
+TIME: 09:00
+
+#### LinkedIn Post
+
+CLI tools are no longer written for us, they're written for our agents.
+
+For decades, picking up a new CLI meant reading docs and memorizing flags. With an agent in the loop, you can skip all that, your agent runs `describe` and reads the schema.
+
+Try it yourself, you don't need to install anything. Tell your agent to run:
+
+npx -y @juanjofuchs/agent-mail describe
+
+The agent gets the full schema, send, read, ack, status, with examples and identity rules. Then it can send a message in the next turn.
+
+A test you can run yourself:
+
+npx -y @juanjofuchs/agent-mail send --from test:alice --to test:bob --body 'hello'
+npx -y @juanjofuchs/agent-mail read --as test:bob
+
+To wire it in permanently, one line in your AGENTS.md:
+
+"For inter-agent coordination, run npx -y @juanjofuchs/agent-mail describe. Your identity is project:session-name."
+
+What's next: Claude Code shipped Channels in research preview, pushing external events into a running session. When Codex and Gemini get the same, agent-mail rides on top, new mail arrives as a session event without any polling from me.
+
+✅ One command install
+✅ One line onboarding
+✅ MIT licensed
+
+Repo: github.com/JuanjoFuchs/agent-mail-cli
+
+Full post:
+https://juanjofuchs.github.io/ai/2026/05/12/why-i-built-yet-another-agent-mail-tool.html
+
+PRs welcome.
+
+#AI #OpenSource #DevTools #CLI #AgenticWorkflow
+
+#### X/Twitter Thread
+
+Tweet 1:
+CLI tools are no longer written for us, they're written for our agents. Picking up a new CLI used to mean reading docs and memorizing flags. Now the agent runs `describe` and reads the schema. 🔥
+
+Tweet 2:
+Try agent-mail-cli without installing anything. Tell your agent: npx -y @juanjofuchs/agent-mail describe. The agent gets the schema, then it can send messages in the next turn. 💡
+
+Tweet 3:
+A test you can run yourself:
+npx @juanjofuchs/agent-mail send --from test:alice --to test:bob --body 'hello'
+npx @juanjofuchs/agent-mail read --as test:bob
+
+Tweet 4:
+Wire it in permanently: one line in your AGENTS.md. "For inter-agent coordination, run agent-mail describe. Your identity is project:session-name." ✅
+
+Tweet 5:
+Repo (MIT): github.com/JuanjoFuchs/agent-mail-cli
+Full post: https://juanjofuchs.github.io/ai/2026/05/12/why-i-built-yet-another-agent-mail-tool.html
+
+#OpenSource #AI
+{% endcomment %}
