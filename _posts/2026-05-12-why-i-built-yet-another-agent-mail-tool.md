@@ -108,6 +108,8 @@ MEDIA: /assets/agent-mail-hero.mp4
 ALT: Four-pane terminal demo of agents coordinating via agent-mail-cli
 
 #### LinkedIn Post
+PUBLISHED: 2026-05-12T16:00:08.997Z
+
 
 I open-sourced agent-mail-cli last week. It's a CLI for coding agents to send mail to each other. One command to install via npx, agents learn it from one line of explanation. No daemon, no MCP server, no harness setup.
 
