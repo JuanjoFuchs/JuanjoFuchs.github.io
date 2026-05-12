@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "post": "node post-to-social-media.js",
-    "post:daily": "node post-daily-social.js"
+    "post:daily": "node post-daily-social.js",
+    "linkedin:refresh": "node refresh-linkedin-token.js"
   },
   "keywords": [
     "social-media",

@@ -53,13 +53,20 @@ jobs:
         cd scripts
         npm install
 
+    - name: Prepare LinkedIn access token
+      env:
+        LINKEDIN_ACCESS_TOKEN: ${{ secrets.LINKEDIN_ACCESS_TOKEN }}
+        LINKEDIN_REFRESH_TOKEN: ${{ secrets.LINKEDIN_REFRESH_TOKEN }}
+        LINKEDIN_CLIENT_ID: ${{ secrets.LINKEDIN_CLIENT_ID }}
+        LINKEDIN_CLIENT_SECRET: ${{ secrets.LINKEDIN_CLIENT_SECRET }}
+      run: node scripts/refresh-linkedin-token.js
+
     - name: Find and post newly published posts
       env:
         X_API_KEY: ${{ secrets.X_API_KEY }}
         X_API_SECRET: ${{ secrets.X_API_SECRET }}
         X_ACCESS_TOKEN: ${{ secrets.X_ACCESS_TOKEN }}
         X_ACCESS_TOKEN_SECRET: ${{ secrets.X_ACCESS_TOKEN_SECRET }}
-        LINKEDIN_ACCESS_TOKEN: ${{ secrets.LINKEDIN_ACCESS_TOKEN }}
       run: |
         echo "Looking for newly published posts..."
 
