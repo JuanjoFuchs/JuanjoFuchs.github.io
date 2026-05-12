@@ -277,11 +277,10 @@ async function main() {
 
   console.log('\n' + '='.repeat(60));
   console.log(`Done. Candidates: ${candidates.length}, failures: ${failures}`);
-  console.log('='.repeat(60));
-
   if (failures > 0) {
-    process.exitCode = 1;
+    console.log('Some platforms failed. Successful platform posts were still marked for commit.');
   }
+  console.log('='.repeat(60));
 }
 
 main().catch(error => {

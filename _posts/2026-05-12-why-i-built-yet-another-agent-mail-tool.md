@@ -133,6 +133,8 @@ What's your agent coordination setup look like?
 #AI #AgenticWorkflow #MultiAgent #CLI #OpenSource
 
 #### X/Twitter Thread
+PUBLISHED: 2026-05-12T15:26:23.749Z
+
 
 Tweet 1:
 I open-sourced agent-mail-cli last week. A CLI for coding agents to send mail to each other. One command to install via npx, agents learn it from one line of explanation. 🔥
