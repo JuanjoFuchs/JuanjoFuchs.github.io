@@ -435,6 +435,7 @@ async function getLinkedInUserId(accessToken) {
  * @param {string} options.mediaUrn - LinkedIn media URN (from upload)
  * @param {string} options.mediaType - LinkedIn media type ('image' or 'video')
  * @param {string} options.altText - Alt text for image
+ * @param {string} options.mediaTitle - Title for video media
  * @returns {Promise<object>} - {success, postId, postUrl, error}
  */
 async function createLinkedInPost(content, personId, accessToken, options = {}) {
@@ -458,11 +459,18 @@ async function createLinkedInPost(content, personId, accessToken, options = {}) 
 
     // Add media content if media URN is provided
     if (options.mediaUrn) {
+      const media = {
+        id: options.mediaUrn
+      };
+
+      if (options.mediaType === 'video') {
+        media.title = options.mediaTitle || 'Video';
+      } else if (options.altText) {
+        media.altText = options.altText;
+      }
+
       postData.content = {
-        media: {
-          id: options.mediaUrn,
-          ...(options.altText && { altText: options.altText })
-        }
+        media
       };
     }
 
@@ -564,10 +572,15 @@ export async function postToLinkedIn(content, blogUrl, accessToken, options = {}
 
     // Step 3: Create post (with or without media)
     console.log('Creating LinkedIn post...');
+    const mediaTitle = options.mediaPath
+      ? path.basename(options.mediaPath, path.extname(options.mediaPath))
+      : undefined;
+
     const postResult = await createLinkedInPost(content, personId, accessToken, {
       mediaUrn,
       mediaType,
-      altText: options.altText
+      altText: options.altText,
+      mediaTitle
     });
     if (!postResult.success) {
       return {

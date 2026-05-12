@@ -234,6 +234,7 @@ async function main() {
   }
 
   let failures = 0;
+  let successfulActions = 0;
 
   for (const candidate of candidates) {
     console.log('\n' + '-'.repeat(60));
@@ -253,6 +254,8 @@ async function main() {
       if (!result.success) {
         failures++;
         console.error(`  LinkedIn failed: ${result.error}`);
+      } else if (!result.skipped) {
+        successfulActions++;
       }
     } else {
       console.log('  LinkedIn: disabled, skipping');
@@ -269,6 +272,8 @@ async function main() {
       if (!result.success) {
         failures++;
         console.error(`  X/Twitter failed: ${result.error}`);
+      } else if (!result.skipped) {
+        successfulActions++;
       }
     } else {
       console.log('  X/Twitter: disabled, skipping');
@@ -279,6 +284,9 @@ async function main() {
   console.log(`Done. Candidates: ${candidates.length}, failures: ${failures}`);
   if (failures > 0) {
     console.log('Some platforms failed. Successful platform posts were still marked for commit.');
+    if (successfulActions === 0) {
+      process.exitCode = 1;
+    }
   }
   console.log('='.repeat(60));
 }
