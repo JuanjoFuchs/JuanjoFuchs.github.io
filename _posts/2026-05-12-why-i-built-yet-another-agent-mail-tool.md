@@ -110,7 +110,6 @@ ALT: Four-pane terminal demo of agents coordinating via agent-mail-cli
 #### LinkedIn Post
 PUBLISHED: 2026-05-12T16:00:08.997Z
 
-
 I open-sourced agent-mail-cli last week. It's a CLI for coding agents to send mail to each other. One command to install via npx, agents learn it from one line of explanation. No daemon, no MCP server, no harness setup.
 
 The setup behind it has two tiers. A second-brain agent per project handles vision, PRDs, and roadmap planning in my Obsidian vault. A repo agent per project receives specs from the second-brain agent and implements them. Multiply by every active project and the message volume gets real fast.
@@ -136,7 +135,6 @@ What's your agent coordination setup look like?
 
 #### X/Twitter Thread
 PUBLISHED: 2026-05-12T15:26:23.749Z
-
 
 Tweet 1:
 I open-sourced agent-mail-cli last week. A CLI for coding agents to send mail to each other. One command to install via npx, agents learn it from one line of explanation. 🔥
@@ -165,9 +163,9 @@ I run 3 to 6 agents in terminal panes at any moment. Any more and my brain fries
 
 I have been improving my "second brain" Obsidian vault to work with AI agents for over 6 months now and I don't want to lock myself into one agent harness, the vault is mine and I want to keep it agent-agnostic. Whichever harness is sharpest at the task this week gets the work, Claude Code in one pane, Codex in another, Gemini CLI in another.
 
-The catch: none of them talked to each other. Handing a spec from the second-brain Codex to a repo's Claude Code meant copying the path into the right pane. Drafts shuttled from the writing Claude to the reviewing Codex through me. Image paths bounced back from the image-gen agent to whichever pane asked for them. Multiplied by every project, that manual relay became the bottleneck.
+The issue was simple: none of them talked to each other. Handing a spec from the second-brain agent to a repo agent meant manually copying the path into the right pane. Drafts moved from the writing agent to the reviewer through me. Image paths came back from the image-gen agent, then I relayed them to whichever pane had asked. Across every active project, I had become the message bus.
 
-Looked at the existing tools first. Beads from Steve Yegge is the most thoughtful in the space, but it embeds Dolt and needs setup per harness. MCP servers mean configuring the same server in three different config formats, one per harness. Gas City wants to run an autonomous fleet, more autonomy than I want right now. So I built the small thing myself.
+Looking at the existing tools. Beads from Steve Yegge is the most thoughtful in the space, but it embeds Dolt and needs setup per harness. MCP servers mean configuring the same server in three different config formats, one per harness. Gas City wants to run an autonomous fleet, more autonomy than I want right now. So I built a small CLI myself.
 
 Full breakdown:
 https://juanjofuchs.github.io/ai/2026/05/12/why-i-built-yet-another-agent-mail-tool.html
