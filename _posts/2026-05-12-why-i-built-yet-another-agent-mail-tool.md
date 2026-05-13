@@ -158,6 +158,8 @@ DATE: 2026-05-13
 TIME: 09:00
 
 #### LinkedIn Post
+PUBLISHED: 2026-05-13T13:11:50.221Z
+
 
 I run 3 to 6 agents in terminal panes at any moment. Any more and my brain fries (HBR ran a study on it called "When Using AI Leads to Brain Fry").
 
@@ -175,6 +177,8 @@ How are you handling coordination between your agent sessions?
 #AI #MultiAgent #AgenticWorkflow #DevTools #OpenSource
 
 #### X/Twitter Thread
+PUBLISHED: 2026-05-13T13:11:52.721Z
+
 
 Tweet 1:
 I run 3 to 6 agents in terminal panes at any moment. Any more and my brain fries (HBR ran a study on it, "When Using AI Leads to Brain Fry"). 🔥
