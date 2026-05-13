@@ -2,8 +2,10 @@ name: Daily Social Promotion
 
 on:
   schedule:
-    # Tuesday-Friday at 1:00 PM UTC, matching the current 9:00 AM EDT blog cadence.
+    # Tuesday-Friday at 9:00 AM America/New_York.
+    # GitHub cron is UTC-only, so run at both possible Eastern offsets and gate in-job.
     - cron: '0 13 * * 2-5'
+    - cron: '0 14 * * 2-5'
 
   workflow_dispatch:
     inputs:
@@ -39,16 +41,34 @@ jobs:
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
 
+    - name: Check Eastern schedule window
+      run: |
+        if [ "${{ github.event_name }}" != "schedule" ]; then
+          echo "SHOULD_POST_DAILY_SOCIAL=true" >> "$GITHUB_ENV"
+          exit 0
+        fi
+
+        EASTERN_HOUR=$(TZ=America/New_York date +%H)
+        if [ "$EASTERN_HOUR" = "09" ]; then
+          echo "SHOULD_POST_DAILY_SOCIAL=true" >> "$GITHUB_ENV"
+        else
+          echo "Skipping because it is ${EASTERN_HOUR}:00 in America/New_York, not 09:00"
+          echo "SHOULD_POST_DAILY_SOCIAL=false" >> "$GITHUB_ENV"
+        fi
+
     - name: Setup Node.js
+      if: env.SHOULD_POST_DAILY_SOCIAL == 'true'
       uses: actions/setup-node@v4
       with:
         node-version: '20'
 
     - name: Install dependencies
+      if: env.SHOULD_POST_DAILY_SOCIAL == 'true'
       working-directory: scripts
       run: npm install
 
     - name: Prepare LinkedIn access token
+      if: env.SHOULD_POST_DAILY_SOCIAL == 'true'
       env:
         LINKEDIN_ACCESS_TOKEN: ${{ secrets.LINKEDIN_ACCESS_TOKEN }}
         LINKEDIN_REFRESH_TOKEN: ${{ secrets.LINKEDIN_REFRESH_TOKEN }}
@@ -57,6 +77,7 @@ jobs:
       run: node scripts/refresh-linkedin-token.js
 
     - name: Post daily social campaign entries
+      if: env.SHOULD_POST_DAILY_SOCIAL == 'true'
       env:
         X_API_KEY: ${{ secrets.X_API_KEY }}
         X_API_SECRET: ${{ secrets.X_API_SECRET }}
@@ -82,7 +103,7 @@ jobs:
         node scripts/post-daily-social.js "${ARGS[@]}"
 
     - name: Commit published flags
-      if: ${{ github.event.inputs.dry_run != 'true' }}
+      if: ${{ env.SHOULD_POST_DAILY_SOCIAL == 'true' && github.event.inputs.dry_run != 'true' }}
       run: |
         git config user.name "GitHub Actions Bot"
         git config user.email "actions@github.com"
