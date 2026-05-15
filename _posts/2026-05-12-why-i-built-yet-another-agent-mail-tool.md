@@ -255,6 +255,8 @@ DATE: 2026-05-15
 TIME: 09:00
 
 #### LinkedIn Post
+PUBLISHED: 2026-05-15T15:17:54.581Z
+
 
 CLI tools are no longer written for us, they're written for our agents.
 
@@ -291,6 +293,8 @@ PRs welcome.
 #AI #OpenSource #DevTools #CLI #AgenticWorkflow
 
 #### X/Twitter Thread
+PUBLISHED: 2026-05-15T15:17:56.530Z
+
 
 Tweet 1:
 CLI tools are no longer written for us, they're written for our agents. Picking up a new CLI used to mean reading docs and memorizing flags. Now the agent runs `describe` and reads the schema. 🔥
