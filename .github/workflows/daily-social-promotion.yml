@@ -48,11 +48,19 @@ jobs:
           exit 0
         fi
 
-        EASTERN_HOUR=$(TZ=America/New_York date +%H)
-        if [ "$EASTERN_HOUR" = "09" ]; then
+        EASTERN_OFFSET=$(TZ=America/New_York date +%z)
+        TRIGGERED_SCHEDULE="${{ github.event.schedule }}"
+
+        if [ "$EASTERN_OFFSET" = "-0400" ]; then
+          EXPECTED_SCHEDULE="0 13 * * 2-5"
+        else
+          EXPECTED_SCHEDULE="0 14 * * 2-5"
+        fi
+
+        if [ "$TRIGGERED_SCHEDULE" = "$EXPECTED_SCHEDULE" ]; then
           echo "SHOULD_POST_DAILY_SOCIAL=true" >> "$GITHUB_ENV"
         else
-          echo "Skipping because it is ${EASTERN_HOUR}:00 in America/New_York, not 09:00"
+          echo "Skipping ${TRIGGERED_SCHEDULE} because Eastern offset is ${EASTERN_OFFSET}; expected ${EXPECTED_SCHEDULE}"
           echo "SHOULD_POST_DAILY_SOCIAL=false" >> "$GITHUB_ENV"
         fi
 
