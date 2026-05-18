@@ -110,9 +110,9 @@ Curious if you're seeing this in your org.
 #### X/Twitter Thread
 
 Tweet 1:
-Two conversations from earlier this year keep coming back to me.
+Two conversations keep coming back to me.
 
-An engineering manager worried about a pipeline thinning out, "what will my juniors be doing in six months." Same week, someone outside engineering using Claude Code to automate work that used to need an engineer. 🔥
+An engineering manager worried about a thinning pipeline: "what will my juniors be doing in six months." Same week, someone outside engineering used Claude Code to automate work that used to need an engineer. 🔥
 
 Tweet 2:
 The work juniors used to grow on is being eaten from both sides. AI compresses the routine implementation, the business side absorbs what used to need an engineer.
@@ -173,11 +173,11 @@ Tweet 1:
 "AI is taking junior jobs" misses the harder problem. The base isn't just shrinking, the shape of software work is changing, and the data is already in. 🔥
 
 Tweet 2:
-Stanford's Digital Economy Lab tracked ADP payroll, 22-25 employment declines in AI-exposed roles while experienced workers stay stable.
+Stanford tracked ADP payroll: 22-25 employment declines in AI-exposed roles while experienced workers stay stable.
 
-Anthropic's labor study, same signal, slower young-worker hiring in exposed roles.
+Anthropic saw slower young-worker hiring in exposed roles.
 
-Census CES early-career paper, same pattern.
+Census CES saw the same pattern.
 
 Tweet 3:
 BLS from a different angle:
