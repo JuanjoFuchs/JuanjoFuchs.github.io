@@ -2,11 +2,12 @@ name: Daily Social Promotion
 
 on:
   schedule:
-    # Tuesday-Friday at 9:10 AM America/New_York.
-    # Tuesday launch runs after the 9:00 AM Jekyll rebuild has time to publish.
+    # Tuesday-Friday at 9:00 AM America/New_York.
+    # GitHub cron can be delayed on free plans; this workflow handles rebuild,
+    # waits for Pages deployment, then posts the matching campaign entry.
     # GitHub cron is UTC-only, so run at both possible Eastern offsets and gate in-job.
-    - cron: '10 13 * * 2-5'
-    - cron: '10 14 * * 2-5'
+    - cron: '0 13 * * 2-5'
+    - cron: '0 14 * * 2-5'
 
   workflow_dispatch:
     inputs:
@@ -28,9 +29,15 @@ on:
         required: false
         default: true
         type: boolean
+      rebuild:
+        description: 'Trigger and wait for a Jekyll Pages rebuild before posting'
+        required: false
+        default: false
+        type: boolean
 
 permissions:
   contents: write
+  actions: read
 
 jobs:
   post-daily-social:
@@ -42,28 +49,85 @@ jobs:
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: Check Eastern schedule window
+    - name: Determine publish context
       run: |
         if [ "${{ github.event_name }}" != "schedule" ]; then
           echo "SHOULD_POST_DAILY_SOCIAL=true" >> "$GITHUB_ENV"
+          if [ -n "${{ inputs.date }}" ]; then
+            echo "CAMPAIGN_DATE=${{ inputs.date }}" >> "$GITHUB_ENV"
+          else
+            echo "CAMPAIGN_DATE=$(TZ=America/New_York date +%F)" >> "$GITHUB_ENV"
+          fi
+          if [ "${{ inputs.rebuild }}" = "true" ] && [ "${{ inputs.dry_run }}" != "true" ]; then
+            echo "SHOULD_REBUILD_JEKYLL=true" >> "$GITHUB_ENV"
+          else
+            echo "SHOULD_REBUILD_JEKYLL=false" >> "$GITHUB_ENV"
+          fi
           exit 0
         fi
 
         EASTERN_OFFSET=$(TZ=America/New_York date +%z)
+        EASTERN_DOW=$(TZ=America/New_York date +%u)
+        EASTERN_DATE=$(TZ=America/New_York date +%F)
         TRIGGERED_SCHEDULE="${{ github.event.schedule }}"
 
         if [ "$EASTERN_OFFSET" = "-0400" ]; then
-          EXPECTED_SCHEDULE="10 13 * * 2-5"
+          EXPECTED_SCHEDULE="0 13 * * 2-5"
         else
-          EXPECTED_SCHEDULE="10 14 * * 2-5"
+          EXPECTED_SCHEDULE="0 14 * * 2-5"
         fi
 
         if [ "$TRIGGERED_SCHEDULE" = "$EXPECTED_SCHEDULE" ]; then
           echo "SHOULD_POST_DAILY_SOCIAL=true" >> "$GITHUB_ENV"
+          echo "CAMPAIGN_DATE=$EASTERN_DATE" >> "$GITHUB_ENV"
+          if [ "$EASTERN_DOW" = "2" ]; then
+            echo "SHOULD_REBUILD_JEKYLL=true" >> "$GITHUB_ENV"
+          else
+            echo "SHOULD_REBUILD_JEKYLL=false" >> "$GITHUB_ENV"
+          fi
         else
           echo "Skipping ${TRIGGERED_SCHEDULE} because Eastern offset is ${EASTERN_OFFSET}; expected ${EXPECTED_SCHEDULE}"
           echo "SHOULD_POST_DAILY_SOCIAL=false" >> "$GITHUB_ENV"
+          echo "SHOULD_REBUILD_JEKYLL=false" >> "$GITHUB_ENV"
         fi
+
+    - name: Trigger scheduled Jekyll rebuild
+      if: ${{ env.SHOULD_POST_DAILY_SOCIAL == 'true' && env.SHOULD_REBUILD_JEKYLL == 'true' }}
+      run: |
+        git config user.name "GitHub Actions Bot"
+        git config user.email "actions@github.com"
+        git pull --rebase origin main
+        git commit --allow-empty -m "chore: trigger scheduled Jekyll rebuild"
+        git push
+        echo "REBUILD_SHA=$(git rev-parse HEAD)" >> "$GITHUB_ENV"
+
+    - name: Wait for GitHub Pages deployment
+      if: ${{ env.SHOULD_POST_DAILY_SOCIAL == 'true' && env.SHOULD_REBUILD_JEKYLL == 'true' }}
+      env:
+        GH_TOKEN: ${{ github.token }}
+      run: |
+        PAGES_WORKFLOW_ID=$(gh api "repos/${GITHUB_REPOSITORY}/actions/workflows" --jq '.workflows[] | select(.name == "pages-build-deployment") | .id' | head -n 1)
+        if [ -z "$PAGES_WORKFLOW_ID" ]; then
+          echo "Could not find GitHub Pages workflow"
+          exit 1
+        fi
+
+        RUN_ID=""
+        for attempt in $(seq 1 60); do
+          RUN_ID=$(gh api "repos/${GITHUB_REPOSITORY}/actions/workflows/${PAGES_WORKFLOW_ID}/runs?head_sha=${REBUILD_SHA}&per_page=1" --jq '.workflow_runs[0].id // empty')
+          if [ -n "$RUN_ID" ]; then
+            break
+          fi
+          echo "Waiting for Pages run for ${REBUILD_SHA} (attempt ${attempt}/60)"
+          sleep 10
+        done
+
+        if [ -z "$RUN_ID" ]; then
+          echo "Timed out waiting for Pages run to appear for ${REBUILD_SHA}"
+          exit 1
+        fi
+
+        gh run watch "$RUN_ID" --exit-status --interval 10
 
     - name: Setup Node.js
       if: env.SHOULD_POST_DAILY_SOCIAL == 'true'
@@ -96,10 +160,7 @@ jobs:
         SOCIAL_X_ENABLED: ${{ vars.SOCIAL_X_ENABLED }}
       run: |
         ARGS=()
-
-        if [ -n "${{ inputs.date }}" ]; then
-          ARGS+=(--date "${{ inputs.date }}")
-        fi
+        ARGS+=(--date "$CAMPAIGN_DATE")
 
         if [ -n "${{ inputs.platform }}" ]; then
           ARGS+=(--platform "${{ inputs.platform }}")
