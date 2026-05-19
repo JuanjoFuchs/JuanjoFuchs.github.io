@@ -83,6 +83,8 @@ MEDIA: /assets/the-ladder-collapse-hero.png
 ALT: A pyramid with a wide junior base on the left, an arrow pointing right to a diamond with a thin neck where the base used to be
 
 #### LinkedIn Post
+PUBLISHED: 2026-05-19T13:18:04.511Z
+
 
 An engineering manager I used to work with told me his team's pipeline is thinning, not in the "this project got cancelled" way, in the "what will my juniors be doing in six months" way. The work was leaving, and nothing was coming back to fill it.
 
@@ -108,6 +110,8 @@ Curious if you're seeing this in your org.
 #AI #Engineering #CareerDevelopment #SoftwareEngineering #FutureOfWork
 
 #### X/Twitter Thread
+PUBLISHED: 2026-05-19T13:18:06.667Z
+
 
 Tweet 1:
 Two conversations keep coming back to me.
