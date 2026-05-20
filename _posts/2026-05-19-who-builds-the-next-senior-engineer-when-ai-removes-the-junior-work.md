@@ -149,6 +149,8 @@ MEDIA: /assets/the-ladder-collapse-hero.png
 ALT: A pyramid with a wide junior base on the left, an arrow pointing right to a diamond with a thin neck where the base used to be
 
 #### LinkedIn Post
+PUBLISHED: 2026-05-20T14:31:52.345Z
+
 
 22-25 year olds in AI-exposed jobs are losing employment. Workers over 30 in the same jobs aren't. Stanford has the data, Anthropic has it, the Census Bureau has it.
 
@@ -172,6 +174,8 @@ What's your read on the data?
 #AI #SoftwareEngineering #LaborMarket #FutureOfWork #CareerDevelopment
 
 #### X/Twitter Thread
+PUBLISHED: 2026-05-20T14:31:54.188Z
+
 
 Tweet 1:
 "AI is taking junior jobs" misses the harder problem. The base isn't just shrinking, the shape of software work is changing, and the data is already in. 🔥
