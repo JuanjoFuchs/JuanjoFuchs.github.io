@@ -213,6 +213,8 @@ MEDIA: /assets/the-ladder-collapse-hero.png
 ALT: A pyramid with a wide junior base on the left, an arrow pointing right to a diamond with a thin neck where the base used to be
 
 #### LinkedIn Post
+PUBLISHED: 2026-05-21T13:02:04.446Z
+
 
 NOTE: Tag Kent Beck when publishing.
 
@@ -234,6 +236,8 @@ What did you learn from synthetic work that you couldn't have learned any other 
 #AI #SoftwareEngineering #EngineeringCulture #Mentorship #LearningInPublic
 
 #### X/Twitter Thread
+PUBLISHED: 2026-05-21T13:02:06.471Z
+
 
 NOTE: Tag @kentbeck in tweet 1 (verify handle before posting).
 
