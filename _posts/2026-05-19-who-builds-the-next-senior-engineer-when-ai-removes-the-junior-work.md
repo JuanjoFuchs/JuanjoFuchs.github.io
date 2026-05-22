@@ -271,6 +271,8 @@ MEDIA: /assets/the-ladder-collapse-hero.png
 ALT: A pyramid with a wide junior base on the left, an arrow pointing right to a diamond with a thin neck where the base used to be
 
 #### LinkedIn Post
+PUBLISHED: 2026-05-22T15:44:51.448Z
+
 
 Most of the senior engineers I know got there by doing work that doesn't exist anymore. Debugging weird production failures, refactoring legacy code, reading thousands of lines someone else wrote. AI does most of that now.
 
@@ -298,6 +300,8 @@ Which of these is your team practicing right now?
 #AI #SoftwareEngineering #EngineeringLeadership #Mentorship #CareerDevelopment
 
 #### X/Twitter Thread
+PUBLISHED: 2026-05-22T15:44:53.596Z
+
 
 Tweet 1:
 The accidental gym is gone. The deliberate one has to be built.
