@@ -83,6 +83,8 @@ MEDIA: /assets/the-ladder-collapse-hero.png
 ALT: A pyramid with a wide junior base on the left, an arrow pointing right to a diamond with a thin neck where the base used to be
 
 #### LinkedIn Post
+PUBLISHED: 2026-05-19T13:18:04.511Z
+
 
 An engineering manager I used to work with told me his team's pipeline is thinning, not in the "this project got cancelled" way, in the "what will my juniors be doing in six months" way. The work was leaving, and nothing was coming back to fill it.
 
@@ -108,6 +110,8 @@ Curious if you're seeing this in your org.
 #AI #Engineering #CareerDevelopment #SoftwareEngineering #FutureOfWork
 
 #### X/Twitter Thread
+PUBLISHED: 2026-05-19T13:18:06.667Z
+
 
 Tweet 1:
 Two conversations keep coming back to me.
@@ -145,6 +149,8 @@ MEDIA: /assets/the-ladder-collapse-hero.png
 ALT: A pyramid with a wide junior base on the left, an arrow pointing right to a diamond with a thin neck where the base used to be
 
 #### LinkedIn Post
+PUBLISHED: 2026-05-20T14:31:52.345Z
+
 
 22-25 year olds in AI-exposed jobs are losing employment. Workers over 30 in the same jobs aren't. Stanford has the data, Anthropic has it, the Census Bureau has it.
 
@@ -168,6 +174,8 @@ What's your read on the data?
 #AI #SoftwareEngineering #LaborMarket #FutureOfWork #CareerDevelopment
 
 #### X/Twitter Thread
+PUBLISHED: 2026-05-20T14:31:54.188Z
+
 
 Tweet 1:
 "AI is taking junior jobs" misses the harder problem. The base isn't just shrinking, the shape of software work is changing, and the data is already in. 🔥
@@ -205,6 +213,8 @@ MEDIA: /assets/the-ladder-collapse-hero.png
 ALT: A pyramid with a wide junior base on the left, an arrow pointing right to a diamond with a thin neck where the base used to be
 
 #### LinkedIn Post
+PUBLISHED: 2026-05-21T13:02:04.446Z
+
 
 NOTE: Tag Kent Beck when publishing.
 
@@ -226,6 +236,8 @@ What did you learn from synthetic work that you couldn't have learned any other 
 #AI #SoftwareEngineering #EngineeringCulture #Mentorship #LearningInPublic
 
 #### X/Twitter Thread
+PUBLISHED: 2026-05-21T13:02:06.471Z
+
 
 NOTE: Tag @kentbeck in tweet 1 (verify handle before posting).
 
@@ -259,6 +271,8 @@ MEDIA: /assets/the-ladder-collapse-hero.png
 ALT: A pyramid with a wide junior base on the left, an arrow pointing right to a diamond with a thin neck where the base used to be
 
 #### LinkedIn Post
+PUBLISHED: 2026-05-22T15:44:51.448Z
+
 
 Most of the senior engineers I know got there by doing work that doesn't exist anymore. Debugging weird production failures, refactoring legacy code, reading thousands of lines someone else wrote. AI does most of that now.
 
@@ -286,6 +300,8 @@ Which of these is your team practicing right now?
 #AI #SoftwareEngineering #EngineeringLeadership #Mentorship #CareerDevelopment
 
 #### X/Twitter Thread
+PUBLISHED: 2026-05-22T15:44:53.596Z
+
 
 Tweet 1:
 The accidental gym is gone. The deliberate one has to be built.
