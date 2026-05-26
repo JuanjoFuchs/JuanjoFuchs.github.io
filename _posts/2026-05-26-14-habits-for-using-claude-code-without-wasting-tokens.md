@@ -67,6 +67,8 @@ MEDIA: /assets/claude-code-tips-spec.png
 ALT: Tip 1 from the guide, "Write the spec first, with verification built in," as a terminal-styled card
 
 #### LinkedIn Post
+PUBLISHED: 2026-05-26T14:55:53.861Z
+
 Write the spec before you write code, and build verification into it so Claude checks its own work. Then send one long, complete prompt instead of five "actually, also..." corrections.
 
 Those two habits alone cut a lot of the token waste I see in Claude Code sessions.
@@ -84,6 +86,8 @@ What's the one Claude Code habit you'd add to the list?
 #ClaudeCode #AIEngineering #DeveloperProductivity #AICodingTools #SoftwareEngineering
 
 #### X/Twitter Thread
+PUBLISHED: 2026-05-26T14:55:55.766Z
+
 Tweet 1:
 Write the spec before the code, and build verification into it so Claude checks its own work. Spec-first cuts a lot of the token waste I see in Claude Code sessions.
 
