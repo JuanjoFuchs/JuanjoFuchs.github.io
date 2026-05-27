@@ -112,6 +112,8 @@ MEDIA: /assets/claude-code-tips-context.png
 ALT: Tip 3 from the guide, "One coherent workstream per conversation," as a terminal-styled card
 
 #### LinkedIn Post
+PUBLISHED: 2026-05-27T15:17:32.960Z
+
 One coherent workstream per conversation. Don't debug auth, write docs, then scan logs in the same thread, /clear between unrelated tasks.
 
 Stale context isn't free, you pay to re-read the noise on every single turn. Four habits keep a Claude Code session lean:
@@ -128,6 +130,8 @@ How long do your sessions run before you /clear?
 #ClaudeCode #AIEngineering #DeveloperProductivity #ContextEngineering
 
 #### X/Twitter Thread
+PUBLISHED: 2026-05-27T15:17:35.023Z
+
 Tweet 1:
 One coherent workstream per conversation. Don't debug auth, write docs, then scan logs in the same thread, /clear between unrelated tasks.
 
