@@ -156,6 +156,8 @@ MEDIA: /assets/claude-code-tips-delegation.png
 ALT: Tip 7 from the guide, "Opus xhigh is the team lead, not the team," as a terminal-styled card
 
 #### LinkedIn Post
+PUBLISHED: 2026-05-28T13:00:52.702Z
+
 Opus xhigh is the team lead, not the team. Keep it on the judgment and delegate the grunt work, file reads, log scrapes, doc lookups, to Sonnet or Haiku subagents.
 
 Most of the cost waste I see is the expensive seat doing cheap work. Four habits fix it:
@@ -172,6 +174,8 @@ Are you delegating to cheaper models yet, or still running Opus for everything?
 #ClaudeCode #AIEngineering #DeveloperProductivity #AICostOptimization
 
 #### X/Twitter Thread
+PUBLISHED: 2026-05-28T13:00:54.378Z
+
 Tweet 1:
 Opus xhigh is the team lead, not the team. Keep it on judgment, delegate file reads, log scrapes, and doc lookups to Sonnet or Haiku subagents.
 
