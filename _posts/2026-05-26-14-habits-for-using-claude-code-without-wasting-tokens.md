@@ -200,6 +200,8 @@ MEDIA: /assets/claude-code-tips-toolbox.png
 ALT: Tip 9 from the guide, "Prefer CLIs over MCPs, and set up the toolbox first," as a terminal-styled card
 
 #### LinkedIn Post
+PUBLISHED: 2026-05-29T13:25:09.631Z
+
 Prefer CLIs over MCPs, and set up the toolbox before you start. Claude Code lives in the shell, so a CLI is the home-field option, and pre-installing gh, aws, kubectl, and your log CLI means the agent executes instead of hunting for tools that aren't there.
 
 Four habits make the environment do the work:
@@ -216,6 +218,8 @@ What's in your pre-session toolbox checklist?
 #ClaudeCode #AIEngineering #DeveloperProductivity #AIAgents
 
 #### X/Twitter Thread
+PUBLISHED: 2026-05-29T13:25:11.576Z
+
 Tweet 1:
 Prefer CLIs over MCPs. Claude Code lives in the shell, so a CLI is the home-field option, pre-install and authenticate them before the session.
 
