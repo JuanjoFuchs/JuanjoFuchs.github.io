@@ -67,6 +67,8 @@ MEDIA: /assets/claude-code-tips-spec.png
 ALT: Tip 1 from the guide, "Write the spec first, with verification built in," as a terminal-styled card
 
 #### LinkedIn Post
+PUBLISHED: 2026-05-26T14:55:53.861Z
+
 Write the spec before you write code, and build verification into it so Claude checks its own work. Then send one long, complete prompt instead of five "actually, also..." corrections.
 
 Those two habits alone cut a lot of the token waste I see in Claude Code sessions.
@@ -84,6 +86,8 @@ What's the one Claude Code habit you'd add to the list?
 #ClaudeCode #AIEngineering #DeveloperProductivity #AICodingTools #SoftwareEngineering
 
 #### X/Twitter Thread
+PUBLISHED: 2026-05-26T14:55:55.766Z
+
 Tweet 1:
 Write the spec before the code, and build verification into it so Claude checks its own work. Spec-first cuts a lot of the token waste I see in Claude Code sessions.
 
@@ -108,6 +112,8 @@ MEDIA: /assets/claude-code-tips-context.png
 ALT: Tip 3 from the guide, "One coherent workstream per conversation," as a terminal-styled card
 
 #### LinkedIn Post
+PUBLISHED: 2026-05-27T15:17:32.960Z
+
 One coherent workstream per conversation. Don't debug auth, write docs, then scan logs in the same thread, /clear between unrelated tasks.
 
 Stale context isn't free, you pay to re-read the noise on every single turn. Four habits keep a Claude Code session lean:
@@ -124,6 +130,8 @@ How long do your sessions run before you /clear?
 #ClaudeCode #AIEngineering #DeveloperProductivity #ContextEngineering
 
 #### X/Twitter Thread
+PUBLISHED: 2026-05-27T15:17:35.023Z
+
 Tweet 1:
 One coherent workstream per conversation. Don't debug auth, write docs, then scan logs in the same thread, /clear between unrelated tasks.
 
@@ -148,6 +156,8 @@ MEDIA: /assets/claude-code-tips-delegation.png
 ALT: Tip 7 from the guide, "Opus xhigh is the team lead, not the team," as a terminal-styled card
 
 #### LinkedIn Post
+PUBLISHED: 2026-05-28T13:00:52.702Z
+
 Opus xhigh is the team lead, not the team. Keep it on the judgment and delegate the grunt work, file reads, log scrapes, doc lookups, to Sonnet or Haiku subagents.
 
 Most of the cost waste I see is the expensive seat doing cheap work. Four habits fix it:
@@ -164,6 +174,8 @@ Are you delegating to cheaper models yet, or still running Opus for everything?
 #ClaudeCode #AIEngineering #DeveloperProductivity #AICostOptimization
 
 #### X/Twitter Thread
+PUBLISHED: 2026-05-28T13:00:54.378Z
+
 Tweet 1:
 Opus xhigh is the team lead, not the team. Keep it on judgment, delegate file reads, log scrapes, and doc lookups to Sonnet or Haiku subagents.
 
@@ -188,6 +200,8 @@ MEDIA: /assets/claude-code-tips-toolbox.png
 ALT: Tip 9 from the guide, "Prefer CLIs over MCPs, and set up the toolbox first," as a terminal-styled card
 
 #### LinkedIn Post
+PUBLISHED: 2026-05-29T13:25:09.631Z
+
 Prefer CLIs over MCPs, and set up the toolbox before you start. Claude Code lives in the shell, so a CLI is the home-field option, and pre-installing gh, aws, kubectl, and your log CLI means the agent executes instead of hunting for tools that aren't there.
 
 Four habits make the environment do the work:
@@ -204,6 +218,8 @@ What's in your pre-session toolbox checklist?
 #ClaudeCode #AIEngineering #DeveloperProductivity #AIAgents
 
 #### X/Twitter Thread
+PUBLISHED: 2026-05-29T13:25:11.576Z
+
 Tweet 1:
 Prefer CLIs over MCPs. Claude Code lives in the shell, so a CLI is the home-field option, pre-install and authenticate them before the session.
 
