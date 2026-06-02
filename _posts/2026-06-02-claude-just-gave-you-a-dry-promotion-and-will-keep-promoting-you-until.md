@@ -73,6 +73,8 @@ MEDIA: /assets/claude-dry-promotion-hero-irrigation-designer.png
 ALT: A designer sketches an irrigation plan at a field table while machines dig the channels and a shovel sits unused
 
 #### LinkedIn Post
+PUBLISHED: 2026-06-02T13:10:30.811Z
+
 NOTE: Verify the blog URL slug/date before posting (final Jekyll filename governs the path).
 
 So you've stopped writing most of your code. You still ship it, you still own it, you just don't type it anymore.
@@ -91,6 +93,8 @@ https://juanjofuchs.github.io/ai-development/2026/06/02/claude-just-gave-you-a-d
 #AI #SoftwareEngineering #AgenticAI #EngineeringLeadership
 
 #### X/Twitter Thread
+PUBLISHED: 2026-06-02T13:10:33.433Z
+
 NOTE: Verify the blog URL slug/date before posting.
 
 Tweet 1:
