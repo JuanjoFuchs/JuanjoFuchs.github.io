@@ -461,6 +461,67 @@ export function buildBlogUrl(frontMatter, filePath, baseUrl) {
   return `${baseUrl}/${categoryPath}${year}/${month}/${day}/${slug}.html`;
 }
 
+// Blog URL detection + injection -------------------------------------------
+
+const BLOG_URL_REGEX = /https?:\/\/[^\s]+/;
+// Matches a line made up only of hashtags. Handles LinkedIn's escaped form
+// (e.g. "\#AI \#SoftwareEngineering") as well as plain tweet hashtags.
+const HASHTAG_LINE_REGEX = /^(?:\\?#[A-Za-z0-9_]+\s*)+$/;
+
+/**
+ * Insert a URL into a text block just before any trailing hashtag line(s).
+ * Falls back to appending at the end when there are no trailing hashtags.
+ * @param {string} text - Post or tweet body
+ * @param {string} url - URL to insert
+ * @returns {string}
+ */
+function insertUrlBeforeHashtags(text, url) {
+  const lines = text.split('\n');
+  let end = lines.length;
+  while (end > 0 && lines[end - 1].trim() === '') end--;
+  let start = end;
+  while (start > 0 && HASHTAG_LINE_REGEX.test(lines[start - 1].trim())) start--;
+  const hashtagLines = lines.slice(start, end);
+  const body = lines.slice(0, start).join('\n').replace(/\s+$/, '');
+  if (hashtagLines.length > 0) {
+    return `${body}\n\n${url}\n\n${hashtagLines.join('\n')}`;
+  }
+  return `${body}\n\n${url}`;
+}
+
+/**
+ * Ensure a LinkedIn post body links to the post. If a link is already present
+ * the content is returned untouched (canonicalization to the current slug is
+ * handled at post time by replaceBlogUrls). Otherwise the blog URL is inserted
+ * in the body, before any trailing hashtag line.
+ * @param {string} content - LinkedIn post content
+ * @param {string} blogUrl - Canonical blog post URL
+ * @returns {string}
+ */
+export function ensureLinkedInUrl(content, blogUrl) {
+  if (!content || !blogUrl) return content;
+  if (BLOG_URL_REGEX.test(content)) return content;
+  return insertUrlBeforeHashtags(content, blogUrl);
+}
+
+/**
+ * Ensure an X/Twitter thread links to the post. Per strategy the link lives in
+ * the last tweet. If any tweet already carries a URL the thread is left as-is.
+ * The last tweet is re-truncated so the appended URL stays within the limit.
+ * @param {string[]} tweets - Tweet bodies
+ * @param {string} blogUrl - Canonical blog post URL
+ * @returns {string[]}
+ */
+export function ensureTwitterUrl(tweets, blogUrl) {
+  if (!tweets?.length || !blogUrl) return tweets;
+  if (tweets.some(tweet => BLOG_URL_REGEX.test(tweet))) return tweets;
+  const updated = [...tweets];
+  const lastIndex = updated.length - 1;
+  const candidate = insertUrlBeforeHashtags(updated[lastIndex], blogUrl);
+  updated[lastIndex] = truncateTweet(candidate).text;
+  return updated;
+}
+
 /**
  * Main function to extract all social media content from a markdown file
  * @param {string} filePath - Path to the markdown file
@@ -472,6 +533,10 @@ export function extractSocialContent(filePath, baseUrl = 'https://juanjofuchs.gi
     // Read and parse markdown file
     const fileContent = fs.readFileSync(filePath, 'utf-8');
     const { data: frontMatter, content: markdownContent } = matter(fileContent);
+
+    // Canonical blog URL for this post — used both in the return and to backfill
+    // any campaign slot that forgot to include the link.
+    const blogUrl = buildBlogUrl(frontMatter, filePath, baseUrl);
 
     // Check if platforms are already published
     const publishedStatus = checkPublishedStatus(filePath);
@@ -530,9 +595,25 @@ export function extractSocialContent(filePath, baseUrl = 'https://juanjofuchs.gi
       }
     }
 
+    // Backfill the blog link wherever a slot omitted it. The poster never
+    // *adds* a URL (replaceBlogUrls only swaps an existing one), so a slot
+    // without a link would otherwise ship with no way to reach the post.
+    if (linkedin?.content) {
+      linkedin.content = ensureLinkedInUrl(linkedin.content, blogUrl);
+    }
+    if (twitter?.tweets?.length) {
+      twitter.tweets = ensureTwitterUrl(twitter.tweets, blogUrl);
+    }
+
     if (campaign) {
       for (const entry of campaign.entries) {
         applyCampaignMediaFallback(entry, featuredImage, defaultAlt);
+        if (entry.linkedin?.content) {
+          entry.linkedin.content = ensureLinkedInUrl(entry.linkedin.content, blogUrl);
+        }
+        if (entry.twitter?.tweets?.length) {
+          entry.twitter.tweets = ensureTwitterUrl(entry.twitter.tweets, blogUrl);
+        }
       }
     }
 
