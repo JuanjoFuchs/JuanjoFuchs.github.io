@@ -121,6 +121,8 @@ MEDIA: /assets/dry-promotion-shovel-cannot-scale.png
 ALT: A lone worker leans on a shovel by one hand-dug furrow, facing a vast plowed field he can't dig by hand
 
 #### LinkedIn Post
+PUBLISHED: 2026-06-03T12:56:33.996Z
+
 You can't opt out of managing agents. The numbers don't leave room for it.
 
 Anthropic's data: engineers can fully hand off only 0–20% of their tasks. The other 80–100% they supervise. And better models make that worse, faster agents produce more output, and more output is more to review. People call it the oversight gap, and it grows as the models improve.
@@ -134,6 +136,8 @@ Both paths lose. The fix is upstream, you change how you apply your judgment in 
 #AI #SoftwareEngineering #EngineeringLeadership #AICoding
 
 #### X/Twitter Thread
+PUBLISHED: 2026-06-03T12:56:36.501Z
+
 Tweet 1:
 You can't opt out of managing agents. The numbers don't let you. 💡
 
