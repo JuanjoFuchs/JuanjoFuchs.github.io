@@ -13,7 +13,7 @@ author: JuanjoFuchs
 
 So you have stopped writing most of your code. You still ship it. You still own it. You just don't type it anymore.
 
-You write a spec, point a few agents at it, and review what comes back. You add acceptance criteria and verification mechanisms to the spec, so the agents know to continue iterating until they get it right. You just keep an eye on the direction and avoid drift. You get from idea to working product in minutes now.
+You write a spec, point a few agents at it, and review what comes back. You add acceptance criteria and verification mechanisms to the spec, so the agents know to continue iterating until they get it right. You just keep an eye on the direction and avoid drift. You get from [idea to working product in minutes](https://juanjofuchs.github.io/ai-development/2026/01/27/ai-accelerates-whatever-you-have.html) now.
 
 That's actually a promotion. Nobody gave you a new title or a raise; your job just changed from writing, refactoring, and running the code to [directing a group of agents](https://juanjofuchs.github.io/ai/2026/01/06/engineering-managers-naturally-great-at-ai.html) that now do it for you. It's a dry promotion with no extra pay, and you never applied to it.
 
