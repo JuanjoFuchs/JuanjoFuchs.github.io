@@ -15,7 +15,7 @@ So you have stopped writing most of your code. You still ship it. You still own 
 
 You write a spec, point a few agents at it, and review what comes back. You add acceptance criteria and verification mechanisms to the spec, so the agents know to continue iterating until they get it right. You just keep an eye on the direction and avoid drift. You get from idea to working product in minutes now.
 
-That's actually a promotion. Nobody gave you a new title or a raise; your job just changed from writing, refactoring, and running the code to directing a group of agents that now do it for you. It's a dry promotion with no extra pay, and you never applied to it.
+That's actually a promotion. Nobody gave you a new title or a raise; your job just changed from writing, refactoring, and running the code to [directing a group of agents](https://juanjofuchs.github.io/ai/2026/01/06/engineering-managers-naturally-great-at-ai.html) that now do it for you. It's a dry promotion with no extra pay, and you never applied to it.
 
 Kent Beck says [the watchmaker era is gone](https://www.youtube.com/watch?v=Kh24KYFfH5Q), the careful by-hand changes to code are mostly the agent's job now. The industry already has a name for the new role, the agent manager. In February it was a prediction in [HBR](https://hbr.org/2026/02/to-thrive-in-the-ai-era-companies-need-agent-managers), by mid-2026 people are calling it the career skill of the year.
 
@@ -23,7 +23,7 @@ Kent Beck says [the watchmaker era is gone](https://www.youtube.com/watch?v=Kh24
 
 ![Researchers in a field lab analyze soil cores, water samples, and plant leaves to judge what healthy looks like](/assets/dry-promotion-field-analysis-lab.png)
 
-Strip away the typing and what's left is your taste, your read on what good looks like, which technical decisions hold up under real load and which ones quietly turn into a 3am page six months later. You built it over years, making those calls and living with the consequences.
+Strip away the typing and what's left is [your taste](https://juanjofuchs.github.io/ai/2026/02/17/llms-are-compaction-tools-and-you-are-the-algorithm.html), your read on what good looks like, which technical decisions hold up under real load and which ones quietly turn into a 3am page six months later. You built it over years, making those calls and living with the consequences.
 
 Taste was never really in making the call. Think about the decisions you used to agonize over by hand, which pattern to reach for, how to structure the module, which library to pull in. Those feel like the craft, but they're educated guesses. Very educated, built on years of scars and a shelf of good books and every system you've watched scale or fall over, but still guesses. There's rarely one right answer, there are a few reasonable approaches, and you don't find out which one was right until the thing runs in production, under real load, during a real incident.
 
@@ -53,9 +53,9 @@ I'm not certain this works. Designing evals is my best guess at how you keep you
 
 ## What Stays Human
 
-This won't stop here. You went from writing code to directing agents, and the abstraction keeps rising, each jump hands another layer to the agents and pushes you up a rung. ([Who becomes a senior](https://juanjofuchs.github.io/ai-development/2026/05/19/who-builds-the-next-senior-engineer-when-ai-removes-the-junior-work.html) when the bottom rung is all agents is a separate problem.)
+This won't stop here. You went from writing code to [directing agents](https://juanjofuchs.github.io/ai-development/2026/04/21/the-call-to-become-a-super-ic.html), and the abstraction keeps rising, each jump hands another layer to the agents and pushes you up a rung. ([Who becomes a senior](https://juanjofuchs.github.io/ai-development/2026/05/19/who-builds-the-next-senior-engineer-when-ai-removes-the-junior-work.html) when the bottom rung is all agents is a separate problem.)
 
-Two things don't move, no matter how high this goes. The first is intent, deciding what's worth building and why. That comes from being a person in the world with things you actually want and need, the same reason AI can't have shower thoughts, it doesn't want anything. The second is accountability. When the agents answer the pager and patch production while you sleep, you'll still be the one who answers for whether there were too many incidents and whether they got fixed fast enough. The pager can move to the agent, the responsibility can't.
+Two things don't move, no matter how high this goes. The first is intent, deciding what's worth building and why. That comes from being a person in the world with things you actually want and need, the same reason [AI can't have shower thoughts](https://juanjofuchs.github.io/ai/2026/05/05/ai-will-never-have-shower-thoughts-even-if-it-takes-a-shower.html), it doesn't want anything. The second is accountability. When the agents answer the pager and patch production while you sleep, you'll still be the one who answers for whether there were too many incidents and whether they got fixed fast enough. The pager can move to the agent, the responsibility can't.
 
 And I'm sorry, dear reader, I don't have the answer for when the promotions will stop. Nobody does yet, and anyone who claims they do is guessing.
 
