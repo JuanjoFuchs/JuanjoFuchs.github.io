@@ -162,6 +162,8 @@ MEDIA: /assets/dry-promotion-field-analysis-lab.png
 ALT: Researchers in a field lab analyze soil cores, water samples, and plant leaves to judge what healthy looks like
 
 #### LinkedIn Post
+PUBLISHED: 2026-06-04T13:11:58.745Z
+
 Two ideas reshaped how I think about staying valuable while AI writes the code.
 
 The first is Kent Beck's. He says the watchmaker era is gone, the careful by-hand changes are mostly the agent's job now. His "how to build it" skills, the synthetic ones, are depreciating fast. His taste, knowing what's worth building and whether it's any good, gained leverage. An hour of good judgment now buys more working software than it ever has.
@@ -175,6 +177,8 @@ Honest question for the engineering leaders here: if pattern decisions only get 
 #AI #SoftwareEngineering #EngineeringLeadership #AIAgents
 
 #### X/Twitter Thread
+PUBLISHED: 2026-06-04T13:12:01.013Z
+
 Tweet 1:
 Kent Beck: the watchmaker era is gone. The careful by-hand changes to code are mostly the agent's job now.
 
