@@ -203,6 +203,8 @@ MEDIA: /assets/dry-promotion-engineering-gates.png
 ALT: A designer drafts detailed blueprints of irrigation control gates, the checkpoints water must pass through
 
 #### LinkedIn Post
+PUBLISHED: 2026-06-05T13:01:21.363Z
+
 If AI writes most of your code now, spend next week on the checks that read the PRs for you, instead of trying to read them all yourself.
 
 Think of it as writing your taste down, the judgment you'd apply by eye turned into a rubric the agent has to pass:
@@ -220,6 +222,8 @@ Start with one check this week, the piece of "good" you're tired of explaining b
 #AI #SoftwareEngineering #EngineeringLeadership #AICoding
 
 #### X/Twitter Thread
+PUBLISHED: 2026-06-05T13:01:23.566Z
+
 Tweet 1:
 If AI writes most of your code now, stop trying to read every PR. Start designing the checks that read them for you. ✅
 
