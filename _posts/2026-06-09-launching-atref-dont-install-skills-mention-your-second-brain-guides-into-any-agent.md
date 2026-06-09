@@ -69,6 +69,8 @@ MEDIA: /assets/videos/atref-fuzzy-picker-demo.mp4
 ALT: atref summoning its fuzzy picker and inserting a guide's @-path into an agent in another repo
 
 #### LinkedIn Post
+PUBLISHED: 2026-06-09T15:21:08.276Z
+
 I keep a second brain full of guides, how I commit, how I write specs, how I update agents.md. They work great until I'm in another repo and I want Claude Code or Codex to actually follow one of them.
 
 Today that means tabbing to VS Code, copying the file path, and pasting it back so the agent can read it. I did that for months.
@@ -87,6 +89,8 @@ What's the first guide you'd want your agent to read on demand?
 #ClaudeCode #AIEngineering #DeveloperProductivity
 
 #### X/Twitter Thread
+PUBLISHED: 2026-06-09T15:21:12.402Z
+
 Tweet 1:
 I keep a second brain of guides, how I commit, how I write specs, how I update agents.md. Getting them into Claude Code from another repo was the annoying part.
 
