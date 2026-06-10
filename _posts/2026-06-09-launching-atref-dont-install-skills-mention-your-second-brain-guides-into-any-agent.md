@@ -115,6 +115,8 @@ MEDIA: /assets/atref-picker-second-brain-guides.png
 ALT: atref's picker open over the desktop, listing second-brain guides like Git Commit Guide and Blog Writing Guide
 
 #### LinkedIn Post
+PUBLISHED: 2026-06-10T13:20:22.156Z
+
 A skill sitting right in the agent's context got used in fewer than half the runs. Vercel ran the eval, and a plain routing index in AGENTS.md beat it, 100% against 79%.
 
 That's a big reason I don't package my own coding guides as skills, even though packaging is the obvious move. I keep my guides in a second brain and reference them straight into Claude Code or Codex when I want one followed.
@@ -135,6 +137,8 @@ If activation gets reliable enough, would you still want an explicit way to load
 #AIEngineering #ClaudeCode #AIAgents
 
 #### X/Twitter Thread
+PUBLISHED: 2026-06-10T13:20:24.003Z
+
 Tweet 1:
 A skill sitting right in the agent's context got used in fewer than half the runs. Vercel ran the eval, and a routed AGENTS.md index beat it 100% to 79%. 📊
 
