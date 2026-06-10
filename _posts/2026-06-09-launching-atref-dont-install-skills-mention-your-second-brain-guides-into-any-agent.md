@@ -111,8 +111,8 @@ Windows v0.1, rough, but I use it daily. Scoop or PowerShell install (winget soo
 ### Wednesday - Problem
 DATE: 2026-06-10
 TIME: 09:00
-MEDIA: /assets/atref-skills-install-friction.png
-ALT: the same guide duplicated across Claude Code and Codex skill folders versus one curated second-brain file
+MEDIA: /assets/atref-picker-second-brain-guides.png
+ALT: atref's picker open over the desktop, listing second-brain guides like Git Commit Guide and Blog Writing Guide
 
 #### LinkedIn Post
 A skill sitting right in the agent's context got used in fewer than half the runs. Vercel ran the eval, and a plain routing index in AGENTS.md beat it, 100% against 79%.
@@ -194,8 +194,8 @@ Git-aware indexing, folder priority, live file-watcher, all in a small Rust tray
 ### Friday - Takeaway
 DATE: 2026-06-12
 TIME: 09:00
-MEDIA: /assets/atref-cross-app-install.png
-ALT: the atref picker working across a terminal, a browser box, and Obsidian, with the winget install command
+MEDIA: /assets/atref-picker-second-brain-guides.png
+ALT: atref's picker open at the cursor, listing curated second-brain guides ready to @-mention into any agent
 
 #### LinkedIn Post
 If you keep a personal knowledge base, your guides, prompts, runbooks, the value is only real if your agents can reach it cheaply.
