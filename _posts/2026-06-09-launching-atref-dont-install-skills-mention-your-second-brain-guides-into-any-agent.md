@@ -11,10 +11,10 @@ author: JuanjoFuchs
 
 ![atref's picker open over the desktop, listing second-brain guides like Git Commit Guide and Blog Writing Guide](/assets/atref-picker-second-brain-guides.png)
 
-<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+<div style="position: relative; padding-bottom: 62.5%; height: 0; overflow: hidden;">
   <video style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
          autoplay loop muted playsinline controls poster="/assets/atref-picker-second-brain-guides.png">
-    <source src="/assets/videos/atref-fuzzy-picker-demo.mp4" type="video/mp4">
+    <source src="/assets/videos/atref-picker-demo-v06.mp4" type="video/mp4">
   </video>
 </div>
 
@@ -159,8 +159,8 @@ For a must-load commit guide I'd rather point at it. I built atref to make that 
 ### Thursday - Implementation
 DATE: 2026-06-11
 TIME: 09:00
-MEDIA: /assets/atref-fuzzy-match-writing-style-guide.png
-ALT: atref's picker fuzzy-matching the query 'writing style guide' down to a single result
+MEDIA: /assets/videos/atref-picker-demo-v06.mp4
+ALT: atref summoning its fuzzy picker, matching a guide by name, and inserting the full @-path at the caret
 
 #### LinkedIn Post
 atref is a small tool I built that drops a file reference wherever you're typing: hit a chord, fuzzy-find the file, Enter. I use it to feed my second-brain guides to Claude Code and Codex from any repo.
