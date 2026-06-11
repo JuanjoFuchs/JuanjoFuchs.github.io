@@ -163,6 +163,8 @@ MEDIA: /assets/videos/atref-picker-demo-v06.mp4
 ALT: atref summoning its fuzzy picker, matching a guide by name, and inserting the full @-path at the caret
 
 #### LinkedIn Post
+PUBLISHED: 2026-06-11T13:14:45.229Z
+
 atref is a small tool I built that drops a file reference wherever you're typing: hit a chord, fuzzy-find the file, Enter. I use it to feed my second-brain guides to Claude Code and Codex from any repo.
 
 The reason it's worth building is a small Claude Code behavior. Hand Claude Code a full path with an @ in front and it reads the whole document in one shot, no listing the directory, no grepping, no three-turn detour where it skims the first 20 lines and moves on. Claude Code's own @ picker nails this, but it only sees the current working directory. I tried /add-dir to add my second brain, the @ UX still only works cleanly inside the cwd.
@@ -178,6 +180,8 @@ Point it at one guide you reference constantly and try it.
 #ClaudeCode #Rust #DeveloperProductivity
 
 #### X/Twitter Thread
+PUBLISHED: 2026-06-11T13:14:49.238Z
+
 Tweet 1:
 atref is a tool I built that drops a file reference wherever you're typing, a chord, fuzzy-find, Enter. I use it to feed my second-brain guides to Claude Code and Codex from any repo.
 
