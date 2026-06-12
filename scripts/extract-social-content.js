@@ -175,7 +175,10 @@ function extractMediaFields(sectionContent) {
  * @returns {object|null} - {content, hashtags, media, alt} or null if section not found
  */
 export function parseLinkedInPost(commentContent) {
-  const linkedInRegex = /^##[^\S\r\n]*LinkedIn Post[^\S\r\n]*\r?\n([\s\S]*?)(?=---\s*\n\s*##|^##\s+|$)/im;
+  // End anchor uses (?![\s\S]) for true end-of-string. A bare $ under the /m
+  // flag matches every line-end, which would stop the lazy capture right after
+  // the MEDIA line and lose the whole post body.
+  const linkedInRegex = /^##[^\S\r\n]*LinkedIn Post[^\S\r\n]*\r?\n([\s\S]*?)(?=---\s*\n\s*##|^##\s+|(?![\s\S]))/im;
   const match = commentContent.match(linkedInRegex);
 
   if (!match) {
@@ -241,7 +244,7 @@ export function parseLinkedInSectionContent(sectionContent) {
  * @returns {object|null} - {tweets, hashtags, media, alt} or null if section not found
  */
 export function parseTwitterThread(commentContent) {
-  const twitterRegex = /^##[^\S\r\n]*X\/Twitter Thread[^\S\r\n]*\r?\n([\s\S]*?)(?=---\s*\n\s*INSTRUCTIONS:|^##\s+|$)/im;
+  const twitterRegex = /^##[^\S\r\n]*X\/Twitter Thread[^\S\r\n]*\r?\n([\s\S]*?)(?=---\s*\n\s*INSTRUCTIONS:|^##\s+|(?![\s\S]))/im;
   const match = commentContent.match(twitterRegex);
 
   if (!match) {
@@ -522,6 +525,47 @@ export function ensureTwitterUrl(tweets, blogUrl) {
   return updated;
 }
 
+// UTM tracking -------------------------------------------------------------
+
+/**
+ * Build the utm_campaign value for a post: "<slug_with_underscores>_<YYYYMMDD>".
+ * Derived from the Jekyll filename so it's stable and unique per post.
+ * @param {string} filePath
+ * @returns {string}
+ */
+export function campaignSlug(filePath) {
+  const filename = filePath.split(/[\\/]/).pop();
+  const m = filename.match(/^(\d{4})-(\d{2})-(\d{2})-(.+)\.md$/i);
+  if (!m) return 'blog';
+  const [, y, mo, d, slug] = m;
+  return `${slug.replace(/-/g, '_')}_${y}${mo}${d}`;
+}
+
+/**
+ * Append UTM tracking params to our own blog-post URLs in a text block.
+ * Per-platform utm_source; idempotent (a URL that already has a query is left
+ * alone). For LinkedIn, underscores are escaped for the little-text format so
+ * the link isn't mangled into italics.
+ * @param {string} text
+ * @param {string} platform - 'linkedin' or 'twitter'
+ * @param {string} campaign - utm_campaign value
+ * @returns {string}
+ */
+export function addUtmParams(text, platform, campaign) {
+  if (!text || !campaign) return text;
+  const escapeUnderscores = platform === 'linkedin';
+  return text.replace(/https?:\/\/juanjofuchs\.github\.io\/\S+/g, (match) => {
+    const trailMatch = match.match(/[).,!?:;'"]+$/);
+    const trail = trailMatch ? trailMatch[0] : '';
+    const url = trail ? match.slice(0, match.length - trail.length) : match;
+    if (url.includes('?')) return match;       // already parameterized
+    if (!/\.html$/.test(url)) return match;     // only blog-post pages
+    let params = `utm_source=${platform}&utm_medium=social&utm_campaign=${campaign}`;
+    if (escapeUnderscores) params = params.replace(/_/g, '\\_');
+    return `${url}?${params}${trail}`;
+  });
+}
+
 /**
  * Main function to extract all social media content from a markdown file
  * @param {string} filePath - Path to the markdown file
@@ -598,11 +642,14 @@ export function extractSocialContent(filePath, baseUrl = 'https://juanjofuchs.gi
     // Backfill the blog link wherever a slot omitted it. The poster never
     // *adds* a URL (replaceBlogUrls only swaps an existing one), so a slot
     // without a link would otherwise ship with no way to reach the post.
+    const utmCampaign = campaignSlug(filePath);
     if (linkedin?.content) {
       linkedin.content = ensureLinkedInUrl(linkedin.content, blogUrl);
+      linkedin.content = addUtmParams(linkedin.content, 'linkedin', utmCampaign);
     }
     if (twitter?.tweets?.length) {
       twitter.tweets = ensureTwitterUrl(twitter.tweets, blogUrl);
+      twitter.tweets = twitter.tweets.map(t => addUtmParams(t, 'twitter', utmCampaign));
     }
 
     if (campaign) {
@@ -610,9 +657,11 @@ export function extractSocialContent(filePath, baseUrl = 'https://juanjofuchs.gi
         applyCampaignMediaFallback(entry, featuredImage, defaultAlt);
         if (entry.linkedin?.content) {
           entry.linkedin.content = ensureLinkedInUrl(entry.linkedin.content, blogUrl);
+          entry.linkedin.content = addUtmParams(entry.linkedin.content, 'linkedin', utmCampaign);
         }
         if (entry.twitter?.tweets?.length) {
           entry.twitter.tweets = ensureTwitterUrl(entry.twitter.tweets, blogUrl);
+          entry.twitter.tweets = entry.twitter.tweets.map(t => addUtmParams(t, 'twitter', utmCampaign));
         }
       }
     }

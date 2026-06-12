@@ -137,7 +137,10 @@ async function main() {
       `https?://${BASE_DOMAIN.replace(/\./g, '\\.')}[^\\s]*`, 'g'
     );
     const correctedTweets = extracted.twitter.tweets.map(
-      tweet => tweet.replace(blogUrlPattern, extracted.blogUrl)
+      tweet => tweet.replace(blogUrlPattern, (m) => {
+        const q = m.indexOf('?');
+        return q >= 0 ? extracted.blogUrl + m.slice(q) : extracted.blogUrl;
+      })
     );
 
     // Resolve media path for Twitter

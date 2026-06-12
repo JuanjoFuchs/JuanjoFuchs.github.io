@@ -114,7 +114,12 @@ function replaceBlogUrls(text, blogUrl) {
     'g'
   );
 
-  return text.replace(blogUrlPattern, blogUrl);
+  // Canonicalize the path/slug but preserve any query string (e.g. UTM params
+  // added by extract-social-content.js's addUtmParams).
+  return text.replace(blogUrlPattern, (m) => {
+    const q = m.indexOf('?');
+    return q >= 0 ? blogUrl + m.slice(q) : blogUrl;
+  });
 }
 
 async function postLinkedInEntry(entry, blogUrl, credentials, filePath, dryRun) {
