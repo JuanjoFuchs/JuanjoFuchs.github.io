@@ -206,6 +206,8 @@ MEDIA: /assets/atref-picker-second-brain-guides.png
 ALT: atref's picker open at the cursor, listing curated second-brain guides ready to @-mention into any agent
 
 #### LinkedIn Post
+PUBLISHED: 2026-06-12T14:09:22.492Z
+
 If you keep a personal knowledge base, your guides, prompts, runbooks, the value is only real if your agents can reach it cheaply.
 
 The pattern that's worked for me: keep the knowledge curated in one place, then reference the exact file on demand instead of packaging it for a distribution you don't need. atref makes that one chord, so I pull my commit guide or my spec guide into Claude Code or Codex from any repo without leaving the keyboard.
@@ -223,6 +225,8 @@ If something breaks, or there's a reference format you want it to insert, tell m
 #DeveloperProductivity #ClaudeCode #SecondBrain
 
 #### X/Twitter Thread
+PUBLISHED: 2026-06-12T14:09:25.150Z
+
 Tweet 1:
 A personal knowledge base is only worth it if your agents can reach it cheaply. Curate in one place, reference the exact file on demand.
 
