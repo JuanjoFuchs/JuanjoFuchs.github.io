@@ -2,7 +2,7 @@
 layout: post
 title: "Loop Engineering for the Rest of Us"
 description: "Everyone's saying stop prompting and start writing loops. But a loop is only as good as the verifier checking its work, and for those of us without unlimited tokens, that verifier is the whole game."
-date: 2026-06-16 09:00:00 -0500
+date: 2026-06-16 09:00:00 -0400
 categories: ai-development
 tags: [ai, loops, llm, verification, productivity]
 author: JuanjoFuchs
