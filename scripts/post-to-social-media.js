@@ -8,6 +8,21 @@ import fs from 'fs';
 import path from 'path';
 
 /**
+ * Read a boolean-ish env var. Mirrors post-daily-social.js so the global
+ * SOCIAL_LINKEDIN_ENABLED / SOCIAL_X_ENABLED kill-switches work here too.
+ * @param {string} name - Environment variable name
+ * @param {boolean} defaultValue - Value when unset/empty
+ * @returns {boolean}
+ */
+function envEnabled(name, defaultValue = true) {
+  const value = process.env[name];
+  if (value == null || value === '') {
+    return defaultValue;
+  }
+  return !['0', 'false', 'no', 'off'].includes(value.toLowerCase());
+}
+
+/**
  * Resolve media path from relative (e.g., /assets/image.png) to absolute
  * @param {string} mediaPath - Media path from post content
  * @param {string} postFilePath - Path to the post file
@@ -48,13 +63,23 @@ async function main() {
 
   // Parse command line arguments
   const args = process.argv.slice(2);
-  if (args.length === 0) {
+  const dryRun = args.includes('--dry-run');
+  const filePath = args.find(arg => !arg.startsWith('--'));
+  if (!filePath) {
     console.error('❌ Error: No file path provided');
-    console.log('Usage: node post-to-social-media.js <path-to-markdown-file>');
+    console.log('Usage: node post-to-social-media.js <path-to-markdown-file> [--dry-run]');
     process.exit(1);
   }
 
-  const filePath = args[0];
+  // Global platform kill-switches (default enabled), shared with the daily flow.
+  const platformsEnabled = {
+    linkedin: envEnabled('SOCIAL_LINKEDIN_ENABLED', true),
+    twitter: envEnabled('SOCIAL_X_ENABLED', true)
+  };
+
+  if (dryRun) {
+    console.log('\n🧪 Dry run: will validate and print, no posts will be sent.');
+  }
 
   // Validate file exists
   if (!fs.existsSync(filePath)) {
@@ -125,11 +150,14 @@ async function main() {
   const promises = [];
 
   // Twitter posting
-  if (extracted.publishedStatus && extracted.publishedStatus.twitter) {
+  if (!platformsEnabled.twitter) {
+    console.log('\n⊘ Twitter: Disabled via SOCIAL_X_ENABLED, skipping');
+    results.twitter = { success: true, skipped: true };
+  } else if (extracted.publishedStatus && extracted.publishedStatus.twitter) {
     console.log('\n⊘ Twitter: Already published, skipping');
     results.twitter = { success: true, skipped: true };
   } else if (extracted.twitter && extracted.twitter.tweets.length > 0) {
-    console.log(`\n🐦 Posting to X (Twitter) - ${extracted.twitter.tweets.length} tweets`);
+    console.log(`\n🐦 ${dryRun ? 'Would post' : 'Posting'} to X (Twitter) - ${extracted.twitter.tweets.length} tweets`);
 
     // Replace any hardcoded blog URLs with the correctly generated blogUrl
     const BASE_DOMAIN = 'juanjofuchs.github.io';
@@ -149,37 +177,45 @@ async function main() {
       console.log(`  Media: ${extracted.twitter.media}${twitterMediaPath ? ' (found)' : ' (not found)'}`);
     }
 
-    promises.push(
-      postTwitterThread(correctedTweets, credentials.twitter, {
-        mediaPath: twitterMediaPath,
-        altText: extracted.twitter.alt
-      })
-        .then(result => {
-          results.twitter = result;
-          if (result.success) {
-            const mediaStatus = result.mediaUploaded ? ' (with image)' : '';
-            console.log(`✓ Twitter: Posted ${result.tweetIds.length} tweets successfully${mediaStatus}`);
-            // Mark as published
-            markAsPublished(filePath, 'twitter');
-          } else {
-            console.error(`✗ Twitter: ${result.error}`);
-          }
+    if (dryRun) {
+      correctedTweets.forEach((tweet, i) => console.log(`  [${i + 1}] ${tweet}`));
+      results.twitter = { success: true, dryRun: true };
+    } else {
+      promises.push(
+        postTwitterThread(correctedTweets, credentials.twitter, {
+          mediaPath: twitterMediaPath,
+          altText: extracted.twitter.alt
         })
-        .catch(err => {
-          results.twitter = { success: false, error: err.message };
-          console.error(`✗ Twitter: Unexpected error - ${err.message}`);
-        })
-    );
+          .then(result => {
+            results.twitter = result;
+            if (result.success) {
+              const mediaStatus = result.mediaUploaded ? ' (with image)' : '';
+              console.log(`✓ Twitter: Posted ${result.tweetIds.length} tweets successfully${mediaStatus}`);
+              // Mark as published
+              markAsPublished(filePath, 'twitter');
+            } else {
+              console.error(`✗ Twitter: ${result.error}`);
+            }
+          })
+          .catch(err => {
+            results.twitter = { success: false, error: err.message };
+            console.error(`✗ Twitter: Unexpected error - ${err.message}`);
+          })
+      );
+    }
   } else {
     console.log('\n⊘ Twitter: No content found, skipping');
   }
 
   // LinkedIn posting
-  if (extracted.publishedStatus && extracted.publishedStatus.linkedin) {
+  if (!platformsEnabled.linkedin) {
+    console.log('\n⊘ LinkedIn: Disabled via SOCIAL_LINKEDIN_ENABLED, skipping');
+    results.linkedin = { success: true, skipped: true };
+  } else if (extracted.publishedStatus && extracted.publishedStatus.linkedin) {
     console.log('\n⊘ LinkedIn: Already published, skipping');
     results.linkedin = { success: true, skipped: true };
   } else if (extracted.linkedin && extracted.linkedin.content) {
-    console.log(`\n💼 Posting to LinkedIn`);
+    console.log(`\n💼 ${dryRun ? 'Would post' : 'Posting'} to LinkedIn`);
 
     // Resolve media path for LinkedIn
     const linkedinMediaPath = resolveMediaPath(extracted.linkedin.media, filePath);
@@ -187,28 +223,33 @@ async function main() {
       console.log(`  Media: ${extracted.linkedin.media}${linkedinMediaPath ? ' (found)' : ' (not found)'}`);
     }
 
-    promises.push(
-      postToLinkedIn(extracted.linkedin.content, extracted.blogUrl, credentials.linkedin.accessToken, {
-        mediaPath: linkedinMediaPath,
-        altText: extracted.linkedin.alt
-      })
-        .then(result => {
-          results.linkedin = result;
-          if (result.success) {
-            const mediaStatus = result.mediaUploaded ? ' (with image)' : '';
-            console.log(`✓ LinkedIn: Posted successfully${mediaStatus}`);
-            console.log(`  Post URL: ${result.postUrl}`);
-            // Mark as published
-            markAsPublished(filePath, 'linkedin');
-          } else {
-            console.error(`✗ LinkedIn: ${result.error}`);
-          }
+    if (dryRun) {
+      console.log(`  ${extracted.linkedin.content.length} chars, hashtags: ${extracted.linkedin.hashtags.join(' ')}`);
+      results.linkedin = { success: true, dryRun: true };
+    } else {
+      promises.push(
+        postToLinkedIn(extracted.linkedin.content, extracted.blogUrl, credentials.linkedin.accessToken, {
+          mediaPath: linkedinMediaPath,
+          altText: extracted.linkedin.alt
         })
-        .catch(err => {
-          results.linkedin = { success: false, error: err.message };
-          console.error(`✗ LinkedIn: Unexpected error - ${err.message}`);
-        })
-    );
+          .then(result => {
+            results.linkedin = result;
+            if (result.success) {
+              const mediaStatus = result.mediaUploaded ? ' (with image)' : '';
+              console.log(`✓ LinkedIn: Posted successfully${mediaStatus}`);
+              console.log(`  Post URL: ${result.postUrl}`);
+              // Mark as published
+              markAsPublished(filePath, 'linkedin');
+            } else {
+              console.error(`✗ LinkedIn: ${result.error}`);
+            }
+          })
+          .catch(err => {
+            results.linkedin = { success: false, error: err.message };
+            console.error(`✗ LinkedIn: Unexpected error - ${err.message}`);
+          })
+      );
+    }
   } else {
     console.log('\n⊘ LinkedIn: No content found, skipping');
   }
@@ -226,8 +267,10 @@ async function main() {
 
   if (results.twitter) {
     if (results.twitter.success) {
-      if (results.twitter.skipped) {
-        console.log(`⊘ Twitter: Skipped (already published)`);
+      if (results.twitter.dryRun) {
+        console.log(`🧪 Twitter: Dry run (not posted)`);
+      } else if (results.twitter.skipped) {
+        console.log(`⊘ Twitter: Skipped`);
       } else {
         console.log(`✓ Twitter: Success (${results.twitter.tweetIds.length} tweets)`);
         successCount++;
@@ -240,8 +283,10 @@ async function main() {
 
   if (results.linkedin) {
     if (results.linkedin.success) {
-      if (results.linkedin.skipped) {
-        console.log(`⊘ LinkedIn: Skipped (already published)`);
+      if (results.linkedin.dryRun) {
+        console.log(`🧪 LinkedIn: Dry run (not posted)`);
+      } else if (results.linkedin.skipped) {
+        console.log(`⊘ LinkedIn: Skipped`);
       } else {
         console.log(`✓ LinkedIn: Success`);
         successCount++;

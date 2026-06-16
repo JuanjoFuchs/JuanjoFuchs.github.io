@@ -1,29 +1,18 @@
-name: Daily Social Promotion
+name: Weekly Social Promotion
 
 on:
   schedule:
-    # Tuesday-Friday at 9:00 AM America/New_York.
-    # GitHub cron can be delayed on free plans; this workflow handles rebuild,
-    # waits for Pages deployment, then posts the matching campaign entry.
+    # Tuesday at 9:00 AM America/New_York — launch day, one post per week.
     # GitHub cron is UTC-only, so run at both possible Eastern offsets and gate in-job.
-    - cron: '0 13 * * 2-5'
-    - cron: '0 14 * * 2-5'
+    - cron: '0 13 * * 2'
+    - cron: '0 14 * * 2'
 
   workflow_dispatch:
     inputs:
       date:
-        description: 'Campaign date to post (YYYY-MM-DD). Defaults to today.'
+        description: 'Post date to promote (YYYY-MM-DD, matches the _posts filename). Defaults to today.'
         required: false
         type: string
-      platform:
-        description: 'Platform to post'
-        required: false
-        default: all
-        type: choice
-        options:
-          - all
-          - linkedin
-          - twitter
       dry_run:
         description: 'Validate without posting'
         required: false
@@ -40,7 +29,7 @@ permissions:
   actions: read
 
 jobs:
-  post-daily-social:
+  post-weekly-social:
     runs-on: ubuntu-latest
 
     steps:
@@ -52,7 +41,7 @@ jobs:
     - name: Determine publish context
       run: |
         if [ "${{ github.event_name }}" != "schedule" ]; then
-          echo "SHOULD_POST_DAILY_SOCIAL=true" >> "$GITHUB_ENV"
+          echo "SHOULD_POST_WEEKLY_SOCIAL=true" >> "$GITHUB_ENV"
           if [ -n "${{ inputs.date }}" ]; then
             echo "CAMPAIGN_DATE=${{ inputs.date }}" >> "$GITHUB_ENV"
           else
@@ -67,49 +56,52 @@ jobs:
         fi
 
         EASTERN_OFFSET=$(TZ=America/New_York date +%z)
-        EASTERN_DOW=$(TZ=America/New_York date +%u)
         EASTERN_DATE=$(TZ=America/New_York date +%F)
         TRIGGERED_SCHEDULE="${{ github.event.schedule }}"
 
         if [ "$EASTERN_OFFSET" = "-0400" ]; then
-          EXPECTED_SCHEDULE="0 13 * * 2-5"
+          EXPECTED_SCHEDULE="0 13 * * 2"
         else
-          EXPECTED_SCHEDULE="0 14 * * 2-5"
+          EXPECTED_SCHEDULE="0 14 * * 2"
         fi
 
         if [ "$TRIGGERED_SCHEDULE" = "$EXPECTED_SCHEDULE" ]; then
-          echo "SHOULD_POST_DAILY_SOCIAL=true" >> "$GITHUB_ENV"
+          echo "SHOULD_POST_WEEKLY_SOCIAL=true" >> "$GITHUB_ENV"
           echo "CAMPAIGN_DATE=$EASTERN_DATE" >> "$GITHUB_ENV"
-          if [ "$EASTERN_DOW" = "2" ]; then
-            echo "SHOULD_REBUILD_JEKYLL=true" >> "$GITHUB_ENV"
-          else
-            echo "SHOULD_REBUILD_JEKYLL=false" >> "$GITHUB_ENV"
-          fi
+          # Launch day: rebuild so the post is live before we promote it.
+          echo "SHOULD_REBUILD_JEKYLL=true" >> "$GITHUB_ENV"
         else
           echo "Skipping ${TRIGGERED_SCHEDULE} because Eastern offset is ${EASTERN_OFFSET}; expected ${EXPECTED_SCHEDULE}"
-          echo "SHOULD_POST_DAILY_SOCIAL=false" >> "$GITHUB_ENV"
+          echo "SHOULD_POST_WEEKLY_SOCIAL=false" >> "$GITHUB_ENV"
           echo "SHOULD_REBUILD_JEKYLL=false" >> "$GITHUB_ENV"
         fi
 
-    - name: Skip when no campaign entry matches the date
-      if: env.SHOULD_POST_DAILY_SOCIAL == 'true'
+    - name: Resolve post file and gate on one-shot content
+      if: env.SHOULD_POST_WEEKLY_SOCIAL == 'true'
       run: |
-        # Campaign entries carry an uppercase "DATE: YYYY-MM-DD" line; the
-        # frontmatter uses lowercase "date:" with a time, so this only matches
-        # real ## Social Campaign entries. When none match today, fully no-op
-        # (no rebuild, no post) so the daily workflow stays out of the way
-        # during the weekly-only window and never races weekly-social-promotion
-        # over the Tuesday rebuild.
-        if grep -rqE "^DATE:[[:space:]]*${CAMPAIGN_DATE}([[:space:]]|$)" _posts/; then
-          echo "Found a campaign entry for ${CAMPAIGN_DATE}."
+        POST_FILE=$(ls _posts/${CAMPAIGN_DATE}-*.md 2>/dev/null | head -n 1 || true)
+        if [ -z "$POST_FILE" ]; then
+          echo "No post file for ${CAMPAIGN_DATE}; weekly promotion will no-op."
+          echo "SHOULD_POST_WEEKLY_SOCIAL=false" >> "$GITHUB_ENV"
+          echo "SHOULD_REBUILD_JEKYLL=false" >> "$GITHUB_ENV"
+          exit 0
+        fi
+
+        # Only the one-shot weekly format (top-level "## LinkedIn Post" /
+        # "## X/Twitter Thread") is posted here. A daily-campaign post uses
+        # "## Social Campaign" with "#### LinkedIn Post" sub-sections and is
+        # handled by daily-social-promotion.yml, so we no-op on those.
+        if grep -qE "^## (LinkedIn Post|X/Twitter Thread)" "$POST_FILE"; then
+          echo "Found one-shot social content in ${POST_FILE}."
+          echo "POST_FILE=$POST_FILE" >> "$GITHUB_ENV"
         else
-          echo "No campaign entry for ${CAMPAIGN_DATE}; daily promotion will no-op."
-          echo "SHOULD_POST_DAILY_SOCIAL=false" >> "$GITHUB_ENV"
+          echo "${POST_FILE} has no one-shot ## LinkedIn Post / ## X/Twitter Thread section (likely a daily-campaign post); weekly promotion will no-op."
+          echo "SHOULD_POST_WEEKLY_SOCIAL=false" >> "$GITHUB_ENV"
           echo "SHOULD_REBUILD_JEKYLL=false" >> "$GITHUB_ENV"
         fi
 
     - name: Trigger scheduled Jekyll rebuild
-      if: ${{ env.SHOULD_POST_DAILY_SOCIAL == 'true' && env.SHOULD_REBUILD_JEKYLL == 'true' }}
+      if: ${{ env.SHOULD_POST_WEEKLY_SOCIAL == 'true' && env.SHOULD_REBUILD_JEKYLL == 'true' }}
       run: |
         git config user.name "GitHub Actions Bot"
         git config user.email "actions@github.com"
@@ -119,7 +111,7 @@ jobs:
         echo "REBUILD_SHA=$(git rev-parse HEAD)" >> "$GITHUB_ENV"
 
     - name: Wait for GitHub Pages deployment
-      if: ${{ env.SHOULD_POST_DAILY_SOCIAL == 'true' && env.SHOULD_REBUILD_JEKYLL == 'true' }}
+      if: ${{ env.SHOULD_POST_WEEKLY_SOCIAL == 'true' && env.SHOULD_REBUILD_JEKYLL == 'true' }}
       env:
         GH_TOKEN: ${{ github.token }}
       run: |
@@ -147,18 +139,18 @@ jobs:
         gh run watch "$RUN_ID" --exit-status --interval 10
 
     - name: Setup Node.js
-      if: env.SHOULD_POST_DAILY_SOCIAL == 'true'
+      if: env.SHOULD_POST_WEEKLY_SOCIAL == 'true'
       uses: actions/setup-node@v4
       with:
         node-version: '20'
 
     - name: Install dependencies
-      if: env.SHOULD_POST_DAILY_SOCIAL == 'true'
+      if: env.SHOULD_POST_WEEKLY_SOCIAL == 'true'
       working-directory: scripts
       run: npm install
 
     - name: Prepare LinkedIn access token
-      if: env.SHOULD_POST_DAILY_SOCIAL == 'true'
+      if: env.SHOULD_POST_WEEKLY_SOCIAL == 'true'
       env:
         LINKEDIN_ACCESS_TOKEN: ${{ secrets.LINKEDIN_ACCESS_TOKEN }}
         LINKEDIN_REFRESH_TOKEN: ${{ secrets.LINKEDIN_REFRESH_TOKEN }}
@@ -166,8 +158,8 @@ jobs:
         LINKEDIN_CLIENT_SECRET: ${{ secrets.LINKEDIN_CLIENT_SECRET }}
       run: node scripts/refresh-linkedin-token.js
 
-    - name: Post daily social campaign entries
-      if: env.SHOULD_POST_DAILY_SOCIAL == 'true'
+    - name: Post weekly social
+      if: env.SHOULD_POST_WEEKLY_SOCIAL == 'true'
       env:
         X_API_KEY: ${{ secrets.X_API_KEY }}
         X_API_SECRET: ${{ secrets.X_API_SECRET }}
@@ -176,30 +168,25 @@ jobs:
         SOCIAL_LINKEDIN_ENABLED: ${{ vars.SOCIAL_LINKEDIN_ENABLED }}
         SOCIAL_X_ENABLED: ${{ vars.SOCIAL_X_ENABLED }}
       run: |
-        ARGS=()
-        ARGS+=(--date "$CAMPAIGN_DATE")
-
-        if [ -n "${{ inputs.platform }}" ]; then
-          ARGS+=(--platform "${{ inputs.platform }}")
-        fi
+        ARGS=("$POST_FILE")
 
         if [ "${{ inputs.dry_run }}" = "true" ]; then
           ARGS+=(--dry-run)
         fi
 
-        node scripts/post-daily-social.js "${ARGS[@]}"
+        node scripts/post-to-social-media.js "${ARGS[@]}"
 
     - name: Commit published flags
-      if: ${{ env.SHOULD_POST_DAILY_SOCIAL == 'true' && github.event.inputs.dry_run != 'true' }}
+      if: ${{ env.SHOULD_POST_WEEKLY_SOCIAL == 'true' && github.event.inputs.dry_run != 'true' }}
       run: |
         git config user.name "GitHub Actions Bot"
         git config user.email "actions@github.com"
 
         if git diff --quiet _posts/; then
-          echo "No campaign entries were marked as published"
+          echo "No posts were marked as published"
         else
           git add _posts/
-          git commit -m "chore: mark daily social campaign entries as published [skip ci]"
+          git commit -m "chore: mark weekly social post as published [skip ci]"
           git pull --rebase origin main
           git push
           echo "Published flags committed and pushed"
