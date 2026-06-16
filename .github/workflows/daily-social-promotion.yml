@@ -100,8 +100,10 @@ jobs:
         # (no rebuild, no post) so the daily workflow stays out of the way
         # during the weekly-only window and never races weekly-social-promotion
         # over the Tuesday rebuild.
-        if grep -rqE "^DATE:[[:space:]]*${CAMPAIGN_DATE}([[:space:]]|$)" _posts/; then
-          echo "Found a campaign entry for ${CAMPAIGN_DATE}."
+        CAMPAIGN_POST_FILE=$(grep -rlE "^DATE:[[:space:]]*${CAMPAIGN_DATE}([[:space:]]|$)" _posts/ | head -n 1 || true)
+        if [ -n "$CAMPAIGN_POST_FILE" ]; then
+          echo "Found a campaign entry for ${CAMPAIGN_DATE} in ${CAMPAIGN_POST_FILE}."
+          echo "CAMPAIGN_POST_FILE=$CAMPAIGN_POST_FILE" >> "$GITHUB_ENV"
         else
           echo "No campaign entry for ${CAMPAIGN_DATE}; daily promotion will no-op."
           echo "SHOULD_POST_DAILY_SOCIAL=false" >> "$GITHUB_ENV"
@@ -156,6 +158,26 @@ jobs:
       if: env.SHOULD_POST_DAILY_SOCIAL == 'true'
       working-directory: scripts
       run: npm install
+
+    - name: Verify the post is live before promoting
+      if: ${{ env.SHOULD_POST_DAILY_SOCIAL == 'true' && github.event.inputs.dry_run != 'true' }}
+      run: |
+        # Confirm the canonical post URL actually serves (HTTP 200) before we
+        # post. A future-dated or not-yet-built post would otherwise be promoted
+        # with links that 404. Uses the same URL the social posts link to.
+        URL=$(node --input-type=module -e "import { extractSocialContent } from './scripts/extract-social-content.js'; const r = extractSocialContent(process.argv[1]); if (!r.blogUrl) process.exit(2); console.log(r.blogUrl);" "$CAMPAIGN_POST_FILE")
+        echo "Verifying ${URL}"
+        for attempt in $(seq 1 20); do
+          CODE=$(curl -s -o /dev/null -w "%{http_code}" "$URL")
+          if [ "$CODE" = "200" ]; then
+            echo "Post is live (HTTP 200)."
+            exit 0
+          fi
+          echo "Not live yet (HTTP ${CODE}); attempt ${attempt}/20"
+          sleep 15
+        done
+        echo "::error::Post ${URL} never returned 200; refusing to promote with dead links. Check the post date offset (should be EDT/EST for its date) and that Pages built."
+        exit 1
 
     - name: Prepare LinkedIn access token
       if: env.SHOULD_POST_DAILY_SOCIAL == 'true'

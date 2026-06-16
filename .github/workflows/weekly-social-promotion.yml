@@ -149,6 +149,26 @@ jobs:
       working-directory: scripts
       run: npm install
 
+    - name: Verify the post is live before promoting
+      if: ${{ env.SHOULD_POST_WEEKLY_SOCIAL == 'true' && github.event.inputs.dry_run != 'true' }}
+      run: |
+        # Confirm the canonical post URL actually serves (HTTP 200) before we
+        # post. A future-dated or not-yet-built post would otherwise be promoted
+        # with links that 404. Uses the same URL the social posts link to.
+        URL=$(node --input-type=module -e "import { extractSocialContent } from './scripts/extract-social-content.js'; const r = extractSocialContent(process.argv[1]); if (!r.blogUrl) process.exit(2); console.log(r.blogUrl);" "$POST_FILE")
+        echo "Verifying ${URL}"
+        for attempt in $(seq 1 20); do
+          CODE=$(curl -s -o /dev/null -w "%{http_code}" "$URL")
+          if [ "$CODE" = "200" ]; then
+            echo "Post is live (HTTP 200)."
+            exit 0
+          fi
+          echo "Not live yet (HTTP ${CODE}); attempt ${attempt}/20"
+          sleep 15
+        done
+        echo "::error::Post ${URL} never returned 200; refusing to promote with dead links. Check the post date offset (should be EDT/EST for its date) and that Pages built."
+        exit 1
+
     - name: Prepare LinkedIn access token
       if: env.SHOULD_POST_WEEKLY_SOCIAL == 'true'
       env:
