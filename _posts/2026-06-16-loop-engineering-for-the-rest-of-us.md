@@ -59,6 +59,8 @@ You can already see where this is going. Anthropic's [Fable 5](https://www.anthr
 
 {% comment %}
 ## LinkedIn Post
+PUBLISHED: 2026-06-16T13:36:49.729Z
+
 MEDIA: /assets/loop-engineering-for-the-rest-of-us-hero.png
 ALT: A pink sedan leaving an automated factory with mismatched parts under a green approval light
 Have you ever felt that the thing Claude Code just built for you is a bit off? It works but it's not exactly what you were looking for, more like a parallel dimension version of what you had imagined.
@@ -88,6 +90,8 @@ What are you using to tell your loops they're actually done?
 ---
 
 ## X/Twitter Thread
+PUBLISHED: 2026-06-16T13:36:50.416Z
+
 MEDIA: /assets/loop-engineering-for-the-rest-of-us-hero.png
 ALT: A pink sedan leaving an automated factory with mismatched parts under a green approval light
 
