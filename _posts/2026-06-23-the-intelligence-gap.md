@@ -45,6 +45,8 @@ I don't think the move is to feel doomed about it, and I don't have a clean fix.
 
 {% comment %}
 ## LinkedIn Post
+PUBLISHED: 2026-06-23T13:49:43.954Z
+
 MEDIA: /assets/the-intelligence-gap-hero.png
 ALT: A person working on a balcony at dusk while green time drains from their watch toward a faint orbital station in the sky
 
@@ -73,6 +75,8 @@ Are you feeling this as a money gap or a time gap?
 ---
 
 ## X/Twitter Thread
+PUBLISHED: 2026-06-23T13:49:45.399Z
+
 MEDIA: /assets/the-intelligence-gap-hero.png
 ALT: A person working on a balcony at dusk while green time drains from their watch toward a faint orbital station in the sky
 
