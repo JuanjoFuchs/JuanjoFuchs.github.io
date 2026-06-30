@@ -58,6 +58,8 @@ So use these tools for the parts they're good at, and keep the part that's yours
 
 {% comment %}
 ## LinkedIn Post
+PUBLISHED: 2026-06-30T13:55:22.990Z
+
 MEDIA: /assets/how-i-write-specs-with-ai-hero.png
 ALT: A human engineer explains an idea with hand gestures while a robot interviewer takes notes on a sparse stage
 
@@ -83,6 +85,8 @@ How I Write Specs with AI: https://juanjofuchs.github.io/ai-development/2026/06/
 ---
 
 ## X/Twitter Thread
+PUBLISHED: 2026-06-30T13:55:24.264Z
+
 MEDIA: /assets/how-i-write-specs-with-ai-hero.png
 ALT: A human engineer explains an idea with hand gestures while a robot interviewer takes notes on a sparse stage
 
