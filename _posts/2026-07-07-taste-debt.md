@@ -45,6 +45,8 @@ So the practice is easy to say and annoying to do. Don't accept the first thing 
 
 {% comment %}
 ## LinkedIn Post
+PUBLISHED: 2026-07-07T14:55:43.947Z
+
 MEDIA: /assets/taste-debt-hero.png
 ALT: A distracted reviewer presses a glowing green Approve button while ignoring stacks of unread documents
 
@@ -67,6 +69,8 @@ Taste Debt: https://juanjofuchs.github.io/ai-development/2026/07/07/taste-debt.h
 ---
 
 ## X/Twitter Thread
+PUBLISHED: 2026-07-07T14:55:44.945Z
+
 MEDIA: /assets/taste-debt-hero.png
 ALT: A distracted reviewer presses a glowing green Approve button while ignoring stacks of unread documents
 
