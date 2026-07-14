@@ -125,6 +125,8 @@ https://juanjofuchs.github.io/productivity/2026/07/14/building-your-second-brain
 ---
 
 ## X/Twitter Thread
+PUBLISHED: 2026-07-14T15:32:53.745Z
+
 MEDIA: /assets/the-capture-loop-hero.png
 ALT: A man walks a forest trail dictating into his phone while a robot beside him stitches his idea into a web of older notes
 
