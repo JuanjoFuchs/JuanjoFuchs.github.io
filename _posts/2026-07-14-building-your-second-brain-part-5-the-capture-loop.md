@@ -96,6 +96,8 @@ And then it feeds itself. A published post brings reader replies, a comment that
 
 {% comment %}
 ## LinkedIn Post
+PUBLISHED: 2026-07-14T15:37:07.806Z
+
 MEDIA: /assets/the-capture-loop-hero.png
 ALT: A man walks a forest trail dictating into his phone while a robot beside him stitches his idea into a web of older notes
 
