@@ -14,7 +14,7 @@ image: /assets/ccburn-session-depleted.png
 
 You got a Claude Code subscription. You've heard people ship entire projects overnight with it. Maybe you've seen the screenshots of [Gas Town](https://github.com/steveyegge/gastown) running 20 parallel agents or [Ralph Wiggum](https://github.com/anthropics/claude-code/tree/main/plugins/ralph-wiggum) loops burning through tasks at incredible speed.
 
-This guide is about getting your money's worth from your subscription. I'll cover three stages: understanding what you have, using more of it, and not running out mid-session. If you'd rather jump straight to concrete habits, I collected [14 of them in a follow-up](https://juanjofuchs.github.io/ai-development/2026/05/26/14-habits-for-using-claude-code-without-wasting-tokens.html).
+This guide is about getting your money's worth from your subscription. I'll cover three stages: understanding what you have, using more of it, and not running out mid-session. If you'd rather jump straight to concrete habits, I keep a [living guide of 14 of them](https://juanjofuchs.github.io/claude-code-tips/), each one cited to Anthropic's docs or a published field heuristic, and I update it as the tooling changes.
 
 ## Understanding What You Have
 

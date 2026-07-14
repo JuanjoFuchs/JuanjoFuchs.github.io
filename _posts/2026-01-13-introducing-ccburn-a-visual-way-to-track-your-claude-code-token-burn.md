@@ -3,8 +3,10 @@ layout: post
 title: "Introducing ccburn: A Visual Way to Track Your Claude Code Token Burn"
 description: "Built a TUI tool that shows Claude Code usage as burn-up charts. Years of reading sprint burn-ups made me want the same clarity for token limits."
 date: 2026-01-13 09:00:00 -0500
+permalink: /ai-development/2026/01/13/introducing-ccburn-visual-token-tracking.html
 categories: ai-development
 tags: [claude-code, python, tui, productivity, open-source]
+status: deployed
 author: JuanjoFuchs
 image: /assets/ccburn-ralph-wiggum-hero.png
 ---
@@ -82,6 +84,8 @@ ccburn --since 30m  # Zoom to last 30 minutes
 ## The Meta Part
 
 Built ccburn in a few sessions over the weekend with Claude Code, using ccburn to monitor the token spend while building ccburn. Pretty meta actually.
+
+Seeing the burn is step one. Doing something about it is step two, and I keep a [living guide of 14 habits for using Claude Code without wasting tokens](https://juanjofuchs.github.io/claude-code-tips/), each one cited rather than vibes.
 
 Check it out on [GitHub](https://github.com/JuanjoFuchs/ccburn) and [PyPI](https://pypi.org/project/ccburn/). Would love feedback on features or bugs.
 
