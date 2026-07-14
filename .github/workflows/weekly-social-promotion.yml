@@ -196,8 +196,11 @@ jobs:
 
         node scripts/post-to-social-media.js "${ARGS[@]}"
 
+    # always(): the posting step now exits non-zero when a platform fails, and the
+    # PUBLISHED markers for whatever DID post must still be committed. Otherwise a
+    # re-run (to fix the failed platform) would double-post the one that succeeded.
     - name: Commit published flags
-      if: ${{ env.SHOULD_POST_WEEKLY_SOCIAL == 'true' && github.event.inputs.dry_run != 'true' }}
+      if: ${{ always() && env.SHOULD_POST_WEEKLY_SOCIAL == 'true' && github.event.inputs.dry_run != 'true' }}
       run: |
         git config user.name "GitHub Actions Bot"
         git config user.email "actions@github.com"

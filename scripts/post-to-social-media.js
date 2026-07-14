@@ -299,14 +299,46 @@ async function main() {
 
   console.log(`\nTotal: ${successCount} succeeded, ${failureCount} failed`);
 
-  // Exit with code 0 regardless of individual platform failures (per requirement R5)
-  console.log('\n✓ Social media posting completed');
-  process.exit(0);
+  if (failureCount === 0) {
+    console.log('\n✓ Social media posting completed');
+    process.exit(0);
+  }
+
+  // A partial failure used to exit 0 ("per requirement R5"), which made it invisible:
+  // on 2026-07-14 LinkedIn died on an expired token, the run still reported success,
+  // and only the X section got a PUBLISHED marker. Nobody would have known without
+  // reading the raw log. A promotion that didn't promote is a failure — say so.
+  //
+  // The workflow's "Commit published flags" step runs with always(), so the markers
+  // for whatever DID post are still committed before this non-zero exit. That's what
+  // stops a re-run from double-posting the platform that already succeeded.
+  const failed = [];
+  if (results.twitter && !results.twitter.success) failed.push(`X: ${results.twitter.error}`);
+  if (results.linkedin && !results.linkedin.success) failed.push(`LinkedIn: ${results.linkedin.error}`);
+
+  console.error(`::error::Social promotion failed on ${failureCount} platform(s). ${failed.join(' | ')}`);
+
+  // LinkedIn access tokens last ~60 days and this app cannot issue refresh tokens, so
+  // there is no automatic recovery — only a human with a browser. Say exactly that
+  // instead of leaving a 401 for someone to decode.
+  const liError = results.linkedin && !results.linkedin.success ? String(results.linkedin.error || '') : '';
+  if (/expired|EXPIRED_ACCESS_TOKEN|401/i.test(liError)) {
+    console.error(
+      '::error::LINKEDIN_ACCESS_TOKEN has expired. This app cannot issue refresh tokens, ' +
+      'so it must be renewed by hand: https://www.linkedin.com/developers/tools/oauth ' +
+      '-> select the app -> request a token with scopes openid, profile, w_member_social ' +
+      '-> gh secret set LINKEDIN_ACCESS_TOKEN -R JuanjoFuchs/JuanjoFuchs.github.io ' +
+      '-> re-run this workflow (already-published platforms are skipped automatically).'
+    );
+  }
+
+  process.exit(1);
 }
 
 // Run main function
 main().catch(err => {
   console.error('\n❌ Fatal error:', err.message);
   console.error(err.stack);
-  process.exit(0); // Exit with success per requirement R5
+  console.error(`::error::Social promotion crashed: ${err.message}`);
+  process.exit(1); // A crash is a failure. Exiting 0 here hid real breakage.
 });
