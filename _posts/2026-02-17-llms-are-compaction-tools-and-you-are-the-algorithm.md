@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "LLMs Are Compaction Tools, and You Are the Algorithm"
-description: "The compaction isn't what the model knows, it's the conversation. Your prompting, judgment, and iteration compress generic AI knowledge into something valuable. You are the algorithm."
+description: "The compaction isn't what the model knows, it's the conversation. Your prompting, judgment and iteration compress generic AI knowledge into something valuable."
 date: 2026-02-17 09:00:00 -0500
 categories: ai
 tags: [ai, writing, productivity, coding, knowledge-management]
@@ -70,8 +70,6 @@ The algorithm is yours, so keep building a better one.
 {% comment %}
 ## LinkedIn Post
 
-PUBLISHED: 2026-02-17T14:52:23.480Z
-
 LLMs are compaction tools, and you are the algorithm. I've been using AI across writing, coding, specs, and my second brain for almost a year now, and this is the mental model that keeps proving itself.
 
 An LLM is like a library containing every book ever written. The compaction isn't what the model has stored inside it, the compaction is the conversation. Your back-and-forth with the AI, the prompting, the refining, the judgment calls about what matters and what doesn't, that's the process that compresses generic knowledge into something specifically valuable to you.
@@ -105,8 +103,6 @@ INSTRUCTIONS:
 ---
 
 ## X/Twitter Thread
-
-PUBLISHED: 2026-02-17T14:52:22.904Z
 
 Tweet 1 (Hook):
 LLMs are compaction tools, and you are the algorithm. The compaction isn't what the model knows. It's the conversation, your back-and-forth that compresses generic knowledge into something valuable.

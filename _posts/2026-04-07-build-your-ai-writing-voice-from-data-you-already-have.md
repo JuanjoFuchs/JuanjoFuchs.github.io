@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Build Your AI Writing Voice from Data You Already Have"
-description: "Everyone tells you to build an AI style guide. Nobody shows you how to fill it in. Here's the process I used, mining 1,012 Claude prompts to extract patterns I didn't know I had."
+description: "Everyone tells you to build an AI style guide. Nobody shows how to fill it in. I mined 1,012 of my own Claude prompts for patterns I didn't know I had."
 date: 2026-04-07 09:00:00 -0400
 categories: ai
 tags: [ai, writing, style-guide, claude-code, voice]
@@ -121,8 +121,6 @@ My guide went from one line to several pages. It's still a work in progress, but
 
 {% comment %}
 ## LinkedIn Post
-PUBLISHED: 2026-04-07T15:13:55.103Z
-
 MEDIA: /assets/build-ai-writing-voice-hero.png
 ALT: Build your AI writing voice from data you already have
 

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Building Your Second Brain, Part 3: The Spec That Wrote This Post"
-description: "AI can draft a blog post in minutes. The bottleneck shifted from writing to thinking. A one-page spec borrowed from screenwriting captures your arc, angles, and scope before AI writes a word. This post teaches the workflow and proves it by revealing its own spec."
+description: "AI drafts in minutes, so the bottleneck is thinking. A one-page spec sets your arc, angles and scope before AI writes a word. This post shows its own."
 date: 2026-03-03 09:00:00 -0500
 categories: productivity
 tags: [second-brain, ai, productivity, writing, content-creation]
@@ -127,8 +127,6 @@ If your AI-assisted drafts keep coming out vaguely right but not quite what you 
 
 {% comment %}
 ## LinkedIn Post
-PUBLISHED: 2026-03-03T14:50:41.061Z
-
 MEDIA: /assets/spec-blueprint-to-post.png
 ALT: A spec document with visible structure transforming into a finished blog post
 
@@ -155,8 +153,6 @@ https://juanjofuchs.github.io/productivity/2026/03/03/building-your-second-brain
 ---
 
 ## X/Twitter Thread
-PUBLISHED: 2026-03-03T14:50:40.246Z
-
 MEDIA: /assets/spec-blueprint-to-post.png
 ALT: A spec document with visible structure transforming into a finished blog post
 

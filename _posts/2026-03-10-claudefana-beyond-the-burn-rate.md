@@ -1,8 +1,8 @@
 ---
 layout: post
 title: "claudefana: Beyond the Burn Rate"
-description: "I built ccburn to track Claude Code spend. Then I wanted the full picture — cache efficiency, cost per commit, lines per dollar. Claude Code already exports it all via OpenTelemetry. I built a dashboard for it."
-date: 2026-03-10 08:00:00 -0500
+description: "ccburn tracks Claude Code spend. I wanted cache efficiency, cost per commit and lines per dollar. Claude Code exports it via OpenTelemetry, so I built that."
+date: 2026-03-10 09:00:00 -0400
 categories: ai-development
 tags: [claude-code, observability, grafana, opentelemetry, open-source]
 author: JuanjoFuchs
@@ -109,8 +109,6 @@ If you're just looking for token pacing without the full dashboard, [ccburn](htt
 {% comment %}
 ## LinkedIn Post
 
-PUBLISHED: 2026-03-10T13:16:03.145Z
-
 MEDIA: /assets/claudefana-dashboard.png
 ALT: claudefana Grafana dashboard showing 26 panels of Claude Code usage metrics
 
@@ -138,8 +136,6 @@ What metrics would you want to see from your Claude Code sessions?
 ---
 
 ## X/Twitter Thread
-
-PUBLISHED: 2026-03-10T13:16:04.721Z
 
 MEDIA: /assets/claudefana-dashboard.png
 ALT: claudefana Grafana dashboard showing 26 panels of Claude Code usage metrics

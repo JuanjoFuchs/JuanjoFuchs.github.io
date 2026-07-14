@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Adding Visual UIs to My MCP Server in One Evening"
-description: "MCP Apps was announced on a Monday. By Tuesday morning I had interactive calendars and timesheet grids rendering in Claude Desktop. Here's how Claude Code made that possible."
+description: "MCP Apps was announced on a Monday. By Tuesday I had interactive calendars and timesheet grids rendering in Claude Desktop. How Claude Code made that possible."
 date: 2026-02-03 09:00:00 -0500
 categories: ai-development
 tags: [mcp, claude, open-source, typescript]
@@ -115,8 +115,6 @@ The [development guide](https://github.com/TRANZACT/tempo-filler-mcp-server/blob
 
 {% comment %}
 ## LinkedIn Post
-PUBLISHED: 2026-02-03T14:50:29.888Z
-
 MEDIA: /assets/tempo-mcp-apps-timesheet.png
 ALT: Tempo MCP Server timesheet grid showing worklogs by issue and day with color-coded coverage
 
@@ -148,8 +146,6 @@ Full post with code and the skill file link: https://juanjofuchs.github.io/ai-de
 ---
 
 ## X/Twitter Thread
-PUBLISHED: 2026-02-03T14:50:28.144Z
-
 MEDIA: /assets/tempo-mcp-apps-timesheet.png
 ALT: Tempo MCP Server timesheet grid showing worklogs by issue and day with color-coded coverage
 

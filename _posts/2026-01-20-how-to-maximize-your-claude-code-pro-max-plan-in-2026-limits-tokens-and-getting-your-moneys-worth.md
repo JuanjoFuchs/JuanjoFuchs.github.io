@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "How to Maximize Your Claude Code Pro/Max Plan in 2026 (Limits, Tokens, and Getting Your Money's Worth)"
-description: "Hitting your Claude Code limits too fast? A practical guide to the 5-hour and weekly caps, tracking your token burn, and getting the most from your Pro or Max plan."
+description: "Hitting your Claude Code limits too fast? A practical guide to the 5-hour and weekly caps, tracking token burn, and getting more from your Pro or Max plan."
 date: 2026-01-20 09:00:00 -0500
 permalink: /ai-development/2026/01/20/maximizing-claude-code-subscription.html
 categories: ai-development

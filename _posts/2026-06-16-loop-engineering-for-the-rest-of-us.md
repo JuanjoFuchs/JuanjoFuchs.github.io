@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Loop Engineering for the Rest of Us"
-description: "Everyone's saying stop prompting and start writing loops. But a loop is only as good as the verifier checking its work, and for those of us without unlimited tokens, that verifier is the whole game."
+description: "Everyone says stop prompting and write loops. But a loop is only as good as its verifier, and without unlimited tokens that verifier is the whole game."
 date: 2026-06-16 09:00:00 -0400
 categories: ai-development
 tags: [ai, loops, llm, verification, productivity]
@@ -59,8 +59,6 @@ You can already see where this is going. Anthropic's [Fable 5](https://www.anthr
 
 {% comment %}
 ## LinkedIn Post
-PUBLISHED: 2026-06-16T13:36:49.729Z
-
 MEDIA: /assets/loop-engineering-for-the-rest-of-us-hero.png
 ALT: A pink sedan leaving an automated factory with mismatched parts under a green approval light
 Have you ever felt that the thing Claude Code just built for you is a bit off? It works but it's not exactly what you were looking for, more like a parallel dimension version of what you had imagined.
@@ -90,8 +88,6 @@ What are you using to tell your loops they're actually done?
 ---
 
 ## X/Twitter Thread
-PUBLISHED: 2026-06-16T13:36:50.416Z
-
 MEDIA: /assets/loop-engineering-for-the-rest-of-us-hero.png
 ALT: A pink sedan leaving an automated factory with mismatched parts under a green approval light
 

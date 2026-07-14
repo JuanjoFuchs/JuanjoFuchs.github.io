@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Measuring Claude Code Adoption at the Org Level"
-description: "You deployed Claude Code to your engineering org. Now you need to know if it's being adopted. Anthropic published a guide with 5 questions. I built the dashboard that answers them."
+description: "You deployed Claude Code to your org. Now you need to know if it's being adopted. Anthropic published 5 questions; I built the dashboard that answers them."
 date: 2026-03-24 08:00:00 -0400
 categories: ai-development
 tags: [claude-code, observability, grafana, opentelemetry, open-source, enterprise]
@@ -132,8 +132,6 @@ If you're looking for the personal version (single user, no org context), that's
 {% comment %}
 ## LinkedIn Post
 
-PUBLISHED: 2026-03-24T13:04:40.848Z
-
 MEDIA: /assets/claudefana-enterprise-full-anonymized.png
 ALT: claudefana-enterprise Grafana dashboard showing Claude Code ROI metrics per developer with team breakdown
 
@@ -171,8 +169,6 @@ Open source, deploys to Kubernetes via Kustomize or Docker Compose. Links in the
 ---
 
 ## X/Twitter Thread
-
-PUBLISHED: 2026-03-24T13:04:41.866Z
 
 MEDIA: /assets/claudefana-enterprise-full-anonymized.png
 ALT: claudefana-enterprise Grafana dashboard showing Claude Code ROI metrics per developer with team breakdown

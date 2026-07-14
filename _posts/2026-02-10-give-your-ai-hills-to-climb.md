@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Give Your AI Hills to Climb"
-description: "Hard artifacts let AI self-evaluate and iterate. Soft judgments still need you. Build verifiable feedback into your codebase and AI can self-correct without you."
+description: "Hard artifacts let AI self-evaluate and iterate; soft judgments still need you. Build verifiable feedback into your codebase and AI can self-correct."
 date: 2026-02-10 09:00:00 -0500
 categories: ai-development
 tags: [ai, prompting, llm, productivity]
@@ -108,8 +108,6 @@ I feed this post as context to Claude at the start of new projects, then ask it 
 
 {% comment %}
 ## LinkedIn Post
-PUBLISHED: 2026-02-10T14:58:23.240Z
-
 MEDIA: /assets/ai-agent-hills-verification-gates.png
 ALT: AI agent idle on flat terrain vs climbing hills with pass/fail gates and progress indicators
 
@@ -134,8 +132,6 @@ What verification infrastructure do you have for AI-generated code? Full breakdo
 ---
 
 ## X/Twitter Thread
-PUBLISHED: 2026-02-10T14:58:22.717Z
-
 MEDIA: /assets/ai-agent-hills-verification-gates.png
 ALT: AI agent idle on flat terrain vs climbing hills with pass/fail gates and progress indicators
 

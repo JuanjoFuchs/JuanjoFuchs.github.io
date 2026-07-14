@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Taste Debt"
-description: "Technical debt lives in the code, cognitive debt in the team. Taste debt is the third kind AI runs up fastest, in the product you stopped judging and the palate you stopped using."
+description: "Technical debt lives in the code, cognitive debt in the team. Taste debt is the third kind, and AI runs it up fastest: the palate you stopped using."
 date: 2026-07-07 09:00:00 -0400
 categories: ai-development
 tags: [ai, taste, technical-debt, llm, engineering-leadership]
@@ -45,8 +45,6 @@ So the practice is easy to say and annoying to do. Don't accept the first thing 
 
 {% comment %}
 ## LinkedIn Post
-PUBLISHED: 2026-07-07T14:55:43.947Z
-
 MEDIA: /assets/taste-debt-hero.png
 ALT: A distracted reviewer presses a glowing green Approve button while ignoring stacks of unread documents
 
@@ -69,8 +67,6 @@ Taste Debt: https://juanjofuchs.github.io/ai-development/2026/07/07/taste-debt.h
 ---
 
 ## X/Twitter Thread
-PUBLISHED: 2026-07-07T14:55:44.945Z
-
 MEDIA: /assets/taste-debt-hero.png
 ALT: A distracted reviewer presses a glowing green Approve button while ignoring stacks of unread documents
 

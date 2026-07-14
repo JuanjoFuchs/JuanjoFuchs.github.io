@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Building Your Second Brain, Part 4: The Editorial Loop"
-description: "AI drafts read polished and confident, which is exactly why the patterns are hard to spot. An autonomous editorial loop with a published checklist and orchestration prompt catches what you can't see after writing with AI."
+description: "AI drafts read polished, which is why the tells are hard to spot. An autonomous editorial loop, with a published checklist and prompt, catches what you can't."
 date: 2026-03-17 09:00:00 -0400
 categories: productivity
 tags: [second-brain, ai, productivity, writing, content-creation]
@@ -144,8 +144,6 @@ The style guide lives in my vault as a markdown file, [AI-readable by design](ht
 
 {% comment %}
 ## LinkedIn Post
-PUBLISHED: 2026-03-17T13:08:52.918Z
-
 MEDIA: /assets/editorial-loop-redpen.png
 ALT: A blog post draft with red-pen editorial annotations marking AI writing patterns
 
@@ -170,8 +168,6 @@ https://juanjofuchs.github.io/productivity/2026/03/17/building-your-second-brain
 ---
 
 ## X/Twitter Thread
-PUBLISHED: 2026-03-17T13:08:54.457Z
-
 MEDIA: /assets/editorial-loop-redpen.png
 ALT: A blog post draft with red-pen editorial annotations marking AI writing patterns
 

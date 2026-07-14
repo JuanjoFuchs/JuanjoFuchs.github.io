@@ -1,10 +1,12 @@
 ---
 layout: post
 title: "Why I Chose GitHub Pages and Jekyll for My Blog"
-description: "Looked at several static site generators and went with the default. Here's why Jekyll's simplicity works perfectly for a blog, plus the three plugins that handle SEO."
+description: "I looked at several static site generators and went with the default. Why Jekyll's simplicity works for a blog, plus the three plugins that handle SEO."
 date: 2025-11-06 13:00:00 -0500
+permalink: /blogging/meta/2025/11/06/welcome-to-jekyll.html
 categories: blogging meta
 tags: [jekyll, github-pages, blogging, seo, static-sites]
+status: deployed
 author: JuanjoFuchs
 ---
 

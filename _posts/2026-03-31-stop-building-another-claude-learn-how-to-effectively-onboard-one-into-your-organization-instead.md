@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Stop Building Another Claude. Learn How to Effectively Onboard One Into Your Organization Instead."
-description: "The agent race belongs to Anthropic, OpenAI, and Google. Our job isn't to build another Claude, it's to onboard one into our domain. The progressive framework and concrete onboarding components are what separate a rockstar AI coworker from a production outage."
+description: "The agent race is won. Your job is onboarding one into your domain, and that's what separates a rockstar AI coworker from a production outage."
 date: 2026-03-31 09:00:00 -0400
 categories: ai-development
 tags: [ai, mcp, claude-code, enterprise, agents, governance]
@@ -114,15 +114,15 @@ Then Claude Code shipped task dependencies natively. Then agent teams. Then auto
 
 I was entering a race I could not possibly win.
 
-Turns out I wasn't alone. Every enterprise team I talked to in 2024-2025 was building custom multi-agent architectures. Same pitch everywhere: create specialized agents for your specific workflows, build them tailored to your domain.
+Every enterprise team I talked to in 2024-2025 was building custom multi-agent architectures.
 
-But most of us aren't in the business of building AI agent platforms. We're in insurance, finance, logistics, marketing. Let them race.
+But most of us aren't in the business of building AI agent platforms. We're in insurance, finance, logistics, marketing.
 
-The agent layer has commoditized. MCP hit near-universal adoption in 13 months. 60,000+ repos adopted AGENTS.md in four months. The Agentic AI Foundation has AWS, Anthropic, Google, Microsoft, and OpenAI all agreeing on shared standards. The generic agents themselves are commodity now, the same way cloud compute became commodity a decade ago.
+The agent layer has commoditized. MCP hit near-universal adoption in 13 months. The Agentic AI Foundation has AWS, Anthropic, Google, Microsoft, and OpenAI all agreeing on shared standards. The generic agents themselves are commodity now, the same way cloud compute became commodity a decade ago.
 
 📌 The real work now is equipping generic agents with your domain knowledge.
 
-Anthropic named their latest product "Cowork." They chose "coworker," so take a hint. We hire capable people, we don't build custom employees from scratch. The quality of the onboarding is what determines whether we get a rockstar or someone who deletes the production database on their first week.
+Anthropic named their latest product "Cowork," so take a hint. We hire capable people, we don't build custom employees from scratch. The quality of the onboarding is what determines whether we get a rockstar or someone who deletes the production database on their first week.
 
 The onboarding breaks down into three layers:
 
@@ -132,15 +132,11 @@ The onboarding breaks down into three layers:
 
 📌 What the agent must NOT do: what requires human approval, what it can act on autonomously, and when to escalate
 
-Building the MCP servers that connect your agent to these systems is code, testable, shippable in hours. Extracting the process knowledge that lives in people's heads takes real effort.
+The self-driving industry mapped the progressive approach years ago with SAE autonomy levels. I adapted the same framework for enterprise AI onboarding. Start at Level 0, you are driving, and earn your way up.
 
-The self-driving industry mapped the progressive approach years ago with SAE autonomy levels. I adapted the same framework for enterprise AI onboarding (see the image). Start at Level 0, you are driving, and earn your way up.
+Amazon skipped levels with Kiro. 13-hour AWS outage, 6.3M lost orders. OpenClaw proved full autonomy is technically possible and also proved what happens without the safety infrastructure underneath: 135,000+ exposed instances across 82 countries. Then LiteLLM, one of OpenClaw's own dependencies, got compromised in a supply chain attack that exfiltrated API keys and cloud credentials.
 
-Amazon skipped levels with Kiro. 13-hour AWS outage, 6.3M lost orders. OpenClaw proved full autonomy is technically possible and also proved what happens without the safety infrastructure underneath: 135,000+ exposed instances across 82 countries, nine CVEs in four days. Then LiteLLM, one of OpenClaw's own dependencies (3.4M daily downloads), got compromised in a supply chain attack that exfiltrated API keys and cloud credentials.
-
-I stopped building custom agents and started building the onboarding instead. It's less glamorous but it works better than anything I built before.
-
-The agent race belongs to Anthropic, OpenAI, Google, and Microsoft. I stopped trying to compete with them and started building the onboarding instead.
+The agent race belongs to Anthropic, OpenAI, Google, and Microsoft. Let them race. I stopped trying to compete with them and started building the onboarding instead.
 
 Full framework in the post:
 
@@ -169,3 +165,51 @@ Amazon skipped autonomy levels. 6.3M lost orders. The self-driving industry figu
 https://juanjofuchs.github.io/ai-development/2026/03/31/stop-building-another-claude-learn-how-to-effectively-onboard-one-into-your-organization-instead.html
 
 {% endcomment %}
+
+## LinkedIn Analytics — Day 1 (2026-04-01)
+
+**Data source:** LinkedIn Analytics export (22 hours live, published Mar 31 2:03 PM)
+
+### Performance Snapshot
+
+| Metric | Value | Q1 Avg (16 posts) |
+|--------|-------|--------------------|
+| Impressions | 202 | 781 |
+| Members reached | 107 | — |
+| Reactions | 5 | — |
+| Comments | 0 | — |
+| Saves | 1 | — |
+| Link clicks | 1 | — |
+| Engagement (react+save) | 6 | 10.1 |
+| Engagement rate | **2.97%** | 1.39% |
+| Profile viewers | 2 | — |
+| Followers gained | 0 | — |
+
+### Demographics
+
+| Category | Top Value | % |
+|----------|-----------|---|
+| Seniority | Senior | 37% |
+| Seniority | Entry | 32% |
+| Seniority | Director | 8% |
+| Industry | Software Development | 27% |
+| Industry | IT Services | 25% |
+| Location | NYC Metro | 12% |
+| Location | Lima Metro | 12% |
+| Company | TRANZACT | 9% |
+| Job title (top) | Founder | — |
+| Company size (top) | 1001-5000 / 10,001+ (tie) | 17% each |
+
+### Analysis
+
+**Strong engagement rate (2.97%)** — would rank #3 in Q1, behind Editorial Loop (3.13%) and Compaction Tools (2.56%). The people who see it are acting on it. 1 save early correlates with deep-engagement posts in Q1 data.
+
+**Slow distribution (202 impressions in 22 hours).** Top Q1 posts hit 1,600-2,300 in their first week. 0 comments, 0 reposts, 0 sends — the social amplification signals that trigger algorithmic distribution aren't firing.
+
+**Likely causes of modest reach:**
+1. Framework/strategy category — Q1 avg for this category was 1,004 impr, below how-to (1,438) and tool launches (1,138)
+2. No external event to ride — post references MCP, OpenClaw, Kiro but isn't tied to a breaking news moment
+3. Published Monday March 31 (end of quarter)
+4. Long title may reduce scroll-stopping power
+
+**Tracking:** If impressions don't cross 500 by Day 3, likely settles into "high engagement rate, modest reach" bucket (like Compaction Tools, ccburn, Editorial Loop). SEO potential for "enterprise AI onboarding," "MCP enterprise," "AI agent governance" query clusters — check GSC in 2-3 weeks.

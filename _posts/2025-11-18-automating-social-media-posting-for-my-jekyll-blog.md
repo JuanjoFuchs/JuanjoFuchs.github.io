@@ -1,10 +1,12 @@
 ---
 layout: post
 title: "Automating Social Media Posting for My Jekyll Blog"
-description: "Built a GitHub Actions workflow that automatically posts new blog content to X and LinkedIn. No paid services, no external hosting, just Node.js scripts and API calls."
+description: "A GitHub Actions workflow that posts new blog content to X and LinkedIn automatically. No paid services, no hosting, just Node.js scripts and API calls."
 date: 2025-11-18 09:00:00 -0500
+permalink: /automation/2025/11/18/automating-blog-social-media-posting.html
 categories: automation
 tags: [github-actions, nodejs, automation, social-media, jekyll]
+status: deployed
 author: JuanjoFuchs
 ---
 
