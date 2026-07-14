@@ -1,8 +1,9 @@
 ---
 layout: post
-title: "How to Maximize Your Claude Code Pro/Max Plan (and Stop Leaving Tokens on the Table)"
-description: "A strategic guide to reading your burn charts, delegating to cheaper models, and timing your sessions for maximum value from your Claude Code subscription."
+title: "How to Maximize Your Claude Code Pro/Max Plan in 2026 (Limits, Tokens, and Getting Your Money's Worth)"
+description: "Hitting your Claude Code limits too fast? A practical guide to the 5-hour and weekly caps, tracking your token burn, and getting the most from your Pro or Max plan."
 date: 2026-01-20 09:00:00 -0500
+permalink: /ai-development/2026/01/20/maximizing-claude-code-subscription.html
 categories: ai-development
 tags: [claude-code, productivity, ccburn, token-management]
 author: JuanjoFuchs
@@ -13,7 +14,7 @@ image: /assets/ccburn-session-depleted.png
 
 You got a Claude Code subscription. You've heard people ship entire projects overnight with it. Maybe you've seen the screenshots of [Gas Town](https://github.com/steveyegge/gastown) running 20 parallel agents or [Ralph Wiggum](https://github.com/anthropics/claude-code/tree/main/plugins/ralph-wiggum) loops burning through tasks at incredible speed.
 
-This guide is about getting your money's worth from your subscription. I'll cover three stages: understanding what you have, using more of it, and not running out mid-session.
+This guide is about getting your money's worth from your subscription. I'll cover three stages: understanding what you have, using more of it, and not running out mid-session. If you'd rather jump straight to concrete habits, I collected [14 of them in a follow-up](https://juanjofuchs.github.io/ai-development/2026/05/26/14-habits-for-using-claude-code-without-wasting-tokens.html).
 
 ## Understanding What You Have
 
