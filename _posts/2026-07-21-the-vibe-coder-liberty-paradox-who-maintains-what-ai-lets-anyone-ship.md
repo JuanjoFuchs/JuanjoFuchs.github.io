@@ -72,6 +72,8 @@ Take this back to your own org. When someone outside engineering ships software,
 
 {% comment %}
 ## LinkedIn Post
+PUBLISHED: 2026-07-21T13:38:29.559Z
+
 MEDIA: /assets/vibe-coder-liberty-paradox-hero.png
 ALT: An engineer stares into the taped-together engine of a pink sedan while the person who built it walks out the garage
 
@@ -100,6 +102,8 @@ https://juanjofuchs.github.io/ai-development/2026/07/21/the-vibe-coder-liberty-p
 ---
 
 ## X/Twitter Thread
+PUBLISHED: 2026-07-21T13:38:31.325Z
+
 MEDIA: /assets/vibe-coder-liberty-paradox-hero.png
 ALT: An engineer stares into the taped-together engine of a pink sedan while the person who built it walks out the garage
 
