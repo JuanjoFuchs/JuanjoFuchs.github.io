@@ -2,8 +2,8 @@
 layout: post
 title: "The Vibe Coder Liberty Paradox: Who Maintains What AI Lets Anyone Ship?"
 description: "AI lets non-engineers ship software without the skills to maintain it. The engineer inherits the gap between works and works at scale, and nobody owns it."
-date: 2026-07-28 09:00:00 -0400
-permalink: /ai-development/2026/07/28/the-vibe-coder-liberty-paradox-who-maintains-what-ai-lets-anyone-ship.html
+date: 2026-07-21 09:00:00 -0400
+permalink: /ai-development/2026/07/21/the-vibe-coder-liberty-paradox-who-maintains-what-ai-lets-anyone-ship.html
 categories: ai-development
 tags: [ai, software-engineering, vibe-coding, engineering-leadership, future-of-work]
 author: JuanjoFuchs
@@ -93,7 +93,7 @@ Two things that actually help:
 If someone outside engineering ships software in your org, who owns the gap between "works" and "works at scale," and did they get a vote in the decisions that made it?
 
 Full post:
-https://juanjofuchs.github.io/ai-development/2026/07/28/the-vibe-coder-liberty-paradox-who-maintains-what-ai-lets-anyone-ship.html
+https://juanjofuchs.github.io/ai-development/2026/07/21/the-vibe-coder-liberty-paradox-who-maintains-what-ai-lets-anyone-ship.html
 
 #AI #SoftwareEngineering #VibeCoding #EngineeringLeadership #FutureOfWork
 
@@ -132,7 +132,7 @@ Two fixes: a fusion team sharing accountability, or the engineer builds the veri
 Tweet 5:
 If someone outside engineering ships software in your org, who owns the gap, and did they get a vote in the decisions that made it?
 
-https://juanjofuchs.github.io/ai-development/2026/07/28/the-vibe-coder-liberty-paradox-who-maintains-what-ai-lets-anyone-ship.html
+https://juanjofuchs.github.io/ai-development/2026/07/21/the-vibe-coder-liberty-paradox-who-maintains-what-ai-lets-anyone-ship.html
 
 #AI #SoftwareEngineering
 {% endcomment %}
