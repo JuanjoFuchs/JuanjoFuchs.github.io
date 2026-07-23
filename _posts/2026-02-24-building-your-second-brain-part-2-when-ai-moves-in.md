@@ -7,9 +7,15 @@ categories: productivity
 tags: [obsidian, second-brain, ai, productivity, claude-code, gtd]
 author: JuanjoFuchs
 image: /assets/second-brain-graph.png
+series: second-brain
+series_order: 2
+series_title: "When AI Moves In"
+series_blurb: "routing tables, search tools and CLI scripts, so AI could operate inside the vault instead of just reading it."
 ---
 
 ![Obsidian graph view showing hundreds of interconnected notes clustered by topic](/assets/second-brain-graph.png)
+
+{% include series-nav.html %}
 
 It's been two months since I moved my second brain from OneNote to Obsidian and I've been using it with AI every day since. The system looks nothing like what I started with. I just kept using it, kept hitting friction, and kept fixing things until the friction went away.
 

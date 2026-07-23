@@ -7,19 +7,17 @@ categories: productivity
 tags: [second-brain, obsidian, ai, productivity, gtd]
 author: JuanjoFuchs
 image: /assets/the-capture-loop-hero.png
+series: second-brain
+series_order: 5
+series_title: "The Capture Loop"
+series_blurb: "catching the idea and searching what you already wrote, before anything gets filed."
 ---
 
 ![A man walks a forest trail dictating into his phone while a robot beside him stitches his idea into a web of older notes](/assets/the-capture-loop-hero.png)
 
+{% include series-nav.html %}
+
 Every post in this series so far assumes you already have an idea worth writing about. The spec has to spec something. The editorial loop has to edit something.
-
-The series so far, a piece at a time:
-
-1. [Making Your Second Brain AI-Compatible](https://juanjofuchs.github.io/productivity/2025/12/16/making-second-brain-ai-compatible.html): the migration out of OneNote into markdown, front matter and wikilinks, so Claude could read the vault at all.
-2. [When AI Moves In](https://juanjofuchs.github.io/productivity/2026/02/24/building-your-second-brain-part-2-when-ai-moves-in.html): routing tables, search tools and CLI scripts, so AI could operate inside the vault instead of just reading it.
-3. [The Spec That Wrote This Post](https://juanjofuchs.github.io/productivity/2026/03/03/building-your-second-brain-part-3-the-spec-that-wrote-this-post.html): planning a post before a word of it gets written.
-4. [The Editorial Loop](https://juanjofuchs.github.io/productivity/2026/03/17/building-your-second-brain-part-4-the-editorial-loop.html): an adversarial reviewer that strips the AI tells out of a draft.
-5. **The Capture Loop**: this one.
 
 This post is the origin story, where the input comes from.
 
@@ -96,8 +94,6 @@ And then it feeds itself. A published post brings reader replies, a comment that
 
 {% comment %}
 ## LinkedIn Post
-PUBLISHED: 2026-07-14T15:37:07.806Z
-
 MEDIA: /assets/the-capture-loop-hero.png
 ALT: A man walks a forest trail dictating into his phone while a robot beside him stitches his idea into a web of older notes
 
@@ -127,8 +123,6 @@ https://juanjofuchs.github.io/productivity/2026/07/14/building-your-second-brain
 ---
 
 ## X/Twitter Thread
-PUBLISHED: 2026-07-14T15:32:53.745Z
-
 MEDIA: /assets/the-capture-loop-hero.png
 ALT: A man walks a forest trail dictating into his phone while a robot beside him stitches his idea into a web of older notes
 

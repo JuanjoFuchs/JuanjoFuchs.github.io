@@ -1,15 +1,22 @@
 ---
 layout: post
 title: "Making Your Second Brain AI-Compatible"
-description: "I was great at capturing ideas but terrible at processing them. Five years of OneNote left me with a growing inbox I couldn't leverage. Moving to Obsidian let AI help with the part I'm bad at."
+description: "Great at capturing ideas, terrible at processing them. Five years of OneNote left an inbox I couldn't use. Obsidian let AI help with the part I'm bad at."
 date: 2025-12-16 09:00:00 -0500
+permalink: /productivity/2025/12/16/making-second-brain-ai-compatible.html
 categories: productivity
 tags: [obsidian, onenote, second-brain, gtd, mcp, ai, productivity]
 author: JuanjoFuchs
 image: /assets/obsidian-knowledge-graph-second-brain.png
+series: second-brain
+series_order: 1
+series_title: "Making Your Second Brain AI-Compatible"
+series_blurb: "the migration out of OneNote into markdown, front matter and wikilinks, so Claude could read the vault at all."
 ---
 
 ![Obsidian graph view showing interconnected notes as nodes with clusters of related ideas](/assets/obsidian-knowledge-graph-second-brain.png)
+
+{% include series-nav.html %}
 
 I've used a mix of [GTD (Getting Things Done)](https://gettingthingsdone.com/) and [Second Brain](https://www.buildingasecondbrain.com/) for years. GTD for projects and tasks: capture everything to an inbox, process into projects and next actions, review weekly. Second Brain for knowledge management. Two systems that complement each other, one for doing and one for thinking.
 
@@ -40,7 +47,7 @@ But it's not just about readability. Markdown with the right structure gives AI 
 ```yaml
 ---
 tags: [project, area/open-source]
-status: active
+status: deployed
 priority: 2
 due-date: 2025-12-31
 ---

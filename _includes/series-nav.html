@@ -1,0 +1,33 @@
+{%- comment -%}
+Renders the "series so far" navigation box for any post that sets
+`series:` in its front matter. Loops every published post sharing the
+same series slug, ordered by `series_order`, links each part, bolds the
+one you're reading, and shows a short `series_blurb` for the others.
+
+Add a new part = give its front matter `series`, `series_order`,
+`series_title`, `series_blurb` and drop `{% include series-nav.html %}`
+into the body. Publishing it rebuilds the whole site, so every older
+post picks up the new part automatically. No script, no re-deploy of the
+old posts.
+{%- endcomment -%}
+{%- assign parts = site.posts | where: "series", page.series | sort: "series_order" -%}
+{%- if parts.size > 1 -%}
+<aside class="series-nav">
+  <p class="series-nav__title"><strong>Building Your Second Brain</strong> — the series so far:</p>
+  <ol>
+  {%- for part in parts -%}
+    {%- if part.url == page.url -%}
+    <li><strong>{{ part.series_title | default: part.title }}</strong> — you're reading this.</li>
+    {%- else -%}
+    <li><a href="{{ part.url | relative_url }}">{{ part.series_title | default: part.title }}</a>{% if part.series_blurb %}: {{ part.series_blurb }}{% endif %}</li>
+    {%- endif -%}
+  {%- endfor -%}
+  </ol>
+</aside>
+<style>
+.series-nav { border-left: 4px solid #2e9e5b; background: rgba(46,158,91,0.06); border-radius: 4px; padding: 0.6em 1.15em; margin: 1.75em 0; }
+.series-nav__title { margin: 0 0 0.4em; }
+.series-nav ol { margin: 0; padding-left: 1.35em; }
+.series-nav li { margin: 0.25em 0; }
+</style>
+{%- endif -%}

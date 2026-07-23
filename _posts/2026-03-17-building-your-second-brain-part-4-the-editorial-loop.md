@@ -7,9 +7,15 @@ categories: productivity
 tags: [second-brain, ai, productivity, writing, content-creation]
 author: JuanjoFuchs
 image: /assets/editorial-loop-redpen.png
+series: second-brain
+series_order: 4
+series_title: "The Editorial Loop"
+series_blurb: "an adversarial reviewer that strips the AI tells out of a draft."
 ---
 
 ![A blog post draft with red-pen editorial annotations marking AI writing patterns](/assets/editorial-loop-redpen.png)
+
+{% include series-nav.html %}
 
 [Part 3](https://juanjofuchs.github.io/productivity/2026/03/03/building-your-second-brain-part-3-the-spec-that-wrote-this-post.html) ended with the spec and the draft. You planned the arc, the angles, the scope, AI wrote the post and it reads well, it flows, the sections land where the spec said they should. You think it's done.
 

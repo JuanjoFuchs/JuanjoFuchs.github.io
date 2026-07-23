@@ -7,9 +7,15 @@ categories: productivity
 tags: [second-brain, ai, productivity, writing, content-creation]
 author: JuanjoFuchs
 image: /assets/spec-blueprint-to-post.png
+series: second-brain
+series_order: 3
+series_title: "The Spec That Wrote This Post"
+series_blurb: "planning a post before a word of it gets written."
 ---
 
 ![A spec document with visible structure transforming into a finished blog post, blueprint-to-building aesthetic](/assets/spec-blueprint-to-post.png)
+
+{% include series-nav.html %}
 
 [Part 1](https://juanjofuchs.github.io/productivity/2025/12/16/making-second-brain-ai-compatible.html) was about making my second brain AI-readable, markdown, YAML, wikilinks. [Part 2](https://juanjofuchs.github.io/productivity/2026/02/24/building-your-second-brain-part-2-when-ai-moves-in.html) covered what happened when AI started operating inside it, routing tables, search tools, CLI scripts. This post is about the artifact that sits between "I have an idea" and "AI writes the draft."
 
