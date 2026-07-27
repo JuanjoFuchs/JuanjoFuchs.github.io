@@ -88,7 +88,7 @@ Anthropic's own [skill-creator](https://github.com/anthropics/skills/blob/main/s
 
 Schmid's version is one sentence: "…always try to run evals with and without the skill enabled. And if the model achieves the performance without even triggering the skill, you know you can retire that skill."
 
-That works on guides you wrote yourself too, and mine haven't been through it. Shiryaev's closing line from the rtk benchmark is about compression tools, and it holds for anything you're deciding whether to adopt: "If you evaluate any context-compression tool, measure the paired bill, not the tool's diff."
+Shiryaev's closing line from the rtk benchmark is about compression tools, and it holds for anything you're deciding whether to adopt: "If you evaluate any context-compression tool, measure the paired bill, not the tool's diff."
 
 {% comment %}
 ## LinkedIn Post
