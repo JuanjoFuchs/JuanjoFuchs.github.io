@@ -62,8 +62,6 @@ When an agent run goes badly you're already choosing between the model being off
 
 Geoffrey Huntley put it plainly: ["LLMs are essentially mirrors. They mirror the skill of the operator."](https://ghuntley.com/mirrors/) He means your craft there. Copying somebody's folder into your setup transfers their file, not their craft.
 
-My own guides aren't exempt from any of this. I have a research workflow in my vault that I wrote and route from AGENTS.md, and on July 23 Claude Code reached for the generic deep-research skill that ships preinstalled before it ever opened my guide. The preinstalled skill is fine, it's there for good reasons, I just haven't run my workflow against the generic one and measured which produces better research. I've been assuming, which is exactly what I'm telling you not to do with someone else's skill.
-
 ## What I do instead of installing
 
 I read them. Point an agent at the repo, have it read everything and explain the actual idea, what's good in it and what doesn't apply to how I work. Have it strip the scaffolding, the edge cases, and the productionization for people who aren't me. What's left is usually small. Then it interviews me on how I really do that task, and the output is a guide in my vault, in my words, routed from AGENTS.md so I know when it should fire and can tell when it didn't.
@@ -90,7 +88,7 @@ Anthropic's own [skill-creator](https://github.com/anthropics/skills/blob/main/s
 
 Schmid's version is one sentence: "…always try to run evals with and without the skill enabled. And if the model achieves the performance without even triggering the skill, you know you can retire that skill."
 
-That works on guides you wrote yourself too. Mine haven't been through it, and the research workflow that got skipped is the obvious place to start. Shiryaev's closing line from the rtk benchmark is about compression tools, and it holds for anything you're deciding whether to adopt: "If you evaluate any context-compression tool, measure the paired bill, not the tool's diff."
+That works on guides you wrote yourself too, and mine haven't been through it. Shiryaev's closing line from the rtk benchmark is about compression tools, and it holds for anything you're deciding whether to adopt: "If you evaluate any context-compression tool, measure the paired bill, not the tool's diff."
 
 {% comment %}
 ## LinkedIn Post
