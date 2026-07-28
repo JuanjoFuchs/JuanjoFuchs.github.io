@@ -92,6 +92,8 @@ Shiryaev's closing line from the rtk benchmark is about compression tools, and i
 
 {% comment %}
 ## LinkedIn Post
+PUBLISHED: 2026-07-28T13:14:40.618Z
+
 MEDIA: /assets/github-stars-are-not-evals-hero.png
 ALT: A white-gloved hand raises a single glowing gold star into pure darkness, the star the only light in frame
 
@@ -125,6 +127,8 @@ https://juanjofuchs.github.io/ai-development/2026/07/28/github-stars-are-not-eva
 ---
 
 ## X/Twitter Thread
+PUBLISHED: 2026-07-28T13:14:41.640Z
+
 MEDIA: /assets/github-stars-are-not-evals-hero.png
 ALT: A white-gloved hand raises a single glowing gold star into pure darkness, the star the only light in frame
 
