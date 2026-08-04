@@ -148,6 +148,8 @@ Eighty-some days isn't long. I've got commits in there from February and I'll be
 
 {% comment %}
 ## LinkedIn Post
+PUBLISHED: 2026-08-04T13:21:04.967Z
+
 MEDIA: /assets/part-6-git-durable-memory-hero.png
 ALT: A robot seen from behind draws one index card from rows of cards hung on glowing emerald cords in a dark archive
 
@@ -171,6 +173,8 @@ https://juanjofuchs.github.io/productivity/2026/08/04/building-your-second-brain
 ---
 
 ## X/Twitter Thread
+PUBLISHED: 2026-08-04T13:21:06.237Z
+
 MEDIA: /assets/part-6-git-durable-memory-hero.png
 ALT: A robot seen from behind draws one index card from rows of cards hung on glowing emerald cords in a dark archive
 
