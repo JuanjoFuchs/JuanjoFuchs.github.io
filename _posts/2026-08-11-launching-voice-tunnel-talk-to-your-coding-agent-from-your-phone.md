@@ -14,7 +14,8 @@ image: /assets/voice-tunnel-demo-poster.png
 <div style="max-width: 380px; margin: 0 auto;">
   <div style="position: relative; padding-bottom: 179.63%; height: 0; overflow: hidden;">
     <video style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
-           autoplay loop muted playsinline>
+           controls playsinline preload="metadata"
+           poster="/assets/voice-tunnel-demo-poster.png">
       <source src="/assets/videos/voice-tunnel-demo.mp4" type="video/mp4">
     </video>
   </div>
