@@ -91,6 +91,8 @@ Repo: [github.com/JuanjoFuchs/voice-tunnel](https://github.com/JuanjoFuchs/voice
 
 {% comment %}
 ## LinkedIn Post
+PUBLISHED: 2026-08-11T13:14:36.482Z
+
 MEDIA: /assets/videos/voice-tunnel-demo.mp4
 ALT: Phone in hand running the voice-tunnel page while an agent ships a release
 
@@ -124,6 +126,8 @@ What would you say to your coding agent if you could say it out loud?
 ---
 
 ## X/Twitter Thread
+PUBLISHED: 2026-08-11T13:14:40.317Z
+
 MEDIA: /assets/videos/voice-tunnel-demo.mp4
 ALT: Phone in hand running the voice-tunnel page while an agent ships a release
 
