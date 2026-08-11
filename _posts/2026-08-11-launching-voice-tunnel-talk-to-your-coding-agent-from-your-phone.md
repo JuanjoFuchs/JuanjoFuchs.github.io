@@ -89,7 +89,6 @@ The interview that produced this post was held over the tunnel, from my phone, t
 Repo: [github.com/JuanjoFuchs/voice-tunnel](https://github.com/JuanjoFuchs/voice-tunnel), MIT licensed, published on [PyPI](https://pypi.org/project/voice-tunnel/), [npm](https://www.npmjs.com/package/@juanjofuchs/voice-tunnel) and WinGet. Issues and PRs welcome.
 
 {% comment %}
-KIT_SENT: 2026-08-11T18:35:00Z
 ## LinkedIn Post
 PUBLISHED: 2026-08-11T13:14:36.482Z
 
