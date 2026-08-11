@@ -57,6 +57,13 @@ minima:
       icon: "linkedin"
       url: "https://www.linkedin.com/in/JuanjoFuchs"
 
+# Email subscription
+# The post sidebar renders a signup form when form_action is set, and falls back
+# to an RSS link when it is empty. Kit's free plan covers 1,000 subscribers and
+# unlimited broadcasts; paste the form's action URL here once the form exists.
+subscribe:
+  form_action: ""
+
 # Publishing settings
 future: false  # Don't publish posts with future dates
 

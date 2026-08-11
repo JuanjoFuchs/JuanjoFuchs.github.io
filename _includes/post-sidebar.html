@@ -1,0 +1,92 @@
+{%- comment -%}
+  Post sidebar: on-this-page, related posts, categories, subscribe.
+
+  Related posts are scored in Liquid rather than using site.related_posts, which
+  without the LSI plugin is just "the 10 most recent posts" and is therefore
+  wrong on a blog where the newest post is rarely the most relevant one. LSI
+  needs classifier-reborn, which GitHub Pages does not allow.
+
+  The score is (shared tags * 2) + (same category * 3). Entries are built as
+  sortable strings because Liquid cannot sort an array of objects by a value it
+  just computed.
+{%- endcomment -%}
+
+{%- assign scored = "" | split: "" -%}
+{%- for other in site.posts -%}
+  {%- if other.url != page.url -%}
+    {%- assign score = 0 -%}
+    {%- for tag in other.tags -%}
+      {%- if page.tags contains tag -%}
+        {%- assign score = score | plus: 2 -%}
+      {%- endif -%}
+    {%- endfor -%}
+    {%- for category in other.categories -%}
+      {%- if page.categories contains category -%}
+        {%- assign score = score | plus: 3 -%}
+      {%- endif -%}
+    {%- endfor -%}
+    {%- if score > 0 -%}
+      {%- assign padded = score | prepend: "0" | slice: -2, 2 -%}
+      {%- assign entry = padded | append: "|||" | append: other.url | append: "|||" | append: other.title -%}
+      {%- comment -%} Liquid has no push filter; splitting on an absent token yields a one-item array to concat. {%- endcomment -%}
+      {%- assign entry_item = entry | split: "@@no-split@@" -%}
+      {%- assign scored = scored | concat: entry_item -%}
+    {%- endif -%}
+  {%- endif -%}
+{%- endfor -%}
+{%- assign ranked = scored | sort | reverse -%}
+
+<aside class="post-aside" aria-label="Post navigation">
+
+  <nav class="aside-card aside-toc post-toc" hidden>
+    <h2 class="aside-heading">On this page</h2>
+    <ul class="aside-list post-toc-list"></ul>
+  </nav>
+
+  {%- if ranked.size > 0 %}
+  <nav class="aside-card" aria-label="Related posts">
+    <h2 class="aside-heading">Related</h2>
+    <ul class="aside-list">
+      {%- for entry in ranked limit: 4 -%}
+        {%- assign parts = entry | split: "|||" %}
+      <li><a href="{{ parts[1] | relative_url }}">{{ parts[2] }}</a></li>
+      {%- endfor %}
+    </ul>
+  </nav>
+  {%- endif %}
+
+  <nav class="aside-card" aria-label="Categories">
+    <h2 class="aside-heading">Categories</h2>
+    <ul class="aside-list aside-categories">
+      {%- assign cats = site.categories | sort -%}
+      {%- for cat in cats -%}
+        {%- assign name = cat[0] -%}
+      <li>
+        <a href="{{ '/categories/#' | append: name | slugify | relative_url }}"{% if page.categories contains name %} class="is-current"{% endif %}>{{ name }}</a>
+        <span class="aside-count">{{ cat[1].size }}</span>
+      </li>
+      {%- endfor %}
+    </ul>
+  </nav>
+
+  <div class="aside-card aside-subscribe">
+    <h2 class="aside-heading">Subscribe</h2>
+    {%- if site.subscribe.form_action and site.subscribe.form_action != "" %}
+    <p class="aside-note">New post every Tuesday, straight to your inbox.</p>
+    <form action="{{ site.subscribe.form_action }}" method="post" class="subscribe-form" target="_blank">
+      <label class="visually-hidden" for="subscribe-email">Email address</label>
+      <input id="subscribe-email" type="email" name="email_address" placeholder="you@example.com" required>
+      <button type="submit">Subscribe</button>
+    </form>
+    {%- else %}
+    <p class="aside-note">New post every Tuesday.</p>
+    {%- endif %}
+    <p class="aside-note">
+      <a href="{{ '/feed.xml' | relative_url }}" class="rss-link">
+        <svg class="rss-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 11a9 9 0 0 1 9 9M4 4a16 16 0 0 1 16 16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><circle cx="5" cy="19" r="2" fill="currentColor"/></svg>
+        RSS feed
+      </a>
+    </p>
+  </div>
+
+</aside>

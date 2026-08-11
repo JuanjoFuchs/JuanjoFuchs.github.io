@@ -1,0 +1,258 @@
+// Loaded by minima's main.scss after the theme's own styles, so everything here
+// wins without !important. Two rules govern the file:
+//   1. Colours come from minima's skin variables, never hardcoded, because the
+//      site runs `skin: auto` and a literal hex would be wrong in one theme.
+//   2. The sidebar is progressive enhancement. Below the breakpoint the grid
+//      collapses to one column and the aside simply flows under the article.
+
+$aside-width: 260px !default;
+$aside-gap: 48px !default;
+$post-measure: 720px !default;
+$aside-breakpoint: 1080px !default;
+
+// The theme caps .wrapper at 800px, which leaves no room for a rail. Widen it
+// only on post pages, so the home and archive pages keep their current measure.
+.post-with-aside {
+  @media screen and (min-width: $aside-breakpoint) {
+    display: grid;
+    grid-template-columns: minmax(0, $post-measure) $aside-width;
+    gap: $aside-gap;
+    align-items: start;
+    // Pull the grid out past the theme wrapper by the width of the rail plus
+    // the gap, so the article column stays where the reader expects it and only
+    // the sidebar occupies new space.
+    width: calc(100% + #{$aside-width} + #{$aside-gap});
+    max-width: calc(100vw - 60px);
+  }
+}
+
+.post-aside {
+  font-size: 0.875rem;
+  line-height: 1.45;
+
+  @media screen and (min-width: $aside-breakpoint) {
+    position: sticky;
+    top: 24px;
+    max-height: calc(100vh - 48px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    // Scrollbar only when it is actually needed, and unobtrusive when it is.
+    scrollbar-width: thin;
+  }
+
+  // Below the breakpoint it is just content under the post.
+  @media screen and (max-width: #{$aside-breakpoint - 1px}) {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid $border-color-01;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem 2rem;
+
+    // The table of contents is redundant on a phone, where scrolling is the
+    // navigation and the list would push the related posts off the screen.
+    .aside-toc {
+      display: none;
+    }
+  }
+}
+
+.aside-card {
+  margin-bottom: 1.75rem;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.aside-heading {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: $brand-color;
+  margin: 0 0 0.6rem;
+}
+
+.aside-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  li {
+    margin-bottom: 0.45rem;
+  }
+
+  a {
+    color: $text-color;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+
+    &:hover {
+      color: $link-base-color;
+      border-bottom-color: $link-base-color;
+      text-decoration: none;
+    }
+
+    &.is-current {
+      font-weight: 600;
+      color: $link-base-color;
+    }
+  }
+}
+
+// The TOC can run long on a 1,500 word post, so it gets tighter leading and a
+// rule down the left to read as navigation rather than as more prose.
+.aside-toc .aside-list {
+  border-left: 2px solid $border-color-01;
+  padding-left: 0.75rem;
+
+  li {
+    margin-bottom: 0.35rem;
+  }
+}
+
+.aside-categories {
+  li {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 0.5rem;
+  }
+}
+
+.aside-count {
+  font-size: 0.75rem;
+  color: $brand-color;
+  font-variant-numeric: tabular-nums;
+}
+
+.aside-note {
+  margin: 0 0 0.5rem;
+  font-size: 0.8125rem;
+  color: $brand-color;
+}
+
+.subscribe-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+
+  input[type="email"] {
+    width: 100%;
+    padding: 0.45rem 0.6rem;
+    font-size: 0.875rem;
+    color: $text-color;
+    background-color: $background-color;
+    border: 1px solid $border-color-02;
+    border-radius: 4px;
+
+    &:focus {
+      outline: 2px solid $link-base-color;
+      outline-offset: 1px;
+      border-color: $link-base-color;
+    }
+  }
+
+  button {
+    padding: 0.45rem 0.75rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: $background-color;
+    background-color: $link-base-color;
+    border: 0;
+    border-radius: 4px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: $link-hover-color;
+    }
+  }
+}
+
+.rss-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.rss-icon {
+  width: 0.9em;
+  height: 0.9em;
+  flex: none;
+}
+
+// Categories page
+// ---------------
+
+.category-jump {
+  list-style: none;
+  margin: 0 0 2rem;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+
+  a {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.35rem;
+    padding: 0.25rem 0.6rem;
+    border: 1px solid $border-color-01;
+    border-radius: 999px;
+    font-size: 0.875rem;
+    text-decoration: none;
+
+    &:hover {
+      border-color: $link-base-color;
+      text-decoration: none;
+    }
+  }
+}
+
+.post-list-compact {
+  list-style: none;
+  margin: 0 0 2.5rem;
+  padding: 0;
+
+  li {
+    display: flex;
+    gap: 1rem;
+    align-items: baseline;
+    margin-bottom: 0.4rem;
+  }
+
+  time {
+    flex: none;
+    width: 6.5rem;
+    font-size: 0.8125rem;
+    color: $brand-color;
+    font-variant-numeric: tabular-nums;
+  }
+
+  @media screen and (max-width: 600px) {
+    li {
+      flex-direction: column;
+      gap: 0.1rem;
+      margin-bottom: 0.9rem;
+    }
+
+    time {
+      width: auto;
+    }
+  }
+}
+
+// Screen-reader-only, for the subscribe field's label.
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

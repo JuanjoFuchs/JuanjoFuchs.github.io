@@ -1,24 +1,38 @@
 ---
 layout: page
 title: About
-description: "Software engineer exploring AI-aided development and sharing what actually works in practice."
+description: "I build compounding, harness-agnostic tooling for AI-native developers, and write about what actually works."
 permalink: /about/
 ---
 
-I'm a software engineer with 16+ years building enterprise software, currently leading engineering teams and exploring how AI tools change the development process.
+I'm JJ. Peru ↔ New Jersey, 16 years building enterprise software, currently leading engineering teams.
 
-## What I Write About
+The agent layer is commoditized. Claude, Codex, Cursor and Gemini are racing each other, and whichever one is ahead this month will not be ahead next month. My time goes into the layer *above*: tooling and institutional knowledge that compound across model swaps, the kind you don't have to rebuild when you switch harnesses.
 
-This blog focuses on using AI for software development. I'm testing tools like Claude Code, GitHub Copilot, and other AI assistants to see how they fit into real workflows. Posts cover experiments, code examples, and practical lessons from using AI day-to-day.
+> [Stop building another Claude. Build the harness around the one you already have.](https://juanjofuchs.github.io/ai-development/2026/03/31/stop-building-another-claude-learn-how-to-effectively-onboard-one-into-your-organization-instead.html)
 
-## Background
+## What I write about
 
-I've led teams through cloud migrations, built design systems, and spent a lot of time on architecture and DevOps. But this blog isn't about that corporate stuff, it's about trying new tools and sharing what I learn.
+Using AI to build software, tested rather than theorized. Every post comes out of something I actually shipped: a tool I built and use daily, a workflow that survived contact with real work, or a number I measured on my own machine. When a claim has a source, it links to the source. When it's my opinion, it says so.
 
-## Why This Blog
+The recurring threads are second-brain workflows for agents, the economics of AI-assisted engineering, and the harness layer that sits between a model and useful work.
 
-AI tools are changing how we write code and I want to document the process as I figure out what works. This blog is the lab notebook.
+## What I build
+
+Everything is open source and lives on [GitHub](https://github.com/JuanjoFuchs), which is the canonical list rather than a copy of it:
+
+- **[voice-tunnel](https://github.com/JuanjoFuchs/voice-tunnel)** — talk to your coding agent from your phone, all local, no GPU
+- **[ccburn](https://github.com/JuanjoFuchs/ccburn)** — real-time burn-up charts for Claude Code usage limits
+- **[hwinfo-tui](https://github.com/JuanjoFuchs/hwinfo-tui)** — plot HWInfo64 sensors live in the terminal
+- **[atref](https://github.com/JuanjoFuchs/atref)** — Claude Code's `@` file picker, in any text field
+- **[agent-mail-cli](https://github.com/JuanjoFuchs/agent-mail-cli)** — a mailbox coding agents can learn in one command
+- **[claudefana](https://github.com/JuanjoFuchs/claudefana)** and **[claudefana-enterprise](https://github.com/JuanjoFuchs/claudefana-enterprise)** — dashboards for Claude Code telemetry, personal and org-wide
+- **[claude-code-tips](https://github.com/JuanjoFuchs/claude-code-tips)** — 14 habits for shipping more and spending less
+
+## Subscribe
+
+A new post goes out every Tuesday. The [RSS feed]({{ '/feed.xml' | relative_url }}) has everything, and every post page carries a subscribe box if you'd rather get it by email.
 
 ## Contact
 
-Find me on [GitHub](https://github.com/JuanjoFuchs), [LinkedIn](https://www.linkedin.com/in/juanjofuchs), and [X](https://x.com/JuanjoFuchs).
+[GitHub](https://github.com/JuanjoFuchs) · [LinkedIn](https://www.linkedin.com/in/juanjofuchs) · [X](https://x.com/JuanjoFuchs)
