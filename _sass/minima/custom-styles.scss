@@ -10,21 +10,28 @@ $aside-gap: 48px !default;
 $post-measure: 720px !default;
 $aside-breakpoint: 1080px !default;
 
-// The theme caps .wrapper at 800px, which leaves no room for a rail. Widen it
-// only on post pages, so the home and archive pages keep their current measure.
+// The wrapper is widened to 1028px in custom-variables.scss, which is exactly
+// this grid: article + gap + rail. The two therefore share their left and right
+// edges with the site header, instead of the rail hanging off the side of it.
 .post-with-aside {
   @media screen and (min-width: $aside-breakpoint) {
     display: grid;
     grid-template-columns: minmax(0, $post-measure) $aside-width;
     gap: $aside-gap;
     align-items: start;
-    // Pull the grid out past the theme wrapper by the width of the rail plus
-    // the gap, so the article column stays where the reader expects it and only
-    // the sidebar occupies new space.
-    width: calc(100% + #{$aside-width} + #{$aside-gap});
-    max-width: calc(100vw - 60px);
   }
 }
+
+// A wider wrapper must not become a wider line of text. Prose stays at the
+// measure it had before, left-aligned under the header rather than centred, so
+// every page starts at the same x.
+.post-content,
+.home {
+  max-width: $post-measure;
+}
+
+// Inside the grid the column already is $post-measure, so the cap above is a
+// no-op there; this only matters on About, Categories and the home page.
 
 .post-aside {
   font-size: 0.875rem;

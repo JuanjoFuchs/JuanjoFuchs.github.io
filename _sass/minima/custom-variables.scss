@@ -1,0 +1,11 @@
+// Hook minima imports before its own styles, so these win over the defaults.
+
+// The theme ships an 800px wrapper, which is a good measure for prose and has
+// no room for a sidebar. Widened to exactly the post grid: 720px article +
+// 48px gap + 260px rail. Anything else and the site header ends at a different
+// x than the content underneath it, which reads as a mistake.
+//
+// Prose is kept narrow separately (see custom-styles.scss, .post-content and
+// .home), so this only changes where the right edge of the page can reach,
+// never the length of a line of text.
+$content-width: 1028px;
