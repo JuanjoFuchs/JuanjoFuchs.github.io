@@ -7,7 +7,7 @@ categories: ai
 tags: [ai, voice, cli, agentic-workflow, open-source]
 author: JuanjoFuchs
 image: /assets/voice-tunnel-demo-poster.png
-redirect_from: /p/voice-tunnel
+redirect_from: /blog/voice-tunnel
 ---
 
 <div style="max-width: 380px; margin: 0 auto;">

@@ -425,7 +425,7 @@ export function parseSocialCampaign(commentContent) {
 }
 
 /**
- * The `/p/<slug>` short link a post declares, or null.
+ * The `/blog/<slug>` short link a post declares, or null.
  *
  * Two front matter fields can carry one, because a post acquires it at one of two
  * moments. A post written after short links existed sets `permalink`, so the short
@@ -435,19 +435,19 @@ export function parseSocialCampaign(commentContent) {
  * way this is the URL worth *sharing*, because it is the one a reader can hold in
  * their head, so both spellings resolve here.
  *
- * `/p/` is a namespace, not decoration. Root-level slugs collide with GitHub Pages
+ * `/blog/` is a namespace, not decoration. Root-level slugs collide with GitHub Pages
  * project sites: juanjofuchs.com/claude-code-tips/ serves a *different repo*, so a
  * post pinned to /voice-tunnel would be one `gh-pages` branch away from being
  * shadowed by the repo of the same name.
  *
  * @param {object} frontMatter - Parsed front matter
- * @returns {string|null} - Path beginning with /p/, or null
+ * @returns {string|null} - Path beginning with /blog/, or null
  */
 export function shortBlogPath(frontMatter) {
   const raw = frontMatter.redirect_from;
   const candidates = [frontMatter.permalink, ...(Array.isArray(raw) ? raw : [raw])];
   for (const candidate of candidates) {
-    if (typeof candidate === 'string' && candidate.trim().startsWith('/p/')) {
+    if (typeof candidate === 'string' && candidate.trim().startsWith('/blog/')) {
       return candidate.trim().replace(/\/$/, '');
     }
   }
