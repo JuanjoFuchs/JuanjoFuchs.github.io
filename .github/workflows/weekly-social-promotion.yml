@@ -196,6 +196,28 @@ jobs:
 
         node scripts/post-to-social-media.js "${ARGS[@]}"
 
+    # always(), because the newsletter and the social platforms are independent:
+    # an expired LinkedIn token should not also hold back the email. Re-running is
+    # safe, since send-kit-broadcast.js skips a post that already carries a
+    # KIT_SENT marker, committed by the same step that commits PUBLISHED flags.
+    - name: Email the post to the Kit list
+      if: ${{ always() && env.SHOULD_POST_WEEKLY_SOCIAL == 'true' }}
+      env:
+        KIT_API_KEY: ${{ secrets.KIT_API_KEY }}
+      run: |
+        if [ -z "$KIT_API_KEY" ]; then
+          echo "::warning::KIT_API_KEY is not set; skipping the newsletter send"
+          exit 0
+        fi
+
+        ARGS=("$POST_FILE")
+
+        if [ "${{ inputs.dry_run }}" = "true" ]; then
+          ARGS+=(--dry-run)
+        fi
+
+        node scripts/send-kit-broadcast.js "${ARGS[@]}"
+
     # always(): the posting step now exits non-zero when a platform fails, and the
     # PUBLISHED markers for whatever DID post must still be committed. Otherwise a
     # re-run (to fix the failed platform) would double-post the one that succeeded.
