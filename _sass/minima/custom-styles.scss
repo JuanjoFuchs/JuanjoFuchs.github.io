@@ -84,6 +84,13 @@ $aside-breakpoint: 1080px !default;
   }
 }
 
+// Six of forty posts have no hero. Without this they still reserved the 168px
+// media column and rendered indented into an empty slot, which reads as a
+// broken image rather than a deliberate text entry.
+.post-card-no-media {
+  grid-template-columns: minmax(0, 1fr);
+}
+
 // A fixed ratio box means the space is reserved before the image arrives, so a
 // lazily-loaded hero cannot shove the text it sits beside down the page.
 .post-card-media {
