@@ -62,7 +62,11 @@ minima:
 # to an RSS link when it is empty. Kit's free plan covers 1,000 subscribers and
 # unlimited broadcasts; paste the form's action URL here once the form exists.
 subscribe:
-  form_action: ""
+  # Kit form 9790508 (uid 7183bbe2f1). This is the plain POST endpoint that
+  # Kit's own JavaScript embed posts to, used directly so no third-party script
+  # loads on every post page. The sidebar's field is name="email_address",
+  # which is what Kit expects.
+  form_action: "https://app.kit.com/forms/9790508/subscriptions"
 
 # Publishing settings
 future: false  # Don't publish posts with future dates
