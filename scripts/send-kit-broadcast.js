@@ -228,7 +228,8 @@ function heroImage(src, alt, repoPath) {
    * invisible until a portrait one turned up.
    */
   const size = imageSize(repoPath);
-  let attrs = `style="display:block;width:100%;max-width:${MAX_W}px;height:auto;border:0;border-radius:6px"`;
+  const base = 'display:block;margin:0 auto;height:auto;border:0;border-radius:6px';
+  let attrs = `style="${base};width:100%;max-width:${MAX_W}px"`;
 
   if (size) {
     const scale = Math.min(MAX_W / size.width, MAX_H / size.height, 1);
@@ -236,12 +237,20 @@ function heroImage(src, alt, repoPath) {
     const h = Math.round(size.height * scale);
     // Explicit width/height as ATTRIBUTES as well as style: Outlook ignores CSS
     // sizing on images often enough that the attribute is what actually holds.
-    attrs =
-      `width="${w}" height="${h}" ` +
-      `style="display:block;width:${w}px;max-width:100%;height:auto;border:0;border-radius:6px"`;
+    attrs = `width="${w}" height="${h}" style="${base};width:${w}px;max-width:100%"`;
   }
 
-  return `<p style="margin:0 0 1.4em"><img src="${src}" alt="${alt}" ${attrs}></p>`;
+  // Centred by a table cell, not by margin:auto alone. A portrait hero is
+  // narrower than the column, and display:block without this sits it hard
+  // against the left edge while the text around it looks centred. Outlook
+  // ignores margin:auto on images, so align="center" on the cell is the part
+  // that actually holds there.
+  return [
+    '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"',
+    ' style="margin:0 0 1.4em;border-collapse:collapse"><tr>',
+    `<td align="center"><img src="${src}" alt="${alt}" ${attrs}></td>`,
+    '</tr></table>',
+  ].join('');
 }
 
 const BODY_W = 600;
