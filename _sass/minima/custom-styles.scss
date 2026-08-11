@@ -22,12 +22,122 @@ $aside-breakpoint: 1080px !default;
   }
 }
 
+// The home page uses the same two-column shape, so subscribe is visible without
+// scrolling to the footer.
+.home-with-aside {
+  @media screen and (min-width: $aside-breakpoint) {
+    display: grid;
+    grid-template-columns: minmax(0, $post-measure) $aside-width;
+    gap: $aside-gap;
+    align-items: start;
+  }
+}
+
 // A wider wrapper must not become a wider line of text. Prose stays at the
 // measure it had before, left-aligned under the header rather than centred, so
 // every page starts at the same x.
 .post-content,
 .home {
   max-width: $post-measure;
+}
+
+.home-intro {
+  font-size: 1.0625rem;
+  color: $brand-color;
+}
+
+.post-list-heading {
+  margin-top: $spacing-unit;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: $brand-color;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid $border-color-01;
+}
+
+// Post cards
+// ----------
+
+.post-cards {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.post-card {
+  display: grid;
+  grid-template-columns: 168px minmax(0, 1fr);
+  gap: 1.25rem;
+  align-items: start;
+  padding: 1.25rem 0;
+  border-bottom: 1px solid $border-color-01;
+
+  &:last-child {
+    border-bottom: 0;
+  }
+
+  @media screen and (max-width: 600px) {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+}
+
+// A fixed ratio box means the space is reserved before the image arrives, so a
+// lazily-loaded hero cannot shove the text it sits beside down the page.
+.post-card-media {
+  display: block;
+  position: relative;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  border-radius: 6px;
+  background-color: $code-background-color;
+
+  img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+}
+
+.post-card-title {
+  margin: 0.15rem 0 0.35rem;
+  font-size: 1.25rem;
+  line-height: 1.25;
+
+  a {
+    color: $heading-color;
+    text-decoration: none;
+
+    &:hover {
+      color: $link-base-color;
+    }
+  }
+}
+
+.post-card-description {
+  margin: 0;
+  font-size: 0.9375rem;
+  color: $brand-color;
+}
+
+.post-card-category {
+  display: inline-block;
+  margin-left: 0.5rem;
+  padding: 0.05rem 0.45rem;
+  border: 1px solid $border-color-01;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  text-decoration: none;
+
+  &:hover {
+    border-color: $link-base-color;
+    text-decoration: none;
+  }
 }
 
 // Inside the grid the column already is $post-measure, so the cap above is a
@@ -50,6 +160,17 @@ $aside-breakpoint: 1080px !default;
     overscroll-behavior: contain;
     // Scrollbar only when it is actually needed, and unobtrusive when it is.
     scrollbar-width: thin;
+  }
+
+  // On the home page it leads rather than trails, so a first-time reader meets
+  // the signup before the archive rather than after it.
+  &.home-aside {
+    @media screen and (max-width: #{$aside-breakpoint - 1px}) {
+      margin-top: 0;
+      margin-bottom: $spacing-unit;
+      padding-top: 0;
+      border-top: 0;
+    }
   }
 
   // Below the breakpoint it is just content under the post.

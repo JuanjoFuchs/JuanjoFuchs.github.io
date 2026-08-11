@@ -55,38 +55,8 @@
   </nav>
   {%- endif %}
 
-  <nav class="aside-card" aria-label="Categories">
-    <h2 class="aside-heading">Categories</h2>
-    <ul class="aside-list aside-categories">
-      {%- assign cats = site.categories | sort -%}
-      {%- for cat in cats -%}
-        {%- assign name = cat[0] -%}
-      <li>
-        <a href="{{ '/categories/#' | append: name | slugify | relative_url }}"{% if page.categories contains name %} class="is-current"{% endif %}>{{ name }}</a>
-        <span class="aside-count">{{ cat[1].size }}</span>
-      </li>
-      {%- endfor %}
-    </ul>
-  </nav>
+  {%- include categories-card.html -%}
 
-  <div class="aside-card aside-subscribe">
-    <h2 class="aside-heading">Subscribe</h2>
-    {%- if site.subscribe.form_action and site.subscribe.form_action != "" %}
-    <p class="aside-note">New post every Tuesday, straight to your inbox.</p>
-    <form action="{{ site.subscribe.form_action }}" method="post" class="subscribe-form" target="_blank">
-      <label class="visually-hidden" for="subscribe-email">Email address</label>
-      <input id="subscribe-email" type="email" name="email_address" placeholder="you@example.com" required>
-      <button type="submit">Subscribe</button>
-    </form>
-    {%- else %}
-    <p class="aside-note">New post every Tuesday.</p>
-    {%- endif %}
-    <p class="aside-note">
-      <a href="{{ '/feed.xml' | relative_url }}" class="rss-link">
-        <svg class="rss-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 11a9 9 0 0 1 9 9M4 4a16 16 0 0 1 16 16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><circle cx="5" cy="19" r="2" fill="currentColor"/></svg>
-        RSS feed
-      </a>
-    </p>
-  </div>
+  {%- include subscribe-card.html id="post-subscribe" -%}
 
 </aside>

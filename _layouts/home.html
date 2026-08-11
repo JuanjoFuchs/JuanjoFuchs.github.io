@@ -1,0 +1,73 @@
+---
+layout: base
+---
+{%- comment -%}
+  Overrides jekyll/minima's home layout.
+
+  Two changes over the theme's version: posts render as cards carrying their
+  hero image, and a sidebar puts subscribe where a first-time reader can see it
+  without scrolling to the footer.
+
+  Every hero below the first is lazy-loaded, so 30-odd images cost nothing until
+  the reader scrolls to them. The first is eager with high fetch priority
+  because it is the page's largest contentful paint and deferring it would make
+  the page measurably slower, not faster.
+{%- endcomment -%}
+<div class="home-with-aside">
+
+<div class="home">
+  {%- if page.title and page.show_title -%}
+    <h1 class="page-heading">{{ page.title }}</h1>
+  {%- endif -%}
+
+  <div class="home-intro">
+    {{ content }}
+  </div>
+
+  {% if site.paginate %}
+    {% assign posts = paginator.posts %}
+  {% else %}
+    {% assign posts = site.posts %}
+  {% endif %}
+
+  {%- if posts.size > 0 -%}
+    <h2 class="post-list-heading">{{ page.list_title | default: "Writing" }}</h2>
+
+    <ul class="post-cards">
+      {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
+      {%- for post in posts -%}
+      <li class="post-card">
+        {%- if post.image %}
+        <a class="post-card-media" href="{{ post.url | relative_url }}" tabindex="-1" aria-hidden="true">
+          <img src="{{ post.image | relative_url }}"
+               alt=""
+               {% if forloop.first %}loading="eager" fetchpriority="high"{% else %}loading="lazy" fetchpriority="low"{% endif %}
+               decoding="async">
+        </a>
+        {%- endif %}
+        <div class="post-card-body">
+          <span class="post-meta">
+            {{ post.date | date: date_format }}
+            {%- for category in post.categories %}
+            <a class="post-card-category" href="{{ '/categories/#' | append: category | slugify | relative_url }}">{{ category }}</a>
+            {%- endfor %}
+          </span>
+          <h3 class="post-card-title">
+            <a class="post-link" href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
+          </h3>
+          {%- if post.description %}
+          <p class="post-card-description">{{ post.description | strip_html | truncate: 180 }}</p>
+          {%- endif %}
+        </div>
+      </li>
+      {%- endfor -%}
+    </ul>
+  {%- endif -%}
+</div>
+
+<aside class="post-aside home-aside" aria-label="About this blog">
+  {%- include subscribe-card.html id="home-subscribe" -%}
+  {%- include categories-card.html -%}
+</aside>
+
+</div>

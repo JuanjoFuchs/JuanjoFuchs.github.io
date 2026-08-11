@@ -1,0 +1,17 @@
+{%- comment -%}
+  Shared category list with counts. Marks the current page's category when the
+  including page has one, which the home page does not.
+{%- endcomment -%}
+<nav class="aside-card" aria-label="Categories">
+  <h2 class="aside-heading">Categories</h2>
+  <ul class="aside-list aside-categories">
+    {%- assign cats = site.categories | sort -%}
+    {%- for cat in cats -%}
+      {%- assign name = cat[0] -%}
+    <li>
+      <a href="{{ '/categories/#' | append: name | slugify | relative_url }}"{% if page.categories contains name %} class="is-current"{% endif %}>{{ name }}</a>
+      <span class="aside-count">{{ cat[1].size }}</span>
+    </li>
+    {%- endfor -%}
+  </ul>
+</nav>
