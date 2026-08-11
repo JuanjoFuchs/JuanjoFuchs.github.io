@@ -157,8 +157,13 @@ jobs:
         # with links that 404. Uses the same URL the social posts link to.
         URL=$(node --input-type=module -e "import { extractSocialContent } from './scripts/extract-social-content.js'; const r = extractSocialContent(process.argv[1]); if (!r.blogUrl) process.exit(2); console.log(r.blogUrl);" "$POST_FILE")
         echo "Verifying ${URL}"
+        # -L follows redirects. Without it the blog's move to juanjofuchs.com on
+        # 2026-08-11 made every check read the 301 as "not live yet" and burn all
+        # 20 attempts, because a redirect is not 200. A reader following that
+        # link lands on the post regardless, which is what this step is actually
+        # asking about.
         for attempt in $(seq 1 20); do
-          CODE=$(curl -s -o /dev/null -w "%{http_code}" "$URL")
+          CODE=$(curl -sL -o /dev/null -w "%{http_code}" "$URL")
           if [ "$CODE" = "200" ]; then
             echo "Post is live (HTTP 200)."
             exit 0

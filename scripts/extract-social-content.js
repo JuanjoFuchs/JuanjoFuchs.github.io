@@ -428,10 +428,10 @@ export function parseSocialCampaign(commentContent) {
  * Build blog post URL from front matter and filename
  * Jekyll includes categories in the URL path before the date
  * Jekyll uses the filename (after YYYY-MM-DD-) as the slug, not the title
- * URL Pattern: https://juanjofuchs.github.io/[categories]/YYYY/MM/DD/filename-slug.html
+ * URL Pattern: https://juanjofuchs.com/[categories]/YYYY/MM/DD/filename-slug.html
  * @param {object} frontMatter - Parsed front matter from gray-matter
  * @param {string} filePath - Path to the markdown file (to extract slug from filename)
- * @param {string} baseUrl - Base URL from config (e.g., "https://juanjofuchs.github.io")
+ * @param {string} baseUrl - Base URL from config (e.g., "https://juanjofuchs.com")
  * @returns {string} - Full blog post URL
  */
 export function buildBlogUrl(frontMatter, filePath, baseUrl) {
@@ -572,7 +572,7 @@ export function addUtmParams(text, platform, campaign) {
  * @param {string} baseUrl - Base URL for building post URLs
  * @returns {object} - {frontMatter, linkedin, twitter, blogUrl, publishedStatus, error}
  */
-export function extractSocialContent(filePath, baseUrl = 'https://juanjofuchs.github.io') {
+export function extractSocialContent(filePath, baseUrl = 'https://juanjofuchs.com') {
   try {
     // Read and parse markdown file
     const fileContent = fs.readFileSync(filePath, 'utf-8');
