@@ -140,7 +140,9 @@ async function main() {
     public: false, // no public archive page; the blog is the archive
     published_at: now,
     send_at: now, // a timestamp sends it; null would leave a draft
-    subscriber_filter: [{ all: [{ type: 'all_subscribers' }] }],
+    // No subscriber_filter: omitting it sends to the whole list. Kit rejects
+    // anything but `segment` or `tag` here (422: "Only `segment` or `tag`
+    // filters allowed"), so there is no explicit way to say "everyone".
   };
 
   const res = await fetch(API, {
