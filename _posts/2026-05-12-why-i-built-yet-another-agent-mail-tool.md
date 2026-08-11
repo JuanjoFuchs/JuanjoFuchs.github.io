@@ -7,6 +7,7 @@ categories: ai
 tags: [ai, agentic-workflow, multi-agent, cli, mcp]
 author: JuanjoFuchs
 image: /assets/agent-mail-hero-poster.png
+redirect_from: /blog/agent-mail
 ---
 
 ![Four-pane terminal demo of agents coordinating via agent-mail-cli](/assets/agent-mail-hero-poster.png)

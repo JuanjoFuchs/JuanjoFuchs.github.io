@@ -7,6 +7,7 @@ categories: ai
 tags: [ai, engineering-management, vibe-coding, leadership]
 author: JuanjoFuchs
 image:
+redirect_from: /blog/managers-and-ai
 ---
 
 I spent 13 years managing engineers, eventually 60 across multiple teams: explaining what to build, reviewing their output, pushing back on bad architectural decisions. Turns out those exact skills are what make AI collaboration work. The irony is that engineering managers who stopped coding full time years ago might be better positioned for AI than you thought.

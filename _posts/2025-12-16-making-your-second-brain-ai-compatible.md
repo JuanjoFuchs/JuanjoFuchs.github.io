@@ -12,6 +12,7 @@ series: second-brain
 series_order: 1
 series_title: "Making Your Second Brain AI-Compatible"
 series_blurb: "the migration out of OneNote into markdown, front matter and wikilinks, so Claude could read the vault at all."
+redirect_from: /blog/second-brain-1
 ---
 
 ![Obsidian graph view showing interconnected notes as nodes with clusters of related ideas](/assets/obsidian-knowledge-graph-second-brain.png)

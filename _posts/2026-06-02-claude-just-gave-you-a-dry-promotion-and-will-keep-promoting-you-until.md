@@ -7,6 +7,7 @@ categories: ai-development
 tags: [ai, software-engineering, agents, evals, career]
 image: /assets/claude-dry-promotion-hero-irrigation-designer.png
 author: JuanjoFuchs
+redirect_from: /blog/dry-promotion
 ---
 
 ![A designer sketches an irrigation plan at a field table while machines dig the channels and a shovel sits unused](/assets/claude-dry-promotion-hero-irrigation-designer.png)

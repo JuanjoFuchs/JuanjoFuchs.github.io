@@ -11,6 +11,7 @@ series: second-brain
 series_order: 6
 series_title: "Git as Durable Memory"
 series_blurb: "the commit message as the record of why a note changed, and the words that changed it."
+redirect_from: /blog/second-brain-6
 ---
 
 ![A robot seen from behind draws one index card from rows of cards hung on glowing emerald cords in a dark archive](/assets/part-6-git-durable-memory-hero.png)

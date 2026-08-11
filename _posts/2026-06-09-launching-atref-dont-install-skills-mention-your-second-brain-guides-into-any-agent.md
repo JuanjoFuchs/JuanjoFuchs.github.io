@@ -7,6 +7,7 @@ categories: ai-development
 tags: [claude-code, ai-agents, second-brain, developer-tools, rust]
 image: /assets/atref-picker-second-brain-guides.png
 author: JuanjoFuchs
+redirect_from: /blog/atref
 ---
 
 ![atref's picker open over the desktop, listing second-brain guides like Git Commit Guide and Blog Writing Guide](/assets/atref-picker-second-brain-guides.png)

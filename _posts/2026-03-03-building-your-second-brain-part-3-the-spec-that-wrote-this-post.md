@@ -11,6 +11,7 @@ series: second-brain
 series_order: 3
 series_title: "The Spec That Wrote This Post"
 series_blurb: "planning a post before a word of it gets written."
+redirect_from: /blog/second-brain-3
 ---
 
 ![A spec document with visible structure transforming into a finished blog post, blueprint-to-building aesthetic](/assets/spec-blueprint-to-post.png)

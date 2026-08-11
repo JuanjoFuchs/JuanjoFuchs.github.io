@@ -7,6 +7,7 @@ categories: ai-development
 tags: [ai, llm, productivity, future-of-work]
 author: JuanjoFuchs
 image: /assets/the-intelligence-gap-hero.png
+redirect_from: /blog/intelligence-gap
 ---
 
 ![A person working on a balcony at dusk while green time drains from their watch toward a faint orbital station in the sky](/assets/the-intelligence-gap-hero.png)

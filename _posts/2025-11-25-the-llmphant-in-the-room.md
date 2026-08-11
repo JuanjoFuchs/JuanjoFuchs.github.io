@@ -6,6 +6,7 @@ date: 2025-11-25 09:00:00 -0500
 categories: ai
 tags: [llm, ai, writing, authorship, software-engineering]
 author: JuanjoFuchs
+redirect_from: /blog/llmphant
 ---
 
 I have read mutliple rants on LinkedIn complaining about how easy it is to spot LLM-generated writing. The emojis, the dramatic pauses, the em-dashes, the contrast-pivot constructions, etc. And I get the frustration, the feed is full of slop.

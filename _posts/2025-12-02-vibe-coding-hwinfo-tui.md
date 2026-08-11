@@ -7,6 +7,7 @@ categories: ai-development
 tags: [python, vibe-coding, claude, github-copilot, terminal-ui, hwinfo, open-source]
 author: JuanjoFuchs
 image: /assets/videos/hwinfo-tui-demo-poster.png
+redirect_from: /blog/hwinfo-tui
 ---
 
 ![hwinfo-tui demo](/assets/videos/hwinfo-tui-demo-poster.png)

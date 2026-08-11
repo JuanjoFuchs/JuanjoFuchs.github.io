@@ -8,6 +8,7 @@ categories: ai-development
 tags: [ai, software-engineering, vibe-coding, engineering-leadership, future-of-work]
 author: JuanjoFuchs
 image: /assets/vibe-coder-liberty-paradox-hero.png
+redirect_from: /blog/liberty-paradox
 ---
 
 ![An engineer stares into the taped-together engine of a pink sedan while the person who built it walks out the garage](/assets/vibe-coder-liberty-paradox-hero.png)

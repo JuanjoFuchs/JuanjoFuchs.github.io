@@ -7,6 +7,7 @@ categories: ai-development
 tags: [claude-code, observability, grafana, opentelemetry, open-source]
 author: JuanjoFuchs
 image: /assets/claudefana-dashboard.png
+redirect_from: /blog/claudefana
 ---
 
 ![claudefana Grafana dashboard showing 26 panels of Claude Code metrics](/assets/claudefana-dashboard.png)

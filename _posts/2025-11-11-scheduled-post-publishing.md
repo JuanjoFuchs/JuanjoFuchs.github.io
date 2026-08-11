@@ -6,6 +6,7 @@ date: 2025-11-11 09:00:00 -0500
 categories: blogging automation
 tags: [jekyll, github-actions, automation, scheduling, workflow]
 author: JuanjoFuchs
+redirect_from: /blog/scheduled-publishing
 ---
 
 If you're reading this, my automated publishing system works! This post was scheduled in advance and went live automatically on Tuesday morning at 9 AM Eastern.

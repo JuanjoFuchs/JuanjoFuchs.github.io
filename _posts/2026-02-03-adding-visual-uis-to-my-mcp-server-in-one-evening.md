@@ -7,6 +7,7 @@ categories: ai-development
 tags: [mcp, claude, open-source, typescript]
 author: JuanjoFuchs
 image: /assets/tempo-mcp-apps-timesheet.png
+redirect_from: /blog/mcp-visual-uis
 ---
 
 ![Tempo MCP Server timesheet grid showing worklogs by issue and day](/assets/tempo-mcp-apps-timesheet.png)

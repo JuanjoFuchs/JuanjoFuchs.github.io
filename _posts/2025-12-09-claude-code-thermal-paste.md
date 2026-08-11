@@ -7,6 +7,7 @@ categories: hardware troubleshooting
 tags: [hardware, thermal, ai, claude, hwinfo-tui, troubleshooting, dell]
 author: JuanjoFuchs
 image: /assets/hwinfo-tui-thermal-throttling.png
+redirect_from: /blog/thermal-paste
 ---
 
 More like convinced me, actually.

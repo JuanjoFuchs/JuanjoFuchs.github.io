@@ -8,6 +8,7 @@ categories: ai-development
 tags: [ai, claude-code, agent-skills, evals, second-brain]
 author: JuanjoFuchs
 image: /assets/github-stars-are-not-evals-hero.png
+redirect_from: /blog/stars-are-not-evals
 ---
 
 ![A white-gloved hand raises a single glowing gold star into pure darkness, the star the only light in frame](/assets/github-stars-are-not-evals-hero.png)

@@ -7,6 +7,7 @@ categories: ai-development
 tags: [ai, engineering, career, super-ic]
 author: JuanjoFuchs
 image: /assets/the-call-to-become-a-super-ic-hero.png
+redirect_from: /blog/super-ic
 ---
 
 ![Engineer stepping up to a higher platform, representing the move from spec taker to higher-scope individual contributor work](/assets/the-call-to-become-a-super-ic-hero.png)

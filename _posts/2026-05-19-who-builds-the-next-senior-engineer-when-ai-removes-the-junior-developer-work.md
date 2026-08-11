@@ -8,6 +8,7 @@ categories: ai-development
 tags: [ai, engineering, career, juniors, seniors]
 author: JuanjoFuchs
 image: /assets/the-ladder-collapse-hero.png
+redirect_from: /blog/ladder-collapse
 ---
 
 ![A pyramid with a wide junior base on the left, an arrow pointing right to a diamond with a thin neck where the base used to be](/assets/the-ladder-collapse-hero.png)

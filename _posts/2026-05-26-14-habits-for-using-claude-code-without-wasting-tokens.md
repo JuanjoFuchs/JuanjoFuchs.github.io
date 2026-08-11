@@ -7,6 +7,7 @@ categories: ai-development
 tags: [claude-code, ai-development, context-engineering, agentic-workflow]
 author: JuanjoFuchs
 image: /assets/claude-code-tips-hero.png
+redirect_from: /blog/14-habits
 ---
 
 ![The Claude Code Engineering Tips guide rendered as a dark, terminal-styled site](/assets/claude-code-tips-hero.png)

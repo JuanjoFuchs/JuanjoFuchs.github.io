@@ -7,6 +7,7 @@ categories: ai-development
 tags: [ai, mcp, claude-code, enterprise, agents, governance]
 author: JuanjoFuchs
 image: /assets/stop-building-another-claude-hero.png
+redirect_from: /blog/stop-building-another-claude
 ---
 
 ![Stop building another Claude, onboard one instead](/assets/stop-building-another-claude-hero.png)

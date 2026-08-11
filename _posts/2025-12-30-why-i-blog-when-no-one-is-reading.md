@@ -7,6 +7,7 @@ categories: blogging meta
 tags: [blogging, ai, writing, thinking]
 author: JuanjoFuchs
 image: /assets/lightbulb-signal-dead-internet.png
+redirect_from: /blog/why-i-blog
 ---
 
 ![Glowing lightbulb cutting through a wall of generic content blocks](/assets/lightbulb-signal-dead-internet.png)

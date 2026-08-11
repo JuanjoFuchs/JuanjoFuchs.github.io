@@ -9,6 +9,7 @@ tags: [claude-code, python, tui, productivity, open-source]
 status: deployed
 author: JuanjoFuchs
 image: /assets/ccburn-ralph-wiggum-hero.png
+redirect_from: /blog/ccburn
 ---
 
 ![ccburn TUI showing Ralph Wiggum burning money on a burn-up chart](/assets/ccburn-ralph-wiggum-hero.png)

@@ -7,6 +7,7 @@ categories: ai
 tags: [ai, creativity, agentic-workflow, llm, default-mode-network]
 author: JuanjoFuchs
 image: /assets/ai-shower-thoughts-hero.png
+redirect_from: /blog/shower-thoughts
 ---
 
 ![A humanoid robot showering behind steamed glass with a glowing lightbulb nearby](/assets/ai-shower-thoughts-hero.png)

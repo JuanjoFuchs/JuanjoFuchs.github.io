@@ -6,6 +6,7 @@ date: 2025-12-23 09:00:00 -0500
 categories: ai-development
 tags: [mcp, ai, claude, github-copilot, typescript, automation, jira, tempo]
 author: JuanjoFuchs
+redirect_from: /blog/mcp-in-three-hours
 ---
 
 I don't like logging hours. It's one of those tasks that feels like overhead rather than work, but sometimes it's necessary, whether for client billing, project tracking, or just keeping records straight.

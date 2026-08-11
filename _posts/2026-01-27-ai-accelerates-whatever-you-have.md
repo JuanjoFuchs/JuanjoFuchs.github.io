@@ -6,6 +6,7 @@ date: 2026-01-27 09:00:00 -0500
 categories: ai-development
 tags: [ai, coding, architecture, quality]
 author: JuanjoFuchs
+redirect_from: /blog/ai-accelerates
 ---
 
 Every AI coding session follows the same pattern. Claude writes code, I review it, catch the mistake, explain what's wrong, Claude fixes it, I review again. This is human-in-the-loop, and it's how most people work with AI coding assistants right now.

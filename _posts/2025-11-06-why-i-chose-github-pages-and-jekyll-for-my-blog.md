@@ -8,6 +8,7 @@ categories: blogging meta
 tags: [jekyll, github-pages, blogging, seo, static-sites]
 status: deployed
 author: JuanjoFuchs
+redirect_from: /blog/why-jekyll
 ---
 
 Welcome to my blog! This post explains why I went with Jekyll and GitHub Pages.

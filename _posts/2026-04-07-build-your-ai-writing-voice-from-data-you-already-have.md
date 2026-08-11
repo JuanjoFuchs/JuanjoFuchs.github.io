@@ -7,6 +7,7 @@ categories: ai
 tags: [ai, writing, style-guide, claude-code, voice]
 author: JuanjoFuchs
 image: /assets/build-ai-writing-voice-hero.png
+redirect_from: /blog/writing-voice
 ---
 
 ![Build your AI writing voice from data you already have](/assets/build-ai-writing-voice-hero.png)

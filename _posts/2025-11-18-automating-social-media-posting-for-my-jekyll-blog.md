@@ -8,6 +8,7 @@ categories: automation
 tags: [github-actions, nodejs, automation, social-media, jekyll]
 status: deployed
 author: JuanjoFuchs
+redirect_from: /blog/automated-social
 ---
 
 I wanted every new blog post to automatically show up on X (Twitter) and LinkedIn without me having to manually copy-paste content. The constraint was simple: no paid services, no external hosting, everything runs on GitHub Actions free tier.

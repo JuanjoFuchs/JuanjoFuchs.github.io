@@ -11,6 +11,7 @@ series: second-brain
 series_order: 4
 series_title: "The Editorial Loop"
 series_blurb: "an adversarial reviewer that strips the AI tells out of a draft."
+redirect_from: /blog/second-brain-4
 ---
 
 ![A blog post draft with red-pen editorial annotations marking AI writing patterns](/assets/editorial-loop-redpen.png)

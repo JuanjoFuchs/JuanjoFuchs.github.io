@@ -7,6 +7,7 @@ categories: ai-development
 tags: [ai, prompting, llm, productivity]
 author: JuanjoFuchs
 image: /assets/ai-agent-hills-verification-gates.png
+redirect_from: /blog/hills-to-climb
 ---
 
 ![AI agent idle on flat terrain vs climbing hills with pass/fail gates and progress indicators](/assets/ai-agent-hills-verification-gates.png)

@@ -7,6 +7,7 @@ categories: ai-development
 tags: [ai, claude-code, observability, enterprise, productivity]
 author: JuanjoFuchs
 image: /assets/usage-is-not-value-hero.png
+redirect_from: /blog/usage-is-not-value
 ---
 
 ![Three-stage flow from token burn to shipped work and KPI movement](/assets/usage-is-not-value-hero.png)

@@ -7,6 +7,7 @@ categories: ai
 tags: [ai, writing, productivity, coding, knowledge-management]
 author: JuanjoFuchs
 image: /assets/llms-compaction-tools-hero.png
+redirect_from: /blog/compaction-tools
 ---
 
 ![Person at a desk filtering chaotic internet data into crystallized knowledge outputs](/assets/llms-compaction-tools-hero.png)

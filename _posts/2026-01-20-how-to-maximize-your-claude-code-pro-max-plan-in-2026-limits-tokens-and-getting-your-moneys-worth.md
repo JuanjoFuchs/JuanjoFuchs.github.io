@@ -8,6 +8,7 @@ categories: ai-development
 tags: [claude-code, productivity, ccburn, token-management]
 author: JuanjoFuchs
 image: /assets/ccburn-session-depleted.png
+redirect_from: /blog/max-plan
 ---
 
 ![ccburn showing session with depleted line, weekly, and weekly-sonnet charts](/assets/ccburn-session-depleted.png)

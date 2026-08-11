@@ -7,6 +7,7 @@ categories: ai-development
 tags: [ai, specs, spec-driven-development, llm, productivity]
 author: JuanjoFuchs
 image: /assets/how-i-write-specs-with-ai-hero.png
+redirect_from: /blog/how-i-write-specs
 ---
 
 ![A human engineer explains an idea with hand gestures while a robot interviewer takes notes on a sparse stage](/assets/how-i-write-specs-with-ai-hero.png)

@@ -7,6 +7,7 @@ categories: ai-development
 tags: [claude-code, observability, grafana, opentelemetry, open-source, enterprise]
 author: JuanjoFuchs
 image: /assets/claudefana-enterprise-full-anonymized.png
+redirect_from: /blog/adoption-metrics
 ---
 
 ![claudefana-enterprise ROI dashboard showing cost per commit, cost per resolved issue, and cost per line of code with team breakdown](/assets/claudefana-enterprise-full-anonymized.png)

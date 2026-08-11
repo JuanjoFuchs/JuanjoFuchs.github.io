@@ -11,6 +11,7 @@ series: second-brain
 series_order: 2
 series_title: "When AI Moves In"
 series_blurb: "routing tables, search tools and CLI scripts, so AI could operate inside the vault instead of just reading it."
+redirect_from: /blog/second-brain-2
 ---
 
 ![Obsidian graph view showing hundreds of interconnected notes clustered by topic](/assets/second-brain-graph.png)

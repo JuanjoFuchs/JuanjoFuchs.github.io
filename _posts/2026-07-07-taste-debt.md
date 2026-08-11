@@ -7,6 +7,7 @@ categories: ai-development
 tags: [ai, taste, technical-debt, llm, engineering-leadership]
 author: JuanjoFuchs
 image: /assets/taste-debt-hero.png
+redirect_from: /blog/taste-debt
 ---
 
 ![A distracted reviewer presses a glowing green Approve button while ignoring stacks of unread documents](/assets/taste-debt-hero.png)

@@ -7,6 +7,7 @@ categories: ai-development
 tags: [ai, loops, llm, verification, productivity]
 author: JuanjoFuchs
 image: /assets/loop-engineering-for-the-rest-of-us-hero.png
+redirect_from: /blog/loop-engineering
 ---
 
 ![A pink sedan rolling out of an automated factory with mismatched headlights, split grille, inconsistent seats, and a green approval light overhead](/assets/loop-engineering-for-the-rest-of-us-hero.png)

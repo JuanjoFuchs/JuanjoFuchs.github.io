@@ -11,6 +11,7 @@ series: second-brain
 series_order: 5
 series_title: "The Capture Loop"
 series_blurb: "catching the idea and searching what you already wrote, before anything gets filed."
+redirect_from: /blog/second-brain-5
 ---
 
 ![A man walks a forest trail dictating into his phone while a robot beside him stitches his idea into a web of older notes](/assets/the-capture-loop-hero.png)
