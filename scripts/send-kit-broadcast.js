@@ -26,6 +26,7 @@
 // siblings.
 import fs from 'node:fs';
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 const API = 'https://api.kit.com/v4/broadcasts';
 const SITE_URL = (process.env.SITE_URL || 'https://juanjofuchs.com').replace(/\/$/, '');
@@ -174,6 +175,75 @@ const S = {
   btn: `background-color:#11363F;color:#ffffff;display:inline-block;padding:13px 22px;font-family:${FONT};font-size:16px;font-weight:600;text-decoration:none;border-radius:4px`,
 };
 
+const MAX_W = 520;
+const MAX_H = 380;
+
+const REPO_ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+
+function repoAsset(sitePath) {
+  // "/assets/x.png" -> the file on disk, so dimensions can be read at send time.
+  return path.join(REPO_ROOT, sitePath.replace(/^\//, ''));
+}
+
+function imageSize(absPath) {
+  // PNG and JPEG headers only, no dependency. Returns null for anything else,
+  // and the caller then falls back to a width-only cap.
+  let buf;
+  try {
+    buf = fs.readFileSync(absPath);
+  } catch {
+    return null;
+  }
+
+  if (buf.length > 24 && buf.toString('ascii', 1, 4) === 'PNG') {
+    return { width: buf.readUInt32BE(16), height: buf.readUInt32BE(20) };
+  }
+
+  if (buf[0] === 0xff && buf[1] === 0xd8) {
+    let i = 2;
+    while (i < buf.length - 9) {
+      if (buf[i] !== 0xff) {
+        i += 1;
+        continue;
+      }
+      const marker = buf[i + 1];
+      // SOF0..SOF3 and SOF5..SOF15 carry the dimensions; skip DHT/DQT/etc.
+      if (marker >= 0xc0 && marker <= 0xcf && ![0xc4, 0xc8, 0xcc].includes(marker)) {
+        return { height: buf.readUInt16BE(i + 5), width: buf.readUInt16BE(i + 7) };
+      }
+      i += 2 + buf.readUInt16BE(i + 2);
+    }
+  }
+
+  return null;
+}
+
+function heroImage(src, alt, repoPath) {
+  /* A portrait hero must be capped by HEIGHT, not width.
+   *
+   * The voice-tunnel poster is 540x970. Under a width-only cap it rendered
+   * 520x934: a full phone screen of image before a single word of the email,
+   * pushing every paragraph below the fold. Landscape heroes (2752x1536 and
+   * friends) land at ~290px tall under the same rule, which is why the bug was
+   * invisible until a portrait one turned up.
+   */
+  const size = imageSize(repoPath);
+  let attrs = `style="display:block;width:100%;max-width:${MAX_W}px;height:auto;border:0;border-radius:6px"`;
+
+  if (size) {
+    const scale = Math.min(MAX_W / size.width, MAX_H / size.height, 1);
+    const w = Math.round(size.width * scale);
+    const h = Math.round(size.height * scale);
+    // Explicit width/height as ATTRIBUTES as well as style: Outlook ignores CSS
+    // sizing on images often enough that the attribute is what actually holds.
+    attrs =
+      `width="${w}" height="${h}" ` +
+      `style="display:block;width:${w}px;max-width:100%;height:auto;border:0;border-radius:6px"`;
+  }
+
+  return `<p style="margin:0 0 1.4em"><img src="${src}" alt="${alt}" ${attrs}></p>`;
+}
+
 function button(url, label) {
   // Table-wrapped so Outlook renders the background; a styled <a> alone loses
   // its colour there and the reader sees plain blue text where a button was.
@@ -199,11 +269,8 @@ function buildEmail(fm, url, raw) {
     ? section.body.split(/\r?\n\s*\r?\n/).map((b) => b.trim()).filter(Boolean)
     : leadParagraphs(raw);
 
-  const image = section?.media
-    ? `${SITE_URL}${section.media}`
-    : fm.image
-      ? `${SITE_URL}${fm.image}`
-      : null;
+  const mediaPath = section?.media || fm.image || null;
+  const image = mediaPath ? `${SITE_URL}${mediaPath}` : null;
   const alt = section?.alt || '';
 
   const parts = [];
@@ -213,15 +280,15 @@ function buildEmail(fm, url, raw) {
     parts.push(`<p style="${S.lede}">${description}</p>`);
   }
 
-  if (image) {
-    parts.push(
-      `<p style="margin:0 0 1.4em"><img src="${image}" alt="${alt}" style="${S.img}"></p>`
-    );
-  }
-
-  for (const block of blocks) {
+  // The image goes AFTER the opening paragraph, not above it. Gmail blocks
+  // images from senders you have not corresponded with, so a hero on line one
+  // greets a new subscriber with an empty grey box where the hook should be.
+  blocks.forEach((block, i) => {
     parts.push(`<p style="${S.p}">${mdToHtml(block)}</p>`);
-  }
+    if (i === 0 && image) {
+      parts.push(heroImage(image, alt, repoAsset(mediaPath)));
+    }
+  });
 
   // One link to the post, once. The first version linked the same URL twice,
   // from an image and from a call to action.
