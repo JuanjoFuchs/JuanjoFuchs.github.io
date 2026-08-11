@@ -155,6 +155,26 @@ https://juanjofuchs.github.io/ai/2026/08/11/launching-voice-tunnel-talk-to-your-
 #ClaudeCode #VoiceEngineering
 
 ---
+
+## Newsletter
+SUBJECT: I wanted my own Jarvis, so I built one
+PREVIEW: Speech recognition and synthesis run on a CPU now. No GPU, no account, no cloud.
+MEDIA: /assets/voice-tunnel-demo-poster.png
+ALT: The voice-tunnel page on a phone, mid-session, transcript showing
+
+I wanted to talk to my coding agent from my phone. Not dictate at it, talk to it, the way you'd talk to a person who happens to be holding your terminal.
+
+Every route to that was somebody else's service: an app from the store, an account to create, a subscription to pay, and my voice leaving my machine to come back as text from someone else's servers.
+
+The reason to accept that used to be real. Speech recognition wanted a GPU or a datacenter, and so did anything that sounded human coming back. That stopped being true, quietly, and I only found out because I went looking.
+
+So I built **voice-tunnel** and open-sourced it. One command opens a page any phone browser can load, and it carries audio both ways. Recognition and synthesis both run on your CPU: no GPU, no speech API, no account, and nothing you say leaves the machine.
+
+The part I did not expect to be the interesting part: the tool holds no model at all. It turns speech into lines in a log and text into speech, and whatever agent started it does the thinking. Which means it isn't really a Claude tool. **If your AI agent can run Bash, it can use this and it can talk to you.**
+
+I shipped a release through it, by voice, while running errands. That's when it stopped being a demo for me.
+
+---
 INSTRUCTIONS:
 - LinkedIn: Post Tuesday-Thursday. URL in post body (the Comments API is gated behind LinkedIn's Community Management partner program, which individual developers can't access).
 - X/Twitter: Post as thread. Media attached to first tweet. Link only in last tweet.

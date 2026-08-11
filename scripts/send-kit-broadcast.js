@@ -73,26 +73,165 @@ function markSent(file, raw) {
   console.log(`  marked KIT_SENT: ${stamp}`);
 }
 
-function buildEmail(fm, url) {
-  const title = fm.title || 'New post';
-  const description = fm.description || '';
-  const image = fm.image ? `${SITE_URL}${fm.image}` : null;
+function newsletterSection(raw) {
+  /* Hand-written email copy, living beside the LinkedIn and X copy in the
+   * post's {% comment %} block:
+   *
+   *   ## Newsletter
+   *   SUBJECT: optional, overrides the post title
+   *   PREVIEW: optional, the inbox preview line
+   *   MEDIA: /assets/hero.png
+   *   ALT: what the image shows
+   *
+   *   Body markdown, written for the inbox rather than scraped from the post.
+   *
+   * Written by hand because a newsletter is not a post: it opens differently,
+   * it says why this one matters this week, and it earns the click instead of
+   * demanding it. Falls back to the post's own opening paragraphs when absent,
+   * so a post can still ship without it.
+   */
+  // Index slicing rather than one clever regex. The first attempt used
+  // /^## Newsletter\s*$([\s\S]*?)(?=^## |\{% endcomment %\}|$)/m and always
+  // captured an empty body, because under the m flag `$` in the lookahead is
+  // satisfied at the end of the very first line. It failed silently, falling
+  // back to scraped paragraphs, which looked like the section had been ignored.
+  const start = raw.search(/^## Newsletter[^\n]*$/m);
+  if (start === -1) return null;
 
-  // Deliberately plain HTML. Kit wraps it in the account template, and every
-  // clever layout is one more thing to render wrong in Outlook.
+  // Terminators, in the order this comment block actually uses them: the next
+  // heading, the `---` rule that separates sections, the INSTRUCTIONS footer,
+  // or the end of the block. Stopping only at `## ` let the whole INSTRUCTIONS
+  // footer into the email body.
+  const after = raw.slice(raw.indexOf('\n', start) + 1);
+  const endMatch = after.search(/^## |^---\s*$|^INSTRUCTIONS:|^\{%\s*endcomment\s*%\}/m);
+  const sectionText = endMatch === -1 ? after : after.slice(0, endMatch);
+
+  const lines = sectionText.split(/\r?\n/);
+  const meta = {};
+  const bodyLines = [];
+
+  for (const line of lines) {
+    const kv = line.match(/^(SUBJECT|PREVIEW|MEDIA|ALT|PUBLISHED|KIT_SENT):\s*(.*)$/);
+    if (kv) {
+      meta[kv[1].toLowerCase()] = kv[2].trim();
+    } else {
+      bodyLines.push(line);
+    }
+  }
+
+  const body = bodyLines.join('\n').trim();
+  return body ? { ...meta, body } : null;
+}
+
+function leadParagraphs(raw, count = 4) {
+  // Everything after the front matter, minus the hero block and headings, so
+  // the email opens with the post's actual first words.
+  const body = raw.replace(/^---\r?\n[\s\S]*?\r?\n---/, '');
+  const withoutComments = body.replace(/\{%\s*comment\s*%\}[\s\S]*?\{%\s*endcomment\s*%\}/g, '');
+  const withoutHtml = withoutComments.replace(/<div[\s\S]*?<\/div>/g, '');
+
+  return withoutHtml
+    .split(/\r?\n\s*\r?\n/)
+    .map((block) => block.trim())
+    .filter(
+      (block) =>
+        block &&
+        !block.startsWith('#') && // headings
+        !block.startsWith('>') && // pull quotes
+        !block.startsWith('!') && // images
+        !block.startsWith('```') &&
+        !block.startsWith('<')
+    )
+    .slice(0, count);
+}
+
+function mdToHtml(text) {
+  // Only what a lead paragraph actually uses. A full markdown dependency for
+  // three constructs is not worth the supply chain.
+  return text
+    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>')
+    .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+    .replace(/(^|[^*])\*([^*]+)\*/g, '$1<em>$2</em>')
+    .replace(/`([^`]+)`/g, '<code>$1</code>')
+    .replace(/\r?\n/g, ' ');
+}
+
+// Inline styles only, and no <style> block: Gmail strips head styles, and
+// Outlook ignores most of what survives. Every value here is one an email
+// client from 2010 would still honour.
+// The font stack is single-quoted INSIDE a double-quoted JS string, because it
+// ends up inside style="…" in the HTML. Writing "Segoe UI" with double quotes
+// closes the style attribute and corrupts every tag after it, which is what the
+// first version did.
+const FONT = "-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif";
+
+const S = {
+  p: `margin:0 0 1.1em;font-family:${FONT};font-size:17px;line-height:1.6;color:#2d2d2f`,
+  lede: `margin:0 0 1.4em;font-family:${FONT};font-size:19px;line-height:1.5;color:#4e585a`,
+  img: 'display:block;width:100%;max-width:520px;height:auto;border:0;border-radius:6px',
+  rule: 'border:0;border-top:1px solid #e7e7e7;margin:2em 0',
+  sig: `margin:0;font-family:${FONT};font-size:17px;line-height:1.6;color:#2d2d2f`,
+  btn: `background-color:#11363F;color:#ffffff;display:inline-block;padding:13px 22px;font-family:${FONT};font-size:16px;font-weight:600;text-decoration:none;border-radius:4px`,
+};
+
+function button(url, label) {
+  // Table-wrapped so Outlook renders the background; a styled <a> alone loses
+  // its colour there and the reader sees plain blue text where a button was.
+  return [
+    '<table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin:1.6em 0">',
+    '<tr><td align="left" bgcolor="#11363F" style="border-radius:4px">',
+    `<a href="${url}" style="${S.btn}">${label}</a>`,
+    '</td></tr></table>',
+  ].join('');
+}
+
+function buildEmail(fm, url, raw) {
+  const section = newsletterSection(raw);
+  const title = section?.subject || fm.title || 'New post';
+  const description = fm.description || '';
+
+  // WHY THE EMAIL CARRIES REAL PROSE (2026-08-11)
+  // The first send was the description, an image and a link: roughly 40 words
+  // against three tracked URLs, which is the shape of a phishing message, and
+  // it landed in spam despite SPF, DKIM and DMARC all passing. Real prose gives
+  // filters something to read and gives the reader a reason to click.
+  const blocks = section
+    ? section.body.split(/\r?\n\s*\r?\n/).map((b) => b.trim()).filter(Boolean)
+    : leadParagraphs(raw);
+
+  const image = section?.media
+    ? `${SITE_URL}${section.media}`
+    : fm.image
+      ? `${SITE_URL}${fm.image}`
+      : null;
+  const alt = section?.alt || '';
+
   const parts = [];
-  parts.push(`<p>${description}</p>`);
+
+  if (!section && description) {
+    // Only when falling back: a hand-written section already opens itself.
+    parts.push(`<p style="${S.lede}">${description}</p>`);
+  }
+
   if (image) {
     parts.push(
-      `<p><a href="${url}"><img src="${image}" alt="" style="max-width:100%;height:auto;"></a></p>`
+      `<p style="margin:0 0 1.4em"><img src="${image}" alt="${alt}" style="${S.img}"></p>`
     );
   }
-  parts.push(`<p><a href="${url}">Read it on the blog</a></p>`);
-  parts.push('<p>JJ</p>');
+
+  for (const block of blocks) {
+    parts.push(`<p style="${S.p}">${mdToHtml(block)}</p>`);
+  }
+
+  // One link to the post, once. The first version linked the same URL twice,
+  // from an image and from a call to action.
+  parts.push(button(url, 'Read the full post'));
+  parts.push(`<hr style="${S.rule}">`);
+  parts.push(`<p style="${S.sig}">JJ</p>`);
 
   return {
     subject: title,
-    preview_text: description.slice(0, 140),
+    preview_text: (section?.preview || description).slice(0, 140),
     description: `Weekly post: ${title}`,
     content: parts.join('\n'),
   };
@@ -111,20 +250,24 @@ async function main() {
   const raw = fs.readFileSync(file, 'utf8');
   const fm = parseFrontMatter(raw);
   const url = postUrl(file, fm);
-  const email = buildEmail(fm, url);
+  const email = buildEmail(fm, url, raw);
 
   console.log(`Post:    ${path.basename(file)}`);
   console.log(`Subject: ${email.subject}`);
   console.log(`URL:     ${url}`);
 
-  if (alreadySent(raw)) {
-    console.log('Already sent (KIT_SENT marker present). Skipping.');
+  // Preview before the sent-check, so you can still see what a post's email
+  // looks like after it has gone out. A dry run sends nothing either way.
+  if (dryRun) {
+    console.log(`Preview: ${email.preview_text}`);
+    console.log(`Source:  ${newsletterSection(raw) ? 'hand-written ## Newsletter section' : 'fallback, post lead paragraphs'}`);
+    console.log('\n--- dry run, nothing sent ---');
+    console.log(email.content);
     return;
   }
 
-  if (dryRun) {
-    console.log('\n--- dry run, nothing sent ---');
-    console.log(email.content);
+  if (alreadySent(raw)) {
+    console.log('Already sent (KIT_SENT marker present). Skipping.');
     return;
   }
 
@@ -142,7 +285,16 @@ async function main() {
     send_at: now, // a timestamp sends it; null would leave a draft
     // No subscriber_filter: omitting it sends to the whole list. Kit rejects
     // anything but `segment` or `tag` here (422: "Only `segment` or `tag`
-    // filters allowed"), so there is no explicit way to say "everyone".
+    // filters allowed"), yet stores `all_subscribers` as the default it just
+    // refused. Verified by reading two sent broadcasts back: identical filters.
+
+    // Click tracking rewrites every URL as
+    // 769ec09e.click.kit-mail3.com/<id>/<id>/<base64 of the real URL>, which is
+    // indistinguishable from a phishing redirect and was in the first message
+    // that went to spam. Turning it off means subscribers see and follow real
+    // juanjofuchs.com links. The cost is click metrics, which are worth less
+    // than arriving.
+    click_tracking_disabled: true,
   };
 
   const res = await fetch(API, {
