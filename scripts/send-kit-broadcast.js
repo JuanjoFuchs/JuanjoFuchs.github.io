@@ -244,6 +244,32 @@ function heroImage(src, alt, repoPath) {
   return `<p style="margin:0 0 1.4em"><img src="${src}" alt="${alt}" ${attrs}></p>`;
 }
 
+const BODY_W = 600;
+
+function centered(inner) {
+  /* Every newsletter worth copying is a centred column around 600px. Kit's
+   * "Text only" template applies no width at all, so bare paragraphs ran the
+   * full width of the reading pane: fine on a phone, unreadable at 1800px on a
+   * desktop, where a line of text crossed the whole screen.
+   *
+   * The shape is the standard email one rather than a div with max-width,
+   * because Outlook renders through Word and ignores max-width entirely. The
+   * mso conditional gives Outlook a real fixed-width table; everyone else gets
+   * the fluid div, which still collapses correctly on a phone.
+   */
+  return [
+    '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"',
+    ' style="width:100%;border-collapse:collapse"><tr>',
+    '<td align="center" style="padding:8px 16px">',
+    `<!--[if mso]><table role="presentation" width="${BODY_W}" cellpadding="0" cellspacing="0" border="0"><tr><td><![endif]-->`,
+    `<div style="max-width:${BODY_W}px;margin:0 auto;text-align:left">`,
+    inner,
+    '</div>',
+    '<!--[if mso]></td></tr></table><![endif]-->',
+    '</td></tr></table>',
+  ].join('');
+}
+
 function button(url, label) {
   // Table-wrapped so Outlook renders the background; a styled <a> alone loses
   // its colour there and the reader sees plain blue text where a button was.
@@ -300,7 +326,7 @@ function buildEmail(fm, url, raw) {
     subject: title,
     preview_text: (section?.preview || description).slice(0, 140),
     description: `Weekly post: ${title}`,
-    content: parts.join('\n'),
+    content: centered(parts.join('\n')),
   };
 }
 
