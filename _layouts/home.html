@@ -38,9 +38,21 @@ layout: base
       {%- for post in posts -%}
       <li class="post-card">
         {%- if post.image %}
+          {%- comment -%}
+            Prefer the generated thumbnail (scripts/make-thumbs.py, 400px WebP)
+            over the full hero, which can be 3 MB and is being drawn into a
+            168px box. site.static_files is an exact existence check, so a post
+            whose thumbnail has not been generated still renders its original
+            rather than a broken image.
+          {%- endcomment -%}
+          {%- assign stem = post.image | split: '/' | last | split: '.' | first -%}
+          {%- assign thumb_path = '/assets/thumbs/' | append: stem | append: '.webp' -%}
+          {%- assign thumb = site.static_files | where: 'path', thumb_path | first -%}
+          {%- if thumb -%}{%- assign card_image = thumb_path -%}{%- else -%}{%- assign card_image = post.image -%}{%- endif -%}
         <a class="post-card-media" href="{{ post.url | relative_url }}" tabindex="-1" aria-hidden="true">
-          <img src="{{ post.image | relative_url }}"
+          <img src="{{ card_image | relative_url }}"
                alt=""
+               width="400" height="250"
                {% if forloop.first %}loading="eager" fetchpriority="high"{% else %}loading="lazy" fetchpriority="low"{% endif %}
                decoding="async">
         </a>
