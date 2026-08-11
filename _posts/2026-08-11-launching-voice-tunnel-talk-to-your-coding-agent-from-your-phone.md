@@ -9,12 +9,11 @@ author: JuanjoFuchs
 image: /assets/voice-tunnel-demo-poster.png
 ---
 
-![Phone in hand running the voice-tunnel page while an agent ships a release](/assets/voice-tunnel-demo-poster.png)
-
 <div style="max-width: 380px; margin: 0 auto;">
   <div style="position: relative; padding-bottom: 179.63%; height: 0; overflow: hidden;">
     <video style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
            controls playsinline preload="metadata"
+           aria-label="Phone in hand running the voice-tunnel page while an agent ships a release"
            poster="/assets/voice-tunnel-demo-poster.png">
       <source src="/assets/videos/voice-tunnel-demo.mp4" type="video/mp4">
     </video>
@@ -91,8 +90,6 @@ Repo: [github.com/JuanjoFuchs/voice-tunnel](https://github.com/JuanjoFuchs/voice
 
 {% comment %}
 ## LinkedIn Post
-PUBLISHED: 2026-08-11T13:14:36.482Z
-
 MEDIA: /assets/videos/voice-tunnel-demo.mp4
 ALT: Phone in hand running the voice-tunnel page while an agent ships a release
 
@@ -126,8 +123,6 @@ What would you say to your coding agent if you could say it out loud?
 ---
 
 ## X/Twitter Thread
-PUBLISHED: 2026-08-11T13:14:40.317Z
-
 MEDIA: /assets/videos/voice-tunnel-demo.mp4
 ALT: Phone in hand running the voice-tunnel page while an agent ships a release
 
