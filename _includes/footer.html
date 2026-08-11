@@ -1,0 +1,64 @@
+{%- comment -%}
+  Overrides jekyll/minima's footer to add a subscribe block.
+
+  Why here: the post sidebar carries the only signup on the site, which means
+  it does not exist on the home page, About, or Categories, and on screens under
+  1080px it sits at the very bottom of a long post. A reader who lands on the
+  home page has no way to subscribe at all. The footer is the one place that
+  appears on every page, so it is the floor.
+
+  The rest is minima's own markup, unchanged, so a theme update to the contact
+  list or social links still lands.
+{%- endcomment -%}
+<link id="fa-stylesheet" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.0.0/css/all.min.css">
+
+<footer class="site-footer h-card">
+  <data class="u-url" value="{{ '/' | relative_url }}"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-subscribe">
+      <div class="footer-subscribe-copy">
+        <h2 class="footer-subscribe-heading">Get the next one by email</h2>
+        <p>One post every Tuesday on AI-native development. No spam, unsubscribe in one click.</p>
+      </div>
+      {%- if site.subscribe.form_action and site.subscribe.form_action != "" %}
+      <form action="{{ site.subscribe.form_action }}" method="post" class="subscribe-form footer-subscribe-form" target="_blank">
+        <label class="visually-hidden" for="footer-subscribe-email">Email address</label>
+        <input id="footer-subscribe-email" type="email" name="email_address" placeholder="you@example.com" required>
+        <button type="submit">Subscribe</button>
+      </form>
+      {%- endif %}
+      <p class="footer-subscribe-rss">
+        <a href="{{ '/feed.xml' | relative_url }}" class="rss-link">
+          <svg class="rss-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 11a9 9 0 0 1 9 9M4 4a16 16 0 0 1 16 16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><circle cx="5" cy="19" r="2" fill="currentColor"/></svg>
+          Prefer RSS? Subscribe to the feed
+        </a>
+      </p>
+    </div>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+      {%- if site.author %}
+        <ul class="contact-list">
+          {% if site.author.name -%}
+            <li class="p-name">{{ site.author.name | escape }}</li>
+          {% endif -%}
+          {% if site.author.email -%}
+            <li><a class="u-email" href="mailto:{{ site.author.email }}">{{ site.author.email }}</a></li>
+          {%- endif %}
+        </ul>
+      {%- endif %}
+      </div>
+      <div class="footer-col">
+        <p>{{ site.description | escape }}</p>
+      </div>
+    </div>
+
+    <div class="social-links">
+      {%- include social.html -%}
+    </div>
+
+  </div>
+
+</footer>

@@ -36,6 +36,11 @@ $aside-breakpoint: 1080px !default;
 .post-aside {
   font-size: 0.875rem;
   line-height: 1.45;
+  // A grid item's default min-width is auto, so a single wide child can force
+  // the whole column wider than its track. Nothing in here should ever scroll
+  // sideways.
+  min-width: 0;
+  overflow-wrap: break-word;
 
   @media screen and (min-width: $aside-breakpoint) {
     position: sticky;
@@ -146,6 +151,15 @@ $aside-breakpoint: 1080px !default;
   gap: 0.5rem;
   margin-bottom: 0.75rem;
 
+  // Minima sets border-box on exactly one selector (pagination), not globally,
+  // so width:100% plus padding and border made the field ~282px wide in a 260px
+  // rail and put a horizontal scrollbar in the sidebar.
+  input[type="email"],
+  button {
+    box-sizing: border-box;
+    max-width: 100%;
+  }
+
   input[type="email"] {
     width: 100%;
     padding: 0.45rem 0.6rem;
@@ -188,6 +202,62 @@ $aside-breakpoint: 1080px !default;
   width: 0.9em;
   height: 0.9em;
   flex: none;
+}
+
+// Footer subscribe
+// ----------------
+// The sidebar signup only exists on post pages, and only near the top of the
+// rail on wide screens. Somebody landing on the home page had no way to
+// subscribe at all, so the footer carries one on every page.
+
+.footer-subscribe {
+  display: grid;
+  gap: 0.75rem 2rem;
+  align-items: center;
+  padding-bottom: $spacing-unit;
+  margin-bottom: $spacing-unit;
+  border-bottom: 1px solid $border-color-01;
+
+  @media screen and (min-width: 700px) {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 320px);
+
+    .footer-subscribe-rss {
+      grid-column: 1 / -1;
+    }
+  }
+}
+
+.footer-subscribe-heading {
+  margin: 0 0 0.2rem;
+  font-size: 1.125rem;
+}
+
+.footer-subscribe-copy p {
+  margin: 0;
+  font-size: 0.875rem;
+  color: $brand-color;
+}
+
+.footer-subscribe-form {
+  margin-bottom: 0;
+
+  @media screen and (min-width: 700px) {
+    flex-direction: row;
+
+    input[type="email"] {
+      flex: 1 1 auto;
+      min-width: 0;
+    }
+
+    button {
+      flex: none;
+    }
+  }
+}
+
+.footer-subscribe-rss {
+  margin: 0;
+  font-size: 0.8125rem;
 }
 
 // Categories page
