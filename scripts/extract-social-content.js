@@ -425,6 +425,36 @@ export function parseSocialCampaign(commentContent) {
 }
 
 /**
+ * The `/p/<slug>` short link a post declares, or null.
+ *
+ * Two front matter fields can carry one, because a post acquires it at one of two
+ * moments. A post written after short links existed sets `permalink`, so the short
+ * form IS its canonical URL. A post already published sets `redirect_from`, adding
+ * the short link as an alias — its canonical URL cannot change without orphaning
+ * every link already shared and re-dating the post in every RSS reader. Either
+ * way this is the URL worth *sharing*, because it is the one a reader can hold in
+ * their head, so both spellings resolve here.
+ *
+ * `/p/` is a namespace, not decoration. Root-level slugs collide with GitHub Pages
+ * project sites: juanjofuchs.com/claude-code-tips/ serves a *different repo*, so a
+ * post pinned to /voice-tunnel would be one `gh-pages` branch away from being
+ * shadowed by the repo of the same name.
+ *
+ * @param {object} frontMatter - Parsed front matter
+ * @returns {string|null} - Path beginning with /p/, or null
+ */
+export function shortBlogPath(frontMatter) {
+  const raw = frontMatter.redirect_from;
+  const candidates = [frontMatter.permalink, ...(Array.isArray(raw) ? raw : [raw])];
+  for (const candidate of candidates) {
+    if (typeof candidate === 'string' && candidate.trim().startsWith('/p/')) {
+      return candidate.trim().replace(/\/$/, '');
+    }
+  }
+  return null;
+}
+
+/**
  * Build blog post URL from front matter and filename
  * Jekyll includes categories in the URL path before the date
  * Jekyll uses the filename (after YYYY-MM-DD-) as the slug, not the title
@@ -435,6 +465,21 @@ export function parseSocialCampaign(commentContent) {
  * @returns {string} - Full blog post URL
  */
 export function buildBlogUrl(frontMatter, filePath, baseUrl) {
+  const shortPath = shortBlogPath(frontMatter);
+  if (shortPath) return `${baseUrl}${shortPath}`;
+
+  // An explicit permalink wins over the filename, because Jekyll honours it. Without
+  // this, a pinned post gets promoted at the URL it *would* have had and every
+  // channel publishes a 404. The vault's deploy script has had this branch since
+  // 2026-08-11; this copy of the URL rule never got it, which is the hazard of two
+  // implementations — the older post at /blogging/meta/.../welcome-to-jekyll.html
+  // has been mis-built here the whole time, unnoticed only because it is never
+  // re-promoted.
+  if (typeof frontMatter.permalink === 'string' && frontMatter.permalink.trim()) {
+    const permalink = frontMatter.permalink.trim();
+    return `${baseUrl}${permalink.startsWith('/') ? '' : '/'}${permalink}`;
+  }
+
   const filename = filePath.split(/[\\/]/).pop();
 
   // Date from filename — always matches Jekyll's URL, no timezone issues

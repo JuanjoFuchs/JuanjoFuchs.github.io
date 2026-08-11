@@ -28,6 +28,11 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
+// The short-link rule is imported rather than restated. Two hand-written copies of
+// the URL rule already drifted once — the sibling honoured `permalink` and this one
+// did not — and a mismatch here mails a dead link to the whole list.
+import { shortBlogPath } from './extract-social-content.js';
+
 const API = 'https://api.kit.com/v4/broadcasts';
 const SITE_URL = (process.env.SITE_URL || 'https://juanjofuchs.com').replace(/\/$/, '');
 
@@ -46,6 +51,13 @@ function parseFrontMatter(raw) {
 }
 
 function postUrl(file, fm) {
+  const short = shortBlogPath(fm);
+  if (short) return `${SITE_URL}${short}`;
+
+  if (fm.permalink) {
+    return `${SITE_URL}${fm.permalink.startsWith('/') ? '' : '/'}${fm.permalink}`;
+  }
+
   const name = path.basename(file, '.md');
   const dateMatch = name.match(/^(\d{4})-(\d{2})-(\d{2})-(.+)$/);
   if (!dateMatch) throw new Error(`Unexpected post filename: ${name}`);

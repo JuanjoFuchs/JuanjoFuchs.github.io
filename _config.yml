@@ -42,6 +42,14 @@ plugins:
   - jekyll-feed
   - jekyll-seo-tag
   - jekyll-sitemap
+  # Short links. A post declares `redirect_from: /p/<slug>` and this generates a
+  # page there that forwards to the post, so a memorable link can be added to an
+  # already-published post without changing its canonical URL (which would
+  # orphan every link already shared and re-date the post in every RSS reader).
+  # Posts written from now on set `permalink: /p/<slug>` instead and are born
+  # short. Confirmed on the GitHub Pages allowlist at 0.16.0 — this site is a
+  # legacy build (Jekyll 3.10), so a plugin off that list is silently ignored.
+  - jekyll-redirect-from
 
 # Theme settings
 minima:
