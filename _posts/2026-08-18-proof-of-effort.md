@@ -38,7 +38,7 @@ Nearly every AI chat leaves a log. The context you supplied, the answers you rej
 
 That's the signal, and it's already sitting in a timestamped file on my disk that nobody reads.
 
-There is real math for something adjacent. [Xie et al.](https://arxiv.org/abs/2408.14792) measure how much the human's input *determined* the output. That is not the same quantity. A long lazy copy-pasted spec determines a lot and shows no judgment at all, and a three-word correction determines almost nothing and can be the reason the work landed. Determination is not thinking, and thinking is what I want to count.
+[Xie et al.](https://arxiv.org/abs/2408.14792) measure how much the human's input *determined* the output. That is not the same quantity. A long lazy copy-pasted spec determines a lot and shows no judgment at all, and a three-word correction determines almost nothing and can be the reason the work landed. Determination is not thinking, and thinking is what I want to count.
 
 ## Proof of effort
 
@@ -54,17 +54,13 @@ A small model does the labelling. It reads each of your turns with the eight bef
 
 Then compute a fingerprint from the result, have the harness sign it, and publish it per turn while the session is still running, to a ledger anyone can verify. I want you to check what a tool observed and signed rather than trust my account of my own thinking. Same trust structure as Anthropic's watermark, pointed at the input instead of the output, with no single vendor holding the key.
 
-Publishing as it happens is what stops you fabricating a session afterwards. It does not stop you fabricating one live. If I control the harness I can have a model play both sides, invent the corrections and the dead ends, and stream that performance to the ledger in real time for the price of a few extra API calls. Timestamps alone don't fix that, and I'd rather say so than let the ledger carry more weight than it holds.
+Publishing as it happens is what stops you fabricating a session afterwards. It does not stop you fabricating one live. If I control the harness I can have a model play both sides, invent the corrections and the dead ends, and stream that performance to the ledger in real time for the price of a few extra API calls. What would fix it is making each link genuinely slow to compute, so the chain can't be produced faster than the session it claims to describe.
 
-What would fix it is making each link genuinely slow to compute, so the chain can't be produced faster than the session it claims to describe. That's the piece I haven't built, and somebody else already has.
+Pieces of this exist already. [ZK-PoP](https://arxiv.org/abs/2603.00179) built the expensive-to-forge chain, but it only certifies that a human was there. [SWE-chat](https://arxiv.org/abs/2604.20779) classified human pushback across 6,000 sessions, but read it as a measure of the agent, not the person. [C2PA](https://spec.c2pa.org/specifications/specifications/2.1/specs/C2PA_Specification.html) signs a document's edit history and its spec deliberately refuses to grade it.
 
-Pieces of this exist already and I'd be lying if I claimed the shape was mine alone. [ZK-PoP](https://arxiv.org/abs/2603.00179) built the expensive-to-forge chain, but it only certifies that a human was there. [SWE-chat](https://arxiv.org/abs/2604.20779) classified human pushback across 6,000 sessions, but read it as a measure of the agent, not the person. [C2PA](https://spec.c2pa.org/specifications/specifications/2.1/specs/C2PA_Specification.html) signs a document's edit history and its spec deliberately refuses to grade it.
-
-Three pieces that don't talk to each other, and none of them score the quality of the judgment. That gap is the only part I'd claim.
+Three pieces that don't talk to each other, and none of them score the quality of the judgment. I want to build on that gap.
 
 ## What it costs
-
-Four objections, and I don't have a clean answer to any of them.
 
 Whoever signs becomes the authority. Asking people to trust Anthropic or OpenAI to certify their thinking is the same key-holder problem I just complained about in the watermark, wearing a different hat. A public ledger fixes verification, it does nothing about who gets to run the classifier.
 
@@ -72,15 +68,15 @@ Forgery gets expensive, it doesn't get impossible. A model can generate a convin
 
 Effort isn't quality. [Paul Deane's keystroke work at ETS](https://files.eric.ed.gov/fulltext/EJ1109294.pdf) found that longer pauses correlate with *lower* scoring essays, so any score built on visible deliberation rewards labored inefficiency and rates a diligent novice above a fluent expert. Publish it as a metric and Goodhart eats it inside a month, people will perform the corrections instead of making them.
 
-And I might be biased and defensive here. I write with AI, and I'm proposing a standard under which what I do counts as real work. Saying that out loud doesn't disable the bias, it just means you should weigh the argument on its own and not take my word for it.
+And I might be biased. I write with AI, and I'm proposing a standard under which what I do counts as real work. Saying that out loud doesn't disable the bias, it just means you should weigh the argument on its own and not take my word for it.
 
 ## Measuring the session that produced this
 
-I built the scoring half and ran it over the session that produced this post. The classifier and the hash chain exist. The signing and the ledger don't, so what follows is a number and a chain sitting on my own disk, which is exactly as trustworthy as I am until the other half is built.
+I built the scoring half and ran it over the session that produced this post. The classifier and the hash chain exist. The signing and the ledger don't, so what follows is a number and a chain sitting on my own disk.
 
-Averaged across every turn I took, I kept about 85% of the decisions myself rather than handing them to the model. Roughly 39% of the effort was germane, the kind that builds understanding. Roughly 31% was extraneous, and I know exactly what that was: half an hour lost to a bug in my own microphone setup. Nobody told it that. It read the log and found it.
+Averaged across every turn I took, I kept about 85% of the decisions myself rather than handing them to the model. Roughly 39% of the effort was germane, the kind that builds understanding. Roughly 31% was extraneous, and I know exactly what that was: half an hour lost to a bug in my own microphone setup with [voice-tunnel](https://juanjofuchs.com/blog/voice-tunnel).
 
-The arithmetic is deliberately dull, because a score you can't take apart is a score nobody should trust. The 39% is simply the share of turns labelled germane. The 85% is the average of the delegation labels after weighting them: keeping the decision counts as one, handing it over entirely counts as zero, and the two levels in between are worth 0.75 and 0.35.
+The arithmetic is deliberately dull. The 39% is simply the share of turns labelled germane. The 85% is the average of the delegation labels after weighting them: keeping the decision counts as one, handing it over entirely counts as zero, and the two levels in between are worth 0.75 and 0.35.
 
 Those weights are a judgment call, and they're mine. That is the part I most want argued with, which is why the rubric ships as data with a version stamp rather than buried in code. Change the weights and you change the number, so the number is only ever meaningful next to the rubric that produced it.
 
@@ -118,7 +114,7 @@ It reads the log of an AI session and grades each turn on the thinking behind it
 
 The point is that you don't have to believe me. The tool observes, the tool signs, and a stranger checks. Same trust structure as Anthropic's watermark, pointed at the input instead of the output.
 
-I ran it on the session that produced this post. Averaged across every turn I took, I kept about 85% of the decisions myself rather than handing them to the model. The classifier behind that number gets roughly half its calls wrong, which was the most useful thing it told me.
+I ran it on the session that produced this post. Averaged across every turn I took, I kept about 85% of the decisions myself rather than handing them to the model.
 
 Proof of Effort 👇
 https://juanjofuchs.com/blog/proof-of-effort
