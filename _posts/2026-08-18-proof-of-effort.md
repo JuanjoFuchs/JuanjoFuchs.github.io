@@ -95,7 +95,10 @@ Proof of effort might not be. What I have is one session, one number, and a clas
 It's pointed at the part of the problem where the thinking actually happens though, and that's more than I can say for the report button.
 
 {% comment %}
+KIT_SENT: 2026-08-18T13:08:32Z
 ## LinkedIn Post
+PUBLISHED: 2026-08-18T13:08:29.778Z
+
 MEDIA: /assets/proof-of-effort-social.png
 ALT: A hand rests on a long roll of handwritten work while a stranger stamps the printed page SLOP in red
 
@@ -127,6 +130,8 @@ Nobody has to read your session. Would you publish the fingerprint of how much j
 ---
 
 ## X/Twitter Thread
+PUBLISHED: 2026-08-18T13:08:32.107Z
+
 MEDIA: /assets/proof-of-effort-social.png
 ALT: A hand rests on a long roll of handwritten work while a stranger stamps the printed page SLOP in red
 
