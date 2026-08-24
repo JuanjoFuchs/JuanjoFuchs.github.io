@@ -62,7 +62,9 @@ Here is the loop running. I ask for the plot out loud, the agent writes the cell
 
 <div style="position: relative; padding-bottom: 62.34%; height: 0; overflow: hidden;">
   <video style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
-         controls playsinline poster="/assets/videos/intent-per-minute-notebook-demo-poster.png">
+         controls playsinline preload="metadata"
+         aria-label="An agent writes and runs a notebook cell by voice while the Intent per Minute curve renders beside the voice tunnel orb"
+         poster="/assets/videos/intent-per-minute-notebook-demo-poster.png">
     <source src="/assets/videos/intent-per-minute-notebook-demo.mp4" type="video/mp4">
   </video>
 </div>
