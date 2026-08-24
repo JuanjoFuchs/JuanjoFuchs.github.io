@@ -58,6 +58,15 @@ I don't trust diagrams. I trust data.
 
 That's why I built a way for my agents to drive live notebooks: they can show me the data while we keep talking. I don't need to understand every line of code or reconstruct every input before I evaluate the result. Tables and plots land in front of me, and I inspect what the computation produced. Inspecting the output is how I verify what the artifact did and understand its behavior.
 
+Here is the loop running. I ask for the plot out loud, the agent writes the cell and runs it, and the chart in this post appears in front of me. Then I ask for the section word counts and inspect those too. The waits are cut, and each cut says how many seconds it removed.
+
+<div style="position: relative; padding-bottom: 62.34%; height: 0; overflow: hidden;">
+  <video style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
+         controls playsinline poster="/assets/videos/intent-per-minute-notebook-demo-poster.png">
+    <source src="/assets/videos/intent-per-minute-notebook-demo.mp4" type="video/mp4">
+  </video>
+</div>
+
 An AI-authored picture or diagram can explain what the agent understands. That is useful, but it is not an objective representation of what was built. Claude Code [artifacts](https://code.claude.com/docs/en/artifacts), [Thariq Shihipar's HTML approach](https://claude.com/blog/using-claude-code-the-unreasonable-effectiveness-of-html), and the [ELI5 plugin](https://github.com/anthropics/claude-plugins-community/tree/main/eli5) make those explanations easier to take in. Verification is different. I need to see the actual data, computation, or system state behind the work. That is what widens understanding per minute for me.
 
 A chart of the real output can still mislead me. A bad transformation or the wrong slice can misrepresent something technically real. In a notebook, the chart sits beside the cell that produced it, so I can inspect the transformation and fix it. That trace is what I trust.
@@ -70,8 +79,8 @@ For now, I keep asking the agent to show me the notebook. I can see the data, de
 
 {% comment %}
 ## LinkedIn Post
-MEDIA: /assets/intent-per-minute-2d-poster.png
-ALT: Emerald curve climbing through four steps on an Intent per Minute versus Understanding per Minute plot
+MEDIA: /assets/videos/intent-per-minute-notebook-demo.mp4
+ALT: An agent writes and runs a notebook cell by voice, and the Intent per Minute curve renders next to the voice tunnel orb
 
 I type a prompt, get a wall of text back, skim, approve, then wonder why the next turn is still off.
 
@@ -106,8 +115,8 @@ Which of those four steps are you on?
 ---
 
 ## X/Twitter Thread
-MEDIA: /assets/intent-per-minute-2d-poster.png
-ALT: Emerald curve climbing through four steps on an Intent per Minute versus Understanding per Minute plot
+MEDIA: /assets/videos/intent-per-minute-notebook-demo.mp4
+ALT: An agent writes and runs a notebook cell by voice, and the Intent per Minute curve renders next to the voice tunnel orb
 
 Tweet 1 (Hook):
 Opus 5 made one of my agent problems worse. Its replies are long. I stopped reading them in their entirety. The model may have produced something useful, but if I don't fully understand it, my next prompt is no sharper than the last.
