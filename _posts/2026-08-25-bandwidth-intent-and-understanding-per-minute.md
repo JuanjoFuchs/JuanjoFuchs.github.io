@@ -80,7 +80,10 @@ The next channel is the one between the agent and my environment. I widened it t
 For now, I keep asking the agent to show me the notebook. I can see the data, decide what I think, and tell it what to change while the decision is still fresh.
 
 {% comment %}
+KIT_SENT: 2026-08-25T13:10:37Z
 ## LinkedIn Post
+PUBLISHED: 2026-08-25T13:10:37.143Z
+
 MEDIA: /assets/videos/intent-per-minute-notebook-demo.mp4
 ALT: An agent writes and runs a notebook cell by voice, and the Intent per Minute curve renders next to the voice tunnel orb
 
@@ -117,6 +120,8 @@ Which of those four steps are you on?
 ---
 
 ## X/Twitter Thread
+PUBLISHED: 2026-08-25T13:10:35.859Z
+
 MEDIA: /assets/videos/intent-per-minute-notebook-demo.mp4
 ALT: An agent writes and runs a notebook cell by voice, and the Intent per Minute curve renders next to the voice tunnel orb
 
