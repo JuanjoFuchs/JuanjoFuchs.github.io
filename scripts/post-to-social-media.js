@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { extractSocialContent } from './extract-social-content.js';
+import { extractSocialContent, replaceBlogUrls } from './extract-social-content.js';
 import { postTwitterThread } from './post-to-x.js';
 import { postToLinkedIn } from './post-to-linkedin.js';
 import { markAsPublished } from './mark-post-published.js';
@@ -117,8 +117,10 @@ async function main() {
 
   // Extract social media content
   console.log('\n📝 Extracting social media content...');
-  const baseUrl = 'https://juanjofuchs.github.io';
-  const extracted = extractSocialContent(filePath, baseUrl);
+  // No base URL is passed: extractSocialContent defaults to the shared SITE_URL.
+  // This line used to hardcode juanjofuchs.github.io and pass it explicitly, which
+  // silently *overrode* the corrected default and kept publishing old-domain links.
+  const extracted = extractSocialContent(filePath);
 
   if (extracted.error) {
     console.error(`❌ Extraction error: ${extracted.error}`);
@@ -159,16 +161,10 @@ async function main() {
   } else if (extracted.twitter && extracted.twitter.tweets.length > 0) {
     console.log(`\n🐦 ${dryRun ? 'Would post' : 'Posting'} to X (Twitter) - ${extracted.twitter.tweets.length} tweets`);
 
-    // Replace any hardcoded blog URLs with the correctly generated blogUrl
-    const BASE_DOMAIN = 'juanjofuchs.github.io';
-    const blogUrlPattern = new RegExp(
-      `https?://${BASE_DOMAIN.replace(/\./g, '\\.')}[^\\s]*`, 'g'
-    );
+    // Replace any hardcoded blog URLs with the correctly generated blogUrl.
+    // Shared with post-daily-social.js so both recognise the same domain list.
     const correctedTweets = extracted.twitter.tweets.map(
-      tweet => tweet.replace(blogUrlPattern, (m) => {
-        const q = m.indexOf('?');
-        return q >= 0 ? extracted.blogUrl + m.slice(q) : extracted.blogUrl;
-      })
+      tweet => replaceBlogUrls(tweet, extracted.blogUrl)
     );
 
     // Resolve media path for Twitter

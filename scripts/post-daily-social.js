@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { extractSocialCampaignContent } from './extract-social-content.js';
+import { extractSocialCampaignContent, replaceBlogUrls } from './extract-social-content.js';
 import { postTwitterThread } from './post-to-x.js';
 import { postToLinkedIn } from './post-to-linkedin.js';
 import { markCampaignEntryAsPublished } from './mark-post-published.js';
@@ -105,21 +105,6 @@ function getPostFiles(postsDir) {
     .filter(file => /^\d{4}-\d{2}-\d{2}-.+\.md$/.test(file))
     .sort()
     .map(file => path.join(postsDir, file));
-}
-
-function replaceBlogUrls(text, blogUrl) {
-  const baseDomain = 'juanjofuchs.github.io';
-  const blogUrlPattern = new RegExp(
-    `https?://${baseDomain.replace(/\./g, '\\.')}[^\\s]*`,
-    'g'
-  );
-
-  // Canonicalize the path/slug but preserve any query string (e.g. UTM params
-  // added by extract-social-content.js's addUtmParams).
-  return text.replace(blogUrlPattern, (m) => {
-    const q = m.indexOf('?');
-    return q >= 0 ? blogUrl + m.slice(q) : blogUrl;
-  });
 }
 
 async function postLinkedInEntry(entry, blogUrl, credentials, filePath, dryRun) {

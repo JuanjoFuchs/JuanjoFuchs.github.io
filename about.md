@@ -9,7 +9,7 @@ I'm JJ. Peru ↔ New Jersey, 16 years building enterprise software, currently le
 
 The agent layer is commoditized. Claude, Codex, Cursor and Gemini are racing each other, and whichever one is ahead this month will not be ahead next month. My time goes into the layer *above*: tooling and institutional knowledge that compound across model swaps, the kind you don't have to rebuild when you switch harnesses.
 
-> [Stop building another Claude. Build the harness around the one you already have.](https://juanjofuchs.github.io/ai-development/2026/03/31/stop-building-another-claude-learn-how-to-effectively-onboard-one-into-your-organization-instead.html)
+> [Stop building another Claude. Build the harness around the one you already have.](https://juanjofuchs.com/blog/stop-building-another-claude)
 
 ## What I write about
 

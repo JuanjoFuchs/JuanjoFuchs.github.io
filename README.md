@@ -2,4 +2,4 @@
 
 Personal blog powered by Jekyll and GitHub Pages.
 
-**Visit the blog:** https://juanjofuchs.github.io
+**Visit the blog:** https://juanjofuchs.com

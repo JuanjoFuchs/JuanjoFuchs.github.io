@@ -30,6 +30,51 @@ export function escapeLinkedInText(text) {
     .replace(/~/g, '\\~');
 }
 
+// The one place the site's base URL is written down. Every promotion channel imports
+// this rather than restating it — `send-kit-broadcast.js` already reads SITE_URL from
+// the environment, so the same env var overrides all of them together.
+//
+// Why it's centralised: the base domain drifted exactly the way the `permalink` rule
+// drifted before it. When the blog moved to juanjofuchs.com on 2026-08-11 this file's
+// own default was updated, but `extractSocialCampaignContent` below and two hardcoded
+// constants in the posting scripts were not — so for two weeks every LinkedIn and X
+// post published a juanjofuchs.github.io link that only worked because of a 301.
+// Caught 2026-08-25. A second copy of the URL rule is a wrong link waiting for the
+// next post to come round.
+export const SITE_URL = (process.env.SITE_URL || 'https://juanjofuchs.com').replace(/\/$/, '');
+
+// Domains a hand-written social block might contain a blog link for. The canonical
+// host is first; github.io stays in the list because ~40 published posts and their
+// comment blocks still carry it deliberately (GitHub Pages 301s them), and the
+// sanitizer below has to recognise those in order to rewrite them.
+const KNOWN_BLOG_DOMAINS = ['juanjofuchs.com', 'juanjofuchs.github.io'];
+
+/**
+ * Rewrite any hardcoded blog URL in social copy to the canonical URL for this post.
+ *
+ * Shared by the weekly and daily posters. It used to be copy-pasted into both, which
+ * meant the daily and weekly paths could disagree about which domains to recognise —
+ * the same duplication hazard that produced the github.io leak in the first place.
+ *
+ * @param {string} text - Social copy that may contain a hardcoded blog URL
+ * @param {string} blogUrl - The canonical URL for this post
+ * @returns {string} - Copy with blog URLs canonicalised, query strings preserved
+ */
+export function replaceBlogUrls(text, blogUrl) {
+  if (!text) return text;
+  const alternation = KNOWN_BLOG_DOMAINS
+    .map(domain => domain.replace(/\./g, '\\.'))
+    .join('|');
+  const blogUrlPattern = new RegExp(`https?://(?:${alternation})[^\\s]*`, 'g');
+
+  // Canonicalize the path/slug but preserve any query string (e.g. UTM params
+  // added by addUtmParams).
+  return text.replace(blogUrlPattern, (m) => {
+    const q = m.indexOf('?');
+    return q >= 0 ? blogUrl + m.slice(q) : blogUrl;
+  });
+}
+
 // Twitter character counting constants
 const TWITTER_URL_LENGTH = 23;  // All URLs count as 23 chars (t.co shortening)
 const TWITTER_MAX_LENGTH = 280;
@@ -617,7 +662,7 @@ export function addUtmParams(text, platform, campaign) {
  * @param {string} baseUrl - Base URL for building post URLs
  * @returns {object} - {frontMatter, linkedin, twitter, blogUrl, publishedStatus, error}
  */
-export function extractSocialContent(filePath, baseUrl = 'https://juanjofuchs.com') {
+export function extractSocialContent(filePath, baseUrl = SITE_URL) {
   try {
     // Read and parse markdown file
     const fileContent = fs.readFileSync(filePath, 'utf-8');
@@ -739,7 +784,7 @@ export function extractSocialContent(filePath, baseUrl = 'https://juanjofuchs.co
  * @param {string} baseUrl - Base URL for building post URLs
  * @returns {object} - {frontMatter, campaign, blogUrl, error}
  */
-export function extractSocialCampaignContent(filePath, baseUrl = 'https://juanjofuchs.github.io') {
+export function extractSocialCampaignContent(filePath, baseUrl = SITE_URL) {
   const result = extractSocialContent(filePath, baseUrl);
   return {
     frontMatter: result.frontMatter,
