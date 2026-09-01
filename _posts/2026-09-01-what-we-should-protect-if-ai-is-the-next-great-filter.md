@@ -57,7 +57,10 @@ Optimistic nihilism means nothing cosmic is guaranteed. If the universe has no p
 The human interaction, our humanity, should still be there and should be protected.
 
 {% comment %}
+KIT_SENT: 2026-09-01T13:06:45Z
 ## LinkedIn Post
+PUBLISHED: 2026-09-01T13:06:41.858Z
+
 MEDIA: /assets/optimistic-nihilism-great-filter-hero.png
 ALT: A family plays midway up a stone staircase, wreckage of past filters on the steps below, and an emerald gate above
 
@@ -82,6 +85,8 @@ https://juanjofuchs.com/blog/optimistic-nihilism
 ---
 
 ## X/Twitter Thread
+PUBLISHED: 2026-09-01T13:06:44.680Z
+
 MEDIA: /assets/optimistic-nihilism-great-filter-hero.png
 ALT: A family plays midway up a stone staircase, wreckage of past filters on the steps below, an emerald gate above.
 
