@@ -63,7 +63,10 @@ So, I start command bridge, fire up the agents, start giving them instructions t
 I believe this is the future of interacting with the AI, text in and text out was just the beginning, two-way audio conversations was the next step, deixis is the current step and I believe there's still room to continue pushing new ways of increasing the bandwidth between us and our AIs.
 
 {% comment %}
+KIT_SENT: 2026-09-08T14:46:50Z
 ## LinkedIn Post
+PUBLISHED: 2026-09-08T14:46:49.544Z
+
 MEDIA: /assets/videos/deixis-command-bridge-demo.mp4
 ALT: The kepler agent highlights each node as it names it, across three concept diagrams on the Command Bridge canvas.
 
@@ -89,6 +92,8 @@ https://juanjofuchs.com/blog/deixis
 ---
 
 ## X/Twitter Thread
+PUBLISHED: 2026-09-08T14:46:45.047Z
+
 MEDIA: /assets/videos/deixis-command-bridge-demo.mp4
 ALT: The kepler agent highlights each node as it names it, across three concept diagrams on the Command Bridge canvas.
 
