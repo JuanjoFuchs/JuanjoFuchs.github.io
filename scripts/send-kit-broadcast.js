@@ -316,7 +316,18 @@ function buildEmail(fm, url, raw) {
     ? section.body.split(/\r?\n\s*\r?\n/).map((b) => b.trim()).filter(Boolean)
     : leadParagraphs(raw);
 
-  const mediaPath = section?.media || fm.image || null;
+  let mediaPath = section?.media || fm.image || null;
+  // An <img> cannot render a video, so a newsletter MEDIA that points at a clip
+  // (posts reuse the demo video for LinkedIn/X) shows subscribers an empty box.
+  // Fall back to the clip's poster if one sits beside it (…-demo.mp4 ->
+  // …-demo-poster.jpg/.png), else the frontmatter hero image.
+  if (mediaPath && /\.(mp4|mov|webm|m4v)$/i.test(mediaPath)) {
+    const stem = mediaPath.replace(/\.[^.]+$/, '');
+    const poster = ['-poster.jpg', '-poster.png']
+      .map((suffix) => stem + suffix)
+      .find((candidate) => fs.existsSync(repoAsset(candidate)));
+    mediaPath = poster || fm.image || null;
+  }
   const image = mediaPath ? `${SITE_URL}${mediaPath}` : null;
   const alt = section?.alt || '';
 
