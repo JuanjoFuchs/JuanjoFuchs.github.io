@@ -365,6 +365,10 @@ function buildEmail(fm, url, raw) {
 async function main() {
   const args = process.argv.slice(2);
   const dryRun = args.includes('--dry-run');
+  // --draft creates the broadcast in Kit with send_at: null (a real draft,
+  // delivered to nobody) so you can open it and "Send a test email" to yourself
+  // before the weekly send. It ignores and does not set the KIT_SENT marker.
+  const draft = args.includes('--draft');
   const file = args.find((a) => !a.startsWith('--'));
 
   if (!file) {
@@ -391,7 +395,7 @@ async function main() {
     return;
   }
 
-  if (alreadySent(raw)) {
+  if (!draft && alreadySent(raw)) {
     console.log('Already sent (KIT_SENT marker present). Skipping.');
     return;
   }
@@ -407,7 +411,7 @@ async function main() {
     ...email,
     public: false, // no public archive page; the blog is the archive
     published_at: now,
-    send_at: now, // a timestamp sends it; null would leave a draft
+    send_at: draft ? null : now, // a timestamp sends it; null leaves a draft
     // No subscriber_filter: omitting it sends to the whole list. Kit rejects
     // anything but `segment` or `tag` here (422: "Only `segment` or `tag`
     // filters allowed"), yet stores `all_subscribers` as the default it just
@@ -444,6 +448,10 @@ async function main() {
     id = JSON.parse(text)?.broadcast?.id ?? 'unknown';
   } catch {
     /* body was not JSON; the send still succeeded */
+  }
+  if (draft) {
+    console.log(`Draft created (delivered to nobody). Broadcast id ${id}. Open it in Kit and "Send a test email" to verify.`);
+    return;
   }
   console.log(`Sent. Broadcast id ${id}`);
   markSent(file, raw);
