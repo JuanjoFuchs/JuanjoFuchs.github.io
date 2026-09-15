@@ -67,6 +67,7 @@ So I believe that the future belongs to the curious eclectics, the ones who nurt
 I think, if we are able to become just a little bit more curious and willing to expand our areas of interest, the machinery we will be able to speak into existence through AI will constantly be ahead of the norm.
 
 {% comment %}
+KIT_SENT: 2026-09-15T13:07:10Z
 ## LinkedIn Post
 MEDIA: /assets/what-sets-you-apart-social.png
 ALT: A person seen from behind looks up at a night-sky constellation of faint lived memories linked by emerald lines
@@ -91,6 +92,8 @@ Full post 👉 https://juanjofuchs.com/blog/what-sets-you-apart
 ---
 
 ## X/Twitter Thread
+PUBLISHED: 2026-09-15T13:07:10.000Z
+
 MEDIA: /assets/what-sets-you-apart-social.png
 ALT: A person seen from behind looks up at a night-sky constellation of faint lived memories linked by emerald lines
 
