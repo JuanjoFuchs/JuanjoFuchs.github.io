@@ -69,6 +69,8 @@ I think, if we are able to become just a little bit more curious and willing to 
 {% comment %}
 KIT_SENT: 2026-09-15T13:07:10Z
 ## LinkedIn Post
+PUBLISHED: 2026-09-15T13:19:31.137Z
+
 MEDIA: /assets/what-sets-you-apart-social.png
 ALT: A person seen from behind looks up at a night-sky constellation of faint lived memories linked by emerald lines
 
