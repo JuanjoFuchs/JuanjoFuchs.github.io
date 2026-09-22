@@ -140,7 +140,10 @@ I think the future is the composition of System One and System Two models, playi
 I am still evaluating Jev and how it can complement text generation models for use within my second brain, I believe a thousand more use cases are still to be found, where System One models seep into the specifics of deterministic tooling to make and judge smarter decisions.
 
 {% comment %}
+KIT_SENT: 2026-09-22T14:03:37Z
 ## LinkedIn Post
+PUBLISHED: 2026-09-22T14:03:36.073Z
+
 MEDIA: /assets/system-one-models-hero.png
 ALT: The three-way search comparison: Jev's relevance bars long, semantic's short and flat, keyword mostly zero.
 
@@ -164,6 +167,8 @@ How can I use System One models in my second brain? https://juanjofuchs.com/blog
 ---
 
 ## X/Twitter Thread
+PUBLISHED: 2026-09-22T14:03:36.347Z
+
 MEDIA: /assets/system-one-models-hero.png
 ALT: The three-way search comparison: Jev's relevance bars long, semantic's short and flat, keyword mostly zero.
 
