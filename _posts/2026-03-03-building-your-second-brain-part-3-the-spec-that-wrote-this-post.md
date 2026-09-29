@@ -3,7 +3,8 @@ layout: post
 title: "Building Your Second Brain, Part 3: The Spec That Wrote This Post"
 description: "AI drafts in minutes, so the bottleneck is thinking. A one-page spec sets your arc, angles and scope before AI writes a word. This post shows its own."
 date: 2026-03-03 09:00:00 -0500
-categories: productivity
+permalink: /productivity/2026/03/03/building-your-second-brain-part-3-the-spec-that-wrote-this-post.html
+categories: [productivity, second-brain]
 tags: [second-brain, ai, productivity, writing, content-creation]
 author: JuanjoFuchs
 image: /assets/spec-blueprint-to-post.png

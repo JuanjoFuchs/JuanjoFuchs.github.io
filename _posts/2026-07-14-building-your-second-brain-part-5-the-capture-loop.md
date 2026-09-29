@@ -3,7 +3,8 @@ layout: post
 title: "Building Your Second Brain, Part 5: The Capture Loop"
 description: "Most Claude + Obsidian setups sort your inbox into folders. The capture loop I use searches what I already wrote before anything gets filed."
 date: 2026-07-14 09:00:00 -0400
-categories: productivity
+permalink: /productivity/2026/07/14/building-your-second-brain-part-5-the-capture-loop.html
+categories: [productivity, second-brain, obsidian]
 tags: [second-brain, obsidian, ai, productivity, gtd]
 author: JuanjoFuchs
 image: /assets/the-capture-loop-hero.png

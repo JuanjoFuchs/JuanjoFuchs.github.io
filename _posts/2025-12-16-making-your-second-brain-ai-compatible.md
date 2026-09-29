@@ -4,7 +4,7 @@ title: "Making Your Second Brain AI-Compatible"
 description: "Great at capturing ideas, terrible at processing them. Five years of OneNote left an inbox I couldn't use. Obsidian let AI help with the part I'm bad at."
 date: 2025-12-16 09:00:00 -0500
 permalink: /productivity/2025/12/16/making-second-brain-ai-compatible.html
-categories: productivity
+categories: [productivity, second-brain, obsidian]
 tags: [obsidian, onenote, second-brain, gtd, mcp, ai, productivity]
 author: JuanjoFuchs
 image: /assets/obsidian-knowledge-graph-second-brain.png

@@ -3,7 +3,8 @@ layout: post
 title: "Building Your Second Brain, Part 2: When AI Moves In"
 description: "My vault now has two interfaces: one for me in Obsidian, one for AI through routing tables, search tools and CLI scripts. Four practices from daily use."
 date: 2026-02-24 09:00:00 -0500
-categories: productivity
+permalink: /productivity/2026/02/24/building-your-second-brain-part-2-when-ai-moves-in.html
+categories: [productivity, second-brain, obsidian]
 tags: [obsidian, second-brain, ai, productivity, claude-code, gtd]
 author: JuanjoFuchs
 image: /assets/second-brain-graph.png

@@ -3,7 +3,7 @@ layout: post
 title: "How can I use System One models in my second brain?"
 description: "A new kind of AI judges instead of writing. I point one at my own second brain, and it beats keyword and semantic search at finding the post I meant."
 date: 2026-09-22 09:00:00 -0400
-categories: ai
+categories: [ai, second-brain]
 tags: [second-brain, system-one-models, jev, search, ai]
 author: JuanjoFuchs
 permalink: /blog/system-one-models

@@ -3,7 +3,8 @@ layout: post
 title: "Building Your Second Brain, Part 6: Git as Durable Memory"
 description: "My agent writes down what it understood me to mean. The verbatim prompt in the commit message is the only record of what I actually said."
 date: 2026-08-04 09:00:00 -0400
-categories: productivity
+permalink: /productivity/2026/08/04/building-your-second-brain-part-6-git-as-durable-memory.html
+categories: [productivity, second-brain]
 tags: [second-brain, git, obsidian, ai, productivity]
 author: JuanjoFuchs
 image: /assets/part-6-git-durable-memory-hero.png
