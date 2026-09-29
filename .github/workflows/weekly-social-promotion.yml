@@ -145,11 +145,13 @@ jobs:
         node-version: '20'
 
     - name: Install dependencies
+      id: deps
       if: env.SHOULD_POST_WEEKLY_SOCIAL == 'true'
       working-directory: scripts
       run: npm install
 
     - name: Verify the post is live before promoting
+      id: live
       if: ${{ env.SHOULD_POST_WEEKLY_SOCIAL == 'true' && github.event.inputs.dry_run != 'true' }}
       run: |
         # Confirm the canonical post URL actually serves (HTTP 200) before we
@@ -205,8 +207,12 @@ jobs:
     # an expired LinkedIn token should not also hold back the email. Re-running is
     # safe, since send-kit-broadcast.js skips a post that already carries a
     # KIT_SENT marker, committed by the same step that commits PUBLISHED flags.
+    # But only once the dependencies installed and the post is live: on 2026-09-29
+    # a GitHub 500 on the rebuild push skipped both, and always() ran this step
+    # anyway, which crashed on a missing module (and could otherwise have emailed
+    # the list a link that 404s). dry_run skips the liveness check, so allow that.
     - name: Email the post to the Kit list
-      if: ${{ always() && env.SHOULD_POST_WEEKLY_SOCIAL == 'true' }}
+      if: ${{ always() && env.SHOULD_POST_WEEKLY_SOCIAL == 'true' && steps.deps.outcome == 'success' && (steps.live.outcome == 'success' || github.event.inputs.dry_run == 'true') }}
       env:
         KIT_API_KEY: ${{ secrets.KIT_API_KEY }}
       run: |
