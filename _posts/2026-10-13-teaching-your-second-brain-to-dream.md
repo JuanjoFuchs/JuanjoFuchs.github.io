@@ -2,7 +2,7 @@
 layout: post
 title: "Teaching Your Second Brain to Dream"
 description: "What sleep does to memory, and how I give my second brain a nightly pass for connections and improvements I review in the morning."
-date: 2026-10-06 09:00:00 -0400
+date: 2026-10-13 09:00:00 -0400
 categories: [ai, second-brain, obsidian]
 tags: [second-brain, dreaming, memory, ai]
 author: JuanjoFuchs
@@ -155,5 +155,5 @@ Read the full post: https://juanjofuchs.com/blog/teaching-your-second-brain-to-d
 
 ---
 INSTRUCTIONS:
-Publishes with the post on Tue 2026-10-06. LinkedIn and X use the titled social card; the newsletter uses the clean hero.
+Publishes with the post on Tue 2026-10-13 (moved from 10-06 for the ccburn-mod launch). LinkedIn and X use the titled social card; the newsletter uses the clean hero.
 {% endcomment %}
