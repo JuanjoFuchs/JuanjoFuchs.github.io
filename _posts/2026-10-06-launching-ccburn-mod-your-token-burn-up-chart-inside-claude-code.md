@@ -89,8 +89,8 @@ If you try it, I'd love to hear how it goes in the [ccburn-mod repo](https://git
 
 {% comment %}
 ## LinkedIn Post
-MEDIA: /assets/ccburn-mod-social.png
-ALT: ccburn-mod's weekly chart in a Claude Code pane, with the title "Launching ccburn-mod"
+MEDIA: /assets/ccburn-mod-burn-up-chart-in-claude-code.png
+ALT: ccburn-mod's weekly burn-up chart in a Claude Code pane, beside its logo and install commands
 
 Claude Code recently launched mods. So I ported ccburn, the burn-up chart tool I created for plotting Claude Code's usage limits.
 
@@ -116,8 +116,8 @@ Repo: https://github.com/JuanjoFuchs/ccburn-mod
 ---
 
 ## X/Twitter Thread
-MEDIA: /assets/ccburn-mod-social.png
-ALT: ccburn-mod's weekly chart in a Claude Code pane, with the title "Launching ccburn-mod"
+MEDIA: /assets/ccburn-mod-burn-up-chart-in-claude-code.png
+ALT: ccburn-mod's weekly burn-up chart in a Claude Code pane, beside its logo and install commands
 
 Tweet 1:
 Claude Code recently launched mods. So I ported ccburn, the burn-up chart tool I created for plotting Claude Code's usage limits. Now the live chart renders inside Claude Code, in the session where I'm working.
@@ -179,5 +179,5 @@ Read the full post: https://juanjofuchs.com/blog/ccburn-mod
 
 ---
 INSTRUCTIONS:
-Publishes with the post on Tue 2026-10-06. LinkedIn and X use the titled social card; the newsletter uses the clean screenshot.
+Publishes with the post on Tue 2026-10-06. All three channels use the README screenshot; no titled social card for this post (JJ, 2026-10-05).
 {% endcomment %}
