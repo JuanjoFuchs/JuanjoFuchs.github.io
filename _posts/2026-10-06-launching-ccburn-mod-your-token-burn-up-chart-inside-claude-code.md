@@ -88,7 +88,10 @@ It needs a Pro, Max or Team subscription because Claude Code doesn't supply rate
 If you try it, I'd love to hear how it goes in the [ccburn-mod repo](https://github.com/JuanjoFuchs/ccburn-mod).
 
 {% comment %}
+KIT_SENT: 2026-10-06T13:07:44Z
 ## LinkedIn Post
+PUBLISHED: 2026-10-06T13:07:42.863Z
+
 MEDIA: /assets/ccburn-mod-burn-up-chart-in-claude-code.png
 ALT: ccburn-mod's weekly burn-up chart in a Claude Code pane, beside its logo and install commands
 
@@ -116,6 +119,8 @@ Repo: https://github.com/JuanjoFuchs/ccburn-mod
 ---
 
 ## X/Twitter Thread
+PUBLISHED: 2026-10-06T13:07:43.258Z
+
 MEDIA: /assets/ccburn-mod-burn-up-chart-in-claude-code.png
 ALT: ccburn-mod's weekly burn-up chart in a Claude Code pane, beside its logo and install commands
 
