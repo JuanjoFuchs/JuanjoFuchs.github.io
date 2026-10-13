@@ -77,7 +77,10 @@ I review and approve pruning duplicate guides and redundant material, inspired b
 Sometimes I see a connection between two of my notes that I didn't know was possible. I read them together, see whether it makes sense, and, maybe, that triggers a new idea in my first brain.
 
 {% comment %}
+KIT_SENT: 2026-10-13T13:02:26Z
 ## LinkedIn Post
+PUBLISHED: 2026-10-13T13:02:24.929Z
+
 MEDIA: /assets/teaching-your-second-brain-to-dream-social.png
 ALT: A robot on a charging cradle under an emerald brain of connected dots, titled "Teaching Your Second Brain to Dream"
 
@@ -102,6 +105,8 @@ Teaching Your Second Brain to Dream: https://juanjofuchs.com/blog/teaching-your-
 ---
 
 ## X/Twitter Thread
+PUBLISHED: 2026-10-13T13:02:25.272Z
+
 MEDIA: /assets/teaching-your-second-brain-to-dream-social.png
 ALT: A robot on a charging cradle under an emerald brain of connected dots, titled "Teaching Your Second Brain to Dream"
 
