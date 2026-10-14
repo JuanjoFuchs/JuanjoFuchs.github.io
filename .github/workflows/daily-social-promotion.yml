@@ -2,12 +2,15 @@ name: Daily Social Promotion
 
 on:
   schedule:
-    # Tuesday-Friday at 9:00 AM America/New_York.
+    # Tuesday-Friday: 12:00 PM America/New_York while on EDT, 4:00 PM once on EST.
+    # That split IS the 20261020-daily-promotion-li trial (pre-registered in the vault's
+    # Community Growth Strategy): weeks 1-2 (Oct 20-30, EDT) at noon, weeks 3-4
+    # (Nov 3-13, EST after the Nov 1 change) at 4 PM. Revisit at the 11/16 readout.
     # GitHub cron can be delayed on free plans; this workflow handles rebuild,
     # waits for Pages deployment, then posts the matching campaign entry.
-    # GitHub cron is UTC-only, so run at both possible Eastern offsets and gate in-job.
-    - cron: '0 13 * * 2-5'
-    - cron: '0 14 * * 2-5'
+    # GitHub cron is UTC-only, so each slot is pinned to one offset and gated in-job.
+    - cron: '0 16 * * 2-5'
+    - cron: '0 21 * * 2-5'
 
   workflow_dispatch:
     inputs:
@@ -72,9 +75,9 @@ jobs:
         TRIGGERED_SCHEDULE="${{ github.event.schedule }}"
 
         if [ "$EASTERN_OFFSET" = "-0400" ]; then
-          EXPECTED_SCHEDULE="0 13 * * 2-5"
+          EXPECTED_SCHEDULE="0 16 * * 2-5"   # noon EDT
         else
-          EXPECTED_SCHEDULE="0 14 * * 2-5"
+          EXPECTED_SCHEDULE="0 21 * * 2-5"   # 4 PM EST
         fi
 
         if [ "$TRIGGERED_SCHEDULE" = "$EXPECTED_SCHEDULE" ]; then

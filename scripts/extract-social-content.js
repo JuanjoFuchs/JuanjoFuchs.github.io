@@ -644,12 +644,16 @@ export function campaignSlug(filePath) {
 export function addUtmParams(text, platform, campaign) {
   if (!text || !campaign) return text;
   const escapeUnderscores = platform === 'linkedin';
-  return text.replace(/https?:\/\/juanjofuchs\.github\.io\/\S+/g, (match) => {
+  // Same domains replaceBlogUrls canonicalizes to; matching only github.io left every
+  // juanjofuchs.com link untagged.
+  const alternation = KNOWN_BLOG_DOMAINS.map(domain => domain.replace(/\./g, '\\.')).join('|');
+  return text.replace(new RegExp(`https?://(?:${alternation})/\\S+`, 'g'), (match) => {
     const trailMatch = match.match(/[).,!?:;'"]+$/);
     const trail = trailMatch ? trailMatch[0] : '';
     const url = trail ? match.slice(0, match.length - trail.length) : match;
     if (url.includes('?')) return match;       // already parameterized
-    if (!/\.html$/.test(url)) return match;     // only blog-post pages
+    // only blog-post pages: the old dated .html URLs or the /blog/<slug> permalinks
+    if (!/\.html$/.test(url) && !/\/blog\/[^/]+\/?$/.test(url)) return match;
     let params = `utm_source=${platform}&utm_medium=social&utm_campaign=${campaign}`;
     if (escapeUnderscores) params = params.replace(/_/g, '\\_');
     return `${url}?${params}${trail}`;
