@@ -176,6 +176,7 @@ jobs:
           CODE=$(curl -s -o /dev/null -w "%{http_code}" "$URL")
           if [ "$CODE" = "200" ]; then
             echo "Post is live (HTTP 200)."
+            echo "POST_URL=$URL" >> "$GITHUB_ENV"
             exit 0
           fi
           echo "Not live yet (HTTP ${CODE}); attempt ${attempt}/20"
@@ -183,6 +184,21 @@ jobs:
         done
         echo "::error::Post ${URL} never returned 200; refusing to promote with dead links. Check the post date offset (should be EDT/EST for its date) and that Pages built."
         exit 1
+
+    # Bing (and so Copilot and DuckDuckGo) otherwise finds a new post only when it
+    # next re-reads the sitemap. Launch day only, with the URL the live check just
+    # got a 200 from, so IndexNow is never told about a page that 404s. A failed
+    # ping must not hold back the posts, hence continue-on-error.
+    - name: Ping IndexNow on launch day
+      if: ${{ steps.live.outcome == 'success' }}
+      continue-on-error: true
+      run: |
+        case "$CAMPAIGN_POST_FILE" in
+          _posts/${CAMPAIGN_DATE}-*) ;;
+          *) echo "Not launch day for ${CAMPAIGN_POST_FILE}; no IndexNow ping."; exit 0 ;;
+        esac
+
+        node scripts/ping-indexnow.js "$POST_URL"
 
     - name: Prepare LinkedIn access token
       if: env.SHOULD_POST_DAILY_SOCIAL == 'true'
