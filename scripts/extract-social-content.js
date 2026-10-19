@@ -407,7 +407,10 @@ function applyCampaignMediaFallback(entry, featuredImage, defaultAlt) {
  * @returns {object|null} - {campaign, entries} or null if no campaign exists
  */
 export function parseSocialCampaign(commentContent) {
-  const campaignRegex = /^##\s*Social Campaign\s*\n([\s\S]*)$/im;
+  // The campaign ends at the next level-2 heading (and the --- rule before it).
+  // It used to run to the end of the comment block, so a "## Newsletter" after the
+  // campaign was swallowed into the last day's LinkedIn post, MEDIA line included.
+  const campaignRegex = /^##\s*Social Campaign\s*\n([\s\S]*?)(?=^---[^\S\r\n]*\r?\n\s*##\s|^##\s|(?![\s\S]))/im;
   const campaignMatch = commentContent.match(campaignRegex);
 
   if (!campaignMatch) {
