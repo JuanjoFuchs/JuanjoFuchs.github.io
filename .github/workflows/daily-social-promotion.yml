@@ -158,11 +158,13 @@ jobs:
         node-version: '20'
 
     - name: Install dependencies
+      id: deps
       if: env.SHOULD_POST_DAILY_SOCIAL == 'true'
       working-directory: scripts
       run: npm install
 
     - name: Verify the post is live before promoting
+      id: live
       if: ${{ env.SHOULD_POST_DAILY_SOCIAL == 'true' && github.event.inputs.dry_run != 'true' }}
       run: |
         # Confirm the canonical post URL actually serves (HTTP 200) before we
@@ -213,6 +215,35 @@ jobs:
         fi
 
         node scripts/post-daily-social.js "${ARGS[@]}"
+
+    # The weekly workflow is the only other place that emails the Kit list, and it
+    # no-ops on a daily-campaign post, so without this a campaign post's newsletter
+    # never sent. Launch day only: the post file's own date must be today's
+    # campaign date. Same guards as the weekly step: always() so a failed platform
+    # doesn't hold back the email, but only once the post is live, and
+    # send-kit-broadcast.js skips a post that already carries KIT_SENT.
+    - name: Email the post to the Kit list on launch day
+      if: ${{ always() && env.SHOULD_POST_DAILY_SOCIAL == 'true' && steps.deps.outcome == 'success' && (steps.live.outcome == 'success' || github.event.inputs.dry_run == 'true') }}
+      env:
+        KIT_API_KEY: ${{ secrets.KIT_API_KEY }}
+      run: |
+        case "$CAMPAIGN_POST_FILE" in
+          _posts/${CAMPAIGN_DATE}-*) ;;
+          *) echo "Not launch day for ${CAMPAIGN_POST_FILE}; no newsletter."; exit 0 ;;
+        esac
+
+        if [ -z "$KIT_API_KEY" ]; then
+          echo "::warning::KIT_API_KEY is not set; skipping the newsletter send"
+          exit 0
+        fi
+
+        ARGS=("$CAMPAIGN_POST_FILE")
+
+        if [ "${{ inputs.dry_run }}" = "true" ]; then
+          ARGS+=(--dry-run)
+        fi
+
+        node scripts/send-kit-broadcast.js "${ARGS[@]}"
 
     # always(): post-daily-social.js exits non-zero on failure, and the PUBLISHED
     # markers for whatever DID post must still be committed. Otherwise a re-run to fix
