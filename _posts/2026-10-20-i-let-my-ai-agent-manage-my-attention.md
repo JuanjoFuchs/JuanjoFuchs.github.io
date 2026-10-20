@@ -82,6 +82,7 @@ Instead of reading walls of text or listening to long explanations of what the a
 That gives me [more understanding per minute](https://juanjofuchs.com/blog/intent-per-minute) than reading or listening would. And that understanding is what lets me exert my taste into the work I produce and make sure my intent was fully executed, instead of rubber stamping whatever an agent prepared.
 
 {% comment %}
+KIT_SENT: 2026-10-20T16:02:13Z
 ## Social Campaign
 CAMPAIGN: chief-of-staff_20261020
 TIMEZONE: America/New_York
@@ -94,6 +95,8 @@ MEDIA: /assets/videos/2026-10-20-chief-of-staff-tue.mp4
 ALT: On a phone, magnus explains how I worked before and now, then brings up three agents and shows the board
 
 #### LinkedIn Post
+PUBLISHED: 2026-10-20T16:02:05.737Z
+
 I used to keep 3 to 6 AI agents running at once and speak to all of them, switching between them so none got starved of my attention. At the beginning of the day it was amazing, it felt so productive. But by the end of the day I was so tired that I would only favor one or two of them, and the others were stuck waiting for my feedback.
 
 A BCG study published in HBR gave that feeling a name: brain fry, the mental fatigue of using or overseeing more AI tools than you can handle. In its survey, self-reported productivity rose up to three tools and dropped after that.
@@ -107,6 +110,8 @@ I let my AI agent manage my attention: https://juanjofuchs.com/blog/chief-of-sta
 #AIAgents #ClaudeCode #AI #DeveloperProductivity
 
 #### X/Twitter Thread
+PUBLISHED: 2026-10-20T16:02:12.740Z
+
 Tweet 1:
 I used to keep 3 to 6 AI coding agents alive and speak to all of them. In the morning it felt amazing. By the evening I'd favor one or two, and the rest were stuck waiting for my feedback.
 
