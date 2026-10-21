@@ -133,6 +133,8 @@ MEDIA: /assets/videos/2026-10-20-chief-of-staff-wed.mp4
 ALT: Magnus shows the board, then brings me one decision at a time: a README diff, then a blog post title
 
 #### LinkedIn Post
+PUBLISHED: 2026-10-21T16:02:35.572Z
+
 Every morning I give one AI agent, my chief of staff, the list of everything I want to get done. It launches my other agents and briefs them, and it's the only agent I talk to.
 
 Its job is not only managing the other agents, but also managing my attention. What it brings me is a draft to approve, a question an agent can't answer without me, or a result I asked to see. Everything else stays with the agents. It also keeps a Kanban board of everything I've asked for, how each item is moving and what the agents are doing.
