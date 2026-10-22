@@ -86,7 +86,7 @@ KIT_SENT: 2026-10-20T16:02:13Z
 ## Social Campaign
 CAMPAIGN: chief-of-staff_20261020
 TIMEZONE: America/New_York
-NOTE: Daily promotion trial 20261020-daily-promotion-li, weeks 1-2 at 12 PM ET. Text plus one link to the blog, with a clip per day cut from the hero recording (JJ, 10-19 14:24: "allow the clips"). Every slot needs JJ's OK before it's scheduled.
+NOTE: Daily promotion trial 20261020-daily-promotion-li, weeks 1-2 at 12 PM ET. Text plus one link to the blog, with a clip per day cut from the hero recording (JJ, 10-19 14:24: "allow the clips"). JJ approved the whole promotion at once (10-19 17:59; see the Blog Writing Guide, "One approval covers the whole promotion").
 
 ### Tuesday - Launch
 DATE: 2026-10-20
@@ -180,6 +180,21 @@ https://juanjofuchs.com/blog/chief-of-staff
 
 #AIAgents #AI #DeveloperProductivity
 
+#### X/Twitter Thread
+Tweet 1:
+I run my AI agents through a chief of staff, the one agent I talk to. But a chief of staff alone isn't enough.
+
+Tweet 2:
+Each agent has a name and a role, a project or an area in my second brain with its own notes, guides and startup instructions, so it keeps pushing on its own. My team went from 6 to 16 named agents.
+
+Tweet 3:
+When I need to dig deeper, I promote an agent to a lead and talk to it directly. When we're done, it goes back under the chief of staff. Every extreme is bad, I never want to delegate my taste.
+
+Tweet 4:
+https://juanjofuchs.com/blog/chief-of-staff
+
+#AIAgents #ClaudeCode
+
 ### Friday - What stays with me
 DATE: 2026-10-23
 TIME: 12:00
@@ -196,6 +211,21 @@ That gives me more understanding per minute than reading or listening would. And
 https://juanjofuchs.com/blog/chief-of-staff
 
 #AIAgents #AI #DeveloperProductivity
+
+#### X/Twitter Thread
+Tweet 1:
+My AI agents keep pushing on their own, but there's a limit to how much I understand of what they're doing on my behalf.
+
+Tweet 2:
+So they show me the work: a diagram, a recording of a feature being used, data from something they ran. Then they walk me through it, pointing at what they're talking about.
+
+Tweet 3:
+That gives me more understanding per minute than reading walls of text, and it's what lets me put my taste into the work instead of rubber stamping whatever an agent prepared.
+
+Tweet 4:
+https://juanjofuchs.com/blog/chief-of-staff
+
+#AIAgents #ClaudeCode
 
 ---
 
