@@ -181,6 +181,8 @@ https://juanjofuchs.com/blog/chief-of-staff
 #AIAgents #AI #DeveloperProductivity
 
 #### X/Twitter Thread
+PUBLISHED: 2026-10-22T18:02:20.545Z
+
 Tweet 1:
 I run my AI agents through a chief of staff, the one agent I talk to. But a chief of staff alone isn't enough.
 
