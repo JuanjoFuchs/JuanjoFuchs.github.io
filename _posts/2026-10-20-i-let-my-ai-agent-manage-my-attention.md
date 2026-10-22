@@ -164,6 +164,8 @@ MEDIA: /assets/videos/2026-10-20-chief-of-staff-thu.mp4
 ALT: I promote my blog agent to a lead, cut a paragraph with it directly, then send it back under magnus
 
 #### LinkedIn Post
+PUBLISHED: 2026-10-22T16:02:02.036Z
+
 I run my AI agents through a chief of staff, the one agent I talk to. But a chief of staff alone isn't enough.
 
 I have a team of agents with names, roles and responsibilities. Each role is a project or an area of responsibility in my second brain, with its own notes, guides and startup instructions, so every agent knows what it has to do and keeps pushing on its own. My chief of staff knows which one to launch for each item, and starts up or tears down agents based on what I ask for. Since I stopped talking directly to every agent, my team went from 6 to 16 named agents.
