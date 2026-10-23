@@ -204,6 +204,8 @@ MEDIA: /assets/videos/2026-10-20-chief-of-staff-fri.mp4
 ALT: An agent shows me an impressions chart, then the post with the paragraph lit, instead of describing them
 
 #### LinkedIn Post
+PUBLISHED: 2026-10-23T16:01:55.735Z
+
 My AI agents have names, roles and responsibilities, so they can keep pushing on their own. But there is a limit to how much they can push without me, and to how much I understand of what they're doing on my behalf.
 
 Instead of reading walls of text or listening to long explanations, I have them show me: a diagram, an animation, a recording of a feature being used, data rendered from something they ran, or a diagram of a concept. Then they walk me through it, pointing at what they're talking about.
@@ -215,6 +217,8 @@ https://juanjofuchs.com/blog/chief-of-staff
 #AIAgents #AI #DeveloperProductivity
 
 #### X/Twitter Thread
+PUBLISHED: 2026-10-23T16:01:59.736Z
+
 Tweet 1:
 My AI agents keep pushing on their own, but there's a limit to how much I understand of what they're doing on my behalf.
 
