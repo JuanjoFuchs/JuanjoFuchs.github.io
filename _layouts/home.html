@@ -61,7 +61,7 @@ layout: base
           <span class="post-meta">
             {{ post.date | date: date_format }}
             {%- for category in post.categories %}
-            <a class="post-card-category" href="{{ '/categories/#' | append: category | slugify | relative_url }}">{{ category }}</a>
+            <a class="post-card-category" href="{{ '/categories/' | relative_url }}#{{ category | slugify }}">{{ category }}</a>
             {%- endfor %}
           </span>
           <h3 class="post-card-title">
