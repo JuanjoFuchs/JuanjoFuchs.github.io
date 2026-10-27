@@ -1,0 +1,40 @@
+name: Build and check links
+
+# Builds the site with the same builder GitHub Pages uses, then fails if any
+# internal link points to a page that doesn't exist. Added 2026-10-27 after a
+# home-page template sent every category link to a 404 for weeks.
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build with the GitHub Pages builder
+        uses: actions/jekyll-build-pages@v1
+        with:
+          source: ./
+          destination: ./_site
+
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.3"
+
+      - name: Check internal links
+        run: |
+          gem install html-proofer -v "~> 5.0" --no-document
+          htmlproofer ./_site \
+            --checks Links \
+            --disable-external \
+            --allow-missing-href \
+            --no-enforce-https \
+            --swap-urls "^https\://juanjofuchs\.com:"
