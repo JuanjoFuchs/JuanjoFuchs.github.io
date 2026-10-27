@@ -36,5 +36,3 @@ A new post goes out every Tuesday. The [RSS feed]({{ '/feed.xml' | relative_url 
 ## Contact
 
 [GitHub](https://github.com/JuanjoFuchs) · [LinkedIn](https://www.linkedin.com/in/juanjofuchs) · [X](https://x.com/JuanjoFuchs)
-
-[Gate test](/categories-troubleshooting)
