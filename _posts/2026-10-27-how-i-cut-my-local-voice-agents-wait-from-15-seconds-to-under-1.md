@@ -96,6 +96,7 @@ None of this needs a big machine. My laptop's GPU has 8 GB, and the voice models
 [Command Bridge](https://github.com/JuanjoFuchs/command-bridge) is open source, and I'd love for you to give it a try.
 
 {% comment %}
+KIT_SENT: 2026-10-27T16:02:58Z
 ## Social Campaign
 CAMPAIGN: fast-voice_20261027
 TIMEZONE: America/New_York
@@ -108,6 +109,8 @@ MEDIA: /assets/videos/2026-10-27-voice-latency-long-turn.mp4
 ALT: A 3D timeline of one long turn of 30 seconds or more: turn detection, speech to text, the agent thinking and the first spoken audio. Speech to text collapses from 7.7 seconds to 0.05, first audio from 7.4 seconds to 0.6, the agent's 4.8 seconds of thinking stay the same, and it ends on the big green number marked voice only.
 
 #### LinkedIn Post
+PUBLISHED: 2026-10-27T16:02:53.314Z
+
 My local voice agent now transcribes me 155 times faster and starts speaking back 12 times faster.
 
 I talk to my AI agents out loud, and when I talked for 30 seconds or more I used to wait about 15 seconds after I stopped before I heard the first word back. That's without counting the time the agent spends thinking. Now that wait is 0.67 seconds.
@@ -123,6 +126,8 @@ How I cut my local voice agent's wait from 15 seconds to under 1: https://juanjo
 #VoiceAI #AIAgents #LocalAI #ClaudeCode
 
 #### X/Twitter Thread
+PUBLISHED: 2026-10-27T16:02:57.524Z
+
 Tweet 1:
 When I talked to my AI agents for 30 seconds or more, I used to wait about 15 seconds after I stopped to hear the first word back, before counting the agent's thinking. Now it's 0.67 seconds, all on my laptop's 8 GB GPU.
 
