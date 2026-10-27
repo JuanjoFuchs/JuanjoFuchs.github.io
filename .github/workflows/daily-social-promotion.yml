@@ -40,7 +40,7 @@ on:
 
 permissions:
   contents: write
-  actions: read
+  actions: write
 
 jobs:
   post-daily-social:
@@ -61,7 +61,9 @@ jobs:
           else
             echo "CAMPAIGN_DATE=$(TZ=America/New_York date +%F)" >> "$GITHUB_ENV"
           fi
-          if [ "${{ inputs.rebuild }}" = "true" ] && [ "${{ inputs.dry_run }}" != "true" ]; then
+          # A deploy has no side effects beyond redeploying main, so a dry run may
+          # still exercise it (rebuild=true) to prove the promotion finds its deploy.
+          if [ "${{ inputs.rebuild }}" = "true" ]; then
             echo "SHOULD_REBUILD_JEKYLL=true" >> "$GITHUB_ENV"
           else
             echo "SHOULD_REBUILD_JEKYLL=false" >> "$GITHUB_ENV"
@@ -113,42 +115,38 @@ jobs:
           echo "SHOULD_REBUILD_JEKYLL=false" >> "$GITHUB_ENV"
         fi
 
-    - name: Trigger scheduled Jekyll rebuild
-      if: ${{ env.SHOULD_POST_DAILY_SOCIAL == 'true' && env.SHOULD_REBUILD_JEKYLL == 'true' }}
-      run: |
-        git config user.name "GitHub Actions Bot"
-        git config user.email "actions@github.com"
-        git pull --rebase origin main
-        git commit --allow-empty -m "chore: trigger scheduled Jekyll rebuild"
-        git push
-        echo "REBUILD_SHA=$(git rev-parse HEAD)" >> "$GITHUB_ENV"
-
-    - name: Wait for GitHub Pages deployment
+    # Pages deploys through link-check.yml (build, link check, deploy). A push made
+    # with GITHUB_TOKEN doesn't trigger workflows, so dispatch it and wait for that
+    # exact run; a broken link fails it and the promotion stops before posting.
+    - name: Trigger site deploy
       if: ${{ env.SHOULD_POST_DAILY_SOCIAL == 'true' && env.SHOULD_REBUILD_JEKYLL == 'true' }}
       env:
         GH_TOKEN: ${{ github.token }}
       run: |
-        PAGES_WORKFLOW_ID=$(gh api "repos/${GITHUB_REPOSITORY}/actions/workflows" --jq '.workflows[] | select(.name == "pages-build-deployment") | .id' | head -n 1)
-        if [ -z "$PAGES_WORKFLOW_ID" ]; then
-          echo "Could not find GitHub Pages workflow"
-          exit 1
-        fi
+        echo "DEPLOY_START=$(date -u +%Y-%m-%dT%H:%M:%SZ)" >> "$GITHUB_ENV"
+        gh workflow run link-check.yml --ref main
 
+    - name: Wait for site deploy
+      if: ${{ env.SHOULD_POST_DAILY_SOCIAL == 'true' && env.SHOULD_REBUILD_JEKYLL == 'true' }}
+      env:
+        GH_TOKEN: ${{ github.token }}
+      run: |
         RUN_ID=""
         for attempt in $(seq 1 60); do
-          RUN_ID=$(gh api "repos/${GITHUB_REPOSITORY}/actions/workflows/${PAGES_WORKFLOW_ID}/runs?head_sha=${REBUILD_SHA}&per_page=1" --jq '.workflow_runs[0].id // empty')
+          RUN_ID=$(gh run list --workflow link-check.yml --event workflow_dispatch --branch main --limit 10 --json databaseId,createdAt --jq "[.[] | select(.createdAt >= \"${DEPLOY_START}\")] | sort_by(.createdAt) | .[0].databaseId // empty")
           if [ -n "$RUN_ID" ]; then
             break
           fi
-          echo "Waiting for Pages run for ${REBUILD_SHA} (attempt ${attempt}/60)"
+          echo "Waiting for the dispatched deploy run (attempt ${attempt}/60)"
           sleep 10
         done
 
         if [ -z "$RUN_ID" ]; then
-          echo "Timed out waiting for Pages run to appear for ${REBUILD_SHA}"
+          echo "Timed out waiting for the dispatched deploy run"
           exit 1
         fi
 
+        echo "Watching deploy run ${RUN_ID}"
         gh run watch "$RUN_ID" --exit-status --interval 10
 
     - name: Setup Node.js

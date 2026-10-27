@@ -1,8 +1,12 @@
-name: Build and check links
+name: Build, check links and deploy
 
-# Builds the site with the same builder GitHub Pages uses, then fails if any
-# internal link points to a page that doesn't exist. Added 2026-10-27 after a
-# home-page template sent every category link to a 404 for weeks.
+# Builds the site with the same builder GitHub Pages used before, fails if any
+# internal link points to a page that doesn't exist, and deploys only when that
+# check passes. Added 2026-10-27 after a home-page template sent every category
+# link to a 404 for weeks. The promotion workflows dispatch this workflow and
+# wait for it instead of pages-build-deployment.
+# Rollback: gh api -X PUT repos/JuanjoFuchs/JuanjoFuchs.github.io/pages -f build_type=legacy
+# (and revert the promotion workflows' "Trigger site deploy" steps).
 
 on:
   push:
@@ -12,6 +16,12 @@ on:
 
 permissions:
   contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages-${{ github.ref }}
+  cancel-in-progress: false
 
 jobs:
   build-and-check:
@@ -38,3 +48,21 @@ jobs:
             --allow-missing-href \
             --no-enforce-https \
             --swap-urls "^https\://juanjofuchs\.com:"
+
+      - name: Upload the site for deployment
+        if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./_site
+
+  deploy:
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    needs: build-and-check
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
