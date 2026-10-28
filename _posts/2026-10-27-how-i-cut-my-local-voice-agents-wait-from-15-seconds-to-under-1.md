@@ -149,6 +149,8 @@ MEDIA: /assets/2026-10-27-gpu-throttled-hwinfo-tui.png
 ALT: HWInfo-TUI plot of the throttled GPU: clock flat at 607 MHz while the temperature swings between 78 and 83 °C.
 
 #### LinkedIn Post
+PUBLISHED: 2026-10-28T16:01:55.321Z
+
 The first fix to my voice agent's wait was thermal paste.
 
 I talk to my AI agents through Command Bridge, a voice tool I built that runs on my own laptop. When I asked my agent to move the voice to the GPU, we found the GPU overheating and slowing itself down to cool off. It's an NVIDIA RTX A2000 with 8 GB, and it was sitting at 78 to 83 °C even near idle, with the clock at 607 of its 2,100 MHz.
@@ -164,6 +166,8 @@ The full story of cutting the wait from 15 seconds to under 1: https://juanjofuc
 #VoiceAI #LocalAI #GPU #AIAgents
 
 #### X/Twitter Thread
+PUBLISHED: 2026-10-28T16:01:57.437Z
+
 Tweet 1:
 The first fix to my local voice agent's wait was thermal paste. My laptop's RTX A2000 sat at 78 to 83 °C even near idle, slowed down to 607 of its 2,100 MHz.
 
