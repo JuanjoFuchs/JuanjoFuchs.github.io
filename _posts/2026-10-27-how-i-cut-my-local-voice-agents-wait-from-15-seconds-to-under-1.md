@@ -192,6 +192,8 @@ MEDIA: /assets/videos/2026-10-27-voice-latency-typical-turn.mp4
 ALT: A 3D timeline of a typical turn, the median of all my turns: turn detection, speech to text, the agent thinking and the first spoken audio. First audio collapses from 7.4 seconds to 0.6, speech to text gets 5 times faster, the agent's 4.8 seconds of thinking stay the same, and it ends on the big green number marked voice only.
 
 #### LinkedIn Post
+PUBLISHED: 2026-10-29T16:02:01.661Z
+
 My local voice agent now starts speaking 12 times faster, 0.6 seconds after it has its answer instead of 7.4.
 
 On most turns, the longest wait with my voice agent was hearing it speak back. From the agent having its answer to the first word I heard took 7.4 seconds at the median, on short turns and long ones alike.
@@ -207,6 +209,8 @@ https://juanjofuchs.com/blog/fast-voice
 #VoiceAI #AIAgents #LocalAI
 
 #### X/Twitter Thread
+PUBLISHED: 2026-10-29T16:02:05.409Z
+
 Tweet 1:
 My local voice agent took 7.4 seconds from having its answer to speaking the first word. Now it's 0.6 seconds, 12 times faster, on my laptop's 8 GB GPU.
 
