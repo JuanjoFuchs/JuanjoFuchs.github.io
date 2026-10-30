@@ -232,6 +232,8 @@ MEDIA: /assets/2026-10-27-voice-latency-hero.png
 ALT: The last frame of the long-turn animation: four stages of one long turn on a level time axis, speech to text marked 155 times faster, first audio 12 times faster, and the agent's 4.8 seconds of thinking as an unchanged grey bar.
 
 #### LinkedIn Post
+PUBLISHED: 2026-10-30T16:02:03.177Z
+
 I went from cycling through six AI agents all day to talking to just one.
 
 I first started using two-way voice with my agents through Voice Tunnel, and that long wait made me realize I needed multiple lanes, so I created Command Bridge. It gives each agent its own lane, one conversation per agent that I can switch between, and I'd talk to one agent and switch to another while it worked on a reply, cycling through all of them for the whole day. Keeping that pace was hard.
@@ -249,6 +251,8 @@ The full post: https://juanjofuchs.com/blog/fast-voice
 #VoiceAI #AIAgents #ClaudeCode #OpenSource
 
 #### X/Twitter Thread
+PUBLISHED: 2026-10-30T16:02:05.033Z
+
 Tweet 1:
 I used to switch between six AI agents all day because every reply took so long. Now that I hear a reply less than a second after the agent has it, I can just talk to one.
 
