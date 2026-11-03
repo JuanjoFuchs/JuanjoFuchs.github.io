@@ -56,6 +56,7 @@ I used to run 3 to 6 agents at once and struggled to keep them all busy. Now the
 My first roster started from a week of conversations with my agents, 2,119 messages. The recurring work was already there in what I'd been asking them to do. Your session logs hold that record too, so I'd recommend auditing them for what keeps happening and creating roles around that.
 
 {% comment %}
+KIT_SENT: 2026-11-03T19:45:51Z
 ## Social Campaign
 CAMPAIGN: agents-with-jobs_20261103
 TIMEZONE: America/New_York
@@ -68,6 +69,8 @@ MEDIA: /assets/videos/2026-11-03-agents-with-jobs-hero.mp4
 ALT: Envelopes leave a to-do list, land in an inbox labelled Chief of staff, and go to the role that owns them, where a dotted ring fills. Each becomes a document, chart, container, program or log.
 
 #### LinkedIn Post
+PUBLISHED: 2026-11-03T19:45:45.652Z
+
 I haven't needed /goal since my agents got roles and responsibilities.
 
 In Claude Code, /goal takes a condition you want satisfied. A model checks after each turn whether that condition holds, and when it does, the goal clears. The agent has finished what you asked it to do.
@@ -83,6 +86,8 @@ Agents with Jobs, Not Goals: https://juanjofuchs.com/blog/agents-with-jobs
 #AIAgents #ClaudeCode #AI #DeveloperProductivity
 
 #### X/Twitter Thread
+PUBLISHED: 2026-11-03T19:45:49.734Z
+
 Tweet 1:
 I haven't needed /goal in Claude Code since my AI agents got roles and responsibilities.
 
