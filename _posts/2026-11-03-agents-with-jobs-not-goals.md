@@ -109,6 +109,8 @@ MEDIA: /assets/videos/2026-11-03-agents-with-jobs-wed.mp4
 ALT: A list of tasks moves up one at a time into an inbox labelled Chief of staff, which sends each to the role that owns it.
 
 #### LinkedIn Post
+PUBLISHED: 2026-11-04T21:01:41.909Z
+
 My work now is deciding what each of my 23 AI agents should be responsible for.
 
 Each time AI takes over the work at one level, I move up to the next one. This level looks a lot like managing engineers: you define the role, delegate the work and correct it.
@@ -126,6 +128,8 @@ https://juanjofuchs.com/blog/agents-with-jobs
 #AIAgents #AI #EngineeringManagement
 
 #### X/Twitter Thread
+PUBLISHED: 2026-11-04T21:01:46.522Z
+
 Tweet 1:
 My work now is deciding what each of my 23 AI agents should be responsible for. It looks a lot like managing engineers: define the role, delegate the work and correct it.
 
