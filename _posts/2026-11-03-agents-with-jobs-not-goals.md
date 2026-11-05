@@ -151,6 +151,8 @@ MEDIA: /assets/videos/2026-11-03-agents-with-jobs-thu.mp4
 ALT: Several roles work at once, each dotted ring filling at its own pace, while finished files land in a list on the right.
 
 #### LinkedIn Post
+PUBLISHED: 2026-11-05T21:02:08.859Z
+
 Every new AI agent is one more place for work to land in the wrong hands.
 
 I run a team of 23 agents, each with a role. I keep correcting who gets what so that future tasks can route automatically. If I don't keep the roles in order, it gets messy fast.
@@ -168,6 +170,8 @@ https://juanjofuchs.com/blog/agents-with-jobs
 #AIAgents #ClaudeCode #AI
 
 #### X/Twitter Thread
+PUBLISHED: 2026-11-05T21:02:11.539Z
+
 Tweet 1:
 Every new AI agent is one more place for work to land in the wrong hands. Maintaining order requires energy, and with an agent team most of that energy goes into keeping roles and responsibilities clear.
 
