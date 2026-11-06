@@ -193,6 +193,8 @@ MEDIA: /assets/2026-11-03-agents-with-jobs-hero.png
 ALT: The last frame of the animation: an inbox labelled Chief of staff, six role names above dotted rings, and a list of finished work such as tuesday-post.md.
 
 #### LinkedIn Post
+PUBLISHED: 2026-11-06T21:01:38.202Z
+
 I built my first team of AI agents from messages I'd already sent.
 
 I used to run 3 to 6 agents at once and struggled to keep them all busy. Now my roster has 23 agents with defined roles and responsibilities, and it's still growing.
@@ -206,6 +208,8 @@ Agents with Jobs, Not Goals: https://juanjofuchs.com/blog/agents-with-jobs
 #AIAgents #ClaudeCode #AI #DeveloperProductivity
 
 #### X/Twitter Thread
+PUBLISHED: 2026-11-06T21:01:39.798Z
+
 Tweet 1:
 I built my first team of AI agents from messages I'd already sent. The recurring work was already there in what I'd been asking them to do.
 
