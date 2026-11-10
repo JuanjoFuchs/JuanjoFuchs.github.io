@@ -74,6 +74,7 @@ Having AI made me go for that project I thought was too hard, it's letting my im
 What's your hard project that you have been postponing?
 
 {% comment %}
+KIT_SENT: 2026-11-10T17:07:28Z
 ## Social Campaign
 CAMPAIGN: fridge-screen_20261110
 TIMEZONE: America/New_York
@@ -85,6 +86,8 @@ MEDIA: /assets/2026-11-10-fridge-card-tuesday-v3.jpg
 ALT: E-ink calendar close-up with mock events, titled The Fridge Screen.
 
 #### LinkedIn Post
+PUBLISHED: 2026-11-10T17:07:26.196Z
+
 I am a builder. I have always been a builder. Before AI, I built software with my hands, I typed each letter into the keyboard and produced the code manually.
 
 Now that AI is here, we can use our voice and actually just speak things into existence, without having to use the keyboard at all. However, I have realized that I still have that need to create something with my hands. And something that AI can't yet do for us is hardware in the physical world.
@@ -99,6 +102,8 @@ https://juanjofuchs.com/blog/fridge-screen
 #AI #DIY #Electronics #EInk
 
 #### X/Twitter Thread
+PUBLISHED: 2026-11-10T17:07:28.021Z
+
 Tweet 1:
 I am a builder. Before AI, I built software with my hands. Now we can just speak things into existence, and I've realized I still have that need to create something with my hands.
 
