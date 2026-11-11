@@ -123,6 +123,8 @@ MEDIA: /assets/2026-11-10-fridge-card-wednesday-v4.jpg
 ALT: Driver board and cable, wires on the ESP32 pins and a pin diagram, titled The Fridge Screen.
 
 #### LinkedIn Post
+PUBLISHED: 2026-11-11T17:01:35.690Z
+
 With AI agents we have a personal teacher now, a teacher that never gets tired of our questions, no matter how obtuse they are, and can walk us through basically anything.
 
 Last weekend, with my agents' help, I finally put my family calendar on the fridge, on an e-ink display. The idea was to use my Raspberry Pi, a very old one that's been sitting in a drawer for years, but walking through the build I discovered it would draw too much energy to run for months. We researched more options and an ESP32 board came along, together with a battery, and then we realized I didn't have a soldering kit nor a multimeter.
@@ -137,6 +139,8 @@ https://juanjofuchs.com/blog/fridge-screen
 #AI #Electronics #DIY
 
 #### X/Twitter Thread
+PUBLISHED: 2026-11-11T17:01:37.391Z
+
 Tweet 1:
 With AI agents we have a personal teacher now, a teacher that never gets tired of our questions, no matter how obtuse they are, and can walk us through basically anything.
 
