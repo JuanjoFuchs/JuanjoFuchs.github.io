@@ -160,6 +160,8 @@ MEDIA: /assets/2026-11-10-fridge-card-thursday.jpg
 ALT: Chart estimating 59 days of battery without quiet hours and 78 with them, titled The Fridge Screen.
 
 #### LinkedIn Post
+PUBLISHED: 2026-11-12T17:01:38.384Z
+
 The e-ink calendar I built for my fridge is a 13.3-inch Waveshare display with a 2000 mAh battery that should last two and a half months between charges.
 
 A Seeed XIAO ESP32C3 board drives it, and the board spends almost all of its time asleep.
@@ -178,6 +180,8 @@ https://juanjofuchs.com/blog/fridge-screen
 #EInk #ESP32 #Electronics
 
 #### X/Twitter Thread
+PUBLISHED: 2026-11-12T17:01:40.317Z
+
 Tweet 1:
 The e-ink calendar I built for my fridge is a 13.3-inch Waveshare display with a 2000 mAh battery that should last two and a half months between charges. A tiny ESP32 board drives it and sleeps most of the time.
 
