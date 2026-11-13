@@ -201,6 +201,8 @@ MEDIA: /assets/2026-11-10-fridge-card-friday-v3.jpg
 ALT: The finished e-ink calendar with mock events, titled The Fridge Screen.
 
 #### LinkedIn Post
+PUBLISHED: 2026-11-13T17:01:35.600Z
+
 I wanted to build an e-ink calendar for my fridge, and I wanted to keep the budget around a hundred dollars, and that didn't happen. The parts alone came to $204.29.
 
 The soldering kit and meter are tools I'll reuse, not just for this project, so that's an investment. I didn't have those tools because I had never done this.
@@ -219,6 +221,8 @@ https://juanjofuchs.com/blog/fridge-screen
 #EInk #DIY #Electronics
 
 #### X/Twitter Thread
+PUBLISHED: 2026-11-13T17:01:37.734Z
+
 Tweet 1:
 I wanted to build an e-ink calendar for my fridge, and I wanted to keep the budget around a hundred dollars, and that didn't happen. The parts alone came to $204.29.
 
