@@ -83,6 +83,7 @@ It looked better than what I was imagining.
 I'm still exploring the best way to direct many agents at a time and do multiple things in parallel. In order to continue to scale this up, it's important to be able to understand and see live what all the agents are doing, so I catch issues early and keep the ownership of what they do. The sunflower view is how I do that today.
 
 {% comment %}
+KIT_SENT: 2026-11-17T17:02:11Z
 ## Social Campaign
 CAMPAIGN: sunflower-view_20261117
 TIMEZONE: America/New_York
@@ -108,6 +109,8 @@ https://juanjofuchs.com/blog/sunflower-view
 #AI #AIAgents #ClaudeCode #DataVisualization
 
 #### X/Twitter Thread
+PUBLISHED: 2026-11-17T17:02:10.390Z
+
 Tweet 1:
 I used to watch my coding agents in one terminal pane each. The messages flew by and I'd catch one editing a file it shouldn't. That was manageable with three panes and got hard by six.
 
