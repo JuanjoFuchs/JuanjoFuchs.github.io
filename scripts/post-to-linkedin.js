@@ -3,9 +3,11 @@ import fs from 'fs';
 import path from 'path';
 
 // LinkedIn API version header (required for media uploads)
-// Versions are supported for ~12 months. Update annually. See:
+// Versions are supported for about 10 months in practice: on 2026-11-17, 202511 and 202512
+// returned 426 NONEXISTENT_VERSION and 202601-202611 were active. The vault's
+// scripts/blog_credentials.py check warns before this one sunsets. See:
 // https://learn.microsoft.com/en-us/linkedin/marketing/versioning
-const LINKEDIN_VERSION = '202511';
+const LINKEDIN_VERSION = '202611';
 const VIDEO_STATUS_TIMEOUT_MS = 120000;
 const VIDEO_STATUS_POLL_MS = 5000;
 
