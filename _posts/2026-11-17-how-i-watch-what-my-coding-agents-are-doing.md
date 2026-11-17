@@ -95,6 +95,8 @@ MEDIA: /assets/videos/2026-11-17-sunflower-social-tuesday.mp4
 ALT: Agents work across repo boxes of file dots, lines lighting up as they read, write and run commands, titled How I Watch What My Coding Agents Are Doing.
 
 #### LinkedIn Post
+PUBLISHED: 2026-11-17T17:09:49.746Z
+
 I used to open Claude Code and Codex in Windows Terminal, one pane per agent, so I could always see what they were doing. The messages flew by and I'd catch one editing something it shouldn't, writing a new file that didn't make sense, or running a command unrelated to my ask. That was manageable with three panes and got hard by six.
 
 Now I talk to one agent through Command Bridge, the voice tool I built, and it manages all the others. That has let me grow my fleet and take on more projects. Another key to scaling this up is transparency, seeing in real time what they're reading, writing and executing, or whether they're idle.
