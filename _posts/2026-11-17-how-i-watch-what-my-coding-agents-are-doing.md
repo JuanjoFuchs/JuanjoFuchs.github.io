@@ -129,6 +129,8 @@ MEDIA: /assets/videos/2026-11-17-sunflower-social-wednesday.mp4
 ALT: Close-up of a repo box as an agent's arrows reach a file dot, a pie with a dotted ring, titled How I Watch What My Coding Agents Are Doing.
 
 #### LinkedIn Post
+PUBLISHED: 2026-11-18T17:01:43.017Z
+
 In the sunflower view I built for Command Bridge, I can follow each agent by its color, which stays the same on its card, its lines and its pie slices. Each card shows its current state, like thinking, speaking or idle, and a bar with how much of its context window it has used.
 
 Each repo gets a box, and each file that's been touched is a dot inside it. A dot grows with the interactions to that file, and its pie slices show each agent's share, so I can match the largest slice to a color to see who touched it most. A dotted gray ring means the file isn't committed yet. Dots dim as activity gets older, and old ones drop off.
@@ -143,6 +145,8 @@ https://juanjofuchs.com/blog/sunflower-view
 #AI #AIAgents #DataVisualization
 
 #### X/Twitter Thread
+PUBLISHED: 2026-11-18T17:01:47.000Z
+
 Tweet 1:
 In my sunflower view, each file my coding agents touch is a dot, and the dot is a pie chart. Each slice is one agent's share, so the biggest slice tells me who touched it most.
 
