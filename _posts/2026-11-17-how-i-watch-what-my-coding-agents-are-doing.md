@@ -163,6 +163,8 @@ MEDIA: /assets/videos/2026-11-17-sunflower-social-thursday.mp4
 ALT: One agent's line lights up to a .env file dot, then runs to an rm -rf command box, titled How I Watch What My Coding Agents Are Doing.
 
 #### LinkedIn Post
+PUBLISHED: 2026-11-19T17:02:13.941Z
+
 I needed a persistent way to trace what my coding agents do at a glance: which repos they're working in, which files they're reading and writing, and which commands they're executing.
 
 That lets me catch a rogue agent doing something it shouldn't. In the clip at the top of the post, one of them reads a .env file and then runs a recursive delete. Its line lights up to the .env dot, then its command box lights up, and I see each one the moment it happens.
@@ -175,6 +177,8 @@ https://juanjofuchs.com/blog/sunflower-view
 #AI #AIAgents #Observability
 
 #### X/Twitter Thread
+PUBLISHED: 2026-11-19T17:02:18.908Z
+
 Tweet 1:
 In my sunflower view, when a coding agent reads a .env file and then runs a recursive delete, I see each one the moment it happens.
 
