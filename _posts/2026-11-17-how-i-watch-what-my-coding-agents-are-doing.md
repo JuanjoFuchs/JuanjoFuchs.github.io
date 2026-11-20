@@ -195,6 +195,8 @@ MEDIA: /assets/2026-11-17-sunflower-card-friday.jpg
 ALT: Repo boxes packed together, each with file dots in a spiral, titled How I Watch What My Coding Agents Are Doing.
 
 #### LinkedIn Post
+PUBLISHED: 2026-11-20T17:01:36.716Z
+
 I was exploring ways to pack a lot of information into the sunflower view and still read it at a glance. At first I was directing the agent building it on how to place the objects. I wanted the file dots in something like a grid, with the newer ones on the outside, like a timeline of what was touched.
 
 It was struggling to implement it exactly how I wanted it, and I guess I failed to describe all the different scenarios for it. So I eventually gave up and asked it for the best way to organize them, and it suggested a sunflower spiral, so the dots never pile up.
@@ -211,6 +213,8 @@ https://juanjofuchs.com/blog/sunflower-view
 #AI #AIAgents #DataVisualization
 
 #### X/Twitter Thread
+PUBLISHED: 2026-11-20T17:01:38.350Z
+
 Tweet 1:
 I told the coding agent building my sunflower view exactly where to place the file dots. It struggled, so I asked it for the best way, and it suggested a sunflower spiral so the dots never pile up.
 
