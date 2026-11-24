@@ -109,6 +109,7 @@ Tokens Not Included isn't affiliated with Klei, who make Oxygen Not Included.
 The [TNI repo](https://github.com/JuanjoFuchs/tokens-not-included) is up with a preview, and the sources and install are coming soon. Keep an eye out for the next post.
 
 {% comment %}
+KIT_SENT: 2026-11-24T17:03:08Z
 ## Social Campaign
 CAMPAIGN: tokens-not-included_20261124
 TIMEZONE: America/New_York
@@ -120,6 +121,8 @@ MEDIA: /assets/2026-11-24-tni-social-tuesday.mp4
 ALT: A wide colony with repository floors, a cafeteria and sleeping agents in bunks, titled Tokens Not Included.
 
 #### LinkedIn Post
+PUBLISHED: 2026-11-24T17:03:02.598Z
+
 I made this realtime viewer for my Claude Code agents, inspired by Oxygen Not Included (ONI). I've been experimenting with parsing Claude Code's session logs and finding ways to see multiple parallel sessions work in real time, because I needed a way to see what all my agents are doing at once. Last week I wrote about the sunflower view. This is Tokens Not Included, or TNI, which I've been using for around four weeks now.
 
 Most of the agent viewers out there use office layouts, where agents sit at a desk in front of a computer. I didn't like that. What's the point? Everybody, even us, is already looking at monitors. I wanted a colony like the game's, with multiple floors and machines for the work they're doing.
@@ -132,6 +135,8 @@ https://juanjofuchs.com/blog/tokens-not-included
 #AIAgents #ClaudeCode #DataVisualization
 
 #### X/Twitter Thread
+PUBLISHED: 2026-11-24T17:03:07.888Z
+
 Tweet 1:
 I made a realtime viewer for my Claude Code agents, inspired by Oxygen Not Included, because I needed a way to see what all my agents are doing at once. I've been using it for around four weeks now.
 
