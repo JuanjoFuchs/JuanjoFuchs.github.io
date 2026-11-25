@@ -153,6 +153,8 @@ MEDIA: /assets/2026-11-24-tni-social-wednesday.mp4
 ALT: An agent hammers at the pytest machine beside the Command Bridge gauges station, titled Tokens Not Included.
 
 #### LinkedIn Post
+PUBLISHED: 2026-11-25T17:01:50.885Z
+
 In Tokens Not Included, floors are repositories. Code files, including scripts, sources and tests, are machines; notes, docs and other non-code files are bookshelves.
 
 Commands are stations, like a phone switchboard for herdr, a record press for git, or a rocket for docker. Commands that don't belong to a repo get their own floor of stations. An agent hammers at the pytest machine next to the Command Bridge gauges station. I can see the command it's running by where it's working.
@@ -167,6 +169,8 @@ https://juanjofuchs.com/blog/tokens-not-included
 #AIAgents #ClaudeCode #DataVisualization
 
 #### X/Twitter Thread
+PUBLISHED: 2026-11-25T17:01:55.617Z
+
 Tweet 1:
 In my agent colony, floors are repositories. Code files, including scripts, sources and tests, are machines; notes, docs and other non-code files are bookshelves. Commands that don't belong to a repo get their own floor of stations.
 
