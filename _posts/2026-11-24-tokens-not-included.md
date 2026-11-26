@@ -187,6 +187,8 @@ MEDIA: /assets/2026-11-24-tni-social-thursday.mp4
 ALT: Agents at the cli.py, test_watch.py and server.py machines, one with a hand on its chin, titled Tokens Not Included.
 
 #### LinkedIn Post
+PUBLISHED: 2026-11-26T17:01:58.180Z
+
 I told Claude to prompt Codex to generate the art sprites for Tokens Not Included, then Claude cut them, cleaned them and upscaled them. It was amazing to watch it iterate on its own to get the art looking good, and I watched it all happen through the colony too.
 
 Claude suggested upscaling the art because Codex returns about 1.5 megapixels per image, roughly 300 pixels per pose on a 16-pose sheet. It also cleaned up the magenta backgrounds around the sprites. I could see weird magenta edges around the agents, and some was still showing in one agent's glasses as we worked through the cleanup.
@@ -201,6 +203,8 @@ https://juanjofuchs.com/blog/tokens-not-included
 #AIAgents #ClaudeCode #Codex #DataVisualization
 
 #### X/Twitter Thread
+PUBLISHED: 2026-11-26T17:02:02.934Z
+
 Tweet 1:
 I told Claude to prompt Codex to generate the art sprites for my agent colony, then Claude cut them, cleaned them and upscaled them. It also cleaned up the magenta backgrounds. I could see weird magenta edges around the agents.
 
