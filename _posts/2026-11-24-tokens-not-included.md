@@ -221,6 +221,8 @@ MEDIA: /assets/2026-11-24-tni-social-friday.mp4
 ALT: An agent drinks coffee in the cafeteria while another climbs the ladder, titled Tokens Not Included.
 
 #### LinkedIn Post
+PUBLISHED: 2026-11-27T17:01:52.020Z
+
 Age of Agents already has settlers walking to workshops according to the tool they're using. claude-village maps tools to zones in a Minecraft-style village. People are putting agents in offices, strategy maps, villages, and now in an Oxygen Not Included-style colony I made for my Claude Code agents.
 
 All this tells me that folks want to see their agents work, and want it to be something they enjoy watching. Someone even asked for Terraria and This War of Mine skins. We're going to be using more agents, and we want to watch them work in these worlds that we love.
@@ -233,6 +235,8 @@ https://juanjofuchs.com/blog/tokens-not-included
 #AI #AIAgents #ClaudeCode
 
 #### X/Twitter Thread
+PUBLISHED: 2026-11-27T17:01:59.348Z
+
 Tweet 1:
 Age of Agents has settlers walking to workshops according to the tool they're using. claude-village maps tools to zones in a Minecraft-style village. People are putting agents in offices, strategy maps, villages, and now in my Oxygen Not Included-style colony.
 
